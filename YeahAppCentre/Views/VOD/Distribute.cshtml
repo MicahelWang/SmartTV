@@ -1,0 +1,231 @@
+﻿@model YeahTVApi.DomainModel.Models.ViewModels.DistributeModel
+@{
+    ViewBag.Title = "电影分发";
+}
+
+
+
+@section Styles{
+    <style type="text/css">
+        .tab-content > .active, .pill-content > .active {
+            display: block;
+            width: 48%;
+            float: left;
+            margin-left: 20px;
+        }
+
+        .tab-content {
+            overflow: hidden;
+            border: none;
+        }
+
+        .form-lable {
+            margin-bottom: 0px;
+        }
+
+        .form-horizontal .form-group {
+            margin-right: 0px;
+            margin-left: 0px;
+        }
+
+        hr {
+            margin-top: 0px;
+        }
+
+        #hotelNames {
+            margin: 0px;
+            width: 100%;
+            height: 211px;
+        }
+
+        .form-horizontal .control-label {
+            text-align: left;
+        }
+
+        #FilterHotels {
+            margin-left: 35px;
+            display: none;
+        }
+
+        input[type="radio"], input[type="checkbox"] {
+            margin: 4px 0 0;
+            line-height: normal;
+            width: 18px;
+            height: 15px;
+            padding-right: 15px;
+            margin-left: 15px;
+        }
+    </style>
+}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            电影分发
+            <small>
+                <i class="icon-double-angle-right"></i>
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="widget-box">
+                <div class="widget-header header-color-blue">
+                    <h5 class="bigger lighter">
+                        <i class="icon-table"></i>
+                        电影分发
+                    </h5>
+                </div>
+            </div>
+
+            @using (Ajax.BeginForm("Distribute", new { }, new AjaxOptions
+            {
+                HttpMethod = "Post",
+                OnSuccess = "Success",
+                OnBegin = "OnBegin",
+                OnComplete = "OnComplete",
+                OnFailure = "OnComplete"
+            }, new { @class = "form-horizontal", role = "form" }))
+            {
+
+
+                @Html.HiddenFor(m=>m.MovieId)
+
+                <div class="form-horizontal">
+
+
+                    <div class="tab-content">
+
+
+                        <div id="home4" class="tab-pane in active">
+
+
+                            <div class="form-group form-lable">
+                                <label class="control-label col-md-2" for="HotelName">已分发信息<span id="hotelCount">@Model.HotelIds.Split(new char[]{'|'}, StringSplitOptions.RemoveEmptyEntries).Length</span>家</label>
+                            </div>
+                            <div class="form-group form-lable">
+                                <hr />
+                            </div>
+                            <div class="form-group countryDropdown">
+
+                                @Html.TextAreaFor(m => m.HotelNames, new { @id = "hotelNames" })
+                                @Html.HiddenFor(m=>m.HotelIds)
+
+                            </div>
+
+                        </div>
+
+
+                        <div id="home5" class="tab-pane in active">
+
+
+                            <div class="form-group form-lable">
+                                <label class="control-label col-md-2">配置分发</label>
+                            </div>
+                            <div class="form-group form-lable">
+                                <hr />
+                            </div>
+
+                            @foreach (var item in EnumExtensions.GetItems(typeof(DistributeType)))
+                            {
+
+                                <div class="form-group">
+                                    <input type="radio" name="DistributeType" @(item.Text == DistributeType.All.GetText() ? "checked" : "") value="@item.Text" />@item.Description
+
+                                    @if (item.Text == DistributeType.Part.GetText())
+                                    {
+                                        <button type="button" id="FilterHotels" class="btn btn-info btn-sm">点击筛选具体酒店</button>
+                                    }
+                                </div>
+                            }
+
+                            <div class="form-group" style="margin-top:40px;">
+                                <input type="submit" id="sumbitDistribute" class="btn btn-success" value="提交变更">
+                                <a href="@Url.Action("Index", new { page = Model.PageIndex })" class="btn btn-default">返回</a>
+
+                            </div>
+
+
+                        </div>
+
+                        <div style="clear:both"></div>
+                    </div>
+                </div>
+}
+
+
+
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- inline scripts related to this page -->
+@section scripts{
+
+    <script src="~/Scripts/filterHotels.js"></script>
+
+    <script>
+
+        var selectHotels = $(@Html.Raw(Model.HotelListJsonString));
+
+        $(document).ready(function () {
+
+            $(document).delegate("#FilterHotels", "click",
+                function () {
+
+                    var filterOpt = {};
+                    filterOpt.saveEvent = function (data) {
+
+                        var hotelIds = '';
+                        var hotelNames = '';
+                        var hotelCount = 0;
+                        $(data).each(function () {
+                            hotelIds = hotelIds + '|' + this.Id;
+                            hotelNames = this.Name + '、' + hotelNames;
+                            hotelCount++;
+                        });
+                        $("#hotelNames").text(hotelNames.slice(0,-1));
+                        $("#HotelIds").val(hotelIds);
+                        $("#hotelCount").html(hotelCount);
+                    };
+                    filterOpt.existHotels = selectHotels;
+                    $('div.dialog.modal.fade').remove();
+                    openFilterHotelsDialog(filterOpt);
+
+                });
+
+            //是否显示筛选
+            $(document).delegate("input[name=DistributeType]:radio", "click",
+                function () {
+
+                    var checked = $('input:radio[name="DistributeType"]:checked');
+
+                    if (checked.val() === '@DistributeType.Part.ToString()') {
+                        $("#FilterHotels").show();
+                    } else {
+                        $("#FilterHotels").hide();
+                    }
+                });
+
+        });
+
+        function Success(data) {
+            if (data === "Success") {
+                Mc.Msg("保存成功！", function () {
+                    location.href = location.href;
+                });
+
+            } else {
+                Mc.Error(data);
+            }
+        }
+        function OnBegin() {
+            $("#sumbitDistribute").val("提交中...");
+            $("#sumbitDistribute").attr('class', "btn disabled btn-success");
+        }
+        function OnComplete() {
+            $("#sumbitDistribute").val("提交变更");
+            $("#sumbitDistribute").attr('class',"btn btn-success");
+        }
+    </script>
+}

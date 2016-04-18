@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="IsLoginOutRoles">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hotelId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsLoginOutRolesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsLoginOutRolesResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="employeeName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="roles" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userPermissions" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsLoginOutRolesAndEmployee">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hotelId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsLoginOutRolesAndEmployeeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsLoginOutRolesAndEmployeeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="employeeID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="employeeName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="roles" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userPermissions" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsLogin">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hotelId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsLoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsLoginResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="employeeName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userPermissions" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsLoginOutEmployee">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="passWord" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hotelId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="IsLoginOutEmployeeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="IsLoginOutEmployeeResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="employeeID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="employeeName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hotelName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="userPermissions" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoomStatusSearchByCondition">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hotelId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="roomStatusList" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="roomTypeList" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="roomFilter" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRoomStatusSearchByConditionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRoomStatusSearchByConditionResult" type="tns:ArrayOfRoomStatusInfo" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRoomStatusInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RoomStatusInfo" nillable="true" type="tns:RoomStatusInfo" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RoomStatusInfo">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Attribute" type="tns:ArrayOfString" />
+          <s:element minOccurs="1" maxOccurs="1" name="PlanLeaveDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="Status" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoomNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoomTypeID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="RoomTypeName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HallId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="ModifyTime" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfString">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetCheckRoom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hotelId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="roomId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="operatorId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCheckRoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetCheckRoomResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemLogsOfUnApp">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hotelId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="startDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="minutes" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemLogsOfUnAppResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemLogsOfUnAppResult" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="errorMsg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCleanRoom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hotelId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="roomId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="operatorId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetCleanRoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetCleanRoomResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHotelRoomTypes">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hotelId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHotelRoomTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHotelRoomTypesResult" type="tns:ArrayOfRoomTypeEntity" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfRoomTypeEntity">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RoomTypeEntity" nillable="true" type="tns:RoomTypeEntity" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RoomTypeEntity">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:EntityBase">
+            <s:sequence>
+              <s:element minOccurs="0" maxOccurs="1" name="RoomTypeName" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="RoomTypeID" type="s:string" />
+              <s:element minOccurs="1" maxOccurs="1" name="BedNum" type="s:int" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:complexType name="EntityBase" />
+      <s:element name="GetHotelInfo">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hotelId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHotelInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHotelInfoResult" type="tns:ArrayOfHall" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfHall">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Hall" nillable="true" type="tns:Hall" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Hall">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="HallID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HallName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Floors" type="tns:ArrayOfFloor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfFloor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Floor" nillable="true" type="tns:Floor" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Floor">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="FloorID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FloorName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Rooms" type="tns:ArrayOfChamber" />
+          <s:element minOccurs="0" maxOccurs="1" name="Coordinate" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfChamber">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Chamber" nillable="true" type="tns:Chamber" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Chamber">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ChamberNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChamberType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Storey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Building" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Coordinate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HobbyCollection" type="tns:ArrayOfRoomTrait" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfRoomTrait">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="RoomTrait" nillable="true" type="tns:RoomTrait" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RoomTrait">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="TraitKey" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TraitText" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SetOOORoom">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="hotelId" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="roomId" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="beginDate" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="endDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="reason" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="operatorId" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetOOORoomResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SetOOORoomResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="msg" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="IsLoginOutRolesSoapIn">
+    <wsdl:part name="parameters" element="tns:IsLoginOutRoles" />
+  </wsdl:message>
+  <wsdl:message name="IsLoginOutRolesSoapOut">
+    <wsdl:part name="parameters" element="tns:IsLoginOutRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsLoginOutRolesAndEmployeeSoapIn">
+    <wsdl:part name="parameters" element="tns:IsLoginOutRolesAndEmployee" />
+  </wsdl:message>
+  <wsdl:message name="IsLoginOutRolesAndEmployeeSoapOut">
+    <wsdl:part name="parameters" element="tns:IsLoginOutRolesAndEmployeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsLoginSoapIn">
+    <wsdl:part name="parameters" element="tns:IsLogin" />
+  </wsdl:message>
+  <wsdl:message name="IsLoginSoapOut">
+    <wsdl:part name="parameters" element="tns:IsLoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="IsLoginOutEmployeeSoapIn">
+    <wsdl:part name="parameters" element="tns:IsLoginOutEmployee" />
+  </wsdl:message>
+  <wsdl:message name="IsLoginOutEmployeeSoapOut">
+    <wsdl:part name="parameters" element="tns:IsLoginOutEmployeeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomStatusSearchByConditionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRoomStatusSearchByCondition" />
+  </wsdl:message>
+  <wsdl:message name="GetRoomStatusSearchByConditionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRoomStatusSearchByConditionResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCheckRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:SetCheckRoom" />
+  </wsdl:message>
+  <wsdl:message name="SetCheckRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:SetCheckRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemLogsOfUnAppSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemLogsOfUnApp" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemLogsOfUnAppSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemLogsOfUnAppResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetCleanRoomSoapIn">
+    <wsdl:part name="parameters" element="tns:SetCleanRoom" />
+  </wsdl:message>
+  <wsdl:message name="SetCleanRoomSoapOut">
+    <wsdl:part name="parameters" element="tns:SetCleanRoomResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHotelRoomTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHotelRoomTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetHotelRoomTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHotelRoomTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHotelInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHotelInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetHotelInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHotelInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetOOORoomSoapIn">
+    <wsdl:part name="parameters" element="tns:SetOOORoom" />
+  </wsdl:message>
+  <wsdl:message name="SetOOORoomSoapOut">
+    <wsdl:part name="parameters" element="tns:SetOOORoomResponse" />
+  </wsdl:message>
+  <wsdl:portType name="RoomStatusModifySoap">
+    <wsdl:operation name="IsLoginOutRoles">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">判断用户登录</wsdl:documentation>
+      <wsdl:input message="tns:IsLoginOutRolesSoapIn" />
+      <wsdl:output message="tns:IsLoginOutRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsLoginOutRolesAndEmployee">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">判断用户登录</wsdl:documentation>
+      <wsdl:input message="tns:IsLoginOutRolesAndEmployeeSoapIn" />
+      <wsdl:output message="tns:IsLoginOutRolesAndEmployeeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsLogin">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">判断用户登陆</wsdl:documentation>
+      <wsdl:input message="tns:IsLoginSoapIn" />
+      <wsdl:output message="tns:IsLoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="IsLoginOutEmployee">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">判断用户登陆</wsdl:documentation>
+      <wsdl:input message="tns:IsLoginOutEmployeeSoapIn" />
+      <wsdl:output message="tns:IsLoginOutEmployeeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomStatusSearchByCondition">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取酒店房态信息</wsdl:documentation>
+      <wsdl:input message="tns:GetRoomStatusSearchByConditionSoapIn" />
+      <wsdl:output message="tns:GetRoomStatusSearchByConditionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCheckRoom">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">设置检查房</wsdl:documentation>
+      <wsdl:input message="tns:SetCheckRoomSoapIn" />
+      <wsdl:output message="tns:SetCheckRoomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemLogsOfUnApp">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取非app改房态的日志信息</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemLogsOfUnAppSoapIn" />
+      <wsdl:output message="tns:GetSystemLogsOfUnAppSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetCleanRoom">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">设置干净房</wsdl:documentation>
+      <wsdl:input message="tns:SetCleanRoomSoapIn" />
+      <wsdl:output message="tns:SetCleanRoomSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHotelRoomTypes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取某个酒店的房型</wsdl:documentation>
+      <wsdl:input message="tns:GetHotelRoomTypesSoapIn" />
+      <wsdl:output message="tns:GetHotelRoomTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHotelInfo">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">获取某个酒店的基础信息</wsdl:documentation>
+      <wsdl:input message="tns:GetHotelInfoSoapIn" />
+      <wsdl:output message="tns:GetHotelInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetOOORoom">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">新增设置维修房接口</wsdl:documentation>
+      <wsdl:input message="tns:SetOOORoomSoapIn" />
+      <wsdl:output message="tns:SetOOORoomSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="RoomStatusModifySoap" type="tns:RoomStatusModifySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IsLoginOutRoles">
+      <soap:operation soapAction="http://tempuri.org/IsLoginOutRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsLoginOutRolesAndEmployee">
+      <soap:operation soapAction="http://tempuri.org/IsLoginOutRolesAndEmployee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsLogin">
+      <soap:operation soapAction="http://tempuri.org/IsLogin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsLoginOutEmployee">
+      <soap:operation soapAction="http://tempuri.org/IsLoginOutEmployee" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomStatusSearchByCondition">
+      <soap:operation soapAction="http://tempuri.org/GetRoomStatusSearchByCondition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCheckRoom">
+      <soap:operation soapAction="http://tempuri.org/SetCheckRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemLogsOfUnApp">
+      <soap:operation soapAction="http://tempuri.org/GetSystemLogsOfUnApp" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCleanRoom">
+      <soap:operation soapAction="http://tempuri.org/SetCleanRoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHotelRoomTypes">
+      <soap:operation soapAction="http://tempuri.org/GetHotelRoomTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHotelInfo">
+      <soap:operation soapAction="http://tempuri.org/GetHotelInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOOORoom">
+      <soap:operation soapAction="http://tempuri.org/SetOOORoom" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="RoomStatusModifySoap12" type="tns:RoomStatusModifySoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="IsLoginOutRoles">
+      <soap12:operation soapAction="http://tempuri.org/IsLoginOutRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsLoginOutRolesAndEmployee">
+      <soap12:operation soapAction="http://tempuri.org/IsLoginOutRolesAndEmployee" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsLogin">
+      <soap12:operation soapAction="http://tempuri.org/IsLogin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsLoginOutEmployee">
+      <soap12:operation soapAction="http://tempuri.org/IsLoginOutEmployee" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomStatusSearchByCondition">
+      <soap12:operation soapAction="http://tempuri.org/GetRoomStatusSearchByCondition" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCheckRoom">
+      <soap12:operation soapAction="http://tempuri.org/SetCheckRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemLogsOfUnApp">
+      <soap12:operation soapAction="http://tempuri.org/GetSystemLogsOfUnApp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetCleanRoom">
+      <soap12:operation soapAction="http://tempuri.org/SetCleanRoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHotelRoomTypes">
+      <soap12:operation soapAction="http://tempuri.org/GetHotelRoomTypes" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHotelInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetHotelInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetOOORoom">
+      <soap12:operation soapAction="http://tempuri.org/SetOOORoom" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RoomStatusModify">
+    <wsdl:port name="RoomStatusModifySoap" binding="tns:RoomStatusModifySoap">
+      <soap:address location="http://10.1.81.69:8011/RoomStatusModify.asmx" />
+    </wsdl:port>
+    <wsdl:port name="RoomStatusModifySoap12" binding="tns:RoomStatusModifySoap12">
+      <soap12:address location="http://10.1.81.69:8011/RoomStatusModify.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

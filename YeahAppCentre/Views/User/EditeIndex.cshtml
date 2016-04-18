@@ -1,0 +1,196 @@
+﻿<div class="page-content">
+    <div class="page-header">
+        <h1>
+            用户管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="widget-box">
+                <div class="widget-header header-color-blue">
+                    <h5 class="bigger lighter">
+                        <i class="icon-table"></i>
+                        用户管理
+                    </h5>
+                </div>
+            </div>
+            <div>
+                @{
+                    OpType opType = ViewBag.Type;
+                }
+                <div class="dataTables_wrapper" role="grid">
+                    <div class="modal-body">
+                        <div class="col-xs-6" style="width: 20%;">
+                            <fieldset>
+                                <legend>权限</legend>
+                                <div class="col-sm-8"></div>
+                                <div class="col-sm-4">
+                                </div>
+                                <div style="clear: both"></div>
+                                <div>
+                                    全选/全不选 <input type="checkbox" id="wori" onchange="Checked(this)" />
+                                </div>
+                                <div>
+                                    <ul id="treeDemo" class="ztree"></ul>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-xs-6" style="width: 80%;">
+                            <fieldset>
+                                <legend>编辑</legend>
+                            </fieldset>
+                            <div id="editForm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Styles{
+    <style>
+        .dataTables_wrapper input[type=text], .dataTables_wrapper select {
+             margin: 0px; 
+        }
+    </style>
+}
+
+<script src="~/Scripts/zTree/js/jquery.ztree.all-3.5.js"></script>
+<link href="~/Scripts/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.json-2.4.js"></script>
+<script>
+    $(function () {
+        loadEditView();
+        createGroupTree();
+    });
+
+    function filter(node) {
+        return (node.level == 0);
+    }
+
+
+    function Checked(obj) {
+
+        var test = document.getElementById(obj.id).checked;
+        if (test) {
+            var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+            treeObj.checkAllNodes(true);
+        }
+        else {
+            var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+            treeObj.checkAllNodes(false);
+        }
+    }
+
+    //集团
+    var permitions = [];
+    $(document).delegate(".btn-success", "click",
+           function () {
+               ceshi();
+               return true;
+           });
+
+    function ceshi() {
+        permitions = [];
+        var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+        var nodes = treeObj.getNodesByFilter(filter); // 查找选中节点集合
+        $.each(nodes, function (k, node) {
+            //1.check_Child_State=1
+
+            debugger;
+
+            if (node.check_Child_State == 2 || (node.check_Child_State == -1 && node.checked)) {
+                var permition = { UserId: "", PermitionType: '@PermitionEnum.Group', TypeId: node.id };
+                permitions.push(permition);
+            }
+            if (node.check_Child_State == 1) {
+                GetBrand(node.children);
+            }
+        });
+        $("#permition").val($.toJSON(permitions));
+    }
+
+    //品牌
+    function GetBrand(nodes) {
+        $.each(nodes, function (k, node) {
+            //1.check_Child_State=1
+            if (node.check_Child_State == 2 || (node.check_Child_State == -1 && node.checked)) {
+                var permition = { UserId: "", PermitionType: '@PermitionEnum.Brand', TypeId: node.id };
+                permitions.push(permition);
+            }
+            if (node.check_Child_State == 1) {
+                GetHotel(node.children);
+            }
+        });
+    }
+
+
+    function GetHotel(nodes) {
+        $.each(nodes, function (k, node) {
+            //1.check_Child_State=1
+            if (node.checked == true) {
+                var permition = { UserId: "", PermitionType: '@PermitionEnum.Hotel', TypeId: node.id };
+                permitions.push(permition);
+            }
+        });
+    }
+
+
+    function loadEditView() {
+        var id = '@ViewBag.Id';
+        var opType = '@ViewBag.Type';
+        var url = '@Html.Raw(Url.Action("Edit", new { type = "_type_", id = "_id_" }))'.replace('_id_', id).replace('_type_', opType);
+        var container = $("#editForm");
+        container.load(url, function () {
+
+        });
+    }
+
+    var setting = {
+        view: {
+            selectedMulti: false
+        },
+        check: {
+            enable: true
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            onClick: onClick
+        }
+    };
+
+    function onClick(e, treeId, treeNode) {
+        var zTree = $.fn.zTree.getZTreeObj(treeId),
+        nodes = zTree.getSelectedNodes();
+    }
+
+    function createGroupTree() {
+        var url = '@Url.Action("GetTreeJson", "User", new { id = ViewBag.Id, type = ViewBag.Type })';
+        $.get(url, function (data) {
+            var zNodes = eval(data);
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+            //InitialTree();
+        });
+    }
+
+
+    function Success(data) {
+        if (data == "Success") {
+            Mc.Msg("保存成功！", function () {
+                location.href = '@Url.Action("Index","User")';
+            });
+
+        } else {
+            Mc.Error(data);
+        }
+    }
+</script>

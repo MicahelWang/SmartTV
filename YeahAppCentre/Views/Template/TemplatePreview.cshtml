@@ -1,0 +1,164 @@
+﻿@model string
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>@ViewBag.Title -  行悦中枢后台管理系统</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <meta name="robots" content="noindex" />
+    <script src="~/Scripts/assets/js/jquery-2.0.3.min.js"></script>
+    <link href="~/Content/PreviewPageStyle.css" rel="stylesheet" />
+    <style type="text/css">
+    </style>
+</head>
+<body>
+    <div id="divContent" class="divContent" style="position: relative;">
+        <div id="divTop" class="divTop">
+            <!--视频-->
+            <div id="divMovie" class="divMovie">
+                <video id="video" class="video" loop="loop" preload="none"></video>
+                <img src="" id="homeImg" style="width:100%"/>
+            </div>
+            <!--右侧信息-->
+            <div id="divRight" class="divRight">
+                <!--天气-->
+                <div id="divWeather" class="divWeather">
+                    天气+时间
+                </div>
+                <div id="divSpan" class="divSpan">
+                </div>
+                <div id="divInfo" class="divInfo">
+                    <!--酒店信息-->
+                    <p class="p1">欢迎光临</p>
+                    <p class="p2" id="lblHotelName"></p>
+                    <img id="imgLogo" />
+                    <p class="p3" id="lblHelpTip"></p>
+                </div>
+            </div>
+        </div>
+        <!--底部菜单-->
+        <div id="divBottom" style="position: absolute; bottom: 0;">
+            <ul class="content" id="ulContent"></ul>
+        </div>
+    </div>
+    <div id="divReponseInfo" class="divReponseInfo"></div>
+    <script type="text/javascript">
+    var testdata = eval(@Html.Raw(Model));
+
+    $(document).ready(function () {
+        loadTemplateData();
+    });
+
+
+    //加载功能模块
+    function getModuleItem(elements, parentId) {
+
+        var html = "";
+        var len = elements.length;
+        elements.sort(function (a, b) { return a.Orders > b.Orders ? 1 : -1; });
+        for (var i = 0; i < len; i++) {
+            var item = elements[i];
+            if (item.ParentId != parentId) {
+                continue;
+            }
+
+            html += "<li><a id=\"item" + i + "\" href=\"javascript:void(0);\"  style=\"outline:none;\">";
+            html += "<img src=\"" + searchAttribute(item.Attributes, "OffIcon").Value + "\"/>";
+            html += "<p> " + searchAttribute(item.Attributes, "DisplayName").Value + " </p>";
+            html += "</a></li>";
+        }
+        $("#ulContent").html(html);
+
+
+    }
+
+    function searchElement(data, elementName, parentId) {
+        var k;
+        for (k = 0; k < data.length; ++k) {
+            if (data[k].Name == elementName && (parentId == null || data[k].parentId == parentId)) {
+                return data[k];
+            }
+        }
+        return null;
+    }
+    function searchAttribute(data, attributeText) {
+        var k;
+        for (k = 0; k < data.length; ++k) {
+            if (data[k].Text == attributeText) {
+                return data[k];
+            }
+        }
+        return null;
+    }
+    function searchFirstVideoAttribute(data, datatype) {
+        var k;
+        for (k = 0; k < data.length; ++k) {
+            if (data[k].attributeDataType == datatype) {
+                return data[k];
+            }
+        }
+        return null;
+    }
+
+    function loadTemplateData() {
+        var data = eval(@Html.Raw(Model));
+
+        $('#divReponseInfo').html('@Html.Raw(Model)');
+        //data = JSON.parse(data);
+        if (null != data) {
+
+            var document = searchElement(data, "Launcher", null);
+
+            //todo....添加数据逻辑错误
+            if (null == document) {
+                alert("不支持此模板数据预览！");
+            } else {
+                var template = data;
+
+                //酒店名称
+                $("#lblHotelName").html("行悦信息");
+                //提示语
+                $("#lblHelpTip").html(searchAttribute(document.Attributes, "HelpTips").Value);
+                //logo
+                $("#imgLogo").attr("src", "http://resource.yeah-info.com/c550712b-19ef-4ec8-9e80-a5622f3c47af.png");
+
+
+                //加载背景图片
+                $("#divContent").css('background-image', 'url(' + searchAttribute(document.Attributes, "Backgrand").Value + ')');
+
+                //加载模块显示
+                getModuleItem(data, document.Id);
+                //模块样式
+                var padding = (1280 - (data.length - 1) * 125) / 2;
+                //$("#ulContent").css('padding-left', padding);
+
+                //加载视频
+                debugger;
+                var src = searchFirstVideoAttribute(eval(searchAttribute(document.Attributes, "HomeAdResources").Value), '@TemplateDataType.Video.GetValueStr()');
+
+                    if (src != null) {
+                        $('#video').attr("src", src.attributeValue);
+                        $("#video").attr("autoplay", "true"); $("#homeImg").remove();
+                    } else {
+                        var imgsrc = searchFirstVideoAttribute(eval(searchAttribute(document.Attributes, "HomeAdResources").Value), '@TemplateDataType.Image.GetValueStr()');
+                        $("#video").remove();
+                        $('#homeImg').attr("src", imgsrc.attributeValue);
+                    }
+
+                }
+            }
+            else {
+                alert(data);
+            }
+        }
+
+    </script>
+</body>
+</html>

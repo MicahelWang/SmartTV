@@ -1,0 +1,106 @@
+﻿<h3 class="blue">开机视频<label style="display:none;color:red" id="startVideoState">(修改中)</label></h3>
+<script type="text/javascript">
+    function StartVideo(obj) {
+        //var divObj = $(obj).parents("div.form-group").siblings().first();
+        var Coversetting = {
+            single: true,
+            container: $("#startvideoSrc"),
+            targetOjb: $("#startvideoValue"),
+            showFullPath: true,
+            filter: "mp4",
+            limitSize: 1024 * 20,
+            callback: function (data) {
+                $("#startvideoValue").val(getFileName(data.FilePath));
+                $("#startVideoState").css("display", "block");
+            }
+        };
+        $(obj).binduploadify(Coversetting);
+    }
+        $(function () { 
+            StartVideo($("#startvideobtn"));
+            $.ajax({
+                async: true,
+                type: 'Get',
+                url: "/IUHotelConfig/IUStartVideo",
+                data: { "brandID": brandID },
+                dataType: "json",
+                success: function (resultResponse) {
+                    $("#startvideoValue").val(getFileName(resultResponse))
+                    //$("#startvideoValue").val(resultResponse);
+                    $("#startvideoSrc").attr("src", resultResponse);
+                },
+                error: function (a) {
+                    console.log("IUStartVideo", a);
+                }
+            });
+        });
+         
+        function StartVideo_Aplay(obj) {
+            $.ajax({
+                async: true,
+                type: 'Post',
+                url: "/IUHotelConfig/IUStartVideo",
+                data: { "brandID": brandID, "value": $("#startvideoSrc").attr("src") },
+                dataType: "json",
+                beforeSend: function () {
+                    $(obj).attr("disabled", true);
+                },
+                complete: function () { $(obj).removeAttr("disabled"); },
+                success: function (resultResponse) {
+                    alert(resultResponse);
+                    if (resultResponse == "操作成功！")
+                    $("#startVideoState").css("display", "none");
+                },
+                error: function (a) {
+                    console.log("IUStartVideo", a);
+                    alert("操作失败!");
+                }
+            });
+        }
+</script>
+<div action="/TVChanel/AddTVChannel" class="col-md-5 form-horizontal" data-ajax="true" data-ajax-method="Post" data-ajax-success="Success"
+     id="form0" method="post" role="form" novalidate="novalidate">
+    <div class="form-group">
+        <div class="col-md-12 input-group">
+            <label></label>
+            <input style="background-color:#EFF3F7!important;cursor:auto; border:none;" id="startvideoValue" type="text" readonly="readonly" value=""
+                   class="form-control search-query" placeholder="暂无开机视频">
+            <span class="input-group-btn">
+                <button type="button" id="" class="btn  hidden btn-xs btn-warning"></button>
+            </span>
+        </div>
+        <div class="col-md-">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12 input-group">
+            <span class="input-group-btn">
+                <button class="btn  btn-purple btn-sm" id="startvideobtn">
+                    <i class="icon-cloud-upload bigger-110"></i>
+                    上传视频
+                </button>
+            </span>
+            <label class="" error-info="">视频文件不大于20M，且文件为Mp4格式</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12 input-group">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-success btn-sm" onclick="StartVideo_Aplay(this)">
+                    <i class="icon-ok bigger-110"></i>
+                    应用到电视
+                </button>
+                <button type="button" class="btn btn-primary  btn-sm back">
+                    <i class="icon-reply  bigger-110"></i>
+                    返回
+                </button>
+            </span>
+            <span class="input-group-btn">
+            </span>
+        </div>
+    </div>
+</div>
+<div class="col-md-7" style="">
+    <video id="startvideoSrc" style=" width:100%;height:100%;" src="" controls="controls" ></video>
+</div>
+

@@ -1,0 +1,174 @@
+﻿@using YeahTVApi.DomainModel.SearchCriteria
+@{
+    ViewBag.Title = "电影管理";
+}
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            电影管理
+            <small>
+                <i class=" icon-double-angle-right"></i>
+                @*查看*@
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-header">
+                电影管理列表
+            </div>
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    @{
+                        var list = ViewBag.List as PagedViewList<MovieForLocalize>;
+                        var condition = ViewBag.movieCriteria as MovieForLocalizeCriteria;
+                        var sortingClass = condition.OrderAsc ? "sorting_asc" : "sorting_desc";
+                    }
+                    @Html.Partial("Condition", condition)
+                    @Html.Partial("List", list)
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_info">
+                                <ul class="list-inline action-buttons">
+                                    <li data-original-title="新增" id="btnNew">
+                                        <div class="ui-pg-div"><a href="#"><span class="ui-icon icon-plus-sign purple"></span></a></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            @{
+                                string querystring = condition.ToQueryStringWithOutPageInfo();
+                            }
+                            @Html.Pagination(list.PageIndex, list.PageSize, list.TotalCount, "#list", Url.Action("List") + querystring)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/GetHotelNames")
+    <script type="text/javascript">
+        var changeUrl = "@Url.Action("ChangeToBackUp", "DeviceTrace")";
+        var getMovieNames = "@Url.Action("GetMovieNamesByLocalize", "Unity")";
+        GetMovieNames(getMovieNames, $("#MovieName"), $("#Name"));
+        jQuery(function ($) {
+            $(".dataTable tbody tr:even").addClass("even");
+            $(".dataTable tbody tr:odd").addClass("odd");
+            $('table th input:checkbox').on('click', function () {
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                    .each(function () {
+                        this.checked = that.checked;
+                        $(this).closest('tr').toggleClass('selected');
+                    });
+            });
+
+            $('[data-rel="tooltip"]').tooltip({ placement: tooltipPlacement });
+            function tooltipPlacement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table');
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+                var off2 = $source.offset();
+                var w2 = $source.width();
+
+                if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+                return 'left';
+            }
+        })
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            $(document).delegate("tr [data-optype=cancelTop]", "click",
+                function () {
+                    var that = this;
+                    var tr = $(this).parents("tr");
+                    $.messager.confirm("提示", "您是否确认将影片【" + $("td", tr).eq(0).text().replace(/ /gi, "") + "】取消置顶？", function () {
+                        var $parent = $(that).closest('tr');
+                        var key = GetKey($parent);
+                        $.ajax({
+                            type: 'POST',
+                            url: "@Url.Action("SetTop", "VOD")",
+                            data: { "id": key, IsTop: false },
+                            success: Success,
+                        });
+
+                    });
+                });
+            //设为置顶
+            $(document).delegate("tr [data-optype=setTop]", "click",
+                function () {
+                    var that = this;
+                    var tr = $(this).parents("tr");
+                    $.messager.confirm("提示", "您是否确认将影片【" + $("td", tr).eq(0).text().replace(/ /gi, "") + "】设为置顶", function () {
+                        var $parent = $(that).closest('tr');
+                        var key = GetKey($parent);
+                        $.ajax({
+                            type: 'POST',
+                            url: "@Url.Action("SetTop", "VOD")",
+                            data: { "id": key, IsTop: true },
+                            success: Success,
+
+                        });
+                    });
+                });
+
+
+            //新增
+            $(document).delegate("#btnNew", "click",
+                function () {
+                    window.location.href = '@Html.Raw(Url.Action("Add"))';
+                });
+
+
+            //排序
+            $(document).delegate("#viewTable th.sorting,#viewTable th.sorting_asc,#viewTable th.sorting_desc", "click", function () {
+                if ($("#SortFiled").val() == $(this).attr("sortfield")) {
+                    var order = $("#OrderAsc").val();
+                    $("#OrderAsc").val((order == "False") ? "True" : "False");
+                }
+                else {
+                    $("#SortFiled").val($(this).attr("sortfield"))
+                }
+                $(".btn.btn-sm.btn-success").click();
+            });
+            SetSortingClass();
+        });
+
+        function SetSortingClass() {
+            $("th.sorting[sortfield='@condition.SortFiled']").attr("class", "@sortingClass");
+        }
+
+        function GetKey(jqObj) {
+            var tagName = jqObj[0].tagName;
+            if (tagName == "A") {
+                var tr = jqObj.closest("tr");
+                return tr.find("input.key").val();
+            } else if (tagName == "TR") {
+                return jqObj.find("input.key").val();
+            }
+            return '';
+        }
+
+        function Success(data) {
+            if (data == "Success") {
+                Mc.Msg("保存成功！", function () {
+                    location.href = location.href;
+                });
+
+            } else {
+                Mc.Error(data);
+            }
+        }
+
+        function SetKeyReadonly() {
+            $("div.modal-dialog input,select").attr("disabled", "disabled");
+        }
+
+    </script>}

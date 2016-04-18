@@ -1,0 +1,21 @@
+﻿@model YeahTVApi.DomainModel.Models.ViewModels.KeyValue
+
+
+<div class="form-horizontal">
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Key, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Key, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Value,10,50, new { htmlAttributes = new { @class = "form-control" } })
+
+        </div>
+    </div>
+</div>
+}

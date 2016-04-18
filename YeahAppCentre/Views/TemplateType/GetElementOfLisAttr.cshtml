@@ -1,0 +1,137 @@
+﻿@using System.Linq
+@model  List<TvTemplateAttribute>
+<tr>
+    <td colspan="8">
+        <table class="table-bordered table06 mytable0">
+            <tr style=" background-color:aliceblue">
+
+                <th>属性名</th>
+                <th>数据类型</th>
+                <th>描述</th>
+                <th >属性值</th>
+                <th>操作</th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+
+                    <tr valuerow="valuerow">
+                        @{
+                    var datatype = (TemplateDataType)item.DataType;
+                        }
+                        <td>
+                            @Html.Hidden("attributeId", item.Id, new { @class = "tdvalue" })
+                            @Html.Hidden("attributeParentId", item.ParentId, new { @class = "tdvalue" })
+                            @Html.TextBox("attributeText", item.Text, new { @class = "tdvalue" })
+                        </td>
+                       
+                        <td>@Html.DropDownList("attributeDataType", DropDownExtensions.GetSelectList(typeof(TemplateDataType), item.DataType.ToString()).Where(p => p.Value != TemplateDataType.List.GetValueStr()), new { @class = "tdvalue" })</td>
+                        <td>@Html.TextBox("attributeDescription", item.Description, new { @class = "tdvalue" })</td>
+                        <td>
+                         
+                            @Html.TextBox("attributeValue", item.Value, new { @style = "width:300px", @class = "tdvalue" })
+                            @if (datatype != TemplateDataType.Text && datatype != TemplateDataType.List && datatype != TemplateDataType.Color)
+                            {
+                                <button type="button" name="children-upload" class="btn btn-sm btn-success children-upload">上传</button>
+                            }
+
+                           
+                            @if (datatype == TemplateDataType.Image)
+                            {
+                                if (string.IsNullOrEmpty(item.Value))
+                                {
+                                    <img id="CoverimgIcon" width="100" style="display:none" />
+                                }
+                                else
+                                {
+                                    <img id="CoverimgIcon" width="100" src="@item.Value" />
+                                }
+                            }
+                            @if (datatype == TemplateDataType.Audio || datatype == TemplateDataType.Video)
+                            {
+                                <button type="button" data-optype="preview" class="btn btn-sm btn-success preview">预览</button>
+                            }
+                            else
+                            {
+                                <button type="button" style="display:none" data-optype="preview" class="btn btn-sm btn-success preview">预览</button>
+                            }
+                        </td>
+                        <td>
+                            <input type="button" class="btn btn-sm btn-primary" onclick="removeRow(this)" value="移除" />
+                        </td>
+                    </tr>
+                }
+            }
+            <tr>
+                <td>
+                    @Html.Hidden("attributeId")
+                    @Html.TextBox("attributeText", "", new { @style = "display:none" })
+                </td>
+                <td>@Html.DropDownList("attributeDataType", DropDownExtensions.GetSelectList(typeof(TemplateDataType)).Where(p => p.Value != TemplateDataType.List.GetValueStr()), new { @style = "display:none" })</td>
+                <td>@Html.TextBox("attributeDescription", "", new { @style = "display:none" })</td>
+                <td >@Html.TextBox("attributeValue", "", new { @style = "width:300px;display:none" })
+                </td>
+                <td>
+                    <button onclick="appendRow(this)" type="button" class="btn btn-sm btn-primary" id="btnAddAttribute">新增属性行</button>
+                </td>
+            </tr>
+        </table>
+    </td>
+</tr>
+<script>
+    $(function () {
+        $(".mytable0 tr:not(:eq(0))").each(function (k, obj) {
+            UpdaloadImage($(obj).find("button[name=children-upload]"));
+        });
+
+        var gloabValue = "";
+        $(document).delegate(".mytable0 tr td select[name=attributeDataType]", "click", function () {
+            gloabValue = this.value;
+        });
+
+        $(document).delegate(".mytable0 tr td select[name=attributeDataType]", "change", function () {
+            var datatype = this.value;
+            $(this).closest("tr").find("input[name=attributeValue]").val("");
+            $(this).closest("tr").find("img").attr("src", "");
+
+            if (datatype == '@TemplateDataType.Audio.GetValueStr()' || datatype == '@TemplateDataType.Video.GetValueStr()' || datatype == '@TemplateDataType.Image.GetValueStr()') {
+                $(this).closest("tr").find("button[name=children-upload]").show();
+                if (datatype == '@TemplateDataType.Audio.GetValueStr()' || datatype == '@TemplateDataType.Video.GetValueStr()') {
+                    $(this).closest("tr").find("button[data-optype=preview]").show();
+                    $(this).closest("tr").find("img").hide();
+                } else {
+                    $(this).closest("tr").find("button[data-optype=preview]").hide();
+                    $(this).closest("tr").find("img").show();
+                }
+                if (datatype == '@TemplateDataType.Image.GetValueStr()') {
+                    UpdaloadImage($(this).closest("tr").find("button[name=children-upload]"));
+                }
+                if (datatype == '@TemplateDataType.Audio.GetValueStr()') {
+                    UpdaloadMusic($(this).closest("tr").find("button[name=children-upload]"));
+                }
+                if (datatype == '@TemplateDataType.Video.GetValueStr()') {
+                    UpdaloadMovie($(this).closest("tr").find("button[name=children-upload]"));
+                }
+            } else {
+                $(this).closest("tr").find("button[name=children-upload]").hide();
+                $(this).closest("tr").find("button[data-optype=preview]").hide();
+                $(this).closest("tr").find("img").hide();
+            }
+
+
+        });
+
+    });
+
+
+    function appendRow(obj) {
+        var html = '@Html.Raw(Html.Action("AddRow").ToHtmlString().Replace("\r","").Replace("\n",""))';
+        $(obj).closest("tr").before(html);
+    }
+
+    function removeRow(obj) {
+        $(obj).closest("tr").remove();
+    }
+
+</script>

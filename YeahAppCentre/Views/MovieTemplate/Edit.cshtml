@@ -1,0 +1,65 @@
+﻿
+@{
+    OpType opType = ViewBag.OpType;
+}
+<script type="text/javascript">
+
+    $(function () {
+ 
+        var operation = '@opType';
+        if (operation == 'Add') {
+            document.getElementById('form0').action = addUrl;  
+        } else if (operation == 'Update') {
+           
+            $.getJSON(url + "?PageIndex=1&Id="+clickId,
+            function (data) {
+                $.each(data.Source, function () {
+                    $('#Id').attr('value', this.Id);
+                    $('#Title').attr('value', this.Title);
+                    $('#Tags').attr('value', this.Tags);
+                    $('#Description').text( this.Description);
+                   
+                });
+            });   
+            document.getElementById('form0').action = updateUrl;
+            
+        }
+        $("form").removeData("validator").removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse($("form"));
+
+    });
+   
+</script>
+<form action="/MovieTemplate/AddTemplate" class="form-horizontal" data-ajax="true" data-ajax-method="Post" data-ajax-success="Success" id="form0" method="post" role="form" novalidate="novalidate">
+    <input type="hidden" name="opType" value="2">
+    @if (opType.Equals(OpType.Update))
+    {
+        <input type="hidden" value="" id="Id" name="Id" />
+    }
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Title">电影模板名称</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-val="true" data-val-required="电影模板名称 字段是必需的。" id="Title" name="Title" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Tags">电影标签</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-val="true" data-val-required="电影标签 字段是必需的。" id="Tags" name="Tags" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Description">模板描述</label>
+        <div class="col-md-10">
+            <textarea class="form-control text-box single-line" data-val="true" data-val-required="模板描述 字段是必需的。" id="Description" name="Description"></textarea>
+        </div>
+    </div>
+
+</form>
+@if (opType == OpType.View)
+{
+    <script>
+        SetKeyReadonly();
+    </script>
+}
+ 

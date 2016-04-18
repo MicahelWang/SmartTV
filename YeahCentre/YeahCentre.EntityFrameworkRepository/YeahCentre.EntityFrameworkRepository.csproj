@@ -1,0 +1,145 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DB2A306E-246A-4B45-BE98-DAE8C6EDB477}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YeahCentre.EntityFrameworkRepository</RootNamespace>
+    <AssemblyName>YeahCentre.EntityFrameworkRepository</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\EntityFramework.Extended.6.1.0.121\lib\net45\EntityFramework.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\..\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\..\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\MySql.Data.6.9.6\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.6.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\MySql.Data.Entity.6.9.6\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Mapping\CoreSysCityMap.cs" />
+    <Compile Include="Mapping\CoreSysCountyMap.cs" />
+    <Compile Include="Mapping\CoreSysHotelMap.cs" />
+    <Compile Include="Mapping\CoreSysHotelSencondMap.cs" />
+    <Compile Include="Mapping\CoreSysProvinceMap.cs" />
+    <Compile Include="Mapping\TvDocumentAttributeMap.cs" />
+    <Compile Include="Mapping\TvDocumentElementMap.cs" />
+    <Compile Include="Mapping\TvTemplateAttributeMap.cs" />
+    <Compile Include="Mapping\TvTemplateElementMap.cs" />
+    <Compile Include="Mapping\TvTemplateMap.cs" />
+    <Compile Include="Mapping\TvTemplateTypeMap.cs" />
+    <Compile Include="Repertory\SysCountyRepertory.cs" />
+    <Compile Include="Repertory\SysHotelSencondRepertory.cs" />
+    <Compile Include="Repertory\SysProvinceRepertory.cs" />
+    <Compile Include="Repertory\SysCityRepertory.cs" />
+    <Compile Include="Repertory\TvTemplateElementRepertory.cs" />
+    <Compile Include="Repertory\TvTemplateTypeRepertory.cs" />
+    <Compile Include="Repertory\TvDocumentAttributeRepertory.cs" />
+    <Compile Include="Repertory\TvDocumentElementRepertory.cs" />
+    <Compile Include="Repertory\TvTemplateRepertory.cs" />
+    <Compile Include="Repertory\PowerResourceRepertory.cs" />
+    <Compile Include="Repertory\PowerRoleResourceRelationRepertory.cs" />
+    <Compile Include="Repertory\SysLoginRepertory.cs" />
+    <Compile Include="Repertory\SysRoleResourceRelationRepertory.cs" />
+    <Compile Include="Repertory\SysHotelRepertory.cs" />
+    <Compile Include="Repertory\SysGroupRepertory.cs" />
+    <Compile Include="Repertory\SysBrandRepertory.cs" />
+    <Compile Include="Repertory\SysRoleRepertory.cs" />
+    <Compile Include="Repertory\SysUserRepertory.cs" />
+    <Compile Include="YeahCentreContext.cs" />
+    <Compile Include="Mapping\CoreSysBrandMap.cs" />
+    <Compile Include="Mapping\CoreSysGroupMap.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\YeahCenter.Infrastructure\YeahCenter.Infrastructure.csproj">
+      <Project>{157ed71d-e9d0-4d8e-a04e-c48b520bd578}</Project>
+      <Name>YeahCenter.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\YeahTVApi.Common\YeahTVApi.Common.csproj">
+      <Project>{27EC8548-1BEC-4F32-A43E-341430CD6FF3}</Project>
+      <Name>YeahTVApi.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\YeahTVApi.DomainModel\YeahTVApi.DomainModel.csproj">
+      <Project>{7B4CE815-38CB-4EE4-8860-8381CF2DE60A}</Project>
+      <Name>YeahTVApi.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\YeahTVApi.EntityFrameworkLibraryRepository\YeahTVApiLibrary.EntityFrameworkRepository.csproj">
+      <Project>{7CF570BC-6606-451D-BD4C-9965FCBADEC6}</Project>
+      <Name>YeahTVApiLibrary.EntityFrameworkRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\YeahTVApi.Infrastructure\YeahTVApi.Infrastructure.csproj">
+      <Project>{5BD5DA36-20CB-4115-B7D6-39C0BAF42904}</Project>
+      <Name>YeahTVApi.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\YeahTVApiLibrary.Interface\YeahTVApiLibrary.Infrastructure.csproj">
+      <Project>{430AFD5D-2462-4D0E-B2CA-E1C68032BFB0}</Project>
+      <Name>YeahTVApiLibrary.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

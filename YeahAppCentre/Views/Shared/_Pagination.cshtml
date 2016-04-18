@@ -1,0 +1,55 @@
+﻿@model Pagination
+@{
+    var id = Guid.NewGuid().ToString("N");
+}
+
+<div id="@id" class="dataTables_paginate"></div>
+
+<script src="~/Scripts/jquery.pagination.js"></script>
+<script type="text/javascript">
+    $(function() {
+        $("#@id").pagination(@Model.TotleCount , {
+            items_per_page: @Model.PageSize,
+            current_page: @Model.PageIndex,
+            load_first_page: false,
+            callback: function (page_index, jq) {
+                var url = "@Html.Raw(Model.CallBackUrl)";
+                if (showLoad) {
+                    showLoad();
+                }
+                var queryStr = "";
+                @*queryStr += "page=" + page_index;
+                 $.get(url, queryStr, function (html) {
+                    $("@Model.JqUpdateElement").replaceWith(html);
+                    $("#@id .pagination a").removeAttr('href');
+                    if (closeLoad) {
+                        closeLoad();
+                    }
+                });*@
+
+                var _index = url.indexOf("?");
+                var _url = "";
+                if (_index == -1) {
+                    _url = url;
+                }else{
+                    _url = url.substring(0,_index);
+                    queryStr= url.substring(_index+1,url.length);
+                }
+                if (queryStr!="") {
+                    queryStr += "&";
+                }
+                queryStr += "page=" + page_index;
+
+                $.post(_url,queryStr,function (html) {
+                    $("@Model.JqUpdateElement").replaceWith(html);
+                    $("#@id .pagination a").removeAttr('href');
+                    if (closeLoad) {
+                        closeLoad();
+                    }
+                });
+            }
+        });
+
+        $("#@id .pagination a").removeAttr('href');
+    });
+</script>

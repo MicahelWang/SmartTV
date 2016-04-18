@@ -1,0 +1,222 @@
+﻿@using YeahTVApi.DomainModel.SearchCriteria
+@{
+    ViewBag.Title = "酒店配置管理";
+}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            酒店配置管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                @*查看*@
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-header">
+                酒店配置列表
+            </div>
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    @Html.Partial("Condition", ViewBag.hotelConfigCriteria as HotelConfigCriteria)
+                    @{
+                        var list = ViewBag.List as PagedViewList<string>;
+                    }
+                    @Html.Partial("HotelList", list)
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_info">
+                                <ul class="list-inline action-buttons">
+                                    <li data-original-title="新增" id="btnNew">
+                                        <div class="ui-pg-div">
+                                            <a href="javascript:void(0);"><span class="ui-icon icon-plus-sign purple"></span></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            @{
+                                string querystring = (ViewBag.hotelConfigCriteria as HotelConfigCriteria).ToQueryString();
+                            }
+                            @Html.Pagination(list.PageIndex, list.PageSize, list.TotalCount, "#list", Url.Action("HotelList") + querystring)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+@section styles{
+    <style type="text/css">
+        input[type="radio"], input[type="checkbox"] {
+            margin: 4px 0 0;
+            line-height: normal;
+            width: 18px;
+            height: 15px;
+            padding-right: 15px;
+            margin-left: 15px;
+        }
+
+
+        .EditHotelPayment .col-md-10 {
+            width: 70.3333%;
+        }
+
+        .EditHotelPayment .form-group > label[class*="col-"] {
+            padding-top: 4px;
+            margin-bottom: 4px;
+            width: 110px;
+        }
+    </style>
+}
+
+@section scripts{
+    @Scripts.Render("~/bundles/GetHotelNames")
+    <script>
+
+        $(function () {
+            //新增
+            $("#btnNew").click(function () {
+                openDialog(GetDefaultOpt('@OpType.Add.GetValueStr()', 0, 'AddOrEdit'));
+            });
+
+            //修改
+            $(document).delegate("tr [data-optype=edit]", "click",
+                function () {
+
+                    //$('input:checkbox[name="PayPaymentModels"]:checked')
+                    openDialog(GetDefaultOpt('@OpType.Update.GetValueStr()', GetKey($(this)), $(this).attr("data-action")));
+                });
+
+            //视图
+            $(document).delegate("tr [data-optype=view]", "click",
+                function () {
+                    openDialog(GetDefaultOpt('@OpType.View.GetValueStr()', GetKey($(this)), $(this).attr("data-action")));
+                });
+
+            //是否显示价格
+            $(document).delegate("input[name=PayType]:radio", "click",
+                function () {
+
+
+                    var checkValue = $(this).val();
+
+                    if (checkValue === '@PayType.Daily.ToString()') {
+                        $("div.priceOfDayBox").removeClass("hidden");
+                    } else {
+                        $("div.priceOfDayBox").addClass("hidden");
+                    }
+
+                    $("#PriceOfDay").val("0.00");
+
+                });
+
+            //新增
+            $(document).delegate("#tvhotelconfigTypeList", "change",
+                function () {
+                $("#ConfigCode").val($(this).val());
+                $("#ConfigName").val($(this).find("option:selected").text());
+                changeBox($(this).val());
+            });
+            $("#tvhotelconfigTypeList").change();
+
+            GetHotelNames('@Url.Action("GetHotelNames", "Unity")', $("#hotelName"), $("#HotelId"));
+        });
+
+
+        function GetDefaultOpt(type, key, actionName) {
+            var map = {
+                '@OpType.View.GetValueStr()': '@OpType.View.GetDescription()',
+                '@OpType.Add.GetValueStr()': '@OpType.Add.GetDescription()',
+                '@OpType.Update.GetValueStr()': "@OpType.Update.GetDescription()",
+                '@OpType.Delete.GetValueStr()': "@OpType.Delete.GetDescription()"
+            };
+
+            var opt = {};
+            opt.title = "酒店配置管理 -> " + map[type];
+            opt.url = '@Html.Raw(Url.Action("AddOrEdit", new {type = "_type_", id = "_id_"}))'.replace('_id_', key).replace('_type_', type).replace('AddOrEdit', actionName);
+
+            if (type != '@OpType.View.GetValueStr()') {
+                opt.saveclick = function () {
+                    $("div.modal-dialog form").submit();
+                    event.preventDefault();
+                    return false;
+                };
+            }
+            return opt;
+        }
+
+
+        function GetKey(jqObj) {
+            var tagName = jqObj[0].tagName;
+            if (tagName == "A") {
+                var tr = jqObj.closest("tr");
+                return tr.find("input.key").val();
+            } else if (tagName == "TR") {
+                return jqObj.find("input.key").val();
+            }
+            return '';
+        }
+
+        function Success(data) {
+            if (data === "Success") {
+                Mc.Msg("保存成功！", function () {
+                    location.href = location.href;
+                });
+
+            } else {
+                Mc.Error(data);
+            }
+        }
+
+        function SetKeyReadonly() {
+            $("div.modal-dialog input,select").attr("disabled", "disabled");
+        }
+
+        function expandTable(obj) {
+            var url = "@Url.Action("List")";
+            var obj = $(obj);
+            var hotelId = GetKey(obj)
+
+            if (obj.children().attr('class') == ('glyphicon glyphicon-plus')) {
+
+                obj.children().attr('class', 'glyphicon glyphicon-minus');
+                $.get(url + "?HotelId=" + hotelId, function (data) {
+                    obj.parents("tr").after(data);
+                });
+
+            } else if (obj.children().attr('class') == ('glyphicon glyphicon-minus')) {
+                obj.children().attr('class', 'glyphicon glyphicon-plus');
+                var parent = obj.parents("tr").next();
+                parent.remove();
+            }
+
+
+        }
+
+
+        function changeBox(configCode) {
+
+            $(".UnnomalBox").hide();
+            $(".ConfigValueBox").hide();
+            $(".ActiveBox").show();
+
+            if (configCode == 'StorePaymentModel') {
+                $(".StorePaymentBox").show();
+                $(".ActiveBox").hide();
+            }
+            else if (configCode == 'EnbleUmeng') {
+
+                $(".EnableMeng").show();
+            }
+            else {
+                $(".ConfigValueBox").show();
+            }
+        }
+    </script>
+}

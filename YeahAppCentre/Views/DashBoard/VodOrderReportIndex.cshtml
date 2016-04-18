@@ -1,0 +1,60 @@
+﻿@using YeahTVApi.DomainModel.SearchCriteria
+@using YeahTVApi.DomainModel.Models.ViewModels;
+@{
+    Layout = "/Views/Shared/_DashBoardLayout.cshtml";
+    ViewBag.Title = "Vod支付订单查询";
+}
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            支付订单查询
+            <small>
+                <i class=" icon-double-angle-right"></i>
+                @*查看*@
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-header">
+                支付订单查询
+            </div>
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    @{
+                        var list = ViewBag.List as PagedViewList<VODOrder>;
+                        var condition = ViewBag.VODOrderCriteria as VODOrderCriteria;
+                        var sortingClass = condition.OrderAsc ? "sorting_asc" : "sorting_desc";
+                    }
+                    @Html.Partial("VodOrderReportCondition", condition)
+                    @Html.Partial("VodOrderReportList", list)
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                    </div>
+                    <div class="col-sm-6">
+                        @{
+                            string querystring = condition.ToQueryString();
+                        }
+                        @Html.Pagination(list.PageIndex, list.PageSize, list.TotalCount, "#VodOrderReportList", Url.Action("VodOrderReportList") + querystring)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button type="button" class="btn btn-default" onclick="javascript:window.location='/DashBoard\@condition.ToQueryString()'">返回</button>
+    </div>
+    <!-- /.row -->
+</div>
+
+@section styles {
+    <link href="~/Scripts/assets/css/daterangepicker.css" type="text/css" rel="stylesheet" />
+}
+
+<!-- Javascript -->
+@section scripts{
+    <script src="~/Scripts/assets/js/date-time/moment.min.js"></script>
+    <script src="~/Scripts/assets/js/date-time/daterangepicker.min.js"></script>
+    <script src="~/Scripts/DashBoard/VodOrderReport.js"></script>
+    <script src="~/Scripts/application.js"></script>
+}

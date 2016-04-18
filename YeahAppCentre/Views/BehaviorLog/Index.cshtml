@@ -1,0 +1,104 @@
+﻿@using YeahTVApi.DomainModel.SearchCriteria
+@{
+    ViewBag.Title = "行为日志管理";
+}
+
+<style>
+    #fullContent {
+        word-break: break-all;
+    }
+</style>
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            用户行为日志
+            <small>
+                <i class="icon-double-angle-right"></i>
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="widget-box">
+                <div class="widget-header header-color-blue">
+                    <h5 class="bigger lighter">
+                        <i class="icon-table"></i>
+                        用户行为日志
+                    </h5>
+                </div>
+            </div>
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    @{
+                        var list = ViewBag.List as PagedViewList<BehaviorLog>;
+                        var condition = ViewBag.LogCriteria as LogCriteria;
+                    }
+                    @Html.Partial("Condition", condition)
+                    @Html.Partial("List", list)
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_info">
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            @{
+                                string querystring = condition.ToQueryString();
+                            }
+                            @Html.Pagination(list.PageIndex, list.PageSize, list.TotalCount, "#list", Url.Action("List") + querystring)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+
+<!-- inline scripts related to this page -->
+@section scripts{
+<script src="~/Scripts/reduceContent.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            //查看
+            $(document).delegate("tr [data-optype=view]", "click",
+                function () {
+                    openDialog(GetDefaultOpt('@OpType.View.GetValueStr()', GetKey($(this))));
+                });
+        });
+
+
+
+        function GetDefaultOpt(type, key) {
+
+            var map = {
+                '@OpType.View.GetValueStr()': '@OpType.View.GetDescription()',
+                '@OpType.Add.GetValueStr()': '@OpType.Add.GetDescription()',
+                '@OpType.Update.GetValueStr()': "@OpType.Update.GetDescription()",
+                '@OpType.Delete.GetValueStr()': "@OpType.Delete.GetDescription()"
+            };
+            var opt = {};
+            opt.title = "用户行为日志 -> " + map[type];
+            opt.url = '@Html.Raw(Url.Action("Edit", new {type = "_type_", id = "_id_"}))'.replace('_id_', key).replace('_type_', type);
+
+            return opt;
+        }
+
+
+        function GetKey(jqObj) {
+            var tagName = jqObj[0].tagName;
+            if (tagName == "A") {
+                var tr = jqObj.closest("tr");
+                return tr.find("input.key").val();
+            } else if (tagName == "TR") {
+                return jqObj.find("input.key").val();
+            }
+            return '';
+        }
+        function SetKeyReadonly() {
+            $("div.modal-dialog input,select,textarea").attr("readonly", "readonly");
+        }
+
+    </script>
+}

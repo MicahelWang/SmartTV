@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.GoodsSales" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.GoodsSales" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Base" />
+  <xs:complexType name="ArrayOfV_ProductEntity">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="V_ProductEntity" nillable="true" type="tns:V_ProductEntity" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfV_ProductEntity" nillable="true" type="tns:ArrayOfV_ProductEntity" />
+  <xs:complexType name="V_ProductEntity">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Base" base="q1:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Brand" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CategoryCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CategoryId" type="ser:guid" />
+          <xs:element minOccurs="0" name="CategoryName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CostPrice" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="DefReceiverType" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="DiscountPrice" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="HasInventory" type="xs:boolean" />
+          <xs:element minOccurs="0" name="HotelID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" type="ser:guid" />
+          <xs:element minOccurs="0" name="InventoryQuantity" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="IsActive" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsFixCost" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsSysPrice" type="xs:boolean" />
+          <xs:element minOccurs="0" name="MarketingPrice" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Material" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MnemonicCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Model" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NCAccount1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NCAccount2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="NCAccount2CostCenter" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ParentId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="ProductId" nillable="true" type="ser:guid" />
+          <xs:element minOccurs="0" name="PurchaseLevel" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Spec" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UOM" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="V_ProductEntity" nillable="true" type="tns:V_ProductEntity" />
+</xs:schema>

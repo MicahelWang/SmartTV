@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.LockCard" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.LockCard" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Base" />
+  <xs:complexType name="LockCardEntity">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Base" base="q1:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ArrDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="BizDay" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="CardNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CardSnr" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CardStatusID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CardTypeID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="DepDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="EName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Exps1" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Exps2" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="HotelID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsLimit" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LogDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="LogMark" type="xs:int" />
+          <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Modu_Id" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Pc_Id" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ReceiveID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RoomNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Shift" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SpecialRoom" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="WriteContend" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="sOperatorID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="sOperatorName" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="LockCardEntity" nillable="true" type="tns:LockCardEntity" />
+</xs:schema>

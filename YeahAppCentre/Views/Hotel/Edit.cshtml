@@ -1,0 +1,462 @@
+﻿@model CoreSysHotel
+@using YeahTVApi.DomainModel.Models.ViewModels;
+@{
+    OpType opType = ViewBag.OpType;
+    var countyName = ViewBag.CountyName as string;
+    ViewBag.Title = "酒店管理";
+}
+<style type="text/css">
+    .countryDropdown div.zcityTreeBackground {
+        width: 250px;
+        height: 362px;
+        text-align: left;
+    }
+
+    .countryDropdown ul.ztree {
+        margin-top: 10px;
+        border: 1px solid #617775;
+        background: #f0f6e4;
+        width: 220px;
+        height: 360px;
+        overflow-y: scroll;
+        overflow-x: auto;
+    }
+
+    .countryDropdown ul.log {
+        border: 1px solid #617775;
+        background: #f0f6e4;
+        width: 300px;
+        height: 170px;
+        overflow: hidden;
+    }
+
+        .countryDropdown ul.log.small {
+            height: 45px;
+        }
+
+        .countryDropdown ul.log li {
+            color: #666666;
+            list-style: none;
+            padding-left: 10px;
+        }
+
+            .countryDropdown ul.log li.dark {
+                background-color: #E3E3E3;
+            }
+</style>
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            酒店管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="widget-box">
+                <div class="widget-header header-color-blue">
+                    <h5 class="bigger lighter">
+                        <i class="icon-table"></i>
+                        酒店信息管理
+                    </h5>
+                </div>
+            </div>
+            <div>
+                @using (Ajax.BeginForm("Edit", new { }, new AjaxOptions
+                {
+                    HttpMethod = "Post",
+                    OnSuccess = "Success",
+
+                    OnBegin = "OnBegin",
+                    OnComplete = "OnComplete",
+                    OnFailure = "OnComplete"
+                }, new { @class = "form-horizontal", role = "form" }))
+                {
+                    <input type="hidden" name="opType" value="@opType.GetValueStr()" />
+                    @Html.HiddenFor(m => m.Id)
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="tabbable">
+                            <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#home4">基本信息</a>
+                                </li>
+                                @*<li>
+                                        <a data-toggle="tab" href="#profile4">扩展信息</a>
+                                    </li>*@
+                                @if (opType == OpType.View)
+                                {
+                                    <li>
+                                        <a data-toggle="tab" href="#kancha">酒店勘查信息</a>
+                                    </li>
+                                }
+                            </ul>
+                            <div class="tab-content">
+                                <div id="home4" class="tab-pane in active">
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.HotelName, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.HotelName, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.HotelName, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.HotelNameEn, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.HotelNameEn, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.HotelNameEn, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.CoreSysHotelSencond.WelcomeWord, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.CoreSysHotelSencond.WelcomeWord, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.CoreSysHotelSencond.WelcomeWord, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group countryDropdown">
+                                        <label class="control-label col-md-2" for="Brand">品牌</label>
+                                        <div class="col-md-10">
+                                            @if (opType == OpType.Add)
+                                            {
+                                                @Html.TextBoxFor(m => m.BrandId, new { @class = "form-control", @style = "display:none" })
+                                                @Html.TextBox("brandSel", "点击选择品牌", new { @class = "form-control", @onclick = "showMenu(this,'menuContentBrand');" })
+                                                @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
+                                                @Html.ValidationMessageFor(model => model.GroupId, "", new { @class = "text-danger" })
+                                            }
+                                            else if (opType == OpType.Update)
+                                            {
+                                                @Html.TextBoxFor(m => m.BrandId, new { @class = "form-control", @style = "display:none" })
+                                                @Html.TextBox("brandSel", (Model.CoreSysBrand != null ? Model.CoreSysBrand.BrandName : ""),
+                                                new { @class = "form-control", @readOnly = "readOnly" })
+                                                @Html.ValidationMessageFor(model => model.BrandId, "", new { @class = "text-danger" })
+                                                @Html.ValidationMessageFor(model => model.GroupId, "", new { @class = "text-danger" })
+                                            }
+                                            else
+                                            {
+                                                @Html.TextBoxFor(model => model.BrandId, Model.CoreSysBrand != null ? Model.CoreSysBrand.BrandName : "", new { @class = "form-control" })
+                                            }
+                                            <div id="menuContentBrand" class="menuContent" style="display:none; position: absolute;">
+                                                <ul id="brandTree" class="ztree" style="margin-top:0; width:180px; height: 300px;"></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @if (opType != OpType.Add)
+                                    {
+                                        <div class="form-group">
+                                            @Html.LabelFor(m => m.HotelCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.HotelCode, new { htmlAttributes = new { @class = "form-control", @readOnly = "readOnly" } })
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Tel, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Tel, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Tel, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group countryDropdown">
+                                        <label class="control-label col-md-2" for="Country">地区</label>
+                                        <div class="col-md-10">
+                                            @if (opType == OpType.Add || opType == OpType.Update)
+                                            {
+                                                @Html.TextBoxFor(m => m.Country, new { @class = "form-control", @style = "display:none" })
+
+
+                                                @Html.TextBox("citySel", opType == OpType.Update ? (countyName ?? "") : "点击选择城市",
+                                                new { @class = "form-control", @onclick = (opType == OpType.Add || opType == OpType.Update) ? "showMenu(this,'menuContent');" : "" })
+                                                @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                                            }
+                                            else
+                                            {
+                                                @Html.TextBox("citySel", countyName, new { @class = "form-control" })
+                                            }
+                                            <div id="menuContent" class="menuContent" style="display:none; position: absolute;">
+                                                <ul id="cityTree" class="ztree" style="margin-top:0; width:180px; height: 300px;"></ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Longitude, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(model => model.Longitude, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Longitude, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.Latitude, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(model => model.Latitude, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Latitude, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.CoreSysHotelSencond.VodAddress, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.CoreSysHotelSencond.VodAddress, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.TemplateId, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.DropDownListFor(m => m.TemplateId, ViewBag.Templates as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.IsLocalPMS, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+
+                                            @Html.EditorFor(model => model.IsLocalPMS, new { htmlAttributes = new { @class = "form-control", @style = "width:25px;margin:0px;" } })
+
+                                            @Html.ValidationMessageFor(model => model.IsLocalPMS, "", new { @class = "text-danger" })
+                                            <div class="IsChecked">
+                                                <label style="margin-left:-75px;margin-bottom:-50px">PMS地址</label>
+                                                <div>
+                                                    @Html.EditorFor(model => model.CoreSysHotelSencond.LocalPMSUrl, new { htmlAttributes = new { @class = "form-control", @id = "localPmsUrl" } })
+                                                    @Html.ValidationMessageFor(model => model.CoreSysHotelSencond.LocalPMSUrl, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.CoreSysHotelSencond.Languages, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.DropDownListFor(model => model.CoreSysHotelSencond.Languages,
+                YeahAppCentre.Web.Utility.DropDownExtensions.GetSelectList(typeof(YeahTVApi.DomainModel.LanguageType)), new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.CoreSysHotelSencond.Languages, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.LabelFor(m => m.CoreSysHotelSencond.AutoToHome, htmlAttributes: new { @class = "control-label col-md-2" })
+                                        <div class="col-md-10">
+                                            @Html.EditorFor(model => model.CoreSysHotelSencond.AutoToHome, new { htmlAttributes = new { @class = "form-control", @style = "width:25px;margin:0px;" } })
+                                            @Html.ValidationMessageFor(model => model.CoreSysHotelSencond.AutoToHome, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    @*@Html.HiddenFor(model => model.CoreSysHotelSencond.LogoImageUrl, new { @id = "LogoImageUrl" })
+                                    @Html.ValidationMessageFor(model => model.CoreSysHotelSencond.LogoImageUrl, "", new { @class = "text-danger" })
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2" for="Icon">酒店Logo</label>
+                                        <div class="col-md-10">
+                                            <button id="uploadPosterIcon" type="button">上传图片</button>
+                                            <label error-info="">（图片不大于30K且图片仅支持jpg和png格式）</label>
+
+                                            @if (Model != null && Model.CoreSysHotelSencond != null && !Model.CoreSysHotelSencond.LogoImageUrl.IsNullOrEmpty())
+                                            {
+                                                <img id="PosterimgIcon" src="@UtilityHelper.GetAttachmentFullPath(Convert.ToInt32(Model.CoreSysHotelSencond.LogoImageUrl))" style="display:none" />
+                                            }
+                                            else
+                                            {
+                                                <img id="PosterimgIcon" style="display:none" />
+                                            }
+                                        </div>
+                                    </div>*@
+
+                                </div>
+                                <div id="kancha" class="tab-pane">
+                                    @{
+                    var modelBasedate = ViewBag.BaseDate as ViewCoreSysHotel;
+                                    }
+                                    @Html.Partial("PatialBaseDate", modelBasedate)
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer" style="margin-top:0px;">
+                            @if (opType == OpType.Add || opType == OpType.Update)
+                            {
+                                <input type="submit" id="sumbitDistribute" class="btn btn-success" value="提交" />
+                            }
+                            <button type="button" class="btn btn-default" onclick="history.go(-1);">取消</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <!-- basic scripts -->
+    <script src="~/Scripts/zTree/js/jquery.ztree.all-3.5.js"></script>
+    <link href="~/Scripts/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/upload/ajaxupload.js"></script>
+    <script src="~/Scripts/upload/uploadHelper.js"></script>
+    <script src="~/Scripts/reduceContent.js"></script>
+    <script type="text/javascript">
+        <!--
+		var setting = {
+		    view: {
+		        dblClickExpand: false
+		    },
+		    data: {
+		        simpleData: {
+		            enable: true
+		        }
+		    },
+		    callback: {
+		        beforeClick: beforeClick,
+		        onClick: onClick
+		    }
+		};
+
+		function beforeClick(treeId, treeNode) {
+		    var check = (treeNode && !treeNode.isParent);
+		    if (!check) {
+		        if (treeId == "cityTree") {
+		            alert("只能选择城市...");
+		        }
+		        else if (treeId == "brandTree") {
+		            alert("只能选择品牌...");
+		        }
+		    }
+		    return check;
+		}
+		function onClick(e, treeId, treeNode) {
+		    var zTree = $.fn.zTree.getZTreeObj(treeId),
+			nodes = zTree.getSelectedNodes();
+
+		    if (treeId == "cityTree") {
+                $("#citySel").val(nodes[0].name);
+		        $("#Country").val(nodes[0].id);
+		    } else if (treeId == "brandTree")
+		    {
+		        $("#brandSel").val(nodes[0].name);
+		        $("#BrandId").val(nodes[0].id);
+		    }
+		    hideMenu();
+		}
+
+		function hidenLocalPms()
+		{
+
+		    if ($("#IsLocalPMS").is(":checked"))
+		        $(".IsChecked").fadeIn("fast");
+		    else
+		        $(".IsChecked").fadeOut("fast");
+		    $("#IsLocalPMS").click(
+                function ()
+                {
+                    if ($("#IsLocalPMS").is(":checked"))
+                    {
+                        $(".IsChecked").fadeIn("fast");
+                    }
+                    else
+                    {
+                        $(".IsChecked").fadeOut("fast");
+                    }
+
+
+                });
+		}
+
+        function showMenu(obj,menuId) {
+            var cityObj = obj;
+            $("#" + menuId).css({ "z-index": 9 }).slideDown("fast");
+
+            $("body").bind("mousedown", onBodyDown);
+        }
+        function hideMenu() {
+            $("#menuContentBrand").fadeOut("fast");
+            $("#menuContent").fadeOut("fast");
+            $("body").unbind("mousedown", onBodyDown);
+        }
+        function onBodyDown(event) {
+            if (!(event.target.id == "menuBtn" || event.target.id == "citySel" || event.target.id == "brandSel" || event.target.id == "menuContent" || $(event.target).parents("#menuContent").length > 0
+                || event.target.id == "menuContentBrand" || $(event.target).parents("#menuContentBrand").length > 0)) {
+                hideMenu();
+            }
+        }
+        function createCountyTree() {
+            var url = '@Url.Action("GetAreasJson", "Hotel", new { id = ViewBag.TemplateType })';
+            $.get(url, function (data) {
+                var zNodes = eval(data);
+                $.fn.zTree.init($("#cityTree"), setting, zNodes);
+            });
+
+        }
+        function createGroupTree() {
+            var url = '@Url.Action("GetBrandsJson", "Hotel", new { id = ViewBag.TemplateType })';
+            $.get(url, function (data) {
+                var zNodes = eval(data);
+                $.fn.zTree.init($("#brandTree"), setting, zNodes);
+            });
+
+        }
+        //上传图片
+        function bindCoverUpload() {
+            var Postersetting = {
+                single: true,
+                container: $("#PosterimgIcon"),
+                targetOjb: $("#LogoImageUrl"),
+                limitSize: 30
+
+            };
+            $("#uploadPosterIcon").binduploadify(Postersetting);
+            $('#PosterimgIcon').width('20%');
+
+        }
+        $(document).ready(function () {
+            createCountyTree();
+            createGroupTree();
+            hidenLocalPms();
+            bindCoverUpload();
+        });
+        //-->
+
+        function Success(data) {
+            if (data === "Success") {
+                Mc.Msg("保存成功！", function () {
+                    location.href = location.href;
+                });
+
+            } else {
+                Mc.Error(data);
+            }
+        }
+        function SetKeyReadonly() {
+            $("div.row input,select,textarea").attr("readonly", "readonly");
+            $("#uploadPosterIcon").attr("disabled","disabled")
+        }
+        function OnBegin() {
+            $("#sumbitDistribute").val("提交中...");
+            $("#sumbitDistribute").attr('class', "btn disabled btn-success");
+        }
+        function OnComplete() {
+            $("#sumbitDistribute").val("提交");
+            $("#sumbitDistribute").attr('class', "btn btn-success");
+        }
+        function SetAutoToHome()
+        {
+            $("#CoreSysHotelSencond_AutoToHome").attr("checked", true);
+        }
+
+    </script>
+    @if (opType == OpType.View)
+    {
+        <script type="text/javascript">
+            SetKeyReadonly();
+        </script>
+    }
+    @if (opType == OpType.Add)
+    {
+        <script type="text/javascript">
+            SetAutoToHome();
+        </script>
+    }
+}
+}

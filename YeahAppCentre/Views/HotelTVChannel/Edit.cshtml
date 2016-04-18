@@ -1,0 +1,191 @@
+﻿
+@{
+    OpType opType = ViewBag.OpType;
+}
+<script src="/Scripts/bootstrap-typeahead.js"></script>
+<script type="text/javascript">
+
+    function GetChannelNames() {
+
+        $("#Name").change(function () {
+
+            if ($(this).val().length == 0) {
+                $("#Name").val("");
+            }
+        });
+
+        $('#Name').typeahead({
+            ajax: {
+                url: getTvNames,
+                timeout: 300,                   // 延时
+                method: 'get',
+                triggerLength: 1,               // 输入几个字符之后，开始请求
+                loadingClass: null,             // 加载数据时, 元素使用的样式类
+                preDispatch: function (query) {
+                    var para = {};
+                    para.query = query;
+                    //$("#MovieName").val("");
+
+                    return para;
+                },　　　　　　　　// 发出请求之前，调用的预处理方法
+                preProcess: null,
+            },
+            display: "ChannelName",     // 默认的对象属性名称为 name 属性
+            val: "ChannelId",           // 默认的标识属性名称为 id 属性
+            items: 8,
+            itemSelected: function (item, val, text) {      // 当选中一个项目的时候，回调函数
+                $("#ChannelId").val(val);
+
+                var Name = $("#Name").val();
+                var index = Name.indexOf("(", 0);
+
+                $("#Name").val(Name.substr(0, index));
+            }
+        });
+    }
+    function GetHotelNames() {
+
+        $("#HotelName").change(function () {
+
+            if ($(this).val().length == 0) {
+                $("#HotelName").val("");
+            }
+        });
+
+        $('#HotelName').typeahead({
+            ajax: {
+                url: getHotelNames,
+                timeout: 300,                   // 延时
+                method: 'get',
+                triggerLength: 1,               // 输入几个字符之后，开始请求
+                loadingClass: null,             // 加载数据时, 元素使用的样式类
+                preDispatch: function (query) {
+                    var para = {};
+                    para.query = query;
+                    //$("#MovieName").val("");
+
+                    return para;
+                },　　　　　　　　// 发出请求之前，调用的预处理方法
+                preProcess: null,
+            },
+            display: "HotelName",     // 默认的对象属性名称为 name 属性
+            val: "HotelId",           // 默认的标识属性名称为 id 属性
+            items: 8,
+            itemSelected: function (item, val, text) {      // 当选中一个项目的时候，回调函数
+                $("#HotelId.EditHotelId").val(val);
+
+                var HotelName = $("#HotelName").val();
+                var index = HotelName.indexOf("(", 0);
+                $("#HotelName").val(HotelName.substr(0, index));
+            }
+        });
+    }
+
+
+
+    $(function () {
+        GetChannelNames();
+        GetHotelNames();
+        var operation = '@opType';
+        if (operation == 'Add') {
+            document.getElementById('form0').action = addUrl;
+        } else if (operation == 'Update') {
+
+            $.getJSON(url + "?PageIndex=1&HotelId=" + clickId.split("|")[0] + "&ChannelId=" + clickId.split("|")[1],
+            function (data) {
+                console.log(data)
+                $.each(data.Source, function () {
+
+                    $('#ChannelId').attr('value', this.ChannelId);
+                    $('#HotelId.EditHotelId').attr('value', this.HotelId);
+                    $('#Name').attr('value', this.Name);
+                    $('#HostAddress').attr('value', this.HostAddress.replace("@YeahTVApi.DomainModel.Constant.DefaultHostAddress",""));
+                    $('#ChannelOrder').attr('value', this.ChannelOrder);
+                    $('#HotelName').attr('value', this.HotelName);
+
+                });
+            });
+            document.getElementById('form0').action = updateUrl;
+
+        }
+        $("form").removeData("validator").removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse($("form"));
+
+    });
+
+</script>
+<form action="/MovieTemplate/AddTemplate" class="form-horizontal" data-ajax="true" data-ajax-method="Post" data-ajax-success="Success" id="form0" method="post" role="form" novalidate="novalidate">
+    <input type="hidden" name="opType" value="2">
+    @if (opType.Equals(OpType.Update))
+    {
+        <input type="hidden" value="" id="ChannelId" name="ChannelId" />
+    <input type="hidden" value="" id="HotelId" class="EditHotelId" name="HotelId" />
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Name">频道名称</label>
+            <div class="col-md-10">
+                <input id="Name"  class="form-control text-box single-line" data-provide="typeahead" data-val-required="频道 字段是必需的。"  autocomplete="off" disabled="disabled" />
+                <input id="ChannelId" name="ChannelId" type="hidden" value="" />
+            </div>
+
+        </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="HotelName">酒店名字</label>
+        <div class="col-md-10">
+            <input id="HotelName"  class="form-control text-box single-line" data-provide="typeahead" autocomplete="off" data-val-required="酒店 字段是必需的。" disabled="disabled"/>
+        </div>
+
+    </div>
+    }
+    else
+    {
+        <div class="form-group">
+            <label class="control-label col-md-2" for="Name">频道名称</label>
+            <div class="col-md-10">
+                <input id="Name" name="Name" class="form-control text-box single-line" data-provide="typeahead" data-val-required="频道 字段是必需的。"  autocomplete="off" />
+                <input id="ChannelId" name="ChannelId" type="hidden" value="" />
+            </div>
+
+        </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="HotelName">酒店名称</label>
+        <div class="col-md-10">
+            <input id="HotelName" name="HotelName" class="form-control text-box single-line" data-provide="typeahead" autocomplete="off" data-val-required="酒店 字段是必需的。" />
+            <input id="HotelId" name="HotelId" class="EditHotelId" type="hidden" value="" />
+        </div>
+
+    </div>
+    }
+    
+    
+    <div class="form-group">
+        <label class="control-label col-md-2" for="HostAddress">组播地址</label>
+        <div class="col-md-10">
+            <div class="input-group">
+                <span class="input-group-addon">239.255.1.</span>
+                <input class="form-control text-box single-line" data-val="true" data-val-required="组播地址 字段是必需的。" id="HostAddress" name="HostAddress" type="text" value="">
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Tags">排序</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-val="true" data-val-required="排序 字段是必需的。" id="ChannelOrder" name="ChannelOrder" type="text" value="">
+        </div>
+    </div>
+
+    
+    
+
+</form>
+@if (opType == OpType.View)
+{
+    <script>
+        SetKeyReadonly();
+    </script>
+}
+
+
+
+
+ 

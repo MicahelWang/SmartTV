@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Cashier" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Cashier" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Base" />
+  <xs:complexType name="ArrayOfBillCredit">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="BillCredit" nillable="true" type="tns:BillCredit" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfBillCredit" nillable="true" type="tns:ArrayOfBillCredit" />
+  <xs:complexType name="BillCredit">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Base" base="q1:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ARBalance" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="ARCloseSn" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AccPerDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="AdjustFlag" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="AssSum" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="AssType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AuthDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="AuthID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BankCardID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BankID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BillID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BizDay" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="CAVBizDay" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="CAVDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="CAVOperatorID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CloseSn" nillable="true" type="xs:long" />
+          <xs:element minOccurs="0" name="ClosedBy" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Code" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Count" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="CreCloseID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CreFromID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CreateDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="CreditType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="FromBill" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="HotelID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsCAV" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsClose" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsPre" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ItemNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ModifyDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="OperatorID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PaymentDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="PaymentType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Points" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="PreID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PrecreID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Quantity" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Reason" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RoomNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ShiftID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SubmitDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="Sum" nillable="true" type="xs:decimal" />
+          <xs:element minOccurs="0" name="TACount" nillable="true" type="xs:int" />
+          <xs:element minOccurs="0" name="TopExpression" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BillCredit" nillable="true" type="tns:BillCredit" />
+</xs:schema>

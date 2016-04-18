@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Request" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Request" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.ThirdParty" />
+  <xs:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.eCoupons" />
+  <xs:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity" />
+  <xs:complexType name="GetInviteCodeRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CRMRequestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Caller" type="xs:int" />
+          <xs:element minOccurs="0" name="MemberID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetInviteCodeRequest" nillable="true" type="tns:GetInviteCodeRequest" />
+  <xs:complexType name="CRMRequestBase">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="CRMRequestBase" nillable="true" type="tns:CRMRequestBase" />
+  <xs:complexType name="GetMemberIDByInviteCodeRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CRMRequestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Caller" type="xs:int" />
+          <xs:element minOccurs="0" name="InviteCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetMemberIDByInviteCodeRequest" nillable="true" type="tns:GetMemberIDByInviteCodeRequest" />
+  <xs:complexType name="BindMemberRelationRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CRMRequestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Caller" type="xs:int" />
+          <xs:element minOccurs="0" name="GuestMemberID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="HostMemberID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ReferChannel" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ReferType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BindMemberRelationRequest" nillable="true" type="tns:BindMemberRelationRequest" />
+  <xs:complexType name="GetGuestMemberInfoListRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CRMRequestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Caller" type="xs:int" />
+          <xs:element minOccurs="0" name="HostMemberID" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetGuestMemberInfoListRequest" nillable="true" type="tns:GetGuestMemberInfoListRequest" />
+  <xs:complexType name="GetWechatInfoListRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CRMRequestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Caller" type="xs:int" />
+          <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="MemberIDList" nillable="true" type="q1:ArrayOfstring" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetWechatInfoListRequest" nillable="true" type="tns:GetWechatInfoListRequest" />
+  <xs:complexType name="SetThirdPartyAttentionInfoRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CRMRequestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Caller" type="xs:int" />
+          <xs:element minOccurs="0" name="IsFollow" type="xs:boolean" />
+          <xs:element minOccurs="0" name="SourceCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ThirdPartyID" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.ThirdParty" minOccurs="0" name="ThirdPartySource" type="q2:ThirdPartySourceType" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetThirdPartyAttentionInfoRequest" nillable="true" type="tns:SetThirdPartyAttentionInfoRequest" />
+  <xs:complexType name="GiveCouponAsyncRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CRMRequestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Caller" type="xs:int" />
+          <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.eCoupons" minOccurs="0" name="CouponList" nillable="true" type="q3:ArrayOfCouponInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GiveCouponAsyncRequest" nillable="true" type="tns:GiveCouponAsyncRequest" />
+  <xs:complexType name="ActivateValueRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CRMRequestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Caller" type="xs:int" />
+          <xs:element minOccurs="0" name="CardNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MemberID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ModifyUser" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ActivateValueRequest" nillable="true" type="tns:ActivateValueRequest" />
+  <xs:complexType name="MixPaymentRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActivityId" nillable="true" type="xs:string" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity" minOccurs="0" name="Caller" type="q4:Caller" />
+      <xs:element minOccurs="0" name="CardNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MemberId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperateBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrderNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OrgId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayChannel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PayWay" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PointAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity" minOccurs="0" name="TransType" type="q5:TransType" />
+      <xs:element minOccurs="0" name="ValueAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="WalletAmount" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MixPaymentRequest" nillable="true" type="tns:MixPaymentRequest" />
+  <xs:complexType name="ResetMemberPasswordRequest">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CRMRequestBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Caller" type="xs:int" />
+          <xs:element minOccurs="0" name="IsCloseSendEmail" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsCloseSendSMS" type="xs:boolean" />
+          <xs:element minOccurs="0" name="MemberID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Mobile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ResetMemberPasswordRequest" nillable="true" type="tns:ResetMemberPasswordRequest" />
+</xs:schema>

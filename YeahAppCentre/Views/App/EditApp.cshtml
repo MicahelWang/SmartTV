@@ -1,0 +1,94 @@
+﻿@model  Apps
+
+@{
+    OpType opType = ViewBag.OpType;
+}
+<script type="text/javascript">
+
+    $(function () {
+        $("form").removeData("validator").removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse($("form"));
+    });
+
+</script>
+
+@using (Ajax.BeginForm("EditApp", new { }, new AjaxOptions
+{
+    HttpMethod = "Post",
+    OnSuccess = "Success",
+
+    //    OnBegin = "formValidate",
+}, new { @class = "form-horizontal", role = "form" }))
+{
+    <input type="hidden" name="opType" value="@opType.GetValueStr()" />
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control " } })
+        </div>
+    </div>
+
+    if (opType.Equals(OpType.View))
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.AppKey, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.EditorFor(model => model.AppKey, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SecureKey, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.EditorFor(model => model.SecureKey, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    }
+    else
+    {
+        @Html.HiddenFor(m => m.Id)
+        @Html.HiddenFor(m => m.AppKey)
+        @Html.HiddenFor(m => m.SecureKey)
+    }
+    <div class="form-group">
+        @Html.LabelFor(model => model.Platfrom, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Platfrom, new { htmlAttributes = new { @class = "form-control auto_readonly " } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PackageName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.PackageName, new { htmlAttributes = new { @class = "form-control auto_readonly" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.IsSystem, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.IsSystem, new { @checked = true})
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2 " })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.Active, new { @checked = true })
+        </div>
+    </div>
+
+}
+@if (opType == OpType.View)
+{
+    <script>
+        SetKeyReadonly();
+    </script>
+}

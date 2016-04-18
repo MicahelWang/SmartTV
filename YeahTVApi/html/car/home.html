@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=0" />
+    <script src="../js/jquery.min.js"></script>
+    <title>打车、租车</title>
+
+    <style type="text/css">
+        body {
+            background-image: url(../img/car_home.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            font-size: 50px;
+            font-family: "微软雅黑";
+            color: white;
+        }
+
+        div.ItemCarbg {
+            background-repeat: no-repeat;
+            padding: 30px;
+        }
+
+        #divCar {
+            background-image: url(../img/car_icon.png);
+            background-repeat: no-repeat;
+            background-position: -5px -15px;
+            padding: 30px;
+            font-weight: 600;
+            padding-left: 150px;
+        }
+
+        #divTakeCar {
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            background-color: #C4B266;
+            border: 1px solid #FBE872;
+            margin-top: 60px;
+            width: 250px;
+            font-weight: 600;
+            font-size: 50px;
+            font-family: "微软雅黑";
+            color: white;
+            text-align: center;
+            line-height: 100px;
+        }
+
+        #divRentCar {
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border: 1px solid #7CD6CD;
+            background-color: #499088;
+            margin-top: 60px;
+            font-weight: 600;
+            width: 250px;
+            text-align: center;
+            font-size: 50px;
+            font-family: "微软雅黑";
+            color: white;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+    <script type="text/javascript">
+
+        $(window).load(function () {
+
+            $.ajax({
+                type: "GET",
+                url: "/Car/Home",
+                dataType: "json",
+                success: function (data) {
+
+                    if (data.takeTaxi) {
+                        $('#divTakeCar').attr("style", "display:block").attr("onclick", "javascript:toNextPage('" + data.takeTaxiUrl + "')");
+                      
+                    } else {
+                        $('#divTakeCar').attr("style", "display:none").attr("onclick", "javascript:toNextPage('#')");
+                    }
+
+                    if (data.rentCar) {
+                        $('#divRentCar').attr("style", "display:block").attr("onclick", "javascript:toNextPage('" + data.rentCarUrl + "')");;
+                    } else {
+                        $('#divRentCar').attr("style", "display:none").attr("onclick", "javascript:toNextPage('#')");;
+                    }
+                    console.log(JSON.stringify(data));
+                }
+            });
+        });
+
+        //跳转页面
+        function toNextPage(url) {
+            window.location.href = url; //+ RndNum(4);
+        }
+
+        function RndNum(n) {
+            var rnd = "";
+            for (var i = 0; i < n; i++)
+                rnd += Math.floor(Math.random() * 10);
+            return rnd;
+        }
+    </script>
+
+
+</head>
+    <body>
+        
+        <div id="car" style="margin-top: 120px; margin-left: 220px">
+            <div id="divCar">
+                叫车
+            </div>
+
+            <input id="divTakeCar" type="button" style="display: none" value="  打 车 " />
+        
+            <input id="divRentCar" type="button" style="display: none" value="  租 车 " />
+
+        </div>
+    </body>
+     
+
+</html>
+

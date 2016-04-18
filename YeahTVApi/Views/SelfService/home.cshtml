@@ -1,0 +1,179 @@
+﻿@using YeahTVApi.Resource
+
+    <link href="~/html/css/selfService.css" rel="stylesheet" />
+<body class="myhz">
+    <header class="myhz_name textsd">@YeahTVApiMessage.RoomService</header>
+
+    <ul class="clearfix guest" id="ulGuestList" style="display: none">
+    </ul>
+    <div class="btn btn-blue">
+        <a id="aContinued" href="#">@YeahTVApiMessage.RoomServiceStayOver</a>
+        <a id="aCheckOut" href="#">@YeahTVApiMessage.RoomServiceCheckOut</a>
+    </div>
+    <style>
+        li:focus {
+            
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+              -webkit-box-shadow: 0 0 25px rgba(255,255,255,1);
+              -webkit-user-modify:read-only;
+              -webkit-appearance:none;
+        }
+
+        li:active {
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+        }
+
+        
+         divTip:focus {
+            
+            -webkit-tap-highlight-color: rgba(0,0,0,0);
+              -webkit-box-shadow: 0 0 25px rgba(255,255,255,1); 
+        }
+    </style>
+    <div class="tips" id="divTip">
+        @Html.Raw(YeahTVApiMessage.RoomServiceTip)
+    </div>
+    <script type="text/javascript">
+        function getGuestList() {
+            var sReceiveId = "";
+            $.ajax({
+                type: "GET",
+                url: "/SelfService/Home",
+                dataType: "json",
+                success: function (data) {
+                    console.log(data);
+                    if (data.ResultType == 0 && null != data.obj && data.obj.list.length > 0) {
+                        var html = "";
+
+                        //是会员的情况，续住与退房可见
+                        var list = data.obj.list;
+                        for (var i = 0; i < list.length; i++) {
+                            var item = list[i];
+                            var level = item.MemberLevelID;
+                            //更加加载数量修改布局
+
+                            var floatStyle = list.length > 2 ? "style='float:left'" : "";
+                            var li = "<li>"
+                               + "<a id=\"href" + i + "\" style=\"display:block\" href=\"javascript:void(0)\"  class=\"member_" + itemLeve(level) + "\"  " + floatStyle + ">"
+                                + "<div class=\"member_base\">"
+                                + "<h4 class=\"name\">" + filterItem(item.Name) + "</h4>"
+                                + "<div class=\"level myhzIcon " + itemLeve(level) + "\" >" + filterItem(item.MemberLevelDesc) + "</div>"
+                                + "<div class=\"clearfix\"></div>"
+                                + "</div>"
+                                + "<p class=\"phone_" + itemLeve(level) + " myhzIcon\">" + filterItem(item.Mobile) + "</p>"
+                                + "<p class=\"idNumber_" + itemLeve(level) + " myhzIcon\">" + filterItem(item.idCode) + "</p>"
+                                + "<p class=\"points_" + itemLeve(level) + " myhzIcon\">" + filterItem(item.Point) + "</p>"
+                               + "</a>";
+                                + "</li>";
+
+                            html += li;
+
+
+                            if (sReceiveId == "") {
+                                sReceiveId = item.ReceiveID;
+                            }
+                        }
+
+                        if (null != data.obj.memberList && data.obj.memberList.length > 0) {
+                            
+                            var mainMember = "";
+                            for (var i = 0; i < data.obj.memberList.length; i++) {
+                                var member = data.obj.memberList[i];
+                                if (member.isMainOrder) {
+                                    mainMember = member;
+                                    break;
+                                }
+                            }
+                            if (data.obj.orders) {
+                                $('#aCheckOut').attr("href", "/SelfService/Out");
+                                if (mainMember)
+                                    $('#aContinued').attr("href", "/SelfService/LiveQR?reveiveOrderId=" + mainMember.sReceiveId + "&memberId=" + mainMember.memberId);
+                            }  
+                        }
+
+                        $('#ulGuestList').html(html);
+                        var ul = document.getElementById("ulGuestList");
+                        if (list.length <= 2) {
+                            ul.setAttribute("style", "text-align:center");
+
+                        } else {
+                            setTimeout(function () {
+                                var width = 1280 + (list.length - 2) * 550 + (list.length - 2) * 70;
+                                ul.setAttribute("style", "width:" + width + "px");
+                                //ul.style.display = "block";
+                            }, 2000);
+                        }
+
+                        loadfocus();
+                    }
+
+                }
+            });
+        }
+
+
+        function itemLeve(level) {
+            var levelStr = "";
+            if (level == "A") {
+                levelStr = "silver";
+            } else if (level == "B") {
+                levelStr = "gold";
+            } else if (level == "I") {
+                levelStr = "pt";
+            } else if (level == "P") {
+                levelStr = "star";
+            } else {
+                levelStr = "non";
+            }
+            return levelStr;
+        }
+
+        function filterItem(data) {
+            var item = "";
+            if (data) {
+                item = data;
+            } else {
+                item = "&nbsp;";
+            }
+            return item;
+        }
+
+        getGuestList();
+
+        function checkOut(sReceiveId) {
+            $.ajax({
+                type: "GET",
+                url: "/SelfService/SupportCheckOut?sReceiveID=" + sReceiveId,
+                dataType: "json",
+                success: function (data) {
+                    if (data.ResultType == 0) {
+                        window.location.href = "/SelfService/Live";
+                    } else {
+                        alert(data.Message);
+                    }
+
+                }
+            });
+        }
+
+        function keyEvent(keyCode) {
+            console.log("keyCode--" + keyCode);
+        }
+
+
+
+        function loadfocus() {
+             document.getElementById('href0').focus();
+
+
+            
+
+        }
+        $(document).keydown(function (event) {
+            
+
+        });
+ 
+    </script>
+</body>
+

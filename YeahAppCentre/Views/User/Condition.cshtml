@@ -1,0 +1,70 @@
+﻿@model YeahTVApi.DomainModel.Models.ConditionModels.UserCondition
+
+@using (Html.BeginForm("Index", "User", FormMethod.Post, new { novalidate = "novalidate" }))
+{
+
+    <div class="table-responsive">
+        <table class="table-bordered table06">
+            <tbody>
+                <tr>
+                    <td class="bg01">
+
+                        @Html.LabelFor(model => model.UGroupId, htmlAttributes: new { @class = "control-label " })
+
+                    </td>
+
+                    <td class="col-sm-2">
+                        @Html.DropDownListFor(model => model.UGroupId, ViewBag.Groups as IEnumerable<SelectListItem>)
+                    </td>
+                    <td class="bg01 ">
+
+                        @Html.LabelFor(model => model.UHotelId, htmlAttributes: new { @class = "control-label " })
+
+                    </td>
+
+                    <td class="col-sm-2">
+                        @Html.DropDownListFor(model => model.UHotelId, ViewBag.DefaultSelect as IEnumerable<SelectListItem>)
+                    </td>
+                    <td class="bg01">
+
+                        @Html.LabelFor(model => model.UState, htmlAttributes: new { @class = "control-label " })
+
+                    </td>
+
+                    <td>
+                        @Html.DropDownListFor(model => model.UState, DropDownExtensions.GetSelectList(typeof(StateEnum)))
+                    </td>
+                </tr>
+                <tr>
+                    <td class="bg01">
+                        @Html.LabelFor(model => model.EUserType, htmlAttributes: new { @class = "control-label" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.EUserType, DropDownExtensions.GetSelectList(typeof(UserTypeEnum)))
+                    </td>
+                    <td class="bg01">
+                        @Html.LabelFor(model => model.KeyWord, htmlAttributes: new { @class = "control-label" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.KeyWord, new { htmlAttributes = new { @class = "form-control", placeholder = "姓名/登录名/联系电话" } })
+                    </td>
+                    <td></td>
+                    <td class="center">
+                        <button type="submit" class="btn btn-sm btn-success"><i class="icon-search white">查询</i></button>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script>
+        $(document).ready(function () {
+            var groupId = $("#UGroupId").val();
+            var hotelObj = $("#UHotelId");
+            var _hotel = "@Model.UHotelId";
+            HotelFromGroup(groupId, hotelObj, _hotel);
+        });
+    </script>
+
+}
+

@@ -1,0 +1,272 @@
+﻿@{
+    ViewBag.Title = "HCS缓存管理";
+}
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            HCS缓存管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="widget-box">
+                <div class="widget-header header-color-blue">
+                    <h5 class="bigger lighter">
+                        <i class="icon-table"></i>
+                        HCS缓存管理
+                    </h5>
+                </div>
+            </div>
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    <div class="modal-body">
+                        <div class="col-xs-6" style="width: 20%;">
+                            <fieldset>
+                                <legend>酒店列表</legend>
+                                <div class="col-sm-8"></div>
+                                <div class="col-sm-4">
+                                </div>
+                                <div style="clear: both"></div>
+                                <div>
+                                    <ul id="treeDemo" class="ztree"></ul>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-xs-6" style="width: 80%;">
+                            <fieldset>
+                                <legend>编辑</legend>
+                            </fieldset>
+                            <div id="editForm">
+                                <form action="/User/Edit/" class="form-horizontal" data-ajax="true" data-ajax-method="Post" data-ajax-success="Success" id="form0" method="post" role="form" novalidate="novalidate">
+
+                                    <input id="Id" name="Id" type="hidden" value="">
+                                    <input id="permition" name="permition" type="hidden" value="">
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">名称</label>
+                                        <div class="col-md-10">
+                                            <label class="form-control single-line" id="Name"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2" for="Phone">版本</label>
+                                        <div class="col-md-10">
+                                            <label class="form-control single-line" name="Version" id="Version"></label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-2">更新时间</label>
+                                        <div class="col-md-10">
+                                            <label class="form-control single-line" id="LastUpdateTime"></label>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer" style="margin-top:0px;">
+                                        <input type="submit" id="submitButton" class="btn btn-success" value="提交版本变更">
+                                        @*<button type="button" class="btn btn-default" onclick="history.go(-1);">取消</button>*@
+                                    </div>
+
+                                    <input id="TypeId" name="TypeId" type="hidden" value="">
+                                    <input id="permitionType" name="permitionType" type="hidden" value="">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Styles{
+    <style>
+        .dataTables_wrapper input[type=text], .dataTables_wrapper select {
+            margin: 0px;
+        }
+    </style>
+}
+<script src="~/Scripts/zTree/js/jquery.ztree.all-3.5.js"></script>
+<link href="~/Scripts/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+<script src="~/Scripts/jquery.json-2.4.js"></script>
+<script>
+    $(function () {
+        createGroupTree();
+        $(document).delegate("#submitButton", "click",
+                function () {
+                    $("#submitButton").attr("disabled", "disabled");
+                    if (permitionType == "Group") {
+                        alert("不允许针对集团操作!");
+                    } else {
+                        $.ajax({
+                            url: "@Url.Action("EditVersion", "HCSCacheVersion")",
+                            data: { "TypeId": $("#TypeId").val(), "PermitionType": $("#permitionType").val() },
+                            success: function (data) {
+                                $("#submitButton").removeAttr("disabled");
+                                if (data.ErrorMsg != "") {
+                                    alert(data.ErrorMsg);
+                                }
+                                else {
+                                    $("#Version").html(data.Version);
+                                    $("#LastUpdateTime").html(data.LastUpdateTime);
+                                    alert("操作成功！");                 
+                                }  
+                            },error:function(){
+                                $("#submitButton").removeAttr("disabled")
+                            }
+                        });
+                    }
+                });
+    });
+
+    function filter(node) {
+        return (node.level == 0);
+    }
+    function Checked(obj) {
+
+        var test = document.getElementById(obj.id).checked;
+        if (test) {
+            var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+            treeObj.checkAllNodes(true);
+        }
+        else {
+            var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+            treeObj.checkAllNodes(false);
+        }
+    }
+
+    //集团
+    var permitions = [];
+    $(document).delegate(".btn-success", "click",
+           function () {
+               ceshi();
+               return true;
+           });
+
+    function ceshi() {
+        permitions = [];
+        var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+        var nodes = treeObj.getNodesByFilter(filter); // 查找选中节点集合
+        $.each(nodes, function (k, node) {
+            //1.check_Child_State=1
+
+            debugger;
+
+            if (node.check_Child_State == 2 || (node.check_Child_State == -1 && node.checked)) {
+                var permition = { UserId: "", PermitionType: '@PermitionEnum.Group', TypeId: node.id };
+                permitions.push(permition);
+            }
+            if (node.check_Child_State == 1) {
+                GetBrand(node.children);
+            }
+        });
+        $("#permition").val($.toJSON(permitions));
+    }
+
+    //品牌
+    function GetBrand(nodes) {
+        $.each(nodes, function (k, node) {
+            //1.check_Child_State=1
+            if (node.check_Child_State == 2 || (node.check_Child_State == -1 && node.checked)) {
+                var permition = { UserId: "", PermitionType: '@PermitionEnum.Brand', TypeId: node.id };
+                permitions.push(permition);
+            }
+            if (node.check_Child_State == 1) {
+                GetHotel(node.children);
+            }
+        });
+    }
+
+
+    function GetHotel(nodes) {
+        $.each(nodes, function (k, node) {
+            //1.check_Child_State=1
+            if (node.checked == true) {
+                var permition = { UserId: "", PermitionType: '@PermitionEnum.Hotel', TypeId: node.id };
+                permitions.push(permition);
+            }
+        });
+    }
+
+
+    function loadEditView() {
+        var id = '@ViewBag.Id';
+        var opType = '@ViewBag.Type';
+        var url = '@Html.Raw(Url.Action("Edit", new { type = "_type_", id = "_id_" }))'.replace('_id_', id).replace('_type_', opType);
+        var container = $("#editForm");
+        container.load(url, function () {
+
+        });
+    }
+
+    var setting = {
+        view: {
+            selectedMulti: false
+        },
+        check: {
+            enable: false
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            onClick: onClick
+        }
+    };
+
+    function onClick(e, treeId, treeNode) {
+        getVersion(treeNode.id, treeNode.PermitionType, treeNode.name);
+        debugger;
+    }
+    function getVersion(id, permitionType, name) {
+        $("#LastUpdateTime").html("");
+        $("#TypeId").val(id);
+        $("#permitionType").val(permitionType);
+
+        if (permitionType == "Group") {
+            $("#Version").html("");
+            $("#Name").html("请选择品牌或酒店");
+            $("#submitButton").attr("disabled", "disabled");
+        }
+        else {
+            $.ajax({
+                url: "@Url.Action("GetVersion", "HCSCacheVersion")",
+                data: { "TypeId": id, "PermitionType": permitionType },
+                success: function (data) {
+                    if (data.ErrorMsg != "") {
+                        alert(data.ErrorMsg);
+                    }
+                    else {
+                        $("#Version").html(data.Version);
+                        $("#Name").html(name);
+                        $("#submitButton").removeAttr("disabled");
+                        $("#LastUpdateTime").html(data.LastUpdateTime);
+                    }
+
+                }
+            });
+        }
+    }
+
+    function createGroupTree() {
+        var url = '@Url.Action("GetTreeJson", "HCSCacheVersion")';
+        $.get(url, function (data) {
+            var zNodes = eval(data);
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
+            //InitialTree();
+        });
+    }
+
+
+    function Success(data) {
+        if (data == "Success") {
+            Mc.Msg("保存成功！", function () {
+                location.href = '@Url.Action("Index","User")';
+            });
+
+        } else {
+            Mc.Error(data);
+        }
+    }
+</script>

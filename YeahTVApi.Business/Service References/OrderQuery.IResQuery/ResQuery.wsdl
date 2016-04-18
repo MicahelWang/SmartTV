@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ResQuery" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSHttpBinding_IResQuery_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd6" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd0" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd1" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.DAL.Reservation" />
+      <xsd:import schemaLocation="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Reservation" />
+      <xsd:import schemaLocation="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Base" />
+      <xsd:import schemaLocation="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.RsvnAndRcpn" />
+      <xsd:import schemaLocation="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface" />
+      <xsd:import schemaLocation="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/System.Xml.Linq" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IResQuery_Query_InputMessage">
+    <wsdl:part name="parameters" element="tns:Query" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_Query_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryWithHistoryRecordsOption_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryWithHistoryRecordsOption" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryWithHistoryRecordsOption_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryWithHistoryRecordsOptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryAllRecordsWithHistoryRecordsOption_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryAllRecordsWithHistoryRecordsOption" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryAllRecordsWithHistoryRecordsOption_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryAllRecordsWithHistoryRecordsOptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QuerySingleRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:QuerySingleRecord" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QuerySingleRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QuerySingleRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryWithHistoryRecordsOptionAndPageOption_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryWithHistoryRecordsOptionAndPageOption" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryWithHistoryRecordsOptionAndPageOption_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryWithHistoryRecordsOptionAndPageOptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryWithHistoryRecordsOptionAndPageOrderOption_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryWithHistoryRecordsOptionAndPageOrderOption" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryWithHistoryRecordsOptionAndPageOrderOption_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryWithHistoryRecordsOptionAndPageOrderOptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryWithHotelIdAndPageOption_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryWithHotelIdAndPageOption" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryWithHotelIdAndPageOption_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryWithHotelIdAndPageOptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryByQueryTerm_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryByQueryTerm" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryByQueryTerm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryByQueryTermResponse" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryByQueryTermAndWithHistoryRecordsOption_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryByQueryTermAndWithHistoryRecordsOption" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryByQueryTermAndWithHistoryRecordsOption_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryByQueryTermAndWithHistoryRecordsOptionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryRecordCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryRecordCount" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryRecordCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryRecordCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryAllRecordCount_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryAllRecordCount" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_QueryAllRecordCount_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryAllRecordCountResponse" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_DeleteSingleRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSingleRecord" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_DeleteSingleRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSingleRecordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_DeleteRecord_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecord" />
+  </wsdl:message>
+  <wsdl:message name="IResQuery_DeleteRecord_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteRecordResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IResQuery">
+    <wsdl:operation name="Query">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResQuery/Query" message="tns:IResQuery_Query_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResQuery/QueryResponse" message="tns:IResQuery_Query_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryWithHistoryRecordsOption">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResQuery/QueryWithHistoryRecordsOption" message="tns:IResQuery_QueryWithHistoryRecordsOption_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResQuery/QueryWithHistoryRecordsOptionResponse" message="tns:IResQuery_QueryWithHistoryRecordsOption_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryAllRecordsWithHistoryRecordsOption">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResQuery/QueryAllRecordsWithHistoryRecordsOption" message="tns:IResQuery_QueryAllRecordsWithHistoryRecordsOption_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResQuery/QueryAllRecordsWithHistoryRecordsOptionResponse" message="tns:IResQuery_QueryAllRecordsWithHistoryRecordsOption_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QuerySingleRecord">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResQuery/QuerySingleRecord" message="tns:IResQuery_QuerySingleRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResQuery/QuerySingleRecordResponse" message="tns:IResQuery_QuerySingleRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryWithHistoryRecordsOptionAndPageOption">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResQuery/QueryWithHistoryRecordsOptionAndPageOption" message="tns:IResQuery_QueryWithHistoryRecordsOptionAndPageOption_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResQuery/QueryWithHistoryRecordsOptionAndPageOptionResponse" message="tns:IResQuery_QueryWithHistoryRecordsOptionAndPageOption_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryWithHistoryRecordsOptionAndPageOrderOption">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResQuery/QueryWithHistoryRecordsOptionAndPageOrderOption" message="tns:IResQuery_QueryWithHistoryRecordsOptionAndPageOrderOption_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResQuery/QueryWithHistoryRecordsOptionAndPageOrderOptionResponse" message="tns:IResQuery_QueryWithHistoryRecordsOptionAndPageOrderOption_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryWithHotelIdAndPageOption">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResQuery/QueryWithHotelIdAndPageOption" message="tns:IResQuery_QueryWithHotelIdAndPageOption_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResQuery/QueryWithHotelIdAndPageOptionResponse" message="tns:IResQuery_QueryWithHotelIdAndPageOption_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryByQueryTerm">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResQuery/QueryByQueryTerm" message="tns:IResQuery_QueryByQueryTerm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResQuery/QueryByQueryTermResponse" message="tns:IResQuery_QueryByQueryTerm_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryByQueryTermAndWithHistoryRecordsOption">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResQuery/QueryByQueryTermAndWithHistoryRecordsOption" message="tns:IResQuery_QueryByQueryTermAndWithHistoryRecordsOption_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResQuery/QueryByQueryTermAndWithHistoryRecordsOptionResponse" message="tns:IResQuery_QueryByQueryTermAndWithHistoryRecordsOption_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryRecordCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResQuery/QueryRecordCount" message="tns:IResQuery_QueryRecordCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResQuery/QueryRecordCountResponse" message="tns:IResQuery_QueryRecordCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryAllRecordCount">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResQuery/QueryAllRecordCount" message="tns:IResQuery_QueryAllRecordCount_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResQuery/QueryAllRecordCountResponse" message="tns:IResQuery_QueryAllRecordCount_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSingleRecord">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResQuery/DeleteSingleRecord" message="tns:IResQuery_DeleteSingleRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResQuery/DeleteSingleRecordResponse" message="tns:IResQuery_DeleteSingleRecord_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecord">
+      <wsdl:input wsaw:Action="http://tempuri.org/IResQuery/DeleteRecord" message="tns:IResQuery_DeleteRecord_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IResQuery/DeleteRecordResponse" message="tns:IResQuery_DeleteRecord_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSHttpBinding_IResQuery" type="tns:IResQuery">
+    <wsp:PolicyReference URI="#WSHttpBinding_IResQuery_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Query">
+      <soap12:operation soapAction="http://tempuri.org/IResQuery/Query" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryWithHistoryRecordsOption">
+      <soap12:operation soapAction="http://tempuri.org/IResQuery/QueryWithHistoryRecordsOption" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryAllRecordsWithHistoryRecordsOption">
+      <soap12:operation soapAction="http://tempuri.org/IResQuery/QueryAllRecordsWithHistoryRecordsOption" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QuerySingleRecord">
+      <soap12:operation soapAction="http://tempuri.org/IResQuery/QuerySingleRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryWithHistoryRecordsOptionAndPageOption">
+      <soap12:operation soapAction="http://tempuri.org/IResQuery/QueryWithHistoryRecordsOptionAndPageOption" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryWithHistoryRecordsOptionAndPageOrderOption">
+      <soap12:operation soapAction="http://tempuri.org/IResQuery/QueryWithHistoryRecordsOptionAndPageOrderOption" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryWithHotelIdAndPageOption">
+      <soap12:operation soapAction="http://tempuri.org/IResQuery/QueryWithHotelIdAndPageOption" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryByQueryTerm">
+      <soap12:operation soapAction="http://tempuri.org/IResQuery/QueryByQueryTerm" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryByQueryTermAndWithHistoryRecordsOption">
+      <soap12:operation soapAction="http://tempuri.org/IResQuery/QueryByQueryTermAndWithHistoryRecordsOption" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryRecordCount">
+      <soap12:operation soapAction="http://tempuri.org/IResQuery/QueryRecordCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryAllRecordCount">
+      <soap12:operation soapAction="http://tempuri.org/IResQuery/QueryAllRecordCount" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSingleRecord">
+      <soap12:operation soapAction="http://tempuri.org/IResQuery/DeleteSingleRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteRecord">
+      <soap12:operation soapAction="http://tempuri.org/IResQuery/DeleteRecord" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ResQuery">
+    <wsdl:port name="WSHttpBinding_IResQuery" binding="tns:WSHttpBinding_IResQuery">
+      <soap12:address location="http://pmsrecon-web:9090/ResQuery.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://pmsrecon-web:9090/ResQuery.svc</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

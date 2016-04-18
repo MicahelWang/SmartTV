@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{157ED71D-E9D0-4D8E-A04E-C48B520BD578}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YeahCenter.Infrastructure</RootNamespace>
+    <AssemblyName>YeahCenter.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EntityFrameworkRepositoryInterface\IPowerResourceRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\IPowerRoleResourceRelationRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\ISysBrandRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\ISysCityRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\ISysCountyRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\ISysGroupRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\ISysHotelRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\ISysHotelSencondRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\ISysLoginRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\ISysProvinceRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\ISysRoleRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\ISysRoleResourceRelationRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\ISysUserRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\ITvDocumentAttributeRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\ITvDocumentElementRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\ITvTemplateRepertory.cs" />
+    <Compile Include="EntityFrameworkRepositoryInterface\ITvTemplateTypeRepertory.cs" />
+    <Compile Include="IBehaviorLogManager.cs" />
+    <Compile Include="IBrandManager.cs" />
+    <Compile Include="ICityManager.cs" />
+    <Compile Include="ICountyManager.cs" />
+    <Compile Include="IDashBoardManager.cs" />
+    <Compile Include="IGroupManager.cs" />
+    <Compile Include="IHotelManager.cs" />
+    <Compile Include="IProvinceManager.cs" />
+    <Compile Include="IRoleManager.cs" />
+    <Compile Include="IRoleResourceRelationManager.cs" />
+    <Compile Include="ISelfServiceManager.cs" />
+    <Compile Include="ISystemManager.cs" />
+    <Compile Include="ITvDocumentAttributeManager.cs" />
+    <Compile Include="ITvDocumentElementCacheManager.cs" />
+    <Compile Include="ITvDocumentElementManager.cs" />
+    <Compile Include="ITvTemplateAttributeManager.cs" />
+    <Compile Include="ITvTemplateElementManager.cs" />
+    <Compile Include="ITvTemplateManager.cs" />
+    <Compile Include="ITvTemplateTypeManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WrapperFacadeInterface\IUerPermitionWrapperFacade.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YeahTVApi.Common\YeahTVApi.Common.csproj">
+      <Project>{27ec8548-1bec-4f32-a43e-341430cd6ff3}</Project>
+      <Name>YeahTVApi.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.DomainModel\YeahTVApi.DomainModel.csproj">
+      <Project>{7b4ce815-38cb-4ee4-8860-8381cf2de60a}</Project>
+      <Name>YeahTVApi.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApiLibrary.Interface\YeahTVApiLibrary.Infrastructure.csproj">
+      <Project>{430afd5d-2462-4d0e-b2ca-e1c68032bfb0}</Project>
+      <Name>YeahTVApiLibrary.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

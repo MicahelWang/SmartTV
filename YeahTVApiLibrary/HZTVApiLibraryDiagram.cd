@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="YeahTVApiLibrary.Filter.AppAuthorizeAttribute">
+    <Position X="1.5" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Filter\AppAuthorizeAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YeahTVApiLibrary.Filter.HTApiErrorAttribute" BaseTypeListCollapsed="true">
+    <Position X="3.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAABAA=</HashCode>
+      <FileName>Filter\HTApiErrorAttribute.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="YeahTVApiLibrary.Filter.HTApiFilterAttribute">
+    <Position X="6" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAoAAgACAAQAIAAAAAAAAAAgAAAAAAAAAAAAAQAA=</HashCode>
+      <FileName>Filter\HTApiFilterAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YeahTVApiLibrary.Filter.HttpsAttribute">
+    <Position X="1.25" Y="0.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Filter\HttpsAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YeahTVApiLibrary.Filter.ToolsApiFilterAttribute">
+    <Position X="3.75" Y="2.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAIAAAAAAAAAAAAAAAAAAAgAAAAAAA=</HashCode>
+      <FileName>Filter\ToolsApiFilterAttribute.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="YeahTVApiLibrary.EntityFrameworkRepository.EFUnitOfWork" BaseTypeListCollapsed="true">
+    <Position X="3.25" Y="22.75" Width="2.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.283" />
+  </Class>
+  <Class Name="YeahTVApiLibrary.EntityFrameworkRepository.UnitOfWorkAttribute">
+    <Position X="6" Y="21" Width="2" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="YeahTVApiLibrary.EntityFrameworkRepository.UnitOfWorkHelper">
+    <Position X="3.25" Y="25.25" Width="2.25" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="YeahTVApiLibrary.EntityFrameworkRepository.Models.YeahTVLibraryContext">
+    <Position X="6" Y="22.75" Width="2.75" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="YeahTVApiLibrary.EntityFrameworkRepository.Mapping.AppsMap">
+    <Position X="6" Y="26.5" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="YeahTVApiLibrary.EntityFrameworkRepository.Mapping.DeviceTraceMap">
+    <Position X="6" Y="25" Width="2.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="YeahTVApiLibrary.EntityFrameworkRepository.Repertory.AppsRepertory">
+    <Position X="6.25" Y="18.5" Width="2" />
+    <TypeIdentifier />
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="YeahTVApiLibrary.EntityFrameworkRepository.Repertory.BaseRepertory&lt;TEntity, Key&gt;">
+    <Position X="5" Y="14.75" Width="1.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="YeahTVApiLibrary.EntityFrameworkRepository.Repertory.DeviceTraceRepertory">
+    <Position X="3.25" Y="18.75" Width="2.5" />
+    <TypeIdentifier />
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="YeahTVApiLibrary.Manager.AppLibraryManager" BaseTypeListCollapsed="true">
+    <Position X="2" Y="7.5" Width="1.75" />
+    <TypeIdentifier />
+    <Lollipop Position="0.1" />
+  </Class>
+  <Interface Name="YeahTVApiLibrary.Infrastructure.IAppLibraryManager">
+    <Position X="2" Y="5.75" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="YeahTVApiLibrary.Infrastructure.IDeviceTraceLibraryManager">
+    <Position X="4.25" Y="5.75" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="YeahTVApiLibrary.Infrastructure.IRedisCacheManager">
+    <Position X="7" Y="5.75" Width="2.25" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="YeahTVApiLibrary.Infrastructure.IBsaeRepertory&lt;TEntity&gt;">
+    <Position X="5.75" Y="10.25" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="YeahTVApiLibrary.Infrastructure.IAppsLibraryRepertory">
+    <Position X="3.25" Y="12.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="YeahTVApiLibrary.Infrastructure.IDeviceTraceLibraryRepertory">
+    <Position X="5.5" Y="12.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Interface Name="YeahTVApiLibrary.Infrastructure.IUnitOfWork">
+    <Position X="3.25" Y="21" Width="1.75" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Microsoft YaHei" Size="9" />
+</ClassDiagram>

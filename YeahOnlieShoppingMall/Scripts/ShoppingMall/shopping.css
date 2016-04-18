@@ -1,0 +1,27 @@
+﻿body {
+}
+
+.modal.fade.in {
+}
+
+.nav_pro>div>div:last-child {
+    display: none;
+}
+
+.changeBG div div:last-child {
+    display: block;
+    font-size:20px;
+}
+
+.changeBG div div.defaultCover {
+    display: none;
+}
+span.blue {
+            display: none;
+        }
+li.active span.blue {
+    display: block;
+}
+li.active span.red {
+    display: none;
+}

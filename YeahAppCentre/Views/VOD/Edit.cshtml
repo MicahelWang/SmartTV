@@ -1,0 +1,698 @@
+﻿@model MovieForLocalize
+<div class="page-content" style="overflow:hidden">
+    <div class="page-header">
+        <h1>
+            编辑电影
+            <small>
+                <i class="icon-double-angle-right"></i>
+            </small>
+        </h1>
+    </div>
+    <div class="form-horizontal" id="addMovie" role="form">
+        <div class="text-center">
+            <button type="button" id="langug" class="btn btn-success">英文</button>
+        </div>
+        <br>
+        @{
+            var langs = Model.Names.ToList().Count() > 1 ? true : false;
+            var zhCN = "zh-cn";
+            var enUS = "en-us";
+        }
+        <div class="row">
+            <input id="key" type="hidden" value="@Model.Id">
+            <div class="col-lg-6">
+                <div class="form-group temp">
+                    <label for="Name" class="col-sm-2 control-label">影片名称<code>*</code></label>
+                    <div class="col-sm-10">
+                        @if (Model.Names.Where(o => o.Lang.ToLower().Equals(zhCN)).Count() > 0)
+                        {
+                            <input type="text" class="form-control" keyid="@Model.Names.First(o => o.Lang.ToLower().Equals(zhCN)).Id" id="Name" placeholder="请输入影片名称"
+                                   value="@Model.Names.First(o => o.Lang.ToLower().Equals(zhCN)).Content">
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control" id="Name" placeholder="请输入影片名称"
+                                   value="">
+                        }
+                    </div>
+                </div>
+                @if (langs)
+                {
+                    if (Model.Names.Where(o => o.Lang.ToLower().Equals(enUS)).Count() > 0)
+                    {
+                        <div class="form-group has-success">
+                            <label for="Name" class="col-sm-2 control-label">英</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" keyid="@Model.Names.First(o => o.Lang.ToLower().Equals(enUS)).Id"
+                                       id="Name_@Model.Names.First(o => o.Lang.ToLower().Equals(enUS)).Lang" placeholder="请输入影片名称"
+                                       name="Name_@Model.Names.First(o => o.Lang.ToLower().Equals(enUS)).Lang"
+                                       value="@Model.Names.First(o => o.Lang.ToLower().Equals(enUS)).Content">
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group has-success">
+                            <label for="Name_@enUS" class="col-sm-2 control-label">英</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" keyid=""
+                                       id="Name_@enUS" placeholder="请输入影片名称"
+                                       name="Name_@enUS"
+                                       value="">
+                            </div>
+                        </div>
+                    }
+                }
+                <div class="form-group">
+                    <label for="DefaultAmount" class="col-sm-2 control-label">默认价格</label>
+                    <div class="col-sm-10 input-group">
+                        <span class="input-group-addon">￥</span>
+                        <input type="text" class="form-control" id="DefaultAmount" placeholder="请输入价格" value="@Model.DefaultAmount">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="MD5" class="col-sm-2 control-label">MD5<code>*</code></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="MD5" placeholder="请输入MD5" value="@Model.MD5">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="Attribute" class="col-sm-2 control-label">特殊标签</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="Attribute" placeholder="" value="@Model.Attribute">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Rate" class="col-sm-2 control-label">评分<code>*</code></label>
+                    <div class="col-sm-10">
+                        <div class="control-group">
+                            <div class="controls">
+                                <label>
+                                    <div class="exemple2" data-average="@Model.Rate" data-id="2"></div>
+                                </label>&nbsp;&nbsp;
+                                <input type="text" class="help-inline text-center" style="width: 66px;" onchange="setScore(this.value)"
+                                       id="Rate" value="@Model.Rate" placeholder="满分10分">分
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="VodUrl" class="col-sm-2 control-label">Vod地址<code>*</code></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="VodUrl" placeholder="请输入Vod地址,如:http://133.133.1.5/" value="@Model.VodUrl">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label for="TagIds" class="col-sm-1 control-label">影片分类<code>*</code></label>
+                    <div class="col-sm-11">
+                        <div>
+                            @foreach (SelectListItem item in ViewBag.checkList)
+                            {
+                                <label>
+                                    <input name="TagIds" type="checkbox" value="@item.Value" />
+                                    @item.Text
+                                </label>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="Vintage" class="col-sm-2 control-label">年份<code>*</code></label>
+                    <div class="col-sm-10">
+                        <div id="datetimepicker1">
+                            <input id="Vintage" type="text" class="form-control" placeholder="请选择影片年份,如: 2015" value="@Model.Vintage" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group temp">
+                    <label for="Language" class="col-sm-2 control-label">语言<code>*</code></label>
+                    <div class="col-sm-10">
+                        @if (Model.Languages.Where(o => o.Lang.ToLower().Equals(zhCN)).Count() > 0)
+                        {
+                            <input type="text" class="form-control" keyid="@Model.Languages.First(o => o.Lang.ToLower().Equals(zhCN))" id="Language" placeholder=""
+                                   value="@Model.Languages.First(o => o.Lang.ToLower().Equals(zhCN)).Content">
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control" id="Language" placeholder=""
+                                   value="">
+                        }
+                    </div>
+                </div>
+                @if (langs)
+                {
+                    if (Model.Languages.Where(o => o.Lang.ToLower().Equals(enUS)).Count() > 0)
+                    {
+                        <div class="form-group has-success">
+                            <label for="Language_@Model.Languages.First(o => o.Lang.ToLower().Equals(enUS)).Lang" class="col-sm-2 control-label">英</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" keyid="@Model.Languages.First(o => o.Lang.ToLower().Equals(enUS)).Id"
+                                       id="Language_@Model.Languages.First(o => o.Lang.ToLower().Equals(enUS)).Lang" placeholder=""
+                                       name="Language_@Model.Languages.First(o => o.Lang.ToLower().Equals(enUS)).Lang"
+                                       value="@Model.Languages.First(o => o.Lang.ToLower().Equals(enUS)).Content">
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group has-success">
+                            <label for="Language_@enUS" class="col-sm-2 control-label">英</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" keyid=""
+                                       id="Language_@enUS" placeholder=""
+                                       name="Language_@enUS"
+                                       value="">
+                            </div>
+                        </div>
+                    }
+                }
+                <div class="form-group temp">
+                    <label for="Director" class="col-sm-2 control-label">导演<code>*</code></label>
+                    <div class="col-sm-10">
+                        @if (Model.Directors.Where(o => o.Lang.ToLower().Equals(zhCN)).Count() > 0)
+                        {
+                            <input type="text" class="form-control" keyid="@Model.Directors.First(o => o.Lang.ToLower().Equals(zhCN))" id="Director" placeholder="请输入影片名称"
+                                   value="@Model.Directors.First(o => o.Lang.ToLower().Equals(zhCN)).Content">
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control" id="Director" placeholder="请输入影片名称"
+                                   value="">
+                        }
+                    </div>
+                </div>
+                @if (langs)
+                {
+                    if (Model.Directors.Where(o => o.Lang.ToLower().Equals(enUS)).Count() > 0)
+                    {
+                        <div class="form-group has-success">
+                            <label for="Director_@Model.Directors.First(o => o.Lang.ToLower().Equals(enUS)).Lang" class="col-sm-2 control-label">英</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"
+                                       keyid="@Model.Directors.First(o => o.Lang.ToLower().Equals(enUS)).Id"
+                                       id="Director_@Model.Directors.First(o => o.Lang.ToLower().Equals(enUS)).Lang" placeholder=""
+                                       name="Director_@Model.Directors.First(o => o.Lang.ToLower().Equals(enUS)).Lang"
+                                       value="@Model.Directors.First(o => o.Lang.ToLower().Equals(enUS)).Content">
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group has-success">
+                            <label for="Director_@enUS" class="col-sm-2 control-label">英</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" keyid=""
+                                       id="Director_@enUS" placeholder=""
+                                       name="Director_@enUS"
+                                       value="">
+                            </div>
+                        </div>
+                    }
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="CoverAddress">封面上传<code>*</code></label>
+                    <div class="col-md-10">
+                        <button id="uploadCoverIcon" type="button">修改上传文件</button>
+                        <label error-info="">（图片不大于30K且图片仅支持jpg和png格式）</label>
+                        <img id="CoverimgIcon" style="display:none" />
+                        <input class="form-control text-box single-line" data-val="true" data-val-required="封面上传 字段是必需的。" id="CoverAddress" name="CoverAddress" type="hidden" value="@Model.CoverAddress">
+                    </div>
+                </div>
+                <div class="form-group temp">
+                    <label for="MovieReview" class="col-sm-2 control-label">影片描述(中文)<code>*</code></label>
+                    <div class="col-sm-10">
+                        @if (Model.MovieReviews.Where(o => o.Lang.ToLower().Equals(zhCN)).Count() > 0)
+                        {
+
+                            <textarea type="text" class="form-control" id="MovieReview" placeholder="" style="height:136px;"
+                                      keyid="@Model.MovieReviews.First(o => o.Lang.ToLower().Equals(zhCN)).Id">
+                                @Model.MovieReviews.First(o => o.Lang.ToLower().Equals(zhCN)).Content.Trim()
+                            </textarea>
+                        }
+                        else
+                        {
+                            <textarea type="text" class="form-control" id="MovieReview" placeholder="" style="height:136px;"
+                                      value=""></textarea>
+                        }
+                    </div>
+                </div>
+                @if (langs)
+                {
+                    if (Model.MovieReviews.Where(o => o.Lang.ToLower().Equals(enUS)).Count() > 0)
+                    {
+                        <div class="form-group has-success">
+                            <label for="MovieReview_@Model.MovieReviews.First(o => o.Lang.ToLower().Equals(enUS)).Lang" class="col-sm-2 control-label">英</label>
+                            <div class="col-sm-10">
+                                <textarea type="text" class="form-control" style="height:136px;"
+                                          keyid="@Model.MovieReviews.First(o => o.Lang.ToLower().Equals(enUS)).Id"
+                                          id="MovieReview_@Model.MovieReviews.First(o => o.Lang.ToLower().Equals(enUS)).Lang" placeholder=""
+                                          name="MovieReview_@Model.MovieReviews.First(o => o.Lang.ToLower().Equals(enUS)).Lang"
+                                          value="">
+                                    @Model.MovieReviews.First(o => o.Lang.ToLower().Equals(enUS)).Content.Trim()
+                                </textarea>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group has-success">
+                            <label for="MovieReview_@enUS" class="col-sm-2 control-label">英</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" style="height:136px;"
+                                          id="MovieReview_@enUS" placeholder=""
+                                          name="MovieReview_@enUS"></textarea>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group temp">
+                    <label for="District" class="col-sm-2 control-label">地区<code>*</code></label>
+                    <div class="col-sm-10">
+                        @if (Model.Districts.Where(o => o.Lang.ToLower().Equals(zhCN)).Count() > 0)
+                        {
+                            <input type="text" class="form-control" keyid="@Model.Districts.First(o => o.Lang.ToLower().Equals(zhCN))" id="District" placeholder="请输入影片名称"
+                                   value="@Model.Districts.First(o => o.Lang.ToLower().Equals(zhCN)).Content">
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control" id="District" placeholder=""
+                                   value="">
+                        }
+                    </div>
+                </div>
+                @if (langs)
+                {
+                    if (Model.Districts.Where(o => o.Lang.ToLower().Equals(enUS)).Count() > 0)
+                    {
+                        <div class="form-group has-success">
+                            <label for="District_@Model.Districts.First(o => o.Lang.ToLower().Equals(enUS)).Lang" class="col-sm-2 control-label">英</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"
+                                       keyid="@Model.Districts.First(o => o.Lang.ToLower().Equals(enUS)).Id"
+                                       id="District_@Model.Districts.First(o => o.Lang.ToLower().Equals(enUS)).Lang" placeholder=""
+                                       name="District_@Model.Districts.First(o => o.Lang.ToLower().Equals(enUS)).Lang"
+                                       value="@Model.Districts.First(o => o.Lang.ToLower().Equals(enUS)).Content">
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group has-success">
+                            <label for="District_@enUS" class="col-sm-2 control-label">英</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" keyid=""
+                                       id="District_@enUS" placeholder=""
+                                       name="District_@enUS"
+                                       value="">
+                            </div>
+                        </div>
+                    }
+                }
+                <div class="form-group">
+                    <label for="Mins" class="col-sm-2 control-label">片长<code>*</code></label>
+                    <div class="col-sm-10 input-group">
+                        <input type="text" class="form-control" id="Mins" placeholder="" value="@Model.Mins">
+                        <span class="input-group-addon">分钟</span>
+                    </div>
+                </div>
+                <div class="form-group temp">
+                    <label for="District" class="col-sm-2 control-label">主演<code>*</code></label>
+                    <div class="col-sm-10">
+                        @if (Model.Starreds.Where(o => o.Lang.ToLower().Equals(zhCN)).Count() > 0)
+                        {
+                            <input type="text" class="form-control" keyid="@Model.Starreds.First(o => o.Lang.ToLower().Equals(zhCN))"
+                                   id="Starred" placeholder=""
+                                   value="@Model.Starreds.First(o => o.Lang.ToLower().Equals(zhCN)).Content">
+                        }
+                        else
+                        {
+                            <input type="text" class="form-control" id="Starred" placeholder=""
+                                   value="">
+                        }
+                    </div>
+                </div>
+                @if (langs)
+                {
+                    if (Model.Starreds.Where(o => o.Lang.ToLower().Equals(enUS)).Count() > 0)
+                    {
+                        <div class="form-group has-success">
+                            <label for="Starred_@Model.Starreds.First(o => o.Lang.ToLower().Equals(enUS)).Lang" class="col-sm-2 control-label">英</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"
+                                       keyid="@Model.Starreds.First(o => o.Lang.ToLower().Equals(enUS)).Id"
+                                       id="Starred_@Model.Starreds.First(o => o.Lang.ToLower().Equals(enUS)).Lang" placeholder=""
+                                       name="Starred_@Model.Starreds.First(o => o.Lang.ToLower().Equals(enUS)).Lang"
+                                       value="@Model.Starreds.First(o => o.Lang.ToLower().Equals(enUS)).Content">
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="form-group has-success">
+                            <label for="Starred_@enUS" class="col-sm-2 control-label">英</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" keyid=""
+                                       id="Starred_@enUS" placeholder=""
+                                       name="Starred_@enUS"
+                                       value="">
+                            </div>
+                        </div>
+                    }
+                }
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="PosterAddress">海报上传<code>*</code></label>
+                    <div class="col-md-10">
+                        <button id="uploadPosterIcon" type="button">修改上传文件</button>
+                        <label error-info="">图片不大于300K且图片仅支持jpg和png格式）</label>
+                        <img id="PosterimgIcon" style="display:none" />
+                        <input class="form-control text-box single-line" data-val="true" data-val-required="封面上传 字段是必需的。" id="PosterAddress" name="PosterAddress" type="hidden" value="@Model.PosterAddress">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <hr>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="firstname" class="col-sm-2 control-label">是否置顶<code>*</code></label>
+                    <div class="col-sm-10">
+                        <div>
+                            <label>
+                                <input name="IsTop" type="radio" value="1"> 是
+                                <input name="IsTop" type="radio" checked="checked" value="0"> 否
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <hr>
+            <div class="form-inline col-lg-1">
+            </div>
+            <div class="form-inline  col-lg-11">
+                @using (Ajax.BeginForm("Edit", "VOD", new AjaxOptions
+                {
+                    OnSuccess = "Success",
+                    HttpMethod = "Post",
+                    //OnBegin = "beforeSubmit",
+                    OnFailure = "Failure",
+                }))
+                {
+                    <input type="hidden" id="HotelCount" name="HotelCount" value="@Model.HotelCount">                    
+                    @Html.HiddenFor(m=>m.DistributeAll)
+                    <div class="hidden content">
+                        <input type="text" id="Id" name="Id" value="">
+                        <input type="text" id="Name" name="Name" value="">
+                        <input type="text" id="seach" name="seach" value="">
+                        <input type="text" id="DefaultAmount" name="DefaultAmount" value="">
+                        <input type="text" id="Attribute" name="Attribute" value="">
+                        <input type="text" id="Rate" name="Rate" value="">
+                        <input type="text" id="Vintage" name="Vintage" value="">
+                        <input type="text" id="Language" name="Language" value="">
+                        <input type="text" id="Director" name="Director" value="">
+                        <input type="text" id="CoverAddress" name="CoverAddress" value="">
+                        <input type="text" id="MovieReview" name="MovieReview" value="">
+                        <input type="text" id="District" name="District" value="">
+                        <input type="text" id="Mins" name="Mins" value="">
+                        <input type="text" id="Starred" name="Starred" value="">
+                        <input type="text" id="PosterAddress" name="PosterAddress" value="">
+                        <input type="text" id="TagIds" name="TagIds" value="">
+                        <input name="IsTop" id="IsTop" type="text" value="false">
+                        <input type="text" id="VodUrl" name="VodUrl" value="">
+                        <input type="text" id="MD5" name="MD5" value="">
+                    </div>
+                    <button type="submit" id="subBack" class="btn  btn-info">提交返回</button>
+                    <button type="button" class="btn  btn-default" onclick="history.go(-1);">取消</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+<link href="~/Scripts/assets/css/datepicker.css" rel="stylesheet" />
+<script src="~/Scripts/upload/ajaxupload.js"></script>
+<script src="~/Scripts/upload/uploadHelper.js"></script>
+<script src="~/Scripts/filterHotels.js"></script>
+<script src="~/Scripts/ratystar/jRating.jquery.js"></script>
+<link href="~/Scripts/ratystar/jRating.jquery.css" rel="stylesheet" />
+<script type="text/javascript">
+    var isBack = false;
+    var hotelCount=@Model.HotelCount;
+    var istop="@Model.IsTop";
+    var tagids="@Model.TagIds";
+    var initScore="@Model.Rate";
+    var distributeAll="@Model.DistributeAll";
+    $(document).ready(function () {
+        //$('#datetimepicker1').datepicker({
+        //    startView: 2, maxViewMode: 2,minViewMode:2,
+        //    format: 'yyyy',
+        //    autoclose: true
+        //});
+        bindCoverUpload();
+        bindPosterUpload();
+        $(document).delegate("#langug", "click", function () {
+            if ($("div.has-success").length > 0) {
+                $("div.has-success").toggle();
+            } else {
+                $("div.temp").each(function (e, v) {
+                    var temp = $(v).clone(true).removeClass("temp").addClass("has-success");
+                    var id = temp.find("input,textarea").attr("id");
+                    temp.find("input,textarea").attr("name", id + "_en-us").attr("id", id + "_en-us").attr("tipMessage", "英文 "+$("label", temp).text());
+                    $("label", temp).text("英");
+                    $(temp).find("code").remove();
+                    $(this).after(temp);
+                });
+            }
+        }
+        );
+        $(document).delegate("#subBack", "click", function () {
+            if (this.textContent == "提交返回") {
+                isBack = true;
+            }
+            var ret= getInput();
+            if(ret)
+            {
+                $("#subBack").addClass("disabled");
+                this.textContent="提交中...";
+            }
+            return ret;
+        }
+
+        );
+
+        $('.exemple2').jRating({
+            length: 5,
+            decimalLength: 1,
+            rateMax: 10,
+            target: $("#Rate", "div.form-group"),
+            onClick: function (obj, rate) {
+                //$("#Rate", "div.form-group").val(rate == 0 ? "" : rate)
+            }
+        });
+        setScore(null);
+        initForm();
+    });
+    function setScore(score) {
+        if (score) {
+            if (!/^[0-9]+(.[0-9]+)?$/.test(score)) {
+                alert("评分必须是数字");
+                score = $("div.exemple2").attr("data-average");
+            }
+            $("div.exemple2").attr("data-average", score);
+        }
+
+        $("div.exemple2").html("");
+        $("div.exemple2").jRating({
+            length: 5,
+            decimalLength: 1,
+            defaultScore: score,
+            rateMax: 10,
+            target: $("#Rate", "div.form-group"),
+            onClick: function (obj, rate) {
+                $("#Rate", "div.form-group").val(rate == 0 ? "" : rate)
+            }
+        });
+    }
+    function initForm()
+    {
+        tagids=","+tagids+",";
+        $("input[name='TagIds']").each(function(i,v)
+        {
+            if(tagids.indexOf(","+$(this).val()+",")>-1)
+            {
+                $(this).attr("checked",true);
+            }
+        });
+        if(istop=="True"){
+            $("input[name='IsTop'][value='1']").attr("checked",true);
+        }
+         
+        $("textarea").each(function(i,v)
+        {
+            $(this).text($(this).val().replace(/ /gi,""));
+        });
+    }
+    function getInput() {
+        var mapFiled = "Name,Language,Director,District,Starred,MovieReview";
+        var notValidFiled = "DefaultAmount,Attribute,HotelIds";
+        var dataContent = $("div.content");
+        dataContent.find("input[type='text']").val("");
+        var msgValid = "";
+        $("input[type='text'],input[type='checkbox'],input[type='radio'],input[type='hidden'],textarea", "div.form-group:not('.has-success:hidden')").each(function (i, v) {
+            var obj = $(this).attr("id");
+            if (obj) {
+                var idFull = obj.split('_');
+                var id = idFull[0];
+                if (mapFiled.indexOf(id) == -1) {
+                    dataContent.find("#" + id).val(this.value);
+                    if (this.value.replace(/ /gi, "") == ""&& notValidFiled.indexOf(id) == -1) {
+                        alert($(this).parents("div.form-group").find("label:first").text().replace(/\*/, "") + " 不能为空!");
+                        msgValid = "UnValid";
+                        return false;
+                    }
+                } else {
+                    var temp = dataContent.find("#" + id);
+                    if (temp.val() == "") {
+                        if (this.value.replace(/ /gi, "") == "") {
+                            alert($(this).parents("div.form-group").find("label").text().replace(/\*/, "") + " 不能为空!");
+                            msgValid = "UnValid";
+                            return false;
+                        }
+                        var arr = [];
+                        var o = {};
+                        o.Lang = "zh-cn";
+                        o.Content = this.value
+                        arr.push(o);
+                        temp.val(JSON.stringify(arr));
+                    } else {
+                        if (this.value.replace(/ /gi, "") == "") {
+                            var prevobj = $(this).parents("div.has-success").prev("div.temp");
+                            var tip = $("label", prevobj).text().replace("*", "");
+                            alert("英文 "+tip + " 不能为空!");
+                            msgValid = "UnValid";
+                            return false;
+                        }
+                        var arr = JSON.parse(temp.val());
+                        var o = {};
+                        o.Lang = idFull[1];
+                        o.Content = this.value;
+                        arr.push(o);
+                        temp.val(JSON.stringify(arr));
+                    }
+                }
+            }
+        }
+       );
+        $("#Id").val($("#key").val());
+        if (msgValid != "") {
+            return false;
+        }
+        var str = "";
+        $("input[name='TagIds']", "#addMovie").each(function (i, v) {
+            if (v.checked) {
+                str += "," + this.value;
+            }
+        });
+        if (dataContent.find("#DefaultAmount").val().replace(/ /,"") == "")
+        {
+            dataContent.find("#DefaultAmount").val("0");
+        }
+        if (isNaN(dataContent.find("#DefaultAmount").val())) {
+            alert("默认价格 必须是数字");
+            return false;
+        }
+        if(!CheckUrl(dataContent.find("#VodUrl").val()))
+        {
+            alert("Vod地址 格式错误");
+            return false;
+        }
+        if (isNaN(dataContent.find("#Mins").val())) {
+            alert("片长 必须是数字");
+            return false;
+        }
+        dataContent.find("#TagIds").val(str.replace(/^,*/g, '').replace(/,*$/g, ''));
+        if (dataContent.find("#TagIds").val() == "") {
+            alert("请至少勾选一个影片分类！");
+            return false;
+        }
+        if (!/^\d{4}$/.test(dataContent.find("#Vintage").val())) {
+            alert("请输入正确的4位数年份");
+            return false;
+        }
+
+        str = "0";
+        $("input[name='IsTop']", "div.form-group").each(function (i, v) {
+            if (v.checked) {
+                str = this.value;
+            }
+        });
+        dataContent.find("#IsTop").val(str == "1" ? "true" : "false");
+        return true;
+    }
+    function bindCoverUpload() {
+        var Coversetting = {
+            single: true,
+            container: $("#CoverimgIcon"),
+            targetOjb: $("#CoverAddress")
+        };
+        //debugger;
+        $("#uploadCoverIcon").binduploadify(Coversetting);
+        $('#CoverimgIcon').width('10%');
+    }
+
+    function bindPosterUpload() {
+        var Postersetting = {
+            single: true,
+            container: $("#PosterimgIcon"),
+            targetOjb: $("#PosterAddress"),
+            limitSize: 300
+
+        };
+        $("#uploadPosterIcon").binduploadify(Postersetting);
+        $('#PosterimgIcon').width('10%');
+    }
+
+
+    function beforeSubmit() {
+        return getInput();
+    }
+    function Success(data) {
+        if(typeof data=="string")
+        {
+            Mc.Msg(data, function () {
+                window.location.href = '@Html.Raw(Url.Action("Index"))';
+            });
+        }
+        else
+        {
+            Failure(data);
+        }
+    }
+    function Failure(data) {
+        Mc.Error("Error!");
+        $("#subBack").removeClass("disabled").text("提交");
+    }
+
+    function CheckUrl(str) {
+        var RegUrl = new RegExp();
+        RegUrl.compile("^[A-Za-z]+://[A-Za-z0-9-_]");
+        if (!RegUrl.test(str)) {
+            return false;
+        }
+        return true;
+    }
+</script>

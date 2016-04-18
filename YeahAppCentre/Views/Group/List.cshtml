@@ -1,0 +1,52 @@
+﻿
+@model PagedViewList<CoreSysGroup>
+<div class="row" id="list">
+    <table id="viewTable" class="table table-striped table-bordered table-hover dataTable">
+        <thead>
+            <tr role="row">
+                <th>集团名称</th>
+                <th>集团编码</th>
+                <th>APIKey</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Source)
+            {
+
+                <tr>
+                    <td>
+                        <input type="hidden" class="key" value="@item.Id" />
+                        @item.GroupName
+                    </td>
+                    <td>
+                        @item.GroupCode
+                    </td>
+                    @*<td>
+                        @if ((bool)item.IsDelete)
+                        {
+                            <i class="icon-ok green"></i>
+                        }
+                        else
+                        {
+                            <i class="icon-remove red"></i>
+                        }
+                    </td>*@
+                    <td>
+                        @item.ApiKey
+                    </td>
+                    <td>
+                        <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                            <a data-optype="view" class="blue" href="javascript:void(0)">
+                                <i class="icon-zoom-in bigger-130"></i>
+                            </a>
+                            <a data-optype="edit" class="green" href="javascript:void(0)">
+                                <i class="icon-pencil bigger-130"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

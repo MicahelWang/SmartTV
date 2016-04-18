@@ -1,0 +1,111 @@
+﻿
+<h3 class="blue">开机音乐<label style="display:none;color:red" id="startMusicState">(修改中)</label></h3>
+<div class="row">
+    <script type="text/javascript">
+        function tryLisStartBgMus(obj) {
+            var au = $("#StartbgMusAu")[0];
+            if (au.paused) {
+                var src = $("#startmusicvalue").val();
+                au.src =  domainResourseUrl+ src;
+                au.play();
+                $(obj).text("停止");
+            } else {
+                au.pause();
+                $(obj).text("试听");
+            }
+        }
+        $(function () { 
+            UpdaloadMusic($("#startMusicBtn"));
+            //$("form").removeData("validator").removeData("unobtrusiveValidation");
+            //$.validator.unobtrusive.parse($("form"));
+            $.ajax({
+                type: "GET",
+                url: "/IUHotelConfig/IUStartMuisc",
+                data: { "BrandId": brandID },
+                dataType: "JSON",
+                success: function (data) {
+                    $("#startmusicvalue").val(getFileName(data))
+                }
+            })
+        });
+        function Success(data) {
+            console.log(data)
+        }
+        function StartMusic_Aplay(obj) {
+            $.ajax({
+                type: "Post",
+                url: "/IUHotelConfig/EditIUStartMuisc",
+                data: { "BrandId": brandID, "ConfigValue": $("#startmusicvalue").val() == "" ? "" : domainResourseUrl + $("#startmusicvalue").val()},
+                dataType: "JSON",
+                beforeSend: function () {
+                    $(obj).attr("disabled", true);
+                },
+                complete: function () { $(obj).removeAttr("disabled"); },
+                success: function (data) {
+                    alert(data);
+                    if (data == "操作成功！")
+                    $("#startMusicState").css("display", "none");
+                }, error: function () {
+                    alert("操作失败")
+                }
+            })
+        }
+    </script>
+    <div action="/TVChanel/AddTVChannel" class="form-horizontal" data-ajax="true" data-ajax-method="Post" data-ajax-success="Success"
+         id="form0" method="post" role="form" novalidate="novalidate">
+        <div class="form-group">
+            <div class="col-md-5 input-group">
+                <input id="startmusicvalue" type="text" name="musicSrc" readonly="readonly" value=""
+                       class="form-control search-query" placeholder="暂无开机音乐" style="background-color:#EFF3F7!important;cursor:auto; border:none;">
+                <span class="input-group-btn">
+                    <button type="button" id="" class="btn  hidden btn-xs btn-warning"></button>
+                </span>
+                <audio controls="controls" src="" class="hidden" id="StartbgMusAu"></audio>
+                <button class="btn btn-app btn-xs btn-warning shiting" onclick="tryLisStartBgMus(this)">
+                    试听
+                    <i class="fa fa-play  bigger-110"></i>
+                </button>
+            </div>
+            <div class="col-md-7">
+            </div>
+        </div>
+        <div class="form-group"></div>
+        <div class="form-group">
+            <div class="col-md-5 input-group">
+                <span class="input-group-btn">
+                    <button class="btn  btn-purple btn-sm" id="startMusicBtn">
+                        <i class="icon-cloud-upload bigger-110"></i>
+                        上传音乐
+                    </button>
+                </span>
+                <label class="" error-info="">音乐文件不大于1M且文件支持Mp3格式</label>
+            </div>
+            <div class="col-md-7">
+
+            </div>
+        </div>
+        <div class="form-group"></div>
+        <div class="form-group">
+            <div class="col-md-5 input-group">
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-success btn-sm" onclick="StartMusic_Aplay(this)">
+                        <i class="icon-ok bigger-110"></i>
+                        应用到电视
+                    </button>
+                    <button type="button" class="btn btn-primary  btn-sm back">
+                        <i class="icon-reply  bigger-110"></i>
+                        返回
+                    </button>
+                </span>
+                <span class="input-group-btn">
+
+                </span>
+            </div>
+            <div class="col-md-7">
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

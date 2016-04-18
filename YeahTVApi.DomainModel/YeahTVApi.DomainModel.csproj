@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7B4CE815-38CB-4EE4-8860-8381CF2DE60A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YeahTVApi.DomainModel</RootNamespace>
+    <AssemblyName>YeahTVApi.DomainModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\YeahTVApi\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Constant\AppCenterConstant.cs" />
+    <Compile Include="Constant\Constant.cs" />
+    <Compile Include="DateTimeConverter.cs" />
+    <Compile Include="Enum\ApiResultFormat.cs" />
+    <Compile Include="Enum\AppActionType.cs" />
+    <Compile Include="Enum\BackState.cs" />
+    <Compile Include="Enum\CommodityErrorType.cs" />
+    <Compile Include="Enum\DeliveryState.cs" />
+    <Compile Include="Enum\OrderType.cs" />
+    <Compile Include="Enum\GlobalConfigType.cs" />
+    <Compile Include="Enum\DistributeType.cs" />
+    <Compile Include="Enum\BehaviorType.cs" />
+    <Compile Include="Enum\BindingType.cs" />
+    <Compile Include="Enum\AppType.cs" />
+    <Compile Include="Enum\DownloadStatus.cs" />
+    <Compile Include="Enum\HCSJobOperationType.cs" />
+    <Compile Include="Enum\HcsTaskStatus.cs" />
+    <Compile Include="Enum\HCSJobType.cs" />
+    <Compile Include="Enum\DeliveryType.cs" />
+    <Compile Include="Enum\PayType.cs" />
+    <Compile Include="Enum\PayPaymentModel.cs" />
+    <Compile Include="Enum\StoreEnum.cs" />
+    <Compile Include="Enum\TemplateDataType.cs" />
+    <Compile Include="Enum\DeviceType.cs" />
+    <Compile Include="Enum\AuthCertigierType.cs" />
+    <Compile Include="Enum\OrderState.cs" />
+    <Compile Include="Enum\SystemConfigTypeEnum.cs" />
+    <Compile Include="Enum\TemplateRootType.cs" />
+    <Compile Include="Enum\Transactionstate.cs" />
+    <Compile Include="Enum\TvHotelConfigType.cs" />
+    <Compile Include="Enum\UserTypeEnum.cs" />
+    <Compile Include="Enum\CommonEunm.cs" />
+    <Compile Include="Enum\EcryptionType.cs" />
+    <Compile Include="Enum\OpType.cs" />
+    <Compile Include="Enum\LanguageType.cs" />
+    <Compile Include="Enum\MogoLogType.cs" />
+    <Compile Include="Enum\UploadType.cs" />
+    <Compile Include="Mapping\MapHotelTVChannelApiModel.cs" />
+    <Compile Include="Mapping\MapApp.cs" />
+    <Compile Include="Mapping\MapModelEntity.cs" />
+    <Compile Include="Mapping\MapMovieApiNewModel.cs" />
+    <Compile Include="Mapping\MapTVTrace.cs" />
+    <Compile Include="Models\ConditionModels\Usercondition.cs" />
+    <Compile Include="Models\DataModel\PromulgateTokenResult.cs" />
+    <Compile Include="Models\DataModel\WeiXinInfo.cs" />
+    <Compile Include="Models\DataModel\AppListRequestModel.cs" />
+    <Compile Include="Models\DataModel\BehaviorLogParameters.cs" />
+    <Compile Include="Models\DataModel\BehaviorLogRequest.cs" />
+    <Compile Include="Models\DataModel\AndroidInfo.cs" />
+    <Compile Include="Models\DataModel\HCSJob.cs" />
+    <Compile Include="Models\DataModel\HotelChannelUsedTime.cs" />
+    <Compile Include="Models\DataModel\HotelModuleUsedTime.cs" />
+    <Compile Include="Models\DataModel\HotelMovieVodOfWeek.cs" />
+    <Compile Include="Models\DataModel\HotelStartPercentage.cs" />
+    <Compile Include="Models\DataModel\PayTypeState.cs" />
+    <Compile Include="Models\DataModel\ReqestCommodityCate.cs" />
+    <Compile Include="Models\DataModel\RequestAppModel.cs" />
+    <Compile Include="Models\DataModel\RequestJjData.cs" />
+    <Compile Include="Models\DataModel\RequestJjDataBase.cs" />
+    <Compile Include="Models\DataModel\StorePaymentModel.cs" />
+    <Compile Include="Models\DataModel\TvPayRequest.cs" />
+    <Compile Include="Models\DataModel\YeahInfoLog.cs" />
+    <Compile Include="Models\DomainModels\OrderQRCodeRecord.cs" />
+    <Compile Include="Models\DomainModels\ScoreExchang.cs" />
+    <Compile Include="Models\DomainModels\GlobalConfig.cs" />
+    <Compile Include="Models\DomainModels\BaseReturnMessage.cs" />
+    <Compile Include="Models\DomainModels\AuthTVToken.cs" />
+    <Compile Include="Models\DomainModels\HotelMovieIncome.cs" />
+    <Compile Include="Models\DomainModels\HCSCacheVersion.cs" />
+    <Compile Include="Models\DomainModels\HotelPermition.cs" />
+    <Compile Include="Models\DomainModels\MongoDeviceTrace.cs" />
+    <Compile Include="Models\DomainModels\MovieApiCategoryModel.cs" />
+    <Compile Include="Models\DomainModels\MovieApiNewModel.cs" />
+    <Compile Include="Models\DataModel\DecryptionModel.cs" />
+    <Compile Include="Models\DataModel\DeviceAppsMonitoApiMode.cs" />
+    <Compile Include="Models\DataModel\EecryptionModel.cs" />
+    <Compile Include="Models\DataModel\HCSConfig.cs" />
+    <Compile Include="Models\DataModel\HCSDownloadTask.cs" />
+    <Compile Include="Models\DataModel\HCSGlobalConfig.cs" />
+    <Compile Include="Models\DataModel\HCSDownLoadJob.cs" />
+    <Compile Include="Models\DataModel\HCSTaskConfig.cs" />
+    <Compile Include="Models\DataModel\HCSLog.cs" />
+    <Compile Include="Models\DataModel\HotelTVChannelApiModel.cs" />
+    <Compile Include="Models\DataModel\MovieApiModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Models\DataModel\TVVODRequest.cs" />
+    <Compile Include="Models\DataModel\MsgResult.cs" />
+    <Compile Include="Models\DataModel\RequestHCSServerKey.cs" />
+    <Compile Include="Models\DataModel\ResponseHCSKey.cs" />
+    <Compile Include="Models\DataModel\StartResponse.cs" />
+    <Compile Include="Models\DataModel\SystemLogRequest.cs" />
+    <Compile Include="Models\DataModel\TvDocumentAttributeData.cs" />
+    <Compile Include="Models\DataModel\UpLoadPro.cs" />
+    <Compile Include="Models\DataModel\UserInfo.cs" />
+    <Compile Include="Models\DomainModels\CatchHotel.cs" />
+    <Compile Include="Models\DomainModels\HCSTask.cs" />
+    <Compile Include="Models\DomainModels\HotelMovieTraceNoTemplate.cs" />
+    <Compile Include="Models\DomainModels\LocalizeResource.cs" />
+    <Compile Include="Models\DomainModels\MovieForLocalize.cs" />
+    <Compile Include="Models\DomainModels\StoreOrder.cs" />
+    <Compile Include="Models\DomainModels\Tag.cs" />
+    <Compile Include="Models\DomainModels\HotelPayment.cs" />
+    <Compile Include="Models\DomainModels\TemplateListModel.cs" />
+    <Compile Include="Models\DomainModels\TemplateMovie.cs" />
+    <Compile Include="Models\DomainModels\OrderProducts.cs" />
+    <Compile Include="Models\DomainModels\VODOrder.cs" />
+    <Compile Include="Models\DomainModels\VODPaymentRequest.cs" />
+    <Compile Include="Models\DomainModels\VODPaymentResult.cs" />
+    <Compile Include="Models\DomainModels\VODRequest.cs" />
+    <Compile Include="Models\PointsModels\PostScore.cs" />
+    <Compile Include="Models\PointsModels\ResponseScore.cs" />
+    <Compile Include="Models\PointsModels\ResponseApiData.cs" />
+    <Compile Include="Models\ScoreStoreModels\BaseScore.cs" />
+    <Compile Include="Models\ScoreStoreModels\RequestScore.cs" />
+    <Compile Include="Models\ScoreStoreModels\RequestTokenParameter.cs" />
+    <Compile Include="Models\ScoreStoreModels\ScorePointResult.cs" />
+    <Compile Include="Models\ScoreStoreModels\SpecialJjReturn.cs" />
+    <Compile Include="Models\ViewModels\AuthModel.cs" />
+    <Compile Include="Models\ViewModels\BackData.cs" />
+    <Compile Include="Models\ViewModels\CategoryReturnData.cs" />
+    <Compile Include="Models\ViewModels\ChartItems.cs" />
+    <Compile Include="Models\ViewModels\CommdityCategory.cs" />
+    <Compile Include="Models\ViewModels\CommdityInfo.cs" />
+    <Compile Include="Models\ViewModels\CommodityDetialList.cs" />
+    <Compile Include="Models\ViewModels\Datadictionary.cs" />
+    <Compile Include="Models\ViewModels\GoodIdArray.cs" />
+    <Compile Include="Models\ViewModels\GoodsInfo.cs" />
+    <Compile Include="Models\ViewModels\GoodsInfomation.cs" />
+    <Compile Include="Models\ViewModels\HCSPostParameters.cs" />
+    <Compile Include="Models\ViewModels\DistributeModel.cs" />
+    <Compile Include="Models\ViewModels\HomeConfigModel.cs" />
+    <Compile Include="Models\ViewModels\HotelInfoStatistics.cs" />
+    <Compile Include="Models\ViewModels\MinusCommodityMessage.cs" />
+    <Compile Include="Models\ViewModels\OrderInfo.cs" />
+    <Compile Include="Models\ViewModels\OrderSearch.cs" />
+    <Compile Include="Models\ViewModels\StorePayConfig.cs" />
+    <Compile Include="Models\ViewModels\PaymentInfo.cs" />
+    <Compile Include="Models\ViewModels\Product.cs" />
+    <Compile Include="Models\ViewModels\HotelTreeNode.cs" />
+    <Compile Include="Models\ViewModels\ViewCopyTemplate.cs" />
+    <Compile Include="Models\ViewModels\ViewHCSCache.cs" />
+    <Compile Include="Models\ViewModels\ViewHotelConfig.cs" />
+    <Compile Include="Models\ViewModels\ViewAppPublish.cs" />
+    <Compile Include="Models\ViewModels\ViewCoreSysHotel.cs" />
+    <Compile Include="Models\DataModel\WeatherData.cs" />
+    <Compile Include="Models\DataModel\WorkStartResponse.cs" />
+    <Compile Include="Models\DomainModels\AuthCertigierManager.cs" />
+    <Compile Include="Models\DomainModels\AuthUserDeviceTrace.cs" />
+    <Compile Include="Models\DomainModels\CoreSysAttachment.cs" />
+    <Compile Include="Models\DomainModels\App.cs" />
+    <Compile Include="Models\DomainModels\AppConfig.cs" />
+    <Compile Include="Models\DomainModels\AppPublish.cs" />
+    <Compile Include="Models\DomainModels\Apps.cs" />
+    <Compile Include="Models\DomainModels\BackupDevice.cs" />
+    <Compile Include="Models\DomainModels\BehaviorLog.cs" />
+    <Compile Include="Models\DomainModels\CoreSysBrand.cs" />
+    <Compile Include="Models\DomainModels\CoreSysCity.cs" />
+    <Compile Include="Models\DomainModels\CoreSysCounty.cs" />
+    <Compile Include="Models\DomainModels\CoreSysGroup.cs" />
+    <Compile Include="Models\DomainModels\CoreSysHotel.cs" />
+    <Compile Include="Models\DomainModels\CoreSysHotelSencond.cs" />
+    <Compile Include="Models\DomainModels\CoreSysLogin.cs" />
+    <Compile Include="Models\DomainModels\CoreSysOtherLogin.cs" />
+    <Compile Include="Models\DomainModels\CoreSysProvince.cs" />
+    <Compile Include="Models\DomainModels\DeviceAppsMonitor.cs" />
+    <Compile Include="Models\DomainModels\DeviceAppsRelation.cs" />
+    <Compile Include="Models\DomainModels\AppVersion.cs" />
+    <Compile Include="Models\DomainModels\BaseEntity.cs" />
+    <Compile Include="Models\DomainModels\DeviceTrace.cs" />
+    <Compile Include="Models\DomainModels\DeviceTraceForSP.cs" />
+    <Compile Include="Models\DomainModels\ErpPowerResource.cs" />
+    <Compile Include="Models\DomainModels\ErpPowerRole.cs" />
+    <Compile Include="Models\DomainModels\ErpPowerRoleResourceRelation.cs" />
+    <Compile Include="Models\DomainModels\ErpSysHotelManage.cs" />
+    <Compile Include="Models\DomainModels\ErpSysRelationManage.cs" />
+    <Compile Include="Models\DomainModels\ErpSysUser.cs" />
+    <Compile Include="Models\DomainModels\MovieTemplateRelation.cs" />
+    <Compile Include="Models\DomainModels\MovieTemplate.cs" />
+    <Compile Include="Models\DomainModels\HotelTvChannel.cs" />
+    <Compile Include="Models\DomainModels\HotelMovieTrace.cs" />
+    <Compile Include="Models\DomainModels\Movie.cs" />
+    <Compile Include="Models\DomainModels\SystemConfig.cs" />
+    <Compile Include="Models\DomainModels\SystemLog.cs" />
+    <Compile Include="Models\DomainModels\TVChannel.cs" />
+    <Compile Include="Models\DomainModels\TvDocumentAttribute.cs" />
+    <Compile Include="Models\DomainModels\TvDocumentElement.cs" />
+    <Compile Include="Models\DomainModels\TVHotelConfig.cs" />
+    <Compile Include="Models\DomainModels\TvTemplate.cs" />
+    <Compile Include="Models\DomainModels\TvTemplateAttribute.cs" />
+    <Compile Include="Models\DomainModels\TvTemplateElement.cs" />
+    <Compile Include="Models\DomainModels\TvTemplateType.cs" />
+    <Compile Include="Models\DomainModels\VODRecord.cs" />
+    <Compile Include="Models\MappingModels\ColumnMembersCacheModel.cs" />
+    <Compile Include="Models\MongoDomain\MongoLog.cs" />
+    <Compile Include="Models\ViewModels\DocumentElementDto.cs" />
+    <Compile Include="Models\ViewModels\ElementDto.cs" />
+    <Compile Include="Models\ViewModels\HotelMovieTraceViewModel.cs" />
+    <Compile Include="Models\ViewModels\Template01.cs" />
+    <Compile Include="Models\ViewModels\KeyValue.cs" />
+    <Compile Include="Models\ViewModels\CurrentUser.cs" />
+    <Compile Include="Models\ViewModels\LoginModel.cs" />
+    <Compile Include="Models\ViewModels\SysPowersView.cs" />
+    <Compile Include="Models\ViewModels\TreeNode.cs" />
+    <Compile Include="Models\ViewModels\HotelEntity.cs" />
+    <Compile Include="Models\ViewModels\HotelObject.cs" />
+    <Compile Include="Models\ViewModels\YeahHcsApi\PostHeaderParameters.cs" />
+    <Compile Include="Models\ViewModels\YeahHcsApi\PostParameters.cs" />
+    <Compile Include="Models\ViewModels\YeahHcsApi\RequestHcsHeader.cs" />
+    <Compile Include="Models\ViewModels\YeahHcsApi\RequestYeahApiKey.cs" />
+    <Compile Include="Models\ViewModels\YeahHcsApi\ResponseData.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resource\Resource.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchCriteria\AuthTVTokenCriteria.cs" />
+    <Compile Include="SearchCriteria\OrderQRCodeRecordCriteria.cs" />
+    <Compile Include="SearchCriteria\DashboardCriteria.cs" />
+    <Compile Include="SearchCriteria\ErpSysUserCriteria.cs" />
+    <Compile Include="SearchCriteria\AuthUserDeviceTraceCriteria.cs" />
+    <Compile Include="SearchCriteria\BackupDeviceCriteria.cs" />
+    <Compile Include="SearchCriteria\CoreSysHotelCriteria.cs" />
+    <Compile Include="SearchCriteria\GlobalConfigCriteria.cs" />
+    <Compile Include="SearchCriteria\ScoreExchangCriteria.cs" />
+    <Compile Include="SearchCriteria\GroupCriteria.cs" />
+    <Compile Include="SearchCriteria\HCSCacheVersionCriteria.cs" />
+    <Compile Include="SearchCriteria\HCSConfigCriteria.cs" />
+    <Compile Include="SearchCriteria\HCSJobCriteria.cs" />
+    <Compile Include="SearchCriteria\HCSTaskCriteria.cs" />
+    <Compile Include="SearchCriteria\HotelPermitionCriteria.cs" />
+    <Compile Include="SearchCriteria\LocalizeResourceCriteria.cs" />
+    <Compile Include="SearchCriteria\HotelMovieTraceNoTemplateCriteria.cs" />
+    <Compile Include="SearchCriteria\MongoDeviceCriteria.cs" />
+    <Compile Include="SearchCriteria\MovieForLocalizeCriteria.cs" />
+    <Compile Include="SearchCriteria\StoreOrderCriteria.cs" />
+    <Compile Include="SearchCriteria\TagCriteria.cs" />
+    <Compile Include="SearchCriteria\ValidateSignCriteria.cs" />
+    <Compile Include="SearchCriteria\VODOrderCriteria.cs" />
+    <Compile Include="SearchCriteria\MovieTemplateRelationCriteria.cs" />
+    <Compile Include="SearchCriteria\HotelMovieTraceCriteria.cs" />
+    <Compile Include="SearchCriteria\MovieCriteria.cs" />
+    <Compile Include="SearchCriteria\HotelTvChannelCriteria.cs" />
+    <Compile Include="SearchCriteria\DeviceAppsMonitorCriteria.cs" />
+    <Compile Include="Constant\RedisKey.cs" />
+    <Compile Include="SearchCriteria\BehaviorLogCriteria.cs" />
+    <Compile Include="SearchCriteria\CoreSysBrandCriteria.cs" />
+    <Compile Include="SearchCriteria\AppPublishCriteria.cs" />
+    <Compile Include="SearchCriteria\AppsCriteria.cs" />
+    <Compile Include="SearchCriteria\BaseSearchCriteria.cs" />
+    <Compile Include="SearchCriteria\DeviceTraceCriteria.cs" />
+    <Compile Include="SearchCriteria\MongoCriteria.cs" />
+    <Compile Include="SearchCriteria\SystemConfigCriteria.cs" />
+    <Compile Include="SearchCriteria\TVChannelCriteria.cs" />
+    <Compile Include="SearchCriteria\HotelConfigCriteria.cs" />
+    <Compile Include="SearchCriteria\TVTraceCriteria.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YeahTVApi.Entity\YeahTVApi.Entity.csproj">
+      <Project>{dff8075a-64c7-44d7-982b-f0c7cbc096e9}</Project>
+      <Name>YeahTVApi.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resource\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

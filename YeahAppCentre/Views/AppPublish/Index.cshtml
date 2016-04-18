@@ -1,0 +1,291 @@
+﻿@using YeahTVApi.DomainModel.SearchCriteria
+@using YeahTVApi.DomainModel.Enum
+@{
+    ViewBag.Title = "APP发布管理";
+}
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            APP发布管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                @*查看*@
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-header">
+                APP发布列表
+            </div>
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    @*<div class="row">
+                            <div class="col-sm-8 hidden-480">
+                            </div>
+                            @*<div class="col-sm-4 tab-search">
+                                @using (Html.BeginForm("Index", "AppPublish", FormMethod.Post, new { @style = "float: right", novalidate = "novalidate" }))
+                                {
+                                    <label> 关键字:</label>
+                                    <span class="input-icon">
+                                        <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off">
+                                        <i class="icon-search nav-search-icon"></i>
+                                    </span>
+                                }
+                                <div class="clear"></div>
+                            </div>
+                        </div>*@
+                    @Html.Partial("Condition", ViewBag.appPublishCriteria as AppPublishCriteria)
+                    @{
+                        var list = ViewBag.List as PagedViewList<AppPublish>;
+                    }
+                    @Html.Partial("List", list)
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_info">
+                                <ul class="list-inline action-buttons">
+                                    <li data-original-title="新增" id="btnNew">
+                                        <div class="ui-pg-div"><a href="#"><span class="ui-icon icon-plus-sign purple"></span></a></div>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            @{
+                                string querystring = (ViewBag.appPublishCriteria as AppPublishCriteria).ToQueryString();
+                            }
+                            @Html.Pagination(list.PageIndex, list.PageSize, list.TotalCount, "#list", Url.Action("List") + querystring)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+@section scripts{
+    <script type="text/javascript">
+        jQuery(function ($) {
+
+            $(".dataTable tbody tr:even").addClass("even");
+            $(".dataTable tbody tr:odd").addClass("odd");
+            $('table th input:checkbox').on('click', function () {
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                    .each(function () {
+                        this.checked = that.checked;
+                        $(this).closest('tr').toggleClass('selected');
+                    });
+
+            });
+
+
+            $('[data-rel="tooltip"]').tooltip({ placement: tooltipPlacement });
+
+            function tooltipPlacement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table');
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+
+                var off2 = $source.offset();
+                var w2 = $source.width();
+
+                if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+                return 'left';
+            }
+        })
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            //修改
+            $(document).delegate("tr [data-optype=edit]", "click",
+                function () {
+                    openDialog(GetDefaultOpt('@OpType.Update.GetValueStr()', GetKey($(this)), GetVersion($(this)), GetSeriseCode($(this))));
+                });
+
+            //查看
+            $(document).delegate("tr [data-optype=view]", "click",
+                function () {
+                    openDialog(GetDefaultOpt('@OpType.View.GetValueStr()', GetKey($(this)), GetVersion($(this)), GetSeriseCode($(this))));
+                });
+            //单行删除
+            $(document).delegate("tr [data-optype=delete]", "click",
+                function () {
+                    var that = this;
+                    $.messager.confirm("提示", "确认删除？!", function () {
+                        var $parent = $(that).closest('tr');
+                        var key = GetKey($parent);
+                        $parent.remove();
+                    });
+                });
+
+            ///编辑页 启用禁用
+            $(document).delegate("#StatusView", "change",
+                function () {
+                    var that = this;
+                    var isChecked = $(that).get(0).checked;
+                    var $parent = $(that).closest('div');
+                    $parent.find("#Status").val(isChecked);
+
+                });
+
+            //新增
+            $(document).delegate("#btnNew", "click",
+                function () {
+                    openDialog(GetDefaultOpt('@OpType.Add.GetValueStr()', 0, GetVersion($(this)), GetSeriseCode($(this))));
+                });
+
+            $(document).delegate("#GroupId", "change",
+                function () {
+                    var groupId = $(this).val();
+                    var obj = $("#HotelId");
+                    HotelFromGroup(groupId, obj);
+
+                });
+            $(document).delegate("#UGroupId", "change",
+               function () {
+                   var groupId = $(this).val();
+                   var obj = $("#UHotelId");
+                   HotelFromGroup(groupId, obj);
+               });
+
+            //App版本联动
+            $(document).delegate("#Id", "change",
+               function () {
+                   var AppId = $(this).val();
+                   var obj = $(".VersionCode");
+                   GetAppVersionByAppId(AppId, obj)
+               });
+            $(document).delegate("#BindType", "change",
+                function () {
+                    var selectId = $(this).val();
+                    switch (selectId) {
+                        case '0':
+                            $("#hotelIdDiv").hide();
+                            ChangeVal();
+                            $("#hotelIdCondition").val("ALL");
+                            break;
+                        case '1':
+                            $("#hotelIdDiv").show();
+                            ChangeVal();
+                            break;
+                    }
+                });
+        });
+        //APP发布初始化列表和文本框
+        function ChangeVal() {
+            $("[name='Active'],#active").removeAttr("checked");
+            $("#SeriseCode").val("");
+            $("#hotelNameCondition").val("");
+            $("select#VersionCode").val("");
+            $("#Id").val("");
+            $("#PublishDate").val("");
+            $("select#VersionCode").empty();
+            var option = $("<option>").val(-1).text("-请选择-");
+            $("select#VersionCode").append(option);
+        }
+
+        //根据AppId得到版本
+        function GetAppVersionByAppId(id, obj, selectVal) {
+            obj.empty();
+            var defaultOption = $("<option value=\"\">-请选择-</option>");
+            defaultOption.appendTo(obj);
+            if (id === "")
+                return;
+            var url = "@Url.Action("GetVersionByAppId")" + "/" + id;
+            $.getJSON(url, function (data) {
+                $.each(data, function (k, v) {
+
+                    var option = $("<option value=" + v.VersionCode + ">" + v.VersionName + "</option>");
+                    option.appendTo(obj);
+                });
+                if (selectVal) {
+                    obj.val(selectVal);
+                }
+            });
+        }
+
+        function GetDefaultOpt(type, key, _version, serisecode) {
+            var map = {
+                '@OpType.View.GetValueStr()': '@OpType.View.GetDescription()',
+                '@OpType.Add.GetValueStr()': '@OpType.Add.GetDescription()',
+                '@OpType.Update.GetValueStr()': "@OpType.Update.GetDescription()",
+                '@OpType.Delete.GetValueStr()': "@OpType.Delete.GetDescription()"
+            };
+            var opt = {};
+            opt.title = "APP发布管理 -> " + map[type];
+
+            opt.url = '@Html.Raw(Url.Action("Edit", new { type = "_type_", id = "_id_", version = "_version_", hotelId = "_hotelId_" }))'
+                .replace('_id_', key)
+                .replace('_type_', type)
+                .replace('_version_', _version)
+                .replace('_hotelId_', serisecode);
+
+            if (type != '@OpType.View.GetValueStr()') {
+                opt.saveclick = function () {
+                    $("div.modal-dialog form").submit();
+                    event.preventDefault();
+                    return false;
+                };
+            }
+            return opt;
+        }
+
+        function GetKey(jqObj) {
+            var tagName = jqObj[0].tagName;
+            if (tagName == "A") {
+                var tr = jqObj.closest("tr");
+                return tr.find("input.key").val();
+            } else if (tagName == "TR") {
+                return jqObj.find("input.key").val();
+            }
+            return '';
+        }
+
+        function GetVersion(jqObj) {
+            var tagName = jqObj[0].tagName;
+            if (tagName == "A") {
+                var tr = jqObj.closest("tr");
+                return tr.find("input.version").val();
+            } else if (tagName == "TR") {
+                return jqObj.find("input.version").val();
+            }
+            return '';
+        }
+
+        function GetSeriseCode(jqObj) {
+            var tagName = jqObj[0].tagName;
+            
+            if (tagName == "A") {
+                var tr = jqObj.closest("tr");
+           
+                return tr.find("input.serisecode").val();
+            } else if (tagName == "TR") {
+                return jqObj.find("input.serisecode").val();
+            }
+            return '';
+        }
+
+        function Success(data) {
+            if (data == "Success") {
+                Mc.Msg("保存成功！", function () {
+                    location.href = location.href;
+                });
+
+            } else {
+                Mc.Error(data);
+            }
+        }
+
+        function SetKeyReadonly() {
+            $("div.modal-dialog input,select").attr("disabled", "disabled");
+        }
+    </script>}
+@Scripts.Render("~/bundles/GetHotelNames")
+<script>
+    GetAppNames('@Url.Action("GetAppNames", "Unity")', $("#AppName"), $("#AppId"));
+</script>

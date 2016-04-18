@@ -1,0 +1,81 @@
+﻿@{
+    Layout = null;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta content="telephone=no" name="format-detection" />
+    <title>兑换结果</title>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link href="~/Content/jinjiangcss/style.css" rel="stylesheet" />
+    <style>
+        .content .resultTip span {
+            padding: 0;
+            margin: 0 1px;
+            border-radius: 50%;
+            border: 1px solid #01B7EE;
+            width: .5rem;
+            line-height: .5rem;
+            color: #01B7EE;
+        }
+        #ok {
+            letter-spacing: 0rem;
+            margin-right:0.06rem;
+        }
+        .headerWx .resultIcon span img {
+            width: 60%;
+            height: 60%;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            if (localStorage) {
+                $(".score").text(localStorage.score);
+                $(".order").text(localStorage.orderId);
+            }
+        }
+    </script>
+
+</head>
+<body>
+
+    <div data-role="page" id="pageone" class="main">
+        <div data-role="header" class="headerWx">
+            <img src="~/Content/jinjiangcss/topback.png" id="topImg" />
+            <div class="top">
+                <span>兑换结果</span>
+                <span class="backIcon" onclick="history.back();"><img src="~/Content/jinjiangcss/iconfont-fanhui.png" /></span>
+            </div>
+            <div class="resultIcon">
+                <span><img src='~/Content/jinjiangcss/iconfont-dui.png' /></span>
+            </div>
+        </div>
+        <div data-role="main" class="content">
+            @*<p class="resultTip">兑换成功</p>
+            <p class="resultTip">按TV遥控器<span>OK</span>键查看</p>
+            <p>本次消耗积分:<span class="score">5000</span></p>
+            <p>订单编号:</p>
+            <span class="order"></span>*@ 
+            <ul>
+                <li>
+                    <h1 class="resultTip">兑换成功</h1>
+                    <h1 class="resultTip">按TV遥控器<span id="ok">OK</span>键查看</h1>
+                </li>
+                <li>
+                    <h1>本次消耗积分：</h1>
+                    <p><span class="score"></span></p>
+                </li>
+                <li>
+                    <h1>订单编号：</h1>
+                    <p><span class="order"></span></p>
+                </li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

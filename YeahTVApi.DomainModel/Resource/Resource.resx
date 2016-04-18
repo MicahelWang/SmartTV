@@ -1,0 +1,753 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Common_DisplayActive" xml:space="preserve">
+    <value>是否启用</value>
+  </data>
+  <data name="Common_DisplayAddress" xml:space="preserve">
+    <value>地址</value>
+  </data>
+  <data name="Common_DisplayAppId" xml:space="preserve">
+    <value>AppId</value>
+  </data>
+  <data name="Common_DisplayAppKey" xml:space="preserve">
+    <value>AppKey</value>
+  </data>
+  <data name="Common_DisplayAppUrl" xml:space="preserve">
+    <value>App地址</value>
+  </data>
+  <data name="Common_DisplayAppVersion" xml:space="preserve">
+    <value>APP版本</value>
+  </data>
+  <data name="Common_DisplayBrand" xml:space="preserve">
+    <value>品牌</value>
+  </data>
+  <data name="Common_DisplayCity" xml:space="preserve">
+    <value>市</value>
+  </data>
+  <data name="Common_DisplayConfigName" xml:space="preserve">
+    <value>配置名称</value>
+  </data>
+  <data name="Common_DisplayConfigType" xml:space="preserve">
+    <value>配置类型</value>
+  </data>
+  <data name="Common_DisplayConfigValue" xml:space="preserve">
+    <value>配置值</value>
+  </data>
+  <data name="Common_DisplayCoreSysBrandCode" xml:space="preserve">
+    <value>品牌代码</value>
+  </data>
+  <data name="Common_DisplayCoreSysBrandName" xml:space="preserve">
+    <value>品牌名称</value>
+  </data>
+  <data name="Common_DisplayCoreSysAdUrl" xml:space="preserve">
+    <value>广告地址</value>
+  </data>
+  <data name="Common_DisplayCoreSysAutoToHome" xml:space="preserve">
+    <value>启动成功自动跳转至首页</value>
+  </data>
+  <data name="Common_DisplayCoreSysGroupCode" xml:space="preserve">
+    <value>集团代码</value>
+  </data>
+  <data name="Common_DisplayCoreSysGroupId" xml:space="preserve">
+    <value>集团ID</value>
+  </data>
+  <data name="Common_DisplayCoreSysGroupName" xml:space="preserve">
+    <value>集团名称</value>
+  </data>
+  <data name="Common_DisplayCoreSysLanguages" xml:space="preserve">
+    <value>语言类型</value>
+  </data>
+  <data name="Common_DisplayCoreSysLaunchBackground" xml:space="preserve">
+    <value>欢迎界面背景</value>
+  </data>
+  <data name="Common_DisplayCoreSysLocalPMSUrl" xml:space="preserve">
+    <value>酒店PMS地址</value>
+  </data>
+  <data name="Common_DisplayCoreSysLoginName" xml:space="preserve">
+    <value>登录名</value>
+  </data>
+  <data name="Common_DisplayCoreSysLogo" xml:space="preserve">
+    <value>LOGO</value>
+  </data>
+  <data name="Common_DisplayCoreSysPassword" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="Common_DisplayCoreSysPriceOfDay" xml:space="preserve">
+    <value>每日价格</value>
+  </data>
+  <data name="Common_DisplayCoreSysState" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="Common_DisplayCoreSysTemplateId" xml:space="preserve">
+    <value>模板ID</value>
+  </data>
+  <data name="Common_DisplayCoreSysUserName" xml:space="preserve">
+    <value>用户名</value>
+  </data>
+  <data name="Common_DisplayCoreSysWelcomeWord" xml:space="preserve">
+    <value>欢迎语</value>
+  </data>
+  <data name="Common_DisplayCountry" xml:space="preserve">
+    <value>区</value>
+  </data>
+  <data name="Common_DisplayCreateTime" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="Common_DisplayDescription" xml:space="preserve">
+    <value>APP描述</value>
+  </data>
+  <data name="Common_DisplayDeviceKey" xml:space="preserve">
+    <value>设备密钥</value>
+  </data>
+  <data name="Common_DisplayDeviceSeries" xml:space="preserve">
+    <value>设备号</value>
+  </data>
+  <data name="Common_DisplayEditable" xml:space="preserve">
+    <value>是否可编辑</value>
+  </data>
+  <data name="Common_DisplayErpCreateDate" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="Common_DisplayErpEmail" xml:space="preserve">
+    <value>邮箱</value>
+  </data>
+  <data name="Common_DisplayErpGroupId" xml:space="preserve">
+    <value>集团</value>
+  </data>
+  <data name="Common_DisplayErpHotelId" xml:space="preserve">
+    <value>酒店</value>
+  </data>
+  <data name="Common_DisplayErpModifyDate" xml:space="preserve">
+    <value>更新时间</value>
+  </data>
+  <data name="Common_DisplayErpPhone" xml:space="preserve">
+    <value>联系电话</value>
+  </data>
+  <data name="Common_DisplayErpRoleCode" xml:space="preserve">
+    <value>角色编号</value>
+  </data>
+  <data name="Common_DisplayErpRoleId" xml:space="preserve">
+    <value>角色</value>
+  </data>
+  <data name="Common_DisplayErpRoleName" xml:space="preserve">
+    <value>角色名称</value>
+  </data>
+  <data name="Common_DisplayErpState" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="Common_DisplayErpUserName" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="Common_DisplayErpUserType" xml:space="preserve">
+    <value>用户类型</value>
+  </data>
+  <data name="Common_DisplayFileName" xml:space="preserve">
+    <value>App文件名</value>
+  </data>
+  <data name="Common_DisplayFirstVisitTime" xml:space="preserve">
+    <value>添加时间</value>
+  </data>
+  <data name="Common_DisplayGroupId" xml:space="preserve">
+    <value>集团</value>
+  </data>
+  <data name="Common_DisplayHotelCode" xml:space="preserve">
+    <value>酒店代码</value>
+  </data>
+  <data name="Common_DisplayHotelId" xml:space="preserve">
+    <value>酒店Id</value>
+  </data>
+  <data name="Common_DisplayHotelName" xml:space="preserve">
+    <value>酒店名称</value>
+  </data>
+  <data name="Common_DisplayHotelNameEn" xml:space="preserve">
+    <value>英文名称</value>
+  </data>
+  <data name="Common_DisplayIconUrl" xml:space="preserve">
+    <value>Icon地址</value>
+  </data>
+  <data name="Common_DisplayIp" xml:space="preserve">
+    <value>IP地址</value>
+  </data>
+  <data name="Common_DisplayIsAllowChild" xml:space="preserve">
+    <value>是否允许子项</value>
+  </data>
+  <data name="Common_DisplayIsChildFrame" xml:space="preserve">
+    <value>是否子项框架</value>
+  </data>
+  <data name="Common_DisplayIsLocalPMS" xml:space="preserve">
+    <value>是否本地PMS</value>
+  </data>
+  <data name="Common_DisplayIsSystem" xml:space="preserve">
+    <value>系统应用</value>
+  </data>
+  <data name="Common_DisplayLastUpdater" xml:space="preserve">
+    <value>更新人</value>
+  </data>
+  <data name="Common_DisplayLastVisitTime" xml:space="preserve">
+    <value>最后更新时间</value>
+  </data>
+  <data name="Common_DisplayLatitude" xml:space="preserve">
+    <value>纬度</value>
+  </data>
+  <data name="Common_DisplayLongitude" xml:space="preserve">
+    <value>经度</value>
+  </data>
+  <data name="Common_DisplayMovieDescription" xml:space="preserve">
+    <value>电影描述</value>
+  </data>
+  <data name="Common_DisplayMovieReview" xml:space="preserve">
+    <value>电影简介</value>
+  </data>
+  <data name="Common_DisplayName" xml:space="preserve">
+    <value>APP名称</value>
+  </data>
+  <data name="Common_DisplayNameEn" xml:space="preserve">
+    <value>电影英文名称</value>
+  </data>
+  <data name="Common_DisplayOrders" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="Common_DisplayPackageName" xml:space="preserve">
+    <value>包名</value>
+  </data>
+  <data name="Common_DisplayParentId" xml:space="preserve">
+    <value>上级节点</value>
+  </data>
+  <data name="Common_DisplayPlatfrom" xml:space="preserve">
+    <value>平台</value>
+  </data>
+  <data name="Common_DisplayPublishDate" xml:space="preserve">
+    <value>发布时间</value>
+  </data>
+  <data name="Common_DisplayRemark" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="Common_DisplayRoomNo" xml:space="preserve">
+    <value>房间号</value>
+  </data>
+  <data name="Common_DisplaySecureKey" xml:space="preserve">
+    <value>SecureKey</value>
+  </data>
+  <data name="Common_DisplaySeriseCode" xml:space="preserve">
+    <value>设备号</value>
+  </data>
+  <data name="Common_DisplayTags" xml:space="preserve">
+    <value>电影标签</value>
+  </data>
+  <data name="Common_DisplayTel" xml:space="preserve">
+    <value>电话</value>
+  </data>
+  <data name="Common_DisplayTemplateId" xml:space="preserve">
+    <value>模版</value>
+  </data>
+  <data name="Common_DisplayTemplateType" xml:space="preserve">
+    <value>归属分类</value>
+  </data>
+  <data name="Common_DisplayTitle" xml:space="preserve">
+    <value>电影名称</value>
+  </data>
+  <data name="Common_DisplayTVChannelCategory" xml:space="preserve">
+    <value>频道类别</value>
+  </data>
+  <data name="Common_DisplayTVChannelCategoryEn" xml:space="preserve">
+    <value>频道英文类别</value>
+  </data>
+  <data name="Common_DisplayTVChannelDefaultCode" xml:space="preserve">
+    <value>频道类别</value>
+  </data>
+  <data name="Common_DisplayTVChannelIcon" xml:space="preserve">
+    <value>电视频道ICon</value>
+  </data>
+  <data name="Common_DisplayTVChannelName" xml:space="preserve">
+    <value>频道名称</value>
+  </data>
+  <data name="Common_DisplayTVChannelNameEn" xml:space="preserve">
+    <value>英文频道名称</value>
+  </data>
+  <data name="Common_DisplayTvDocumentElementName" xml:space="preserve">
+    <value>节点名称</value>
+  </data>
+  <data name="Common_DisplayTvDocumentElementOrders" xml:space="preserve">
+    <value>序号</value>
+  </data>
+  <data name="Common_DisplayTvDocumentElementParentId" xml:space="preserve">
+    <value>上级节店</value>
+  </data>
+  <data name="Common_DisplayTvDocumentElementTemplateElementId" xml:space="preserve">
+    <value>结构节点ID</value>
+  </data>
+  <data name="Common_DisplayTvDocumentElementTemplateId" xml:space="preserve">
+    <value>模版ID</value>
+  </data>
+  <data name="Common_DisplayTVHotelConfigConfigCode" xml:space="preserve">
+    <value>配置编码</value>
+  </data>
+  <data name="Common_DisplayTVHotelConfigConfigName" xml:space="preserve">
+    <value>配置名称</value>
+  </data>
+  <data name="Common_DisplayTVHotelConfigConfigValue" xml:space="preserve">
+    <value>配置值</value>
+  </data>
+  <data name="Common_DisplayTVHotelConfigCreateTime" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="Common_DisplayTVHotelConfigHotelId" xml:space="preserve">
+    <value>酒店名称</value>
+  </data>
+  <data name="Common_DisplayTVHotelConfigLastUpdater" xml:space="preserve">
+    <value>最后更新人</value>
+  </data>
+  <data name="Common_DisplayTVHotelConfigLastUpdateTime" xml:space="preserve">
+    <value>最后更新时间</value>
+  </data>
+  <data name="Common_DisplayTvTemplateAttributeEditable" xml:space="preserve">
+    <value>是否可编辑</value>
+  </data>
+  <data name="Common_DisplayTvTemplateCreateDate" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="Common_DisplayTvTemplateCreateUser" xml:space="preserve">
+    <value>创建人</value>
+  </data>
+  <data name="Common_DisplayTvTemplateDescription" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="Common_DisplayTvTemplateElementName" xml:space="preserve">
+    <value>节点名称</value>
+  </data>
+  <data name="Common_DisplayTvTemplateModifyDate" xml:space="preserve">
+    <value>修改时间</value>
+  </data>
+  <data name="Common_DisplayTvTemplateModifyUser" xml:space="preserve">
+    <value>修改人</value>
+  </data>
+  <data name="Common_DisplayTvTemplateName" xml:space="preserve">
+    <value>模板名称</value>
+  </data>
+  <data name="Common_DisplayTvTemplateTemplateType" xml:space="preserve">
+    <value>模版结构</value>
+  </data>
+  <data name="Common_DisplayTvTemplateTypeDescription" xml:space="preserve">
+    <value>备注</value>
+  </data>
+  <data name="Common_DisplayTvTemplateTypeName" xml:space="preserve">
+    <value>模版名称</value>
+  </data>
+  <data name="Common_DisplayVersionCode" xml:space="preserve">
+    <value>APP版本号</value>
+  </data>
+  <data name="Common_DisplayVersionName" xml:space="preserve">
+    <value>APP版本名称</value>
+  </data>
+  <data name="Common_ErrorMessageForErpEmail" xml:space="preserve">
+    <value>请输入正确的邮箱地址</value>
+  </data>
+  <data name="Common_ErrorMessageForHotelCode" xml:space="preserve">
+    <value>酒店代码不能为空</value>
+  </data>
+  <data name="Common_ErrorMessageForHotelName" xml:space="preserve">
+    <value>酒店名称不能为空</value>
+  </data>
+  <data name="Common_ErrorMessageForTVHotelConfigHotelId" xml:space="preserve">
+    <value>请输入正确的酒店名称</value>
+  </data>
+  <data name="Common_DisplayProvince" xml:space="preserve">
+    <value>省</value>
+  </data>
+  <data name="Common_ErrorMessageForBrandId" xml:space="preserve">
+    <value>请选择所属品牌</value>
+  </data>
+  <data name="Common_ErrorMessageForCountry" xml:space="preserve">
+    <value>请选择所在地区</value>
+  </data>
+  <data name="Common_ErrorMessageForTemplateId" xml:space="preserve">
+    <value>请选择模板</value>
+  </data>
+  <data name="Common_DisplayLastUpdateTime" xml:space="preserve">
+    <value>最后更新时间</value>
+  </data>
+  <data name="Common_DisplayLastUpdatUser" xml:space="preserve">
+    <value>最后更新人</value>
+  </data>
+  <data name="Common_DisplayAppsName" xml:space="preserve">
+    <value>APP名称</value>
+  </data>
+  <data name="Common_DisplayMovieName" xml:space="preserve">
+    <value>电影名</value>
+  </data>
+  <data name="Common_DisplayMovieNameEn" xml:space="preserve">
+    <value>英文电影名</value>
+  </data>
+  <data name="Common_DisplayAppVersionDescription" xml:space="preserve">
+    <value>APP版本描述</value>
+  </data>
+  <data name="Common_DisplayModel" xml:space="preserve">
+    <value>模式</value>
+  </data>
+  <data name="Common_DisplayBehaviorLogAppId" xml:space="preserve">
+    <value>AppId</value>
+  </data>
+  <data name="Common_DisplayBehaviorLogBehaviorInfo" xml:space="preserve">
+    <value>日志内容</value>
+  </data>
+  <data name="Common_DisplayBehaviorLogBehaviorInfoEx" xml:space="preserve">
+    <value>日志详情</value>
+  </data>
+  <data name="Common_DisplayBehaviorLogBehaviorType" xml:space="preserve">
+    <value>类型</value>
+  </data>
+  <data name="Common_DisplayBehaviorLogCreateTime" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="Common_DisplaySystemLogAppType" xml:space="preserve">
+    <value>APP类型</value>
+  </data>
+  <data name="Common_DisplaySystemLogCreateTime" xml:space="preserve">
+    <value>创建时间</value>
+  </data>
+  <data name="Common_DisplaySystemLogMessageInfo" xml:space="preserve">
+    <value>日志内容</value>
+  </data>
+  <data name="Common_DisplaySystemLogMessageInfoEx" xml:space="preserve">
+    <value>日志详情</value>
+  </data>
+  <data name="Common_DisplaySystemLogMessageType" xml:space="preserve">
+    <value>日志类型</value>
+  </data>
+  <data name="Common_DisplayDeviceType" xml:space="preserve">
+    <value>设备类型</value>
+  </data>
+  <data name="Common_DisplayCoreSysConfirmPassword" xml:space="preserve">
+    <value>确认密码</value>
+  </data>
+  <data name="Common_DisplayAppIsSystem" xml:space="preserve">
+    <value>是否系统应用</value>
+  </data>
+  <data name="Common_DisplayUserID" xml:space="preserve">
+    <value>用户ID</value>
+  </data>
+  <data name="Common_DeviceBingType" xml:space="preserve">
+    <value>绑定类型</value>
+  </data>
+  <data name="Required_AppPublish_Active" xml:space="preserve">
+    <value>是否启用不能为空！</value>
+  </data>
+  <data name="Required_AppPublish_PublishDate" xml:space="preserve">
+    <value>发布时间不能为空！</value>
+  </data>
+  <data name="Required_AppPublish_SeriseCode" xml:space="preserve">
+    <value>设备号不能为空！</value>
+  </data>
+  <data name="Required_Apps_IsSystem" xml:space="preserve">
+    <value>是否系统应用不能为空！</value>
+  </data>
+  <data name="Required_Apps_PackageName" xml:space="preserve">
+    <value>包名不能为空！</value>
+  </data>
+  <data name="Required_Apps_Name" xml:space="preserve">
+    <value>App名称不能为空！</value>
+  </data>
+  <data name="Required_AppVersion_VersionName" xml:space="preserve">
+    <value>APP版本名称不能为空！</value>
+  </data>
+  <data name="Required_AppVersion_VersionCode" xml:space="preserve">
+    <value>APP版本号不能为空！</value>
+  </data>
+  <data name="Required_AuthUserDeviceTrace_DeviceNo" xml:space="preserve">
+    <value>设备号不能为空！</value>
+  </data>
+  <data name="Required_AuthUserDeviceTrace_UserId" xml:space="preserve">
+    <value>用户ID不能为空！</value>
+  </data>
+  <data name="Required_BackupDevice_LastUpdatUser" xml:space="preserve">
+    <value>最后更新人不能为空！</value>
+  </data>
+  <data name="Required_BackupDevice_HotelId" xml:space="preserve">
+    <value>酒店ID不能为空！</value>
+  </data>
+  <data name="Required_BackupDevice_DeviceSeries" xml:space="preserve">
+    <value>设备号不能为空！</value>
+  </data>
+  <data name="Required_CoreSysLogin_State" xml:space="preserve">
+    <value>状态不能为空！</value>
+  </data>
+  <data name="Required_CoreSysLogin_Password" xml:space="preserve">
+    <value>密码不能为空！</value>
+  </data>
+  <data name="Required_CoreSysLogin_LoginName" xml:space="preserve">
+    <value>登录名不能为空！</value>
+  </data>
+  <data name="Required_DeviceTrace_HotelId" xml:space="preserve">
+    <value>酒店不能为空！</value>
+  </data>
+  <data name="Required_DeviceTrace_DeviceSeries" xml:space="preserve">
+    <value>设备号不能为空！</value>
+  </data>
+  <data name="Required_ErpPowerRole_RoleName" xml:space="preserve">
+    <value>角色名不能为空！</value>
+  </data>
+  <data name="Required_ErpPowerRole_RoleCode" xml:space="preserve">
+    <value>角色代码不能为空！</value>
+  </data>
+  <data name="Required_ErpSysUser_State" xml:space="preserve">
+    <value>状态不能为空！</value>
+  </data>
+  <data name="Required_ErpSysUser_RoleId" xml:space="preserve">
+    <value>角色ID不能为空！</value>
+  </data>
+  <data name="Required_ErpSysUser_Email" xml:space="preserve">
+    <value>邮箱不能为空！</value>
+  </data>
+  <data name="Required_ErpSysUser_UserType" xml:space="preserve">
+    <value>用户类型不能为空！</value>
+  </data>
+  <data name="Required_ErpSysUser_UserName" xml:space="preserve">
+    <value>用户名不能为空！</value>
+  </data>
+  <data name="Required_ErpSysUser_HotelId" xml:space="preserve">
+    <value>酒店ID不能为空！</value>
+  </data>
+  <data name="Required_ErpSysUser_GroupId" xml:space="preserve">
+    <value>集团ID不能为空！</value>
+  </data>
+  <data name="Required_Movie_MovieReview" xml:space="preserve">
+    <value>电影简介不能为空！</value>
+  </data>
+  <data name="Required_Movie_Name" xml:space="preserve">
+    <value>电影名称不能为空！</value>
+  </data>
+  <data name="Required_MovieTemplate_Title" xml:space="preserve">
+    <value>模板名称不能为空！</value>
+  </data>
+  <data name="Required_TvChannel_DefaultCode" xml:space="preserve">
+    <value>频道默认编号不能为空！</value>
+  </data>
+  <data name="Required_TvChannel_Category" xml:space="preserve">
+    <value>频道类别不能为空！</value>
+  </data>
+  <data name="Required_TvChannel_Name" xml:space="preserve">
+    <value>频道名称不能为空！</value>
+  </data>
+  <data name="Required_TVHotelConfig_ConfigValue" xml:space="preserve">
+    <value>配置值不能为空！</value>
+  </data>
+  <data name="Required_TVHotelConfig_ConfigName" xml:space="preserve">
+    <value>配置名称不能为空！</value>
+  </data>
+  <data name="Required_TVHotelConfig_ConfigCode" xml:space="preserve">
+    <value>配置编码不能为空！</value>
+  </data>
+  <data name="Required_TvTemplateType_Name" xml:space="preserve">
+    <value>模板结构名称不能为空！</value>
+  </data>
+  <data name="Required_CoreSysHotelSencond_Languages" xml:space="preserve">
+    <value>请选择语言！</value>
+  </data>
+  <data name="Required_CoreSysHotelSencond_LaunchBackground" xml:space="preserve">
+    <value>欢迎界面背景不能为空！</value>
+  </data>
+  <data name="Required_CoreSysHotelSencond_PriceOfDay" xml:space="preserve">
+    <value>每日价格不能为空！</value>
+  </data>
+  <data name="Required_CoreSysHotelSencond_WelcomeWord" xml:space="preserve">
+    <value>欢迎语不能为空！</value>
+  </data>
+  <data name="Required_TvTemplateType_MaxLoginNameLength" xml:space="preserve">
+    <value>登录名长度不能大于16位</value>
+  </data>
+  <data name="Required_TvTemplateType_MinLoginNameLength" xml:space="preserve">
+    <value>登录名长度不能小于6位</value>
+  </data>
+  <data name="Required_RegisterViewModel_lessChart" xml:space="preserve">
+    <value>必须至少包含 6 个字符</value>
+  </data>
+  <data name="Required_RegisterViewModel_passwordCompare" xml:space="preserve">
+    <value>输入的密码不一致</value>
+  </data>
+  <data name="Required_AppPublish_AppVersion" xml:space="preserve">
+    <value>App名称不能为空</value>
+  </data>
+  <data name="Required_AppPublish_BindType" xml:space="preserve">
+    <value>绑定类型不能为空</value>
+  </data>
+  <data name="Required_AppPublish_HotelName" xml:space="preserve">
+    <value>酒店名称不能为空</value>
+  </data>
+  <data name="Required_AppPublish_VersionCode" xml:space="preserve">
+    <value>App版本号为必选项</value>
+  </data>
+  <data name="Common_DisplayIsUsed" xml:space="preserve">
+    <value>转为常用机</value>
+  </data>
+  <data name="Common_IsLocalFileAddress" xml:space="preserve">
+    <value>本地地址</value>
+  </data>
+  <data name="Common_DisplayCoreSysLogoImageUrl" xml:space="preserve">
+    <value>酒店Logo地址</value>
+  </data>
+  <data name="Required_CoreSysHotelSencond_LogoImageUrl" xml:space="preserve">
+    <value>酒店Logo地址不能为空</value>
+  </data>
+  <data name="Common_LogCriteria_CurrentTime" xml:space="preserve">
+    <value>查询时间</value>
+  </data>
+  <data name="Common_Display_SourceTemplateName" xml:space="preserve">
+    <value>源模板</value>
+  </data>
+  <data name="Required_ViewCopyTemplate_Name" xml:space="preserve">
+    <value>模板名称不能为空！</value>
+  </data>
+  <data name="Common_DisplayCoreSys_VodAddress" xml:space="preserve">
+    <value>点播地址</value>
+  </data>
+  <data name="Required_Brand_BrandName" xml:space="preserve">
+    <value>品牌名称不能为空！</value>
+  </data>
+  <data name="Required_Brand_GroupId" xml:space="preserve">
+    <value>请选择集团！</value>
+  </data>
+  <data name="Common_RangeVersionCode" xml:space="preserve">
+    <value>版本号只能为整数！</value>
+  </data>
+  <data name="Common_DisplayHotelPaymentPaymentModels" xml:space="preserve">
+    <value>支付方式</value>
+  </data>
+  <data name="Common_DisplayHotelPaymentPayType" xml:space="preserve">
+    <value>畅看全场(24小时有效)</value>
+  </data>
+  <data name="Common_DisplayHotelPaymentPriceOfDay" xml:space="preserve">
+    <value>畅看价格</value>
+  </data>
+  <data name="Common_DisplayHotelPaymentTopMoviesCount" xml:space="preserve">
+    <value>可置顶影片数</value>
+  </data>
+  <data name="Common_DisplaySentRoom" xml:space="preserve">
+    <value>送至客房</value>
+  </data>
+  <data name="Common_DisplayInvoicesTitle_Name" xml:space="preserve">
+    <value>发票抬头</value>
+  </data>
+  <data name="Common_DisplayConfigDescribe" xml:space="preserve">
+    <value>配置描述</value>
+  </data>
+  <data name="Common_DisplayLastUpdateUser" xml:space="preserve">
+    <value>最后更新人</value>
+  </data>
+</root>

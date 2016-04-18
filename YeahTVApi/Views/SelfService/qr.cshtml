@@ -1,0 +1,34 @@
+﻿@using YeahTVApi.Resource
+
+@{
+    var url = ViewBag.url;
+}
+
+    <link href="~/html/css/selfService.css" rel="stylesheet" />
+<body class="xuzhu">
+
+    <div style="width: 100%">
+     
+        <div class="alipay_main" style="text-align: center; width: 75.8%; float: left;">
+               <div class="xz_name">@YeahTVApiMessage.RoomServiceStayOver</div>
+            <p class="alipay_tips">
+                @Html.Raw(@YeahTVApiMessage.RoomServiceStayQrTip)
+            </p>
+            <div style="display: inline-block;">
+                <div class="ali_code">
+                    <img  src="@Url.Action("GetImageResult", new { url = url })"  class="ali_code_money" />
+                </div>
+            </div>
+
+            <div class="btn btn-blue" style="clear: both"><a id="aPay" href="javascript:history.go(-1)">@YeahTVApiMessage.CommonReturn</a> </div>
+        </div>
+        <div style="float: right; width: 24.2%; text-align: center;margin-top: 280px">
+            <div class="app_code">
+                <img src="~/images/appQr.png" class="app_code_money" />
+            </div>
+            <div style="color: white; font-size: 30px;">@YeahTVApiMessage.CommonDownloadApp</div>
+        </div>
+    </div>
+
+</body>
+

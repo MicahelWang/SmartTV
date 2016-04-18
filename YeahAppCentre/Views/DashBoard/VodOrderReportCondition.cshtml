@@ -1,0 +1,49 @@
+﻿@model YeahTVApi.DomainModel.SearchCriteria.VODOrderCriteria
+<div class="row" style="padding-bottom:12px">
+    <div class="col-xs-12 tab-search">
+        @using (Html.BeginForm("VodOrderReportIndex", "DashBoard", new { HotelId = ViewContext.RouteData.Values["HotelId"] }, FormMethod.Post, new { novalidate = "novalidate" }))
+        {
+            <div class="col-xs-12">
+                    <label>房间号</label>
+                    <span class="input-icon" style="padding-right:12px">
+                        @Html.EditorFor(m => m.RoomNo, new { htmlAttributes = new { @class = "form-control" } })
+                    </span>
+                    <label>支付时间</label>
+                    <span class="input-icon">
+                        @Html.TextBoxFor(m => m.CompleteTimeRange, new { @class = "form-control", style = "width:300px", placeholder = "选择快捷范围或进行自定义范围" })
+                    </span>
+                    <span class="input-icon">
+                        <button type="submit" class="btn btn-sm btn-success" onclick="this.form.action = '/DashBoard/VodOrderReportIndex?HotelId=@Model.HotelId'">查询</button>
+                        @Html.HiddenFor(m => m.HotelId)
+                        @Html.HiddenFor(m => m.Id)
+                    </span>
+            </div>
+        }
+        <div class="clear"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    @*$('input[name=filterDate]').css({ width: "170px" })
+   .val('@DateTime.Now.AddDays(-7).ToDateTimeStr(DateFormate.yyyyMMdd)' + ' - ' + '@DateTime.Now.AddDays(-1).ToDateTimeStr(DateFormate.yyyyMMdd)')
+   .daterangepicker({
+       startDate: '@DateTime.Now.AddDays(-7).ToDateTimeStr(DateFormate.yyyyMMdd)',
+       endDate: '@DateTime.Now.AddDays(-1).ToDateTimeStr(DateFormate.yyyyMMdd)',
+       dateLimit: {
+           "days": 31
+       },
+       opens: 'left',
+       format: 'YYYY-MM-DD',
+       locale: {
+           applyLabel: '确定',
+           cancelLabel: '取消',
+           fromLabel: '起始时间',
+           toLabel: '结束时间',
+           customRangeLabel: '自定义',
+           daysOfWeek: ['日', '一', '二', '三', '四', '五', '六'],
+           monthNames: ['一月', '二月', '三月', '四月', '五月', '六月',
+               '七月', '八月', '九月', '十月', '十一月', '十二月'],
+           firstDay: 1
+       }
+   });*@
+</script>

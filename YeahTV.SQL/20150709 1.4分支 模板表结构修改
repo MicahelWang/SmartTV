@@ -1,0 +1,4 @@
+alter table TvDocumentAttribute add ParentId varchar(50);
+alter table TvTemplateAttribute add ParentId varchar(50);
+alter table TvTemplateAttribute add DataType int(11) not null;
+alter table TvTemplateAttribute add Description varchar(2000);

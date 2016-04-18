@@ -1,0 +1,142 @@
+﻿@using YeahTVApi.DomainModel.SearchCriteria
+@{
+    ViewBag.Title = "工程设备管理";
+}
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            工程设备管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-header">
+                工程设备列表
+            </div>
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    @Html.Partial("Condition", ViewBag.authUserDeviceTraceCriteria as AuthUserDeviceTraceCriteria)
+                    @{
+                        var list = ViewBag.List as PagedViewList<AuthUserDeviceTrace>;
+                    }
+                    @Html.Partial("List", list)
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_info">
+                                <ul class="list-inline action-buttons">
+                                    <li data-original-title="新增" id="btnNew">
+                                        <div class="ui-pg-div"><a href="#"><span class="ui-icon icon-plus-sign purple"></span></a></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            @{
+                                string querystring = (ViewBag.authUserDeviceTraceCriteria as AuthUserDeviceTraceCriteria).ToQueryString();
+                            }
+                            @Html.Pagination(list.PageIndex, list.PageSize, list.TotalCount, "#list", Url.Action("List") + querystring)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+@Scripts.Render("~/bundles/GetHotelNames")
+    <script>
+
+    $(function () {
+        //新增
+        $("#btnNew").click(function () {
+            openDialog(GetDefaultOpt('@OpType.Add.GetValueStr()', ''));
+        });
+
+        //修改
+        $(document).delegate("tr [data-optype=edit]", "click",
+          function () {
+              openDialog(GetDefaultOpt('@OpType.Update.GetValueStr()', GetKey($(this))));
+          });
+        //视图
+        $(document).delegate("tr [data-optype=view]", "click",
+        function () {
+            openDialog(GetDefaultOpt('@OpType.View.GetValueStr()', GetKey($(this))));
+        });
+        //单行删除
+        $(document).delegate("tr [data-optype=delete]", "click",
+            function () {
+                var that = this;
+                var tr = $(this).parents("tr");
+                $.messager.confirm("提示", "您是否确认要删除【" + $("td:eq(0)", tr).text() + "】？", function () {
+                    var $parent = $(that).closest('tr');
+                    var key = GetKey($parent);
+                    var deleteUrl = '@Html.Raw(Url.Action("Delete", new { id = "_id_" }))'.replace("_id_", key);
+                    $.post(deleteUrl, function (data) {
+                        if (data === "Success") {
+                            $parent.remove();
+                            Mc.Msg("删除成功！", function () { });
+                        } else {
+                            Mc.Error(data);
+                        }
+                    });
+
+                });
+            });
+    });
+
+
+    function GetDefaultOpt(type, key) {
+        var map = {
+            '@OpType.View.GetValueStr()': '@OpType.View.GetDescription()',
+            '@OpType.Add.GetValueStr()': '@OpType.Add.GetDescription()',
+            '@OpType.Update.GetValueStr()': "@OpType.Update.GetDescription()",
+            '@OpType.Delete.GetValueStr()': "@OpType.Delete.GetDescription()"
+        };
+        var opt = {};
+        opt.title = "工程设备管理 -> " + map[type];
+        opt.url = '@Html.Raw(Url.Action("AddOrEdit", new { type = "_type_", id = "_id_" }))'.replace('_id_', key).replace('_type_', type);
+
+        if (type != '@OpType.View.GetValueStr()') {
+            opt.saveclick = function () {
+                $("div.modal-dialog form").submit();
+                event.preventDefault();
+                return false;
+            };
+        }
+        return opt;
+    }
+
+
+    function GetKey(jqObj) {
+        var tagName = jqObj[0].tagName;
+        if (tagName == "A") {
+            var tr = jqObj.closest("tr");
+            return tr.find("input.key").val();
+        } else if (tagName == "TR") {
+            return jqObj.find("input.key").val();
+        }
+        return '';
+    }
+
+    function Success(data) {
+        if (data === "Success") {
+            Mc.Msg("保存成功！", function () {
+                location.href = location.href;
+            });
+
+        } else {
+            Mc.Error(data);
+        }
+    }
+
+    function SetKeyReadonly() {
+        $("div.modal-dialog input,select").attr("disabled", "disabled");
+    }
+
+
+    GetUserNames('@Url.Action("GetUseNames", "Unity")', $("#UserName"), $("#UserId"));
+    </script>

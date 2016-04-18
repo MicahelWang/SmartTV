@@ -1,0 +1,149 @@
+﻿@{
+    var controllerName = ViewContext.RouteData.Values["controller"].ToString();
+    var actionName = ViewContext.RouteData.Values["action"].ToString();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -  行悦中枢后台管理系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- basic styles -->
+    <link href="~/Scripts/assets/css/jquery.gritter.css" rel="stylesheet" />
+    <link href="~/Scripts/assets/css/ui.jqgrid.css" rel="stylesheet" />
+    <link href="~/Scripts/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Scripts/assets/css/font-awesome.min.css" />
+
+    
+
+    <!--[if IE 7]>
+      <link rel="stylesheet" href="~/Scripts/assets/css/font-awesome-ie7.min.css" />
+    <![endif]-->
+    <!-- page specific plugin styles -->
+    <!-- fonts -->
+    @*<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400,300" />*@
+
+    <!-- ace styles -->
+
+    <link rel="stylesheet" href="~/Scripts/assets/css/ace.min.css" />
+    <link rel="stylesheet" href="~/Scripts/assets/css/ace-rtl.min.css" />
+    <link rel="stylesheet" href="~/Scripts/assets/css/ace-skins.min.css"/>
+
+   
+    <!--[if lte IE 8]>
+      <link rel="stylesheet" href="~/Scripts/assets/css/ace-ie.min.css" />
+    <![endif]-->
+
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    @RenderSection("styles", required: false)
+
+    <script src="~/Scripts/Mc.Base.js"></script>
+    <!--[if !IE]> -->
+    <script src="~/Scripts/assets/js/jquery-2.0.3.min.js"></script>
+    <![endif]-->
+    <!--[if IE]>
+    <script src="~/Scripts/assets/js/jquery-1.10.2.min.js"></script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='/Scripts/assets/js/jquery.mobile.custom.min.js'>" + "<" + "script>");
+    </script>
+
+    <script src="~/Scripts/assets/js/ace-extra.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="~/Scripts/assets/js/html5shiv.js"></script>
+    <script src="~/Scripts/assets/js/respond.min.js"></script>
+    <![endif]-->
+    <script src="~/Scripts/assets/js/jquery.bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script src="~/Scripts/assets/js/jquery.gritter.min.js"></script>
+</head>
+
+<body>
+    @Html.Action("Navbar", "PartView")
+
+    <div class="main-container" id="main-container">
+        <script type="text/javascript">
+            try { ace.settings.check('main-container', 'fixed') } catch (e) { }
+        </script>
+
+        <div class="main-container-inner">
+            <a class="menu-toggler" id="menu-toggler" href="#">
+                <span class="menu-text"></span>
+            </a>
+
+            @Html.Action("Menu", "PartView", new { controllerName, actionName })
+
+            <div class="main-content">
+
+                @Html.Action("Breadcrumbs", "PartView",new { controllerName, actionName })
+
+                @*<div class="page-content">
+                    <div class="page-header">
+                        <h1>
+                            控制台
+                            <small>
+                                <i class="icon-double-angle-right"></i>
+                                查看
+                            </small>
+                        </h1>
+                    </div><!-- /.page-header -->
+
+                    <div class="row">
+
+                       
+                    </div><!-- /.row -->
+                </div>*@
+                @RenderBody()
+            <!-- /.page-content -->
+            </div><!-- /.main-content -->
+            @Html.Action("PageSetting", "PartView")<!-- /#ace-settings-container -->
+    </div><!-- /.main-container-inner -->
+
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="icon-double-angle-up icon-only bigger-110"></i>
+    </a>
+</div><!-- /.main-container -->
+
+<script src="~/Scripts/assets/js/bootstrap.min.js"></script>
+<script src="~/Scripts/assets/js/typeahead-bs2.min.js"></script>
+
+<!-- page specific plugin scripts -->
+<!--[if lte IE 8]>
+  <script src="~/Scripts/assets/js/excanvas.min.js"></script>
+<![endif]-->
+
+
+
+<!-- ace scripts -->
+
+<script src="~/Scripts/assets/js/ace-elements.min.js"></script>
+<script src="~/Scripts/assets/js/ace.min.js"></script>
+
+<!-- inline scripts related to this page -->
+@RenderSection("scripts", required: false)
+<!--[if !IE]> -->
+
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='~/Scripts/assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+</script>
+
+    <![endif]-->
+
+<!--[if IE]>
+<script type="text/javascript">
+ window.jQuery || document.write("<script src='~/Scripts/assets/js/jquery-1.10.2.min.js'>"+"<"+"/script>");
+</script>
+<![endif]-->
+
+<script src="~/Scripts/Mc.Base.js"></script>
+<script src="~/Scripts/application.js"></script>
+</body>
+
+</html>

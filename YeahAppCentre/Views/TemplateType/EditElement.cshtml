@@ -1,0 +1,168 @@
+﻿@model TvTemplateElement
+@{
+    OpType opType = ViewBag.OpType;
+}
+<div class="eidtElementForm">
+    <div class="col-md-8">
+        <input type="hidden" name="opType" value="@opType.GetValueStr()"/>
+        @Html.HiddenFor(m => m.Id)
+        <table class="table-bordered table06">
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Name, new {@class = ""})
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.ParentId, new {@class = ""})
+                </td>
+                <td>
+                    @Html.Label("ParentName", ViewBag.ParentName as string, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.HiddenFor(model => model.ParentId)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Orders, new {@class = ""})
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Orders, new {htmlAttributes = new {@class = "form-control"}})
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Editable, new {@class = ""})
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Editable, new {htmlAttributes = new {@class = ""}})
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.IsAllowChild, new {@class = ""})
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.IsAllowChild, new {htmlAttributes = new {@class = ""}})
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.IsChildFrame, new {@class = ""})
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.IsChildFrame, new {htmlAttributes = new {@class = ""}})
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4">
+        @switch (opType)
+        {
+            case OpType.Add:
+                <button type="button" class="btn btn-primary" id="btnAddElement">添加节点</button>
+                break;
+            case OpType.Update:
+                <button type="button" class="btn btn-success" id="btnUpdateElement">修改节点</button>
+                break;
+        }
+    </div>
+</div>
+@if (opType == OpType.Update)
+{
+    <div>
+        <div class="col-md-12">
+            <table class="table-bordered table06" id="editTable0">
+                <tr>
+                    <th></th>
+                    <th>属性名</th>
+                    <th>数据类型</th>
+                    <th>默认值</th>
+                    <th>描述</th>
+                    <th>是否可编辑</th>
+                    <th>是否必填</th>
+                    <th>操作</th>
+                </tr>
+                @{ var attributes = Model.Attributes.Where(p=>string.IsNullOrWhiteSpace(p.ParentId)).ToList(); }
+                @foreach (var item in attributes)
+                {
+                    <tr>
+                        @{
+                    var datatype = item.DataType;
+                        }
+
+                        <td >
+                            <a class="empty" style="cursor:pointer;" onclick="expandTable(this);">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                        <td>
+                            @Html.Hidden("attributeId", item.Id)
+                            @Html.Hidden("attributeParentId", item.ParentId)
+                            @Html.TextBox("attributeText", item.Text)
+                        </td>
+                        <td>@Html.DropDownList("attributeDataType", DropDownExtensions.GetSelectList(typeof(TemplateDataType), item.DataType.ToString()), new { @onchange ="Change(this)"})</td>
+                        <td>@Html.TextBox("attributeValue", item.Value)
+                        
+                            @if (datatype != (int)TemplateDataType.Text && datatype != (int)TemplateDataType.List && datatype != (int)TemplateDataType.Color)
+                            {
+                            <button name="parrent-upload" type="button" class="btn btn-sm btn-success parrent-upload">上传</button>
+                            }
+                            @if (datatype == (int)TemplateDataType.Image)
+                            {
+                                if (string.IsNullOrEmpty(item.Value))
+                                {
+                                    <img id="CoverimgIcon" width="100" style="display:none" />
+                                }
+                                else
+                                {
+                                    <img id="CoverimgIcon" width="100" src="@item.Value" />
+                                }
+                            }
+
+                            @if (datatype == (int)TemplateDataType.Audio || datatype == (int)TemplateDataType.Video)
+                            {
+                                <button type="button" data-optype="preview" class="btn btn-sm btn-success preview">预览</button>
+                            }
+                            else
+                            {
+                                <button type="button" data-optype="preview" style="display:none" class="btn btn-sm btn-success preview">预览</button>
+                            }
+                        </td>
+                        <td>@Html.TextBox("attributeDescription", item.Description)</td>
+                        <td>
+                            @Html.CheckBox("attributeEditable", item.Editable)
+                        </td>
+                        <td>
+                            @Html.CheckBox("attributeRequired", item.Required)
+                        </td>
+                        <td>
+                          
+
+                            <button type="button" class="btn btn-sm btn-success editAttribute">修改属性</button>
+                            <button type="button" class="btn btn-sm btn-danger removeAttribute">移除属性</button>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td></td>
+                    <td>@Html.TextBox("attributeText")</td>
+                    <td>@Html.DropDownList("attributeDataType", DropDownExtensions.GetSelectList(typeof(TemplateDataType)))</td>
+                    <td>@Html.TextBox("attributeValue")
+                        <button type="button" name="parrent-upload" style="display:none" class="btn btn-sm btn-success parrent-upload">上传</button>
+                        <img id="CoverimgIcon" style="display:none" />
+                        <button type="button" style="display:none" data-optype="preview" class="btn btn-sm btn-success preview">预览</button>
+                    </td>
+                    <td>@Html.TextBox("attributeDescription")</td>
+                    <td>@Html.CheckBox("attributeEditable")</td>
+                    <td>@Html.CheckBox("attributeRequired")</td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-primary" id="btnAddAttribute">新增属性</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+}

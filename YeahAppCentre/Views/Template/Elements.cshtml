@@ -1,0 +1,442 @@
+﻿@{
+    ViewBag.Title = "模板内容管理";
+}
+<style>
+    .mytooltip {
+    }
+
+        .mytooltip ul {
+            list-style: none;
+        }
+</style>
+<style type="text/css">
+    .ztree li span.button.add {
+        margin-left: 2px;
+        margin-right: -1px;
+        background-position: -144px 0;
+        vertical-align: top;
+        *vertical-align: middle;
+    }
+</style>
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            模板内容管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="widget-box">
+                <div class="widget-header header-color-blue">
+                    <h5 class="bigger lighter">
+                        <i class="icon-table"></i>
+                        模板内容管理
+                    </h5>
+                </div>
+            </div>
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    <div class="modal-body">
+                        <div class="col-xs-6" style="width: 20%;">
+                            <fieldset>
+                                <legend>内容</legend>
+                                <div class="col-sm-8"></div>
+                                <div class="col-sm-4">
+                                    @Html.ActionLink("预览首页", "TemplatePreview", new { @id = ViewBag.Template.ToString() }, htmlAttributes: new { @Class = "btn btn-sm btn-primary", @target = "_blank" })
+                                    @*<button type="button" id="btnPreview" onclick="top.location = '@Url.Action("TemplatePreview", "Template", new {@id = ViewBag.Template.ToString()})'" class="btn btn-sm btn-primary">预览首页</button>*@
+                                </div>
+                                <div style="clear:both"></div>
+                                <div>
+                                    @{
+                                        string templateId = ViewBag.Template.ToString();
+                                    }
+                                    @Html.Hidden("TemplateId", templateId)
+                                    <ul id="treeDemo" class="ztree"></ul>
+                                </div>
+                            </fieldset>
+                        </div>
+                        <div class="col-xs-6" style="width: 80%;">
+                            <fieldset>
+                                <legend>编辑</legend>
+                            </fieldset>
+                            <div id="editForm">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- inline scripts related to this page -->
+@section scripts{
+    <!-- basic scripts -->
+    <script src="~/Scripts/zTree/js/jquery.ztree.all-3.5.js"></script>
+    <script src="~/Scripts/upload/ajaxupload.js"></script>
+    <script src="~/Scripts/upload/uploadHelper.js"></script>
+    <link href="~/Scripts/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery.json-2.4.js"></script>
+<script src="~/Scripts/Template.js"></script>
+    <script>
+
+    $(document).ready(function () {
+
+        //预览
+        $(document).delegate("tr [data-optype=preview]", "click",
+            function () {
+                if ($(this).closest("tr").find("input[name='attributeValue']").val().replace(/ /gi, "") == "") {
+                    alert("请先上传视频"); return fales;
+                }
+                openDialog(GetDefaultOpt(this));
+            });
+
+        $(document).delegate("#btnUpdateElement", "click",
+            function () {
+                PutElement('@OpType.Update.GetValueStr()', $(this));
+            });
+        $(document).delegate("#btnAddElement", "click",
+            function () {
+                PutElement('@OpType.Add.GetValueStr()', $(this));
+            });
+
+        //修改
+        $(document).delegate("tr .editAttribute", "click",
+            function () {
+                //赋值  如果不是列表类型的就直接取值
+                if ($(this).closest("tr").find("label[for=attributeDataType]").html() == "列表") {
+                    var result = GetJosonString($(this));
+                    if (result == "error") {
+                        alert("颜色取值不正确！！！");
+                        return;
+                    }
+                    if (result == "typeError")
+                    {
+                        alert("请选择类型");
+                        return;
+                    }
+                    $(this).closest("tr").find("input[name=attributeValue]").val($.toJSON(GetJosonString($(this))));
+                }
+                var result = ValidationColor($(this));
+                if (result != "error") {
+                    PutAttribute('@OpType.Update.GetValueStr()', $(this));
+                }
+                else {
+                    alert("颜色取值不正确！！！");
+                    $(this).closest("tr").find("input[name=attributeValue]").focus();
+                }
+
+            });
+
+        createTree();
+    });
+
+
+    //验证颜色
+
+    function ValidationColor(select) {
+        var tr = $(select).closest("tr");
+        var boo = "";
+        var colorval = $(tr).find("label[for=attributeDataType]").html();
+        var zhi = $(tr).find("input[name=attributeValue]").val();
+        if (colorval == "颜色") {
+            var reg = "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$";
+            var re = new RegExp(reg);
+            if (!re.test(zhi)) {
+                boo = "error";
+            }
+        }
+
+        return boo;
+
+    }
+
+    function GetJosonString(obj) {
+        var childTable = $(obj).closest("tr").next().find("table.mytable0");
+        var htmlJoson = [];
+        var boo = "";
+        if (childTable != "undefined" || childTable != null) {
+
+            $(childTable).find("tr[valuerow=valuerow]").each(function (k, tr) {
+                var colorval = $(tr).find("select[name=attributeDataType]").val();
+                if (colorval != "") {
+                    var zhi = $(tr).find("input[name=attributeValue]").val();
+                    if (colorval == '@TemplateDataType.Color.GetValueStr()') {
+                        var reg = "^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$";
+                        var re = new RegExp(reg);
+                        if (!re.test(zhi)) {
+                            boo = "error";
+                            return;
+                        }
+                    }
+                }
+                else
+                {
+                    boo = "typeError";
+                    return;
+                }
+            });
+            if (boo == 'error') {
+                return boo;
+            }
+            if (boo == "typeError")
+            {
+                return boo;
+            }
+
+            $(childTable).find("tr[valuerow=valuerow]").each(function (k, tr) {
+                var html = "{";
+                $(tr).find(".tdvalue").each(function (j, o) {
+                    html += $(o).attr("name") + ":'" + $(o).val() + "',";
+                });
+                html = html.substring(0, html.length - 1);
+                html += "}";
+                htmlJoson.push(eval("(" + html + ")"));
+            });
+            return htmlJoson;
+        }
+    }
+
+
+    function GetDefaultOpt(obj) {
+        var addres = $(obj).closest("tr").find("input[name='attributeValue']").val();
+
+        var opt = {};
+        opt.title = "模板管理 -> 视频预览";
+        opt.url = '@Html.Raw(Url.Action("Preview", new { address = "_type_" }))'
+            .replace('_type_', addres);
+        return opt;
+    }
+    function GetKey(jqObj) {
+        var tagName = jqObj[0].tagName;
+        if (tagName == "A") {
+            var tr = jqObj.closest("tr");
+            return tr.find("input.key").val();
+        } else if (tagName == "TR") {
+            return jqObj.find("input.key").val();
+        }
+        return '';
+    }
+
+    function PutAttribute(opType, sender) {
+        var currentDom = sender.closest("tr");
+        var id = currentDom.find("#attributeId").val();
+        var text = currentDom.find("#attributeText").val();
+        var value = currentDom.find("#attributeValue").val();
+        var editable = currentDom.find("#attributeEditable").val();
+        var element = $("#Id").val();
+        var url = '@Html.Raw(Url.Action("EditAttribute"))';
+        var postData = {
+            'opType': opType,
+            'Id': id,
+            'Text': text,
+            'Value': value,
+            'Editable': editable,
+            'ElementId': element
+        };
+        $.post(url, postData, function (data) {
+            if (data === "Success") {
+                loadEditView(element, '@OpType.Update.GetValueStr()');
+                Mc.Msg("保存成功！");
+            } else {
+                Mc.Error(data);
+            }
+
+        });
+    }
+    //显示列表
+    function expandTable(obj) {
+        var url = "@Url.Action("GetElementOfLisAttr")";
+        var obj = $(obj);
+        //var parentId = GetParrentKey(obj)
+        //var elementId = $(".eidtElementForm").find("input[name=Id]").val();
+        var attributeId = $(obj).closest("tr").find("input[name=attributeId]").val();
+        //展开
+        if (obj.children().attr('class') == ('glyphicon glyphicon-plus')) {
+            $($(obj).closest("tr").children().get(2)).find("select").attr("disabled", "disabled");
+            obj.children().attr('class', 'glyphicon glyphicon-minus');
+            //$.get(url + "?elementId=" + elementId + "&parrentId=" + parentId, function (data) {
+            //    obj.parents("tr").after(data);
+            //});
+            $.get(url + "?attributeId=" + attributeId, function (data) {
+                obj.parents("tr").after(data);
+            });
+        } else if (obj.children().attr('class') == ('glyphicon glyphicon-minus')) {
+            $($(obj).closest("tr").children().get(2)).find("select").removeAttr("disabled");
+            obj.children().attr('class', 'glyphicon glyphicon-plus');
+            var parent = obj.parents("tr").next();
+            parent.remove();
+        }
+    }
+
+    function GetParrentKey(jqObj) {
+        var tr = $(jqObj).closest("tr");
+        return tr.children(":eq(1)").find("input[name=attributeId]").val();
+    }
+
+    function PutElement(opType, sender) {
+        var currentDom = sender.closest(".eidtElementForm");
+        var id = currentDom.find("#Id").val();
+        var name = currentDom.find("#Name").val();
+        var editable = currentDom.find("#Editable").val();
+        var templateType = $("#TemplateTypeId").val();
+        var parentId = currentDom.find("#ParentId").val();
+        var orders = currentDom.find("#Orders").val();
+        var templateid = currentDom.find("#TemplateId").val();
+        var isAllowChild = currentDom.find("#IsAllowChild").val();
+        var isChildFrame = currentDom.find("#IsChildFrame").val();
+        var url = '@Html.Raw(Url.Action("EditElement"))';
+        var postData = {
+            'opType': opType,
+            'Id': id,
+            'Name': name,
+            'TemplateType': templateType,
+            'Editable': editable,
+            'Orders': orders,
+            'ParentId': parentId,
+            'IsChildFrame': isChildFrame,
+            'IsAllowChild': isAllowChild,
+            'TemplateId': templateid
+        };
+        $.post(url, postData, function (data) {
+            if (data) {
+                if (data.errorMsg) {
+                    Mc.Error(data.errorMsg);
+                }
+                else {
+                    loadEditView(data.Id, '@OpType.Update.GetValueStr()');
+                    if (opType == '@OpType.Add.GetValueStr()') {
+                        addNode(data);
+                    }
+                    Mc.Msg("保存成功！");
+                }
+            } else {
+                Mc.Error(data);
+            }
+
+        });
+    }
+    </script>
+    <script type="text/javascript">
+    <!--
+    var setting = {
+        view: {
+            selectedMulti: false,
+            addDiyDom: addDiyDom
+        },
+        check: {
+            enable: false
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            onClick: zTreeOnClick
+        }
+
+    };
+    function zTreeOnClick(event, treeId, treeNode) {
+        loadEditView(treeNode.id,'@OpType.Update.GetValueStr()');
+    };
+
+    function loadEditView(id,opType) {
+        var url = '@Html.Raw(Url.Action("EditElement", new { type = "_type_", id = "_id_" }))'.replace('_id_', id).replace('_type_', opType);
+        var container = $("#editForm");
+        container.load(url, function () {
+            $.each($(".table06 tr:not(:eq(0))"), function (index, obj) {
+                if ($(obj).find("label[for=attributeDataType]").html() != "列表") //不是列表类型
+                {
+                    $("span", $(obj).children("td:eq(0)")).hide();
+                    $(obj).find("#attributeValue").removeAttr("readonly");
+                } else {
+                    $(obj).find("#attributeValue").attr("readonly", "readonly");
+                }
+                if ($(obj).find("label[for=attributeDataType]").html() == "图片") {
+                    UpdaloadImage($(obj).find("button[name=parrent-upload]"));
+                }
+                if ($(obj).find("label[for=attributeDataType]").html() == "音频") {
+                    UpdaloadMusic($(obj).find("button[name=parrent-upload]"));
+                }
+                if ($(obj).find("label[for=attributeDataType]").html() == "视频") {
+                    UpdaloadMovie($(obj).find("button[name=parrent-upload]"));
+                }
+            });
+        });
+
+
+
+
+    }
+    function addNode(nodeData) {
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+        treeNode = null;
+        if (nodeData.ParentId!=="")
+            treeNode = zTree.getNodesByParam("id", nodeData.ParentId, null)[0];
+        var newNode = { id: nodeData.Id, pId: nodeData.ParentId, isParent: false, name: nodeData.Name, isallowchild: nodeData.TemplateElement.IsAllowChild, editable: nodeData.TemplateElement.Editable };
+        zTree.addNodes(treeNode, newNode);
+    };
+    function addDiyDom(treeId, treeNode) {
+
+        var element = $("#" + treeNode.tId + "_a");
+        var li = element.closest("li");
+        if (treeNode.isallowchild) {
+            var addButton = $("<a href=\"#\"><span class=\"button add\"></a></span>");
+            addButton.appendTo(li);
+            addButton.click(function () {
+                loadEditView(treeNode.id, '@OpType.Add.GetValueStr()');
+            });
+        }
+        if (treeNode.editable) {
+            var deleteButton = $("<a href=\"#\"><span class=\"button remove\"></a></span>");
+            deleteButton.appendTo(li);
+            deleteButton.click(function () {
+                $.messager.confirm("提示", "确认删除？!", function () {
+                    var deleteUrl = '@Html.Raw(Url.Action("ElementDelete", new {id = "_id_"}))'.replace("_id_", treeNode.id);
+                    $.post(deleteUrl, function (data) {
+                        if (data === "Success") {
+                            var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                            var node = zTree.getNodesByParam("id", treeNode.id, null)[0];
+                            zTree.removeNode(node);
+                            Mc.Msg("保存成功！", function () { });
+                        } else {
+                            Mc.Error(data);
+                        }
+                    });
+
+                });
+            });
+        }
+        element.removeAttr("title");
+        var html = "<div class=\"mytooltip\"><ul>";
+        $.each(treeNode.Attributes, function (i, item) {
+            html += "<li><span class=\"AttributeKey\">" + item.Key + "</span> ";
+            html += "= <span class=\"AttributeValue\">" + item.Value + "</span><li>";
+        });
+        html += "<ul></div>";
+        element.tooltip({
+            content:function() {
+                return html;
+            }
+        });
+    };
+
+    function createTree() {
+        var url = '@Url.Action("GeDocumentElements", "Template", new { id = ViewBag.Template })';
+        $.get(url, function (data) {
+            var zNodes = eval(data);
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes).expandAll(true);
+        });
+
+    }
+
+    </script>
+    <script src="~/Scripts/jquery-ui/jquery-ui.js"></script>
+    <link href="~/Scripts/jquery-ui/jquery-ui.theme.min.css" rel="stylesheet" />
+    <link href="~/Scripts/jquery-ui/jquery-ui.structure.min.css" rel="stylesheet" />
+    <link href="~/Scripts/jquery-ui/jquery-ui.css" rel="stylesheet" />
+}

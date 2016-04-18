@@ -1,0 +1,239 @@
+﻿@{
+    ViewBag.Title = "角色管理";
+}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            角色管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+
+            </small>
+        </h1>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="widget-box">
+                <div class="widget-header header-color-blue">
+                    <h5 class="bigger lighter">
+                        <i class="icon-table"></i>
+                        角色管理
+                    </h5>
+                </div>
+            </div>
+
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    @{
+                        var list = ViewBag.List as IPagedList<ErpPowerRole>;
+                    }
+                    @Html.Partial("List", list)
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="dataTables_info">
+                                <ul class="list-inline action-buttons">
+                                    <li data-original-title="新增" id="btnNew">
+                                        <div class="ui-pg-div"><a href="#"><span class="ui-icon icon-plus-sign purple"></span></a></div>
+                                    </li>
+                                    <li data-original-title="删除" id="btnDelete">
+                                        <div class="ui-pg-div"><a href="#"><span class="ui-icon icon-trash red"></span></a></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+
+                            @Html.Pagination(list, "#list", Url.Action("List"))
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+
+<!-- inline scripts related to this page -->
+@section scripts{
+    <!-- basic scripts -->
+    <script src="~/Scripts/zTree/js/jquery.ztree.all-3.5.js"></script>
+    <link href="~/Scripts/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+    <script type="text/javascript">
+        jQuery(function ($) {
+
+            $(".dataTable tbody tr:even").addClass("even");
+            $(".dataTable tbody tr:odd").addClass("odd");
+            $(document).delegate("table th input:checkbox", "click", function () {
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                    .each(function () {
+                        this.checked = that.checked;
+                        $(this).closest('tr').toggleClass('selected');
+                    });
+
+            });
+
+
+            $('[data-rel="tooltip"]').tooltip({ placement: tooltipPlacement });
+
+            function tooltipPlacement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table');
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+
+                var off2 = $source.offset();
+                var w2 = $source.width();
+
+                if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+                return 'left';
+            }
+        })
+    </script>
+
+    <script>
+
+    $(document).ready(function () {
+        //更新权限
+        $(document).delegate("tr [data-optype=updatePower]", "click",
+            function () {
+                openDialog(GetUpdatePowerOpt(GetKey($(this))));
+            });
+        //修改
+        $(document).delegate("tr [data-optype=edit]", "click",
+            function () {
+                openDialog(GetDefaultOpt('@OpType.Update.GetValueStr()', GetKey($(this))));
+            });
+        //查看
+        $(document).delegate("tr [data-optype=view]", "click",
+            function () {
+                openDialog(GetDefaultOpt('@OpType.View.GetValueStr()', GetKey($(this))));
+            });
+        //单行删除
+        $(document).delegate("tr [data-optype=delete]", "click",
+            function () {
+                var that = this;
+                var tr = $(this).parents("tr");
+                $.messager.confirm("提示", "您是否确认要删除【" + $("td:eq(1)", tr).text() + "】？", function () {
+                    var $parent = $(that).closest('tr');
+                    var key = GetKey($parent);
+                    var deleteUrl = '@Html.Raw(Url.Action("BatchDelete", new { id = "_id_" }))'.replace("_id_", key);
+                    $.post(deleteUrl, function (data) {
+                        if (data === "Success") {
+                            $parent.remove();
+                            Mc.Msg("保存成功！", function () {});
+                        } else {
+                            Mc.Error(data);
+                        }
+                    });
+
+                });
+            });
+        //批量删除
+        $(document).delegate("#btnDelete", "click",
+            function () {
+                var selectArray = $('#viewTable').find('tr > td:first-child input:checkbox:checked');
+                if (selectArray.length === 0) {
+                    Mc.Warning("请选择您要删除的行.");
+                    return;
+                }
+                var deleteUrl = '@Html.Raw(Url.Action("BatchDelete", new { id = "_id_" }))';
+                $.messager.confirm("提示", "确认删除当前选中的" + selectArray.length + "条记录？", function () {
+                    var keyArray = new Array();
+                    selectArray.each(function () {
+                        var tr = $(this).closest('tr');
+                        var key = tr.find("input.key").val();
+                        keyArray.push(key);
+                    });
+                    deleteUrl = deleteUrl.replace("_id_", keyArray.join(","));
+                    $.post(deleteUrl, function (data) {
+                        if (data === "Success") {
+                            selectArray.each(function () {
+                                var $parent = $(this).closest("tr");
+                                $parent.remove();
+                            });
+                            Mc.Msg("保存成功！", function () {});
+
+                        } else {
+                            Mc.Error(data);
+                        }
+                    });
+
+
+                });
+            });
+        //新增
+        $(document).delegate("#btnNew", "click",
+            function () {
+                openDialog(GetDefaultOpt('@OpType.Add.GetValueStr()', 0));
+            });
+
+    });
+
+    function GetDefaultOpt(type, key) {
+
+        var map = {
+            '@OpType.View.GetValueStr()': '@OpType.View.GetDescription()',
+            '@OpType.Add.GetValueStr()': '@OpType.Add.GetDescription()',
+            '@OpType.Update.GetValueStr()': "@OpType.Update.GetDescription()",
+            '@OpType.Delete.GetValueStr()': "@OpType.Delete.GetDescription()"
+        };
+        var opt = {};
+        opt.title = "角色管理 -> " + map[type];
+        opt.url = '@Html.Raw(Url.Action("Edit", new {type = "_type_", id = "_id_"}))'.replace('_id_', key).replace('_type_', type);
+
+
+        if (type != '@OpType.View.GetValueStr()') {
+            opt.saveclick = function () {
+                $("div.modal-dialog form").submit();
+                event.preventDefault();
+                return false;
+            };
+        }
+        return opt;
+    }
+    function GetUpdatePowerOpt(key) {
+        var opt = {};
+        opt.title = "角色权限设置 ";
+        opt.url = '@Html.Raw(Url.Action("EditPower", new {id = "_id_"}))'.replace('_id_', key);
+
+        opt.saveclick = function () {
+            $("div.modal-dialog form").submit();
+            event.preventDefault();
+            return false;
+        };
+
+        return opt;
+    }
+
+
+    function GetKey(jqObj) {
+        var tagName = jqObj[0].tagName;
+        if (tagName == "A") {
+            var tr = jqObj.closest("tr");
+            return tr.find("input.key").val();
+        } else if (tagName == "TR") {
+            return jqObj.find("input.key").val();
+        }
+        return '';
+    }
+
+    function Success(data) {
+        if (data === "Success") {
+            Mc.Msg("保存成功！", function () {
+                location.href = location.href;
+            });
+
+        } else {
+            Mc.Error(data);
+        }
+    }
+    function SetKeyReadonly() {
+        $("div.modal-dialog input,select").attr("disabled", "disabled");
+    }
+    </script>}
+

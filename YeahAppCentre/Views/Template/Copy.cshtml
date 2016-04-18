@@ -1,0 +1,41 @@
+﻿@model YeahTVApi.DomainModel.Models.ViewModels.ViewCopyTemplate
+@{
+    OpType opType = ViewBag.OpType;
+}
+
+@using (Ajax.BeginForm("Copy", new { }, new AjaxOptions
+{
+    HttpMethod = "Post",
+    OnSuccess = "Success",
+
+    //    OnBegin = "formValidate",
+}, new { @class = "form-horizontal", role = "form" }))
+{
+    <input type="hidden" name="opType" value="@opType.GetValueStr()" />
+    @Html.HiddenFor(m => m.SourceTemplateId)
+    <div class="form-horizontal">
+
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+        <div class="form-group">
+            @Html.LabelFor(model => model.SourceTemplateName, new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.SourceTemplateName, new { @class = "control-label col-md-2" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Name, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+    </div>
+}
+@if (opType == OpType.View)
+{
+    <script>
+        SetKeyReadonly();
+    </script>
+}

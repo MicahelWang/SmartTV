@@ -1,0 +1,410 @@
+﻿@{
+    ViewBag.Title = "酒店电视管理";
+}
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            酒店电视管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                @*查看*@
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-header">
+                酒店电视列表
+            </div>
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    <div class="row">
+                        <div class="col-sm-12 tab-search">
+                            <form action="@Url.Action("GetMovies", "Movie")" method="post" novalidate="novalidate">
+                                <label> 酒店名称</label>
+                                <span class="input-icon">
+                                    <input id="hotelName" name="hotelName" class="form-control" data-provide="typeahead" autocomplete="off">
+                                    <input id="HotelId" name="HotelId" type="hidden" value="">
+                                </span>
+                                <span class="input-icon">
+                                    <button type="button" class="btn btn-sm btn-success" id="searchForm">查询</button>
+                                </span>
+                            </form>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                    <div class="row" id="list">
+                        <table id="viewTable" class="table table-striped table-bordered table-hover dataTable">
+
+                            <thead>
+                                <tr role="row">                            
+                                    <th>酒店名称</th>
+                                    <th>频道名称</th>
+                                    <th>频道名称(英文)</th>
+                                    <th>组播地址</th>
+                                    <th>排序</th>
+                                    <th>最后更新人</th>
+                                    <th>最后修改时间</th>                                   
+                                    <th></th>
+                                </tr>
+                            </thead>
+
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_info">
+                                <ul class="list-inline action-buttons">
+                                    
+                                    <li data-original-title="新增" id="btnNew">
+                                        <div class="ui-pg-div"><a href="#"><span class="ui-icon icon-plus-sign purple"></span></a></div>
+                                    </li>
+                                    
+                                    <li data-original-title=" 添加默认模板" id="btnTemplate" class="hidden">
+                                      
+                                        <div class="ui-pg-div"><a href="#"><span class="icon-reply icon-only"></span></a></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div id="80bed29f540f41e794791dd8d7bfea1b" class="dataTables_paginate">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+
+
+<!-- inline scripts related to this page -->
+<script src="/Scripts/bootstrap-typeahead.js"></script>
+<script src="/Scripts/GetHotelNames.js"></script>
+<script>
+    var url = "@Url.Action("GetTVChanels", "HotelTVChannel")";
+    var deleteUrl = "@Url.Action("DeleteTVChanel", "HotelTVChannel")";
+    var updateUrl = "@Url.Action("UpdateTVChanel", "HotelTVChannel")";
+    var addUrl = "@Url.Action("AddTVChannel", "HotelTVChannel")";
+    var getMoviesUrl = "@Url.Action("GetMovies", "Movie")";
+    var getTvNames = "@Url.Action("GetTVNames", "Unity")";
+    var getHotelNames = "@Url.Action("GetHotelNames", "Unity")";
+    var deleteRelation = "@Url.Action("DeleteTemplateRelation", "MovieTemplate")";
+    $(document).ready(function () {
+        refresh(1);
+    });
+
+    var TvChannelHotelList;
+    var PageIndex;
+    var PageSize;
+    var TotalCount;
+    var TotalPages;
+    function setData(num) {
+        if (num > 0)
+            num = num - 1;
+        if ($('#HotelId').val() != "") {
+            num = num + "&HotelId=" + $('#HotelId').val();
+        }
+        $.getJSON(url + "?Page=" + num,
+            function (data) {
+                console.log(data);
+                PageIndex = data.PageIndex + 1;
+                PageSize = data.PageSize;
+                TvChannelHotelList = data.Source;
+                TotalCount = data.TotalCount;
+                TotalPages = data.TotalPages;
+                $.each(TvChannelHotelList, function (i) {
+                    var TvChannelHotel = this
+                    addTvChannelHotelData(TvChannelHotel, i);
+                })
+                commondTableJs();
+                pager(PageSize, PageIndex, TotalPages, url);
+            }
+        );
+    }
+
+    function pager(pageSize, pageIndex, pageCount, url) {
+        var intPage = 7;  //数字显示
+        var intBeginPage = 0;//开始的页数
+        var intEndPage = 0;//结束的页数
+        var intCrossPage = parseInt(intPage / 2); //显示的数字
+        var strPage = "";
+        if (pageIndex > 1) {
+            strPage = strPage + '<ul class="pagination"><li class="prev"><a onclick ="refresh(' + (pageIndex - 1) + ')"><i class="icon-double-angle-left"></i></a></li>';
+        } else {
+            strPage = '<ul class="pagination"><li class="disabled prev"><a><i class="icon-double-angle-left"></i></a></li>';
+
+        }
+        if (pageCount > intPage) {//总页数大于在页面显示的页数
+            if (pageIndex > pageCount - intCrossPage) {//当前页数>总页数-3
+                intBeginPage = pageCount - intPage + 1;
+                intEndPage = pageCount;
+            }
+            else {
+                if (pageIndex <= intPage - intCrossPage) {
+                    intBeginPage = 1;
+                    intEndPage = intPage;
+                }
+                else {
+                    intBeginPage = pageIndex - intCrossPage;
+                    intEndPage = pageIndex + intCrossPage;
+                }
+            }
+        } else {
+            intBeginPage = 1;
+            intEndPage = pageCount;
+        }
+        if (pageCount > 0) {
+            for (var i = intBeginPage; i <= intEndPage; i++) {
+                {
+                    if (i == pageIndex) {//当前页<li class="active"><a>' + PageIndex + '</a></li>
+                        strPage = strPage + '<li class="active"><a>' + i + '</a></li>'
+                    }
+                    else {
+                        strPage = strPage + '<li><a onclick ="refresh(' + i + ')">' + i + '</a></li>';
+                    }
+                }
+            }
+        }
+        if (pageIndex < pageCount) {
+            strPage = strPage + '<li class="next"><a onclick ="refresh(' + (pageIndex + 1) + ')"><i class="icon-double-angle-right"></i></a></li>';
+        } else {
+            strPage = strPage + '<li class="disabled next"><a><i class="icon-double-angle-right"></i></a></li>';
+        }
+        $('#80bed29f540f41e794791dd8d7bfea1b').html(strPage + "</ul>");
+    }
+    function commondTableJs() {
+        $(".dataTable tbody tr:even").addClass("even");
+        $(".dataTable tbody tr:odd").addClass("odd");
+        $('table th input:checkbox').on('click', function () {
+            var that = this;
+            $(this).closest('table').find('tr > td:first-child input:checkbox')
+                .each(function () {
+                    this.checked = that.checked;
+                    $(this).closest('tr').toggleClass('selected');
+                });
+
+        });
+
+
+        $('[data-rel="tooltip"]').tooltip({ placement: tooltipPlacement });
+
+        function tooltipPlacement(context, source) {
+            var $source = $(source);
+            var $parent = $source.closest('table');
+            var off1 = $parent.offset();
+            var w1 = $parent.width();
+
+            var off2 = $source.offset();
+            var w2 = $source.width();
+
+            if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+            return 'left';
+        }
+    }//<label><input type="checkbox" class="ace"><span class="lbl"></span></label>
+    function addTvChannelHotelData(TvChannelHotel, index) {//ChannelOrder
+        var tableCode =
+        '<tr><td>' + TvChannelHotel.HotelName + '<input type="hidden" class="Channelkey" value="' + TvChannelHotel.ChannelId + '" /><input type="hidden" class="Hotelkey" value="' + TvChannelHotel.HotelId + '" /></td><td>' + TvChannelHotel.Name + '</td><td>' + TvChannelHotel.NameEn + '</td><td>' + TvChannelHotel.HostAddress + '</td><td>' + TvChannelHotel.ChannelOrder + '</td><td>' + TvChannelHotel.LastUpdateUser + '</td><td>' + (new Date(TvChannelHotel.LastUpdateTime)).Format("yyyy-MM-dd hh:mm:ss") + '</td>' +
+            '<td><div class="visible-md visible-lg hidden-sm hidden-xs action-buttons"><a data-optype="edit" class="green" href="javascript:void(0)"><i class="icon-pencil bigger-130"></i></a><a data-optype="delete" class="red" href="javascript:void(0)"><i class="icon-trash bigger-130"></i></a></div><div class="visible-xs visible-sm hidden-md hidden-lg"><div class="inline position-relative"><button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown"><i class="icon-caret-down icon-only bigger-120"></i></button><ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close"><li><a data-optype="view" href="javascript:void(0)" class="tooltip-info" data-rel="tooltip" title="" data-original-title="查看"><span class="blue"><i class="icon-zoom-in bigger-120"></i></span></a></li><li><a data-optype="eidt" href="javascript:void(0)" class="tooltip-success" data-rel="tooltip" title="" data-original-title="编辑"><span class="green"><i class="icon-edit bigger-120"></i></span></a></li><li><a data-optype="delete" href="javascript:void(0)" class="tooltip-error" data-rel="tooltip" title="" data-original-title="删除"><span class="red"><i class="icon-trash bigger-120"></i></span></a></li></ul></div></div></td></tr>';
+
+        document.getElementsByTagName('tbody')[0].innerHTML = document.getElementsByTagName('tbody')[0].innerHTML + tableCode;
+
+    }
+
+
+
+
+    var clickId;
+    var that;
+    $(document).ready(function () {
+        //修改
+        $(document).delegate("tr [data-optype=edit]", "click",
+            function () {
+                var hotelkey = GetHotelKey($(this));
+                var channelkey = GetChannelKey($(this));
+                openDialog(GetDefaultOpt('@OpType.Update.GetValueStr()', GetKey($(this))));
+
+                clickId = hotelkey + "|" + channelkey;
+            });
+        //查看
+        $(document).delegate("tr [data-optype=view]", "click",
+        function () {
+            openDialog(GetDefaultOpt('@OpType.View.GetValueStr()', GetKey($(this))));
+        });
+
+
+        //单行删除
+        $(document).delegate("tr [data-optype=delete]", "click",
+        function () {
+            that = this;
+            var tr = $(this).parents("tr");
+            var tds = $("td",tr);
+            $.messager.confirm("提示", "您是否确定要删除【" + $("td:first", tr).text() + " - " + $($("td", tr)[1]).text() +"】？", function () {
+                var $parent = $(that).closest('tr');
+                var hotelkey = GetHotelKey($parent);
+                var channelkey = GetChannelKey($parent);
+                $.ajax({
+                    type: 'POST',
+                    url: deleteUrl,
+                    data: { "ChannelId": channelkey, "HotelId": hotelkey },
+                    success: Success,
+
+                });
+
+            });
+        });
+
+        @*//启用禁用
+                    $(document).delegate("tr [name=Status]", "change",
+                            function () {
+                                var that = this;
+                                var isChecked = $(that).get(0).checked;
+                                var $parent = $(that).closest('tr');
+                                var url = '@Url.Action("UpdateUserStatus")';
+                                var postData = { uid: GetKey($parent), Status: isChecked }
+                                $.post(url, postData, function (data) {
+                                    if (data == "Success") {
+                                        var msg = isChecked ? "已启用" : "已禁用";
+                                        Mc.Msg(msg);
+                                    } else {
+                                        Mc.Error(data);
+                                    }
+                                });
+                            });*@
+
+        ///编辑页 启用禁用
+        $(document).delegate("#StatusView", "change",
+                function () {
+                    var that = this;
+                    var isChecked = $(that).get(0).checked;
+                    var $parent = $(that).closest('div');
+                    $parent.find("#Status").val(isChecked);
+
+                });
+        //批量删除
+        $(document).delegate("#btnDelete", "click",
+                function () {
+                    var selectArray = $('#viewTable').find('tr > td:first-child input:checkbox:checked');
+
+                    if (selectArray.length == 0) {
+                        Mc.Warning("请选择您要删除的行.");
+                        return;
+                    }
+                    $.messager.confirm("提示", "确认删除当前选中的" + selectArray.length + "条记录？!", function () {
+
+                        selectArray.each(function () {
+                            var $parent = $(this).closest('tr');
+                            $parent.remove();
+                        });
+
+                    });
+                });
+        //批量删除
+        $(document).delegate("#btnNew", "click",
+        function () {
+            openDialog(GetDefaultOpt('@OpType.Add.GetValueStr()', 0));
+        });
+        $(document).delegate("#btnTemplate", "click",
+        function () {
+            openDialog(AddDefaultTvTemplate());
+        });
+
+        $('#searchForm').bind('click', function () {
+            refresh('0&HotelId=' + $('#HotelId').val());
+        })
+
+    });
+
+    function GetDefaultOpt(type, key) {
+
+        var map = {
+            '@OpType.View.GetValueStr()': '@OpType.View.GetDescription()',
+            '@OpType.Add.GetValueStr()': '@OpType.Add.GetDescription()',
+            '@OpType.Update.GetValueStr()': "@OpType.Update.GetDescription()",
+            '@OpType.Delete.GetValueStr()': "@OpType.Delete.GetDescription()"
+        };
+        var opt = {};
+        opt.title = "模板管理 -> " + map[type];
+        opt.url = '@Html.Raw(Url.Action("Edit", new { type = "_type_", id = "_id_" }))'.replace('_id_', key).replace('_type_', type);
+
+        if (type != '@OpType.View.GetValueStr()') {
+            opt.saveclick = function () {
+                $("div.modal-dialog form").submit();
+                event.preventDefault();
+                return false;
+            };
+        }
+        return opt;
+    }
+    function AddDefaultTvTemplate() {
+        var opt = {};
+
+        opt.title = "酒店添加默认模板";
+        opt.url = '/HotelTvChannel/DefaultTvTemplate';
+        opt.saveclick = function () {
+            $("div.modal-dialog form").submit();
+            event.preventDefault();
+            return false;
+        };
+
+        return opt;
+    }
+
+    function GetKey(jqObj) {
+        var tagName = jqObj[0].tagName;
+        if (tagName == "A") {
+            var tr = jqObj.closest("tr");
+            return tr.find("input.key").val();
+        } else if (tagName == "TR") {
+            return jqObj.find("input.key").val();
+        }
+        return '';
+    }
+
+    function GetHotelKey(jqObj) {
+        var tagName = jqObj[0].tagName;
+        if (tagName == "A") {
+            var tr = jqObj.closest("tr");
+            return tr.find("input.Hotelkey").val();
+        } else if (tagName == "TR") {
+            return jqObj.find("input.Hotelkey").val();
+        }
+        return '';
+    }
+
+    function GetChannelKey(jqObj) {
+        var tagName = jqObj[0].tagName;
+        if (tagName == "A") {
+            var tr = jqObj.closest("tr");
+            return tr.find("input.Channelkey").val();
+        } else if (tagName == "TR") {
+            return jqObj.find("input.Channelkey").val();
+        }
+        return '';
+    }
+    function refresh(num) {
+        document.getElementsByTagName('tbody')[0].innerHTML = "";   
+       
+        setData(num);
+    }
+    function Success(data) {
+        if (data == "Success") {
+            Mc.Msg("操作成功！", function () {
+
+            });
+            refresh(PageIndex);
+        } else {
+            Mc.Error(data);
+        }
+    }
+
+    function SetKeyReadonly() {
+        $("div.modal-dialog input,select").attr("disabled", "disabled");
+    }
+
+    GetHotelNames('/Unity/GetHotelNames', $("#hotelName"), $("#HotelId"));
+</script>

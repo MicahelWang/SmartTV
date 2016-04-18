@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7CF570BC-6606-451D-BD4C-9965FCBADEC6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YeahTVApiLibrary.EntityFrameworkRepository</RootNamespace>
+    <AssemblyName>YeahTVApiLibrary.EntityFrameworkRepository</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <WarningLevel>2</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Extended">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.121\lib\net45\EntityFramework.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\mongocsharpdriver.1.9.2\lib\net35\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.9.6\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.6\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EFUnitOfWork.cs" />
+    <Compile Include="Helper\ExpressionVisitor.cs" />
+    <Compile Include="Mapping\AuthTVTokenMap.cs" />
+    <Compile Include="Mapping\AuthCertigierManagerMap.cs" />
+    <Compile Include="Mapping\AuthUserDeviceTraceMap.cs" />
+    <Compile Include="Mapping\CatchHotelMap.cs" />
+    <Compile Include="Mapping\CoreSysAttachmentMap.cs" />
+    <Compile Include="Mapping\BackupDeviceMap.cs" />
+    <Compile Include="Mapping\BehaviorLogMap.cs" />
+    <Compile Include="Mapping\CoreSysLoginMap.cs" />
+    <Compile Include="Mapping\CoreSysOtherLoginMap.cs" />
+    <Compile Include="Mapping\DeviceAppsMonitorMap.cs" />
+    <Compile Include="Mapping\OrderQRCodeRecordMap.cs" />
+    <Compile Include="Mapping\ErpPowerResourceMap.cs" />
+    <Compile Include="Mapping\ErpPowerRoleMap.cs" />
+    <Compile Include="Mapping\ErpPowerRoleResourceRelationMap.cs" />
+    <Compile Include="Mapping\ErpSysHotelManageMap.cs" />
+    <Compile Include="Mapping\ErpSysRelationManageMap.cs" />
+    <Compile Include="Mapping\ErpSysUserMap.cs" />
+    <Compile Include="Mapping\ScoreExchangMap.cs" />
+    <Compile Include="Mapping\GlobalConfigMap.cs" />
+    <Compile Include="Mapping\HCSConfigMap.cs" />
+    <Compile Include="Mapping\HCSDownloadTaskMap.cs" />
+    <Compile Include="Mapping\HCSJobMap.cs" />
+    <Compile Include="Mapping\HotelMovieTraceNoTemplateMap.cs" />
+    <Compile Include="Mapping\HotelPermitionMap.cs" />
+    <Compile Include="Mapping\LocalizeResourceMap.cs" />
+    <Compile Include="Mapping\MovieForLocalizeMap.cs" />
+    <Compile Include="Mapping\MovieTemplateMap.cs" />
+    <Compile Include="Mapping\MovieTemplateRelationMap.cs" />
+    <Compile Include="Mapping\HotelTvChannelMap.cs" />
+    <Compile Include="Mapping\HotelMovieTraceMap.cs" />
+    <Compile Include="Mapping\MovieMap.cs" />
+    <Compile Include="Mapping\HCSCacheVersionMap.cs" />
+    <Compile Include="Mapping\StoreOrderMap.cs" />
+    <Compile Include="Mapping\SystemLogMap.cs" />
+    <Compile Include="Mapping\TagMap.cs" />
+    <Compile Include="Mapping\TVChannelMap.cs" />
+    <Compile Include="Mapping\TvHotelConfigMap.cs" />
+    <Compile Include="Mapping\OrderProductsMap.cs" />
+    <Compile Include="Mapping\VODOrderMap.cs" />
+    <Compile Include="Mapping\VODRequestMap.cs" />
+    <Compile Include="Mapping\VODPaymentRequestMap.cs" />
+    <Compile Include="Mapping\VODPaymentResultMap.cs" />
+    <Compile Include="Mapping\VODRecordMap.cs" />
+    <Compile Include="Repertory\AuthTVTokenRepertory.cs" />
+    <Compile Include="Repertory\AuthCertigierManagerRepertory.cs" />
+    <Compile Include="Repertory\AuthUserDeviceTraceRepertory.cs" />
+    <Compile Include="Repertory\AppVersionRepertory.cs" />
+    <Compile Include="Repertory\BackupDeviceRepertory.cs" />
+    <Compile Include="Helper\ConditionBuilder.cs" />
+    <Compile Include="Repertory\OrderQRCodeRecordRepertory.cs" />
+    <Compile Include="Repertory\ScoreExchangRepertory.cs" />
+    <Compile Include="Repertory\GlobalConfigRepertory.cs" />
+    <Compile Include="Repertory\HCSCacheVersionRepertory.cs" />
+    <Compile Include="Repertory\HCSConfigRepertory.cs" />
+    <Compile Include="Repertory\HCSJobRepertory.cs" />
+    <Compile Include="Repertory\HCSTaskRepertory.cs" />
+    <Compile Include="Repertory\HotelPermitionRepertory.cs" />
+    <Compile Include="Repertory\MovieForLocalizeRepertory.cs" />
+    <Compile Include="Repertory\HotelMovieTraceRepertory.cs" />
+    <Compile Include="Repertory\HotelMovieTraceNoTemplateRepertory.cs" />
+    <Compile Include="Repertory\LocalizeResourceRepertory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Helper\PartialEvaluator.cs" />
+    <Compile Include="Repertory\StoreOrderRepertory.cs" />
+    <Compile Include="Repertory\TagRepertory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Repertory\VODPaymentRequestRepertory.cs" />
+    <Compile Include="Repertory\VODRequestRepertory.cs" />
+    <Compile Include="Repertory\VODPaymentResultRepertory.cs" />
+    <Compile Include="Repertory\VODOrderRepertory.cs" />
+    <Compile Include="Repertory\MovieTemplateRelationRepertory.cs" />
+    <Compile Include="Repertory\MovieTemplateRepertory.cs" />
+    <Compile Include="Repertory\SysAttachmentRepertory.cs" />
+    <Compile Include="Repertory\TVChannelRepertory.cs" />
+    <Compile Include="Repertory\MovieRepertory.cs" />
+    <Compile Include="Repertory\HotelTVChannelRepertory.cs" />
+    <Compile Include="Repertory\DeviceAppsMonitorRepertory.cs" />
+    <Compile Include="Repertory\SystemLogRepertory.cs" />
+    <Compile Include="Repertory\BehaviorLogRepertory.cs" />
+    <Compile Include="Repertory\TVHotelConfigRepertory.cs" />
+    <Compile Include="YeahTVLibraryContext.cs" />
+    <Compile Include="Mapping\AppPublishMap.cs" />
+    <Compile Include="Mapping\SystemConfigMap.cs" />
+    <Compile Include="Mapping\AppsMap.cs" />
+    <Compile Include="Mapping\DeviceTraceMap.cs" />
+    <Compile Include="Mapping\AppVersionMap.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repertory\BaseRepertory.cs" />
+    <Compile Include="Repertory\AppsRepertory.cs" />
+    <Compile Include="Repertory\DeviceTraceRepertory.cs" />
+    <Compile Include="Repertory\SystemConfigRepertory.cs" />
+    <Compile Include="Repertory\AppPublishRepertory.cs" />
+    <Compile Include="UnitOfWorkHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YeahTVApi.Common\YeahTVApi.Common.csproj">
+      <Project>{27ec8548-1bec-4f32-a43e-341430cd6ff3}</Project>
+      <Name>YeahTVApi.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.DomainModel\YeahTVApi.DomainModel.csproj">
+      <Project>{7b4ce815-38cb-4ee4-8860-8381cf2de60a}</Project>
+      <Name>YeahTVApi.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.Infrastructure\YeahTVApi.Infrastructure.csproj">
+      <Project>{5BD5DA36-20CB-4115-B7D6-39C0BAF42904}</Project>
+      <Name>YeahTVApi.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApiLibrary.Interface\YeahTVApiLibrary.Infrastructure.csproj">
+      <Project>{430afd5d-2462-4d0e-b2ca-e1c68032bfb0}</Project>
+      <Name>YeahTVApiLibrary.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

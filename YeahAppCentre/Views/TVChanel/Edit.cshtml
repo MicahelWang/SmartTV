@@ -1,0 +1,102 @@
+﻿
+@{
+    OpType opType = ViewBag.OpType;
+}
+<script type="text/javascript">
+
+    $(function () {
+        
+        var operation = '@opType';
+        if (operation == 'Add') {
+            document.getElementById('form0').action = addUrl;
+            bindUpload()
+        } else if (operation == 'Update') {
+            $.getJSON(url + "?PageIndex=1&Id="+clickId,
+            function (data) {             
+                $.each(data.Source, function () {
+                    $('#Id').attr('value', this.Id);
+                    $('#DefaultCode').attr('value', this.DefaultCode);
+                    $('#Name').attr('value', this.Name);
+                    $('#NameEn').attr('value', this.NameEn);
+                    $("#Category").val(this.CategoryEn + "|" + this.Category);
+                    //$("#CategoryEn").val(this.CategoryEn);
+                    $('#Icon').attr('value', this.Icon);             
+                });
+                bindUpload();
+            });   
+            document.getElementById('form0').action = updateUrl;
+            
+        }
+
+        $("form").removeData("validator").removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse($("form"));
+
+    });
+
+
+    function bindUpload() {   
+        var setting = {
+            single: true,
+            container: $("#imgIcon"),
+            targetOjb: $("#Icon")
+        };
+        $("#uploadIcon").binduploadify(setting);
+    }
+    
+</script>
+<form action="/TVChanel/AddTVChannel" class="form-horizontal" data-ajax="true" data-ajax-method="Post" data-ajax-success="Success" id="form0" method="post" role="form" novalidate="novalidate">
+    <input type="hidden" name="opType" value="2">
+    @if (opType == OpType.Update)
+    {
+        <input type="hidden" value="" id="Id"  name="Id"/>
+    }    
+    <div class="form-group hidden">
+
+        <label class="control-label col-md-2" for="DefaultCode">频道默认编号</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-val="true"  id="DefaultCode" name="DefaultCode" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Name">频道名称</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-val="true" data-val-required="频道名称 字段是必需的。" id="Name" name="Name" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="NameEn">频道名称(英文)</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-val="true" data-val-required="频道名称(英文) 字段是必需的。" id="NameEn" name="NameEn" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Category">所属类别</label>
+        <div class="col-md-10">
+            @Html.DropDownList("Category", ViewBag.SelectList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+        </div>
+    </div>
+    
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Icon">图片</label>
+        <div class="col-md-10">
+            <button id="uploadIcon" type="button">上传图片</button>
+            <label error-info ="">（图片不大于30K且图片仅支持jpg和png格式）</label>
+            <div style="background:black"><img id="imgIcon" style="display:none" /></div>
+            <input class="form-control text-box single-line" data-val="true" data-val-required="图片 字段是必需的。" id="Icon" name="Icon" type="hidden" value="">
+        </div>
+    </div>
+    
+</form>
+@if (opType == OpType.View)
+{
+    <script>
+        SetKeyReadonly();
+    </script>
+}
+
+
+
+  
+
+
+

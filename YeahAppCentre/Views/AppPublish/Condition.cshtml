@@ -1,0 +1,22 @@
+﻿
+@model YeahTVApi.DomainModel.SearchCriteria.AppPublishCriteria
+<div class="row">
+    <div class="col-sm-12 tab-search">
+        @using (Html.BeginForm("Index", "AppPublish", FormMethod.Post, new { novalidate = "novalidate" }))
+        {
+            <label> APP名称</label>
+            <span class="input-icon">
+                <input id="AppName" name="AppName" value="@ViewBag.Appname" class="form-control" data-provide="typeahead" autocomplete="off" />
+                @Html.HiddenFor(m => m.AppId)
+            </span>
+            <label> APP版本号</label>
+            <span class="input-icon">
+                @Html.EditorFor(model => model.VersionCode, new { htmlAttributes = new { @class = "" } })
+            </span>
+            <span class="input-icon">
+                <button type="submit" class="btn btn-sm btn-success">查询</button>
+            </span>
+        }
+        <div class="clear"></div>
+    </div>
+</div>

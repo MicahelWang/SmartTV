@@ -1,0 +1,168 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+<style type="text/css">
+        body {
+            background-color: blue;
+            font-size: 50px;
+            font-family: "微软雅黑";
+        }
+
+    ul {
+        padding:0;
+        margin:0;
+        float:left;
+    }
+
+    li {
+        padding:0;
+        margin:0;
+    }
+        #divTitle {
+            padding: 30px;
+            color: #499088;
+            text-align: center;
+        }
+
+
+        .input {
+            border: 0px;
+            background-color: white;
+            margin-left: 5px;
+            margin-right: 5px;
+            font-size: 25px;
+            color: gray;
+            width: 400px;
+            outline: none;
+        }
+
+        
+
+        .button {
+            background-color: #C4B266;
+            border: 0px;
+            color: white;
+            font-size: 30px;
+            font-family: "微软雅黑";
+            text-align: center;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            text-align: center;
+            width: 200px;
+            height: 50px;
+        }
+
+
+        li {
+            list-style-type: none;
+            line-height: 80px;
+            color: #494949;
+        }
+
+        #main {
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #fullbg {
+            background-color: gray;
+            left: 0;
+            opacity: 0.5;
+            position: absolute;
+            top: 0;
+            z-index: 3;
+            filter: alpha(opacity=50);
+            -moz-opacity: 0.5;
+            -khtml-opacity: 0.5;
+        }
+
+        #dialog {
+            background-color: #fff;
+            border: 5px solid rgba(0,0,0, 0.4);
+            height: 400px;
+            left: 50%;
+            margin: -200px 0 0 -250px;
+            padding: 1px;
+            position: fixed !important; /* 浮动对话框 */
+            position: absolute;
+            top: 50%;
+            width: 500px;
+            z-index: 5;
+            border-radius: 5px;
+            display: none;
+        }
+
+            #dialog p {
+                margin: 0 0 12px;
+                height: 24px;
+                line-height: 24px;
+                background: #CCCCCC;
+            }
+
+                #dialog p.close {
+                    text-align: right;
+                    padding-right: 10px;
+                }
+
+                    #dialog p.close a {
+                        color: #fff;
+                        text-decoration: none;
+                    }
+
+
+        /**************输入框*****************/
+        .box {
+            border: 1px solid #C7CDCB;
+            background-color: white;
+            border-radius: 15px;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            width: 550px;
+            height: 80px;
+        }
+
+            .box:hover {
+                border: 1px solid #FFDB2A;
+            }
+
+
+        .icon_mobile {
+            background-image: url('../img/car_icon.png');
+            background-repeat: no-repeat;
+            background-position: 10px -745px;
+            float: left;
+            width: 70px;
+            height: 80px;
+        }
+
+        .icon_Code {
+            background-image: url('../img/car_icon.png');
+            background-repeat: no-repeat;
+            background-position: 10px -560px;
+            float: left;
+            width: 70px;
+            height: 80px;
+        }
+
+        .box_left_mobile {
+            float: left;
+        }
+
+        .box_right_code {
+            float: left;
+        }
+    </style>
+<body>
+
+    <div id="divContent">
+        <div id="divTitle">
+            首页
+        </div>
+    </div>
+    <div id="main">
+        <ul>
+            <li style="height:450px; width:780px;background:url('/images/bg_tv.jpg') no-repeat"></li>
+        </ul>
+    </div>
+</body>

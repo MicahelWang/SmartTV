@@ -1,0 +1,126 @@
+﻿@model  DeviceTrace
+
+@{
+    OpType opType = ViewBag.OpType;
+}
+<script type="text/javascript">
+
+    $(function () {
+        $("form").removeData("validator").removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse($("form"));
+    });
+
+</script>
+
+@using (Ajax.BeginForm("Edit", new { }, new AjaxOptions
+{
+    HttpMethod = "Post",
+    OnSuccess = "Success",
+
+    //    OnBegin = "formValidate",
+}, new { @class = "form-horizontal", role = "form" }))
+{
+    <input type="hidden" name="opType" value="@opType.GetValueStr()" />
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.app.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.App.Name, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    if (opType.Equals(OpType.View))
+    {
+        <div class="form-group">
+            @Html.LabelFor(model => model.App.AppKey, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.EditorFor(model => model.App.AppKey, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.App.SecureKey, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.EditorFor(model => model.App.SecureKey, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    }
+    else
+    {
+        @Html.HiddenFor(m => m.App.Id)
+        @Html.HiddenFor(m => m.App.AppKey)
+        @Html.HiddenFor(m => m.App.SecureKey)
+    }
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.VersionCode, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.VersionCode, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.VersionName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.VersionName, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.App.PackageName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.App.PackageName, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.AppUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.AppUrl, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.App.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.App.Description, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.FileName, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.FileName, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.App.IconUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.App.IconUrl, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.App.IsSystem, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.App.IsSystem, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.Active, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+    </div>
+}
+@if (opType == OpType.View)
+{
+    <script>
+        SetKeyReadonly();
+    </script>
+}

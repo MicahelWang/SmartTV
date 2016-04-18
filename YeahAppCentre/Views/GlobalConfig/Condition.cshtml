@@ -1,0 +1,16 @@
+﻿@*@model YeahTVApi.DomainModel.SearchCriteria.CoreSysBrandCriteria*@
+<div class="row">
+    <div class="col-sm-12 tab-search">
+        @*@using (Html.BeginForm("Index", "Brand", FormMethod.Post, new { novalidate = "novalidate" }))
+        {*@
+            <label> 集团</label>
+            <span class="input-icon">
+                @*@Html.DropDownListFor(m => m.GroupId, ViewBag.Groups as IEnumerable<SelectListItem>, new { @class = "form-control" })*@
+            </span>
+            <span class="input-icon">
+                <button type="submit" class="btn btn-sm btn-success">查询</button>
+            </span>
+        @*}*@
+        <div class="clear"></div>
+    </div>
+</div>

@@ -1,0 +1,126 @@
+﻿@using YeahTVApi.DomainModel.SearchCriteria
+@{
+    ViewBag.Title = "电影管理";
+}
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            电影管理-@Html.Raw(UtilityHelper.GetHotelName((ViewBag.hotelMovieTraceCriteria as HotelMovieTraceNoTemplateCriteria).HotelId))
+            <small>
+                <i class="icon-double-angle-right"></i>
+                @*查看*@
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-header">
+                电影列表-@ViewBag.HotelName
+            </div>
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    @{
+                        var list = ViewBag.List as PagedViewList<HotelMovieTraceNoTemplate>;
+                        var condition = ViewBag.hotelMovieTraceCriteria as HotelMovieTraceNoTemplateCriteria;
+                    }
+                    @Html.Partial("Condition", condition)
+                    @Html.Partial("List", list)
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_info">
+                                <ul class="list-inline action-buttons">
+                                    @*<li data-original-title="新增" id="btnNew">
+                                            <div class="ui-pg-div"><a href="#"><span class="ui-icon icon-plus-sign purple"></span></a></div>
+                                        </li>*@
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            @{
+                                string querystring = condition.ToQueryString();
+                            }
+                            @Html.Pagination(list.PageIndex, list.PageSize, list.TotalCount, "#list", Url.Action("List") + querystring)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+@section scripts{
+    @Scripts.Render("~/bundles/GetHotelNames")
+    <script>
+    var changeUrl = "@Url.Action("ChangeToBackUp", "BackupDevice")";
+    $(function () {
+        //备用机、常用机转换
+        $(document).delegate("tr [data-optype=isUsed]", "click",
+        function () {
+            var that = this;
+            var tr = $(this).parents("tr");
+            var $parent = $(that).closest('tr');
+            var key = GetKey($parent);
+            var isUsedVal = $("input.isUsed", tr).val();
+            if (isUsedVal == "False") {
+                openDialog(GetDefaultChangeUseOpt($("td:eq(0)", tr).text().replace(/ /gi, ""), $("td:eq(2)", tr).text().replace(/ /gi, "")
+                    , $("input.version", tr).val().replace(/ /gi, ""), $("td:eq(1)", tr).text().replace(/ /gi, "")
+                    ));
+            }
+            if (isUsedVal == "True") {
+                $.messager.confirm("提示", "您是否确认要把设备【" + $("td:eq(0)", tr).text() + "】 转为备用机？", function () {
+                    //$parent.remove();
+                    $.ajax({
+                        type: 'POST',
+                        url: changeUrl,
+                        data: { "id": key },
+                        success: Success,
+                    });
+                });
+            }
+        });
+        GetHotelNames('@Url.Action("GetHotelNames", "Unity")', $("#hotelName"), $("#HotelId"));
+    });
+
+    function GetDefaultChangeUseOpt(serice, key, hotelId, hotelName) {
+        var opt = {};
+        opt.title = "备机管理 -> 转为常用机";
+        opt.url = '@Html.Raw(Url.Action("ChangeUseState", new { deviceSerice = "_type_", deviceType = "_id_"
+                  , hotelID = "_hotelId_",hotelName = "_hotelName_" }))'.replace('_id_', key).replace('_type_', serice)
+        .replace('_hotelId_', hotelId).replace('_hotelName_', hotelName);
+        opt.saveclick = function () {
+            $("div.modal-dialog form").submit();
+            event.preventDefault();
+            return false;
+        };
+        return opt;
+    }
+
+
+    function GetKey(jqObj) {
+        var tagName = jqObj[0].tagName;
+        if (tagName == "A") {
+            var tr = jqObj.closest("tr");
+            return tr.find("input.key").val();
+        } else if (tagName == "TR") {
+            return jqObj.find("input.key").val();
+        }
+        return '';
+    }
+
+    function Success(data) {
+        if (data === "Success") {
+            Mc.Msg("保存成功！", function () {
+                location.href = location.href;
+            });
+
+        } else {
+            Mc.Error(data);
+        }
+    }
+
+    function SetKeyReadonly() {
+        $("div.modal-dialog input,select").attr("disabled", "disabled");
+    }
+    </script>
+}

@@ -1,0 +1,83 @@
+﻿@model PagedViewList<YeahTVApi.DomainModel.Models.ViewModels.HotelMovieTraceViewModel>
+<div class="row" id="list">
+    <table id="viewTable" class="table table-striped table-bordered table-hover dataTable">
+        <thead>
+            <tr role="row">
+                <th></th>
+                <th>酒店名称</th>
+                <th>模板名称</th>
+                <th>模板描述</th>
+                <th>模板标签</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Source)
+            {
+                <tr>
+                    <td>
+                        <a class="empty" style="cursor:pointer;" onclick="expandTable(this);">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <input type="hidden" class="key" value="@item.HotelId" />
+                        <input type="hidden" class="moiveTemplateId" value="@item.MoiveTemplateId" />
+                        @Html.Action("GetHotelNameById", "DeviceTrace", new { hotelId = item.HotelId })
+                    </td>
+                    <td>
+                        @item.MoiveTemplateName
+                    </td>
+                    <td>
+                        @item.MoiveTemplateDescription
+                    </td>
+                    <td>
+                        @item.MoiveTemplateTages
+                    </td>
+                    <td>
+                        <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                            <a data-optype="view" class="blue" href="javascript:void(0)">
+                                <i class="icon-zoom-in bigger-130"></i>
+                            </a>
+                            <a data-optype="edit" class="green" href="javascript:void(0)">
+                                <i class="icon-pencil bigger-130"></i>
+                            </a>
+                        </div>
+                        <div class="visible-xs visible-sm hidden-md hidden-lg">
+                            <div class="inline position-relative">
+                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-caret-down icon-only bigger-120"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                    <li>
+                                        <a data-optype="view" href="javascript:void(0)" class="tooltip-info" data-rel="tooltip" title="" data-original-title="查看">
+                                            <span class="blue">
+                                                <i class="icon-zoom-in bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-optype="eidt" href="javascript:void(0)" class="tooltip-success" data-rel="tooltip" title="" data-original-title="编辑">
+                                            <span class="green">
+                                                <i class="icon-edit bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div>
+                            <a class="down" style="cursor:pointer;" onclick="changeDownLoadStatus(this);">
+                                <span class="label label-sm label-warning">批量下载</span>
+                            </a>
+                            <a class="cancel" style="cursor:pointer;" onclick="changeDownLoadStatus(this);">
+                                <span class="label label-sm label-success">取消批量下载</span>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+</div>

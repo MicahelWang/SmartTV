@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.BasicInfo" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.BasicInfo" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="ArrayOfMemberUsualContact">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MemberUsualContact" nillable="true" type="tns:MemberUsualContact" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMemberUsualContact" nillable="true" type="tns:ArrayOfMemberUsualContact" />
+  <xs:complexType name="MemberUsualContact">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IdCardNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IdCardType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MemberID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Mobile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifyTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sex" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MemberUsualContact" nillable="true" type="tns:MemberUsualContact" />
+  <xs:complexType name="ArrayOfMemberUsualHotel">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MemberUsualHotel" nillable="true" type="tns:MemberUsualHotel" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMemberUsualHotel" nillable="true" type="tns:ArrayOfMemberUsualHotel" />
+  <xs:complexType name="MemberUsualHotel">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CreateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="HotelID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="MemberID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifyTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Times" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MemberUsualHotel" nillable="true" type="tns:MemberUsualHotel" />
+  <xs:complexType name="UpgradeInfo">
+    <xs:annotation>
+      <xs:appinfo>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ActivityId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Caller" type="xs:int" />
+      <xs:element minOccurs="0" name="HotelId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MemberId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperateBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TargetLevel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="UpgradeType" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UpgradeInfo" nillable="true" type="tns:UpgradeInfo" />
+  <xs:complexType name="PersonMember">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BDCardNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Birthday" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Caller" type="xs:int" />
+      <xs:element minOccurs="0" name="ChargePoint" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ChargeValue" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CityCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CountryCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreditPoint" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CreditValue" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ExpireTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExtraFlags" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Fax" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Gender" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IDNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IDType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsForever" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsHanting" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MemberID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MemberLevel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Mobile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperateBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OtherMobile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentCardNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Point" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ProvinceCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegisterTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SourceChannel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceDetailCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SourceType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatusCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Town" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Value" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="WebName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="WebSite" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ZipCode" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="PersonMember" nillable="true" type="tns:PersonMember" />
+  <xs:complexType name="IDCard">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="BirthDate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IDNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Nation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Photo" nillable="true" type="xs:base64Binary" />
+      <xs:element minOccurs="0" name="ReleaseOrg" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sex" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValidDate" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="IDCard" nillable="true" type="tns:IDCard" />
+  <xs:complexType name="MemberInvoiceTitle">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Content" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Createby" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsDefault" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MemberID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifyTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Tid" type="xs:int" />
+      <xs:element minOccurs="0" name="Title" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Type" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MemberInvoiceTitle" nillable="true" type="tns:MemberInvoiceTitle" />
+  <xs:complexType name="MemberThirdParty">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BindTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsBinded" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsBinding" type="xs:boolean" />
+      <xs:element minOccurs="0" name="IsNew" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MemberID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperateBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PKID" type="xs:int" />
+      <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ThirdPartyID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ThirdPartyLevel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ThirdPartyName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ThirdPartySource" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="isSynchronization" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MemberThirdParty" nillable="true" type="tns:MemberThirdParty" />
+  <xs:complexType name="ArrayOfMemberThirdParty">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MemberThirdParty" nillable="true" type="tns:MemberThirdParty" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMemberThirdParty" nillable="true" type="tns:ArrayOfMemberThirdParty" />
+</xs:schema>

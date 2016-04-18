@@ -1,0 +1,127 @@
+﻿@model IList<ErpPowerResource>
+@{
+    Layout = null;
+}
+@{
+    var topMeun = Model.Where(_ => _.ParentFuncId == 0).OrderBy(m => m.Orders);
+}
+@{
+    var controllerName = ViewBag.ControllerName;
+    var actionName = ViewBag.ActionName;
+    var selectParent = ViewBag.SelectParent as int[];
+}
+
+
+<div class="sidebar" id="sidebar">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('sidebar', 'fixed')
+        } catch (e) {
+        }
+    </script>
+
+    <div class="sidebar-shortcuts" id="sidebar-shortcuts">
+        <div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
+            <button class="btn btn-success">
+                <i class="icon-signal"></i>
+            </button>
+
+            <button class="btn btn-info">
+                <i class="icon-pencil"></i>
+            </button>
+
+            <button class="btn btn-warning">
+                <i class="icon-group"></i>
+            </button>
+
+            <button class="btn btn-danger">
+                <i class="icon-cogs"></i>
+            </button>
+        </div>
+
+        <div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+            <span class="btn btn-success"></span>
+
+            <span class="btn btn-info"></span>
+
+            <span class="btn btn-warning"></span>
+
+            <span class="btn btn-danger"></span>
+        </div>
+    </div>
+    <!-- #sidebar-shortcuts -->
+    <ul class="nav nav-list">
+        @foreach (var item in topMeun)
+        {
+            var secondItemList = Model.Where(_ => _.ParentFuncId == item.Id).OrderBy(m => m.Orders);
+            <li class="@(selectParent.IsContains(item.Id) ? "active open" : "")">
+
+                @if (item.Type == "MODEL" && secondItemList.Any())
+                {
+                    <a href="#" class="dropdown-toggle">
+                        <i class="@item.Logo"></i>
+                        <span class="menu-text"> @item.DisplayName </span>
+
+                        <b class="arrow icon-angle-down"></b>
+                    </a>
+
+                    <ul class="submenu" style="@(selectParent.IsContains(item.Id) ? "display block;" : "")">
+                        @foreach (var sencond in secondItemList)
+                        {
+                            var thridItemList = Model.Where(_ => _.ParentFuncId == sencond.Id).OrderBy(m => m.Orders);
+                            <li class="@(selectParent.IsContains(sencond.Id) ? "active open" : "")">
+                                @if (sencond.Type == "MODEL" && thridItemList.Any())
+                                {
+                                    <a href="#" class="dropdown-toggle">
+                                        <i class="icon-double-angle-right"></i>
+                                        @sencond.DisplayName
+                                        <b class="arrow icon-angle-down"></b>
+                                    </a>
+
+                                    <ul class="submenu" style="@(selectParent.IsContains(item.Id) ? "display block;" : "")">
+                                        @foreach (var thrid in thridItemList)
+                                        {
+                                            <li class="@(selectParent.IsContains(thrid.Id) ? "active open" : "")">
+                                                <a href="@thrid.Path">
+                                                    <i class="@thrid.Logo"></i>
+                                                    @thrid.DisplayName
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <a href="@sencond.Path">
+                                        <i class="icon-double-angle-right"></i>
+                                        @sencond.DisplayName
+                                    </a>
+                                }
+
+                            </li>
+                        }
+                    </ul>
+
+                }
+                else
+                {
+                    <a href="@item.Path">
+                        <i class="@item.Logo"></i>
+                        <span class="menu-text"> @item.DisplayName </span>
+                    </a>}
+            </li>
+        }
+    </ul>
+    <!-- /.nav-list -->
+
+    <div class="sidebar-collapse" id="sidebar-collapse">
+        <i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+    </div>
+
+    <script type="text/javascript">
+        try {
+            ace.settings.check('sidebar', 'collapsed')
+        } catch (e) {
+        }
+    </script>
+</div>

@@ -1,0 +1,475 @@
+﻿
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="Scripts/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Content/jquery.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        .changeBG {
+         background:url(../../Content/img/wpxz.png);       
+         background-size:100% 100%;     
+          width:35%;height:35%;    
+        }
+
+        .menuchangeBG {
+            opacity: 0.5;
+        }
+
+        .btnchangeBG {
+        }
+
+        html, body {
+            margin: 0px;
+            height: 100%;
+        }
+
+        ul li {
+            font-size: 30px;
+            margin-bottom: 30px;
+        }
+
+        .size1 {
+            font-size: 16px;
+            
+        }
+       #GoodsListDiv .goods {
+        
+        }
+        .CarBG {   
+        background:url(../../Content/img/carxz.png);       
+         background-size:100% 100%;     
+        }
+        ul li {
+        margin-bottom:10%;
+        }
+            /*.goodxz {
+            padding:1.7% 2% 2% 2%;
+            }*/
+        #GoodsListDiv .goods {
+        padding:1.2% 1.5% 1.5% 1.5%;
+        
+        }
+         .btn {
+        background-color:#10325f;
+        height:120%;
+        width:100%;
+        color:#ffffff;
+        border:none;
+        font-size:20px
+        }
+        .OKBG {
+        background-color:#ff0090;       
+        }
+
+
+
+    </style>
+
+    <script>
+        var employees = [
+        { "name": "雪仑尔大毛巾", "abstract": "100%纯棉 精致绣花 多色搭配 吸水性好", "price": "49", "src": "/Content/img/mj.jpg" },
+        { "name": "Dior香水礼盒", "abstract": "EDP100ml 优雅大胆 浪漫诱惑", "price": "990", "src": "/Content/img/xs.jpg" },
+        { "name": "床品四件套", "abstract": "纯棉四件套 酒店式风格 简约大气 舒适自然", "price": "798", "src": "/Content/img/cp.jpg" },
+        { "name": "餐具套装", "abstract": "欧式餐具 限量发售 正品骨瓷 磨砂质感", "price": "488", "src": "/Content/img/cj.jpg" },
+        { "name": "雪仑尔21 全面加厚大毛巾", "abstract": "100%纯棉 精致绣花 多色搭配 吸水性好", "price": "49", "src": "/Content/img/xmj.jpg" },
+        { "name": "唐山瓷餐具套装", "abstract": "欧式餐具 限量发售 正品骨瓷 磨砂质感", "price": "49", "src": "/Content/img/cj.jpg" },
+        { "name": "Miss Dior迪奥小姐香水礼盒", "abstract": "EDP100ml 优雅大胆 浪漫诱惑", "price": "49", "src": "/Content/img/xs.jpg" },
+        { "name": "诸暨香榧158g ", "abstract": "饱满完整 入口酥香松脆", "price": "49.00", "src": "/Content/img/xxj.jpg" },
+        { "name": "雪仑尔51 全面加厚大毛巾", "abstract": "100%纯棉 精致绣花 多色搭配 吸水性好", "price": "49", "src": "/Content/img/cp.jpg" }
+        ];
+        var employees1 = [
+        { "name": "雪仑尔21 全面加厚大毛巾", "abstract": "100%纯棉 精致绣花 多色搭配 吸水性好", "price": "49.00", "src": "Content/img/xmj.jpg" },
+        { "name": "唐山高档骨质瓷餐具套装", "abstract": "欧式餐具 限量发售 正品骨瓷 磨砂质感", "price": "49.00", "src": "Content/img/cj.jpg" },
+        { "name": "Miss Dior迪奥小姐香水礼盒", "abstract": "EDP100ml 优雅大胆 浪漫诱惑", "price": "49.00", "src": "Content/img/xs.jpg" },
+        { "name": "雪仑尔51 全面加厚大毛巾", "abstract": "100%纯棉 精致绣花 多色搭配 吸水性好", "price": "49.00", "src": "Content/img/cp.jpg" },
+        { "name": "雪仑尔21 全面加厚大毛巾", "abstract": "100%纯棉 精致绣花 多色搭配 吸水性好", "price": "49.00", "src": "Content/img/xmj.jpg" },
+        { "name": "唐山高档骨质瓷餐具套装", "abstract": "欧式餐具 限量发售 正品骨瓷 磨砂质感", "price": "49.00", "src": "Content/img/cj.jpg" },
+        { "name": "Miss Dior迪奥小姐香水礼盒", "abstract": "EDP100ml 优雅大胆 浪漫诱惑", "price": "49.00", "src": "Content/img/xs.jpg" },
+        { "name": "雪仑尔51 全面加厚大毛巾", "abstract": "100%纯棉 精致绣花 多色搭配 吸水性好", "price": "49.00", "src": "Content/img/cp.jpg" }
+        ];
+        var employees2 = [
+        { "name": "韩国进口零食 宾格瑞香蕉牛奶饮料", "abstract": "风靡韩国 出游好伴侣", "price": "8.00", "src": "Content/img/nn.jpg" },
+        { "name": "百草味-精制猪肉脯200g", "abstract": "精选猪后腿肉 鲜艳色泽 无肉不欢", "price": "30.00", "src": "Content/img/xzrf.jpg" },
+        { "name": "百草味-诸暨香榧158g 诸暨枫桥特产 ", "abstract": "饱满完整 入口酥香松脆", "price": "49.00", "src": "Content/img/xxj.jpg" },
+        { "name": "哈达波子汽水日本进口碳酸饮料弹珠汽水", "abstract": "日本原装进口 夏日饮品 6口味任选", "price": "6.00", "src": "Content/img/dzqs.jpg" }
+        ];
+        var employees3 = [
+        { "name": "牙博士 冰白体验牙膏175g ", "abstract": "清凉舒适 ，满口清新", "price": "25.00", "src": "Content/img/yg.jpg" },
+        { "name": "洁丽雅纯棉毛巾 方格柔软吸水洗脸巾", "abstract": "品质上乘 慧心贴心更放心", "price": "25.00", "src": "Content/img/mj.jpg" },
+        { "name": " 阿迪达斯 沐浴露洗发水", "abstract": "洁面 止汗 沐浴 洗发", "price": "49.00", "src": "Content/img/myl.jpg" },
+        { "name": "雪仑尔251 全面加厚大毛巾", "abstract": "100%纯棉 精致绣花 多色搭配 吸水性好", "price": "49.00", "src": "Content/img/cp.jpg" }
+        ];
+        var employees4 = [
+        { "name": "农家自制酱排骨腊排骨", "abstract": "回味优长，不油腻，干香美味", "price": "32.00", "src": "Content/img/xpg.jpg" },
+        { "name": "牛肉特产 祖传秘制酱牛肉", "abstract": "精挑细选 回味无穷", "price": "48.00", "src": "Content/img/nr.jpg" },
+        { "name": "吐鲁番葡萄干500g纯天然无添加", "abstract": "酸酸甜甜  美丽诱人", "price": "54.00", "src": "Content/img/pt.jpg" },
+        { "name": "董城五香驴肉 风味酱驴", "abstract": "精心挑选嫩驴，肉质更加鲜嫩可口", "price": "42.00", "src": "Content/img/lr.jpg" }
+        ];
+
+        var goodsList = [employees, employees1, employees2, employees3, employees4];
+        var col = 0;  //被选中的列
+        var col1row = 0; //被选中第一列的行数       
+        var col2row = 0; //被选中第二列的行数
+        var col3row = 0; //被选中第三列的行数
+        var mid = -1; //物品列数
+        var price //被选中商品的价格
+        var name  //被选中商品的名称
+        var src   //被选中商品的图片路径
+        var yn = 0 //判断购物车中是否有选中的商品
+        var no = 0     //备选中商品在购物车的第几个
+        var sum = 0   //购物车中商品总价格        
+        var now = 0;
+        function keyFunction() {
+            if (event.keyCode == 37) {
+                left();
+            } else if (event.keyCode == 39) {
+                right();
+            } else if (event.keyCode == 40) {
+                down();
+            } else if (event.keyCode == 38) {
+                up();
+            } else if (event.keyCode == 13) {
+                enter();
+            } else if (event.keyCode == 48) {
+                back();
+            }
+        }
+        function left() {
+            col2row--
+            if (col2row < 0) {
+                col2row=0
+            }
+            if(col2row)
+            if (mid > 0) {
+                col=2
+            }
+            col--
+            if (col < 0) {
+                col = 0
+            }
+            if (col == 0) {
+                $("#nav").find("li").eq(col1row).removeClass("menuchangeBG")             
+                $("#GoodsListDiv").find(".goods").removeClass("changeBG")
+                col2row = 0
+                mid = 0;
+            }
+            if (col == 1) {
+                mid--
+                if (col2row < 2) {
+                    $("#GoodsListDiv").find(".goods").eq(col2row + 1).removeClass("changeBG")
+                }
+                $("#GoodsListDiv").find(".goods").eq(col2row).addClass("changeBG")
+                $("#Showgoods").find(".goods").eq(col3row).removeClass("CarBG")
+            }
+            col3row = 0
+        }
+        function right() {
+            if (mid<2) {
+                col = 0
+            }
+            col++
+            if (col > 2) {
+                col = 2
+            }
+            //选中商品
+            if (col == 1) {
+                mid++
+                if (mid >=1) {
+                    col2row++
+                }
+                $("#nav").find("li").eq(col1row).addClass("menuchangeBG")
+                if (col2row > 0) {
+                    $("#GoodsListDiv").find(".goods").eq(col2row-1).removeClass("changeBG")
+                }
+                $("#GoodsListDiv").find(".goods").eq(col2row).addClass("changeBG")
+            }
+            if (col2row > $("#Showgoods").find(".goods").length - 1) {
+                col == 2;
+            }
+            //选中购物车中商品
+            if (col == 2) {
+                //移除商品列表被选中的样式
+                $("#GoodsListDiv").find(".goods").removeClass("changeBG")
+                //添加购物车中商品被选中的             
+                $("#Showgoods").find(".goods").eq(col3row).addClass("CarBG")
+                if ($("#Showgoods").find("#POK").hasClass("CarBG")) {
+                    $("#Showgoods").find("#OK").addClass("OKBG")
+                }
+
+            }                     
+        }
+        function down() {
+            if (col == 0) {
+                col2row = 0
+                col1row++
+                if (col1row > 4) {
+                    col1row = 4
+                }
+                $("#nav").find("span").eq(col1row).click();
+                $("#nav").find("li").eq(col1row).addClass("active")
+                $("#nav").find("li").eq(col1row - 1).removeClass("active")
+            }
+            if (col == 1) {
+                col2row += 3
+                //判断选取行数是否大于商品列表最大行数
+                if (col2row > $("#GoodsListDiv").find(".goods").length - 1) {                 
+                    col2row = col2row - 3
+                }               
+                //判断选中的是否是第一行
+                if (col2row - 1 >= 0) {
+                    //移除上被选中的样式
+                    $("#GoodsListDiv").find(".goods").eq(col2row - 3).removeClass("changeBG")
+                }
+                $("#GoodsListDiv").find(".goods").eq(col2row).addClass("changeBG")             
+            }
+
+            if (col == 2) {
+                col3row++
+                if (col3row > $("#Showgoods").find(".goods").length - 1) {
+                    col3row = $("#Showgoods").find(".goods").length - 1
+                }
+                if (col3row - 1 >= 0) {
+                    $("#Showgoods").find(".goods").eq(col3row - 1).removeClass("CarBG")
+                }
+                $("#Showgoods").find(".goods").eq(col3row).addClass("CarBG")
+                if ($("#Showgoods").find("#POK").hasClass("CarBG")) {
+                    $("#Showgoods").find("#OK").addClass("OKBG")
+                }
+            }
+        }
+        function up() {
+            if (col == 0) {
+                col1row--
+                col2row = 0
+                if (col1row < 0) {
+                    col1row = 0
+                }
+                $("#nav").find("span").eq(col1row).click()
+                $("#nav").find("li").eq(col1row).addClass("active")
+                $("#nav").find("li").eq(col1row + 1).removeClass("active")
+            }
+            if (col == 1) {
+                col2row-=3
+                if (col2row < 0) {
+                    col2row = 0
+                }
+                $("#GoodsListDiv").find(".goods").eq(col2row+3).removeClass("changeBG")
+                $("#GoodsListDiv").find(".goods").eq(col2row).addClass("changeBG")
+
+            }
+            if (col == 2) {
+                col3row--
+                if (col3row < 0) {
+                    col3row = 0
+                }
+                $("#Showgoods").find("#OK").removeClass("OKBG")
+                $("#Showgoods").find(".goods").eq(col3row + 1).removeClass("CarBG")
+                $("#Showgoods").find(".goods").eq(col3row).addClass("CarBG")
+                
+            }
+        }
+        //判断光标是否选中确认购买
+        var nb = 0
+        function enter() {
+            yn = 0;
+            var num = $("#Buycar").find(".goods").length;//购物车中物品的个数
+            if (col == 0) { }
+            if (col == 1) {
+                src = $(".changeBG").find("img").attr("src");
+                price = $(".changeBG").find(".price").text();
+                name = $(".changeBG").find(".name").text();
+                //判断购物车中是否有选中的商品
+                for (i = 0; i < num; i++) {
+                    var sname = $("#Buycar").find(".goods").eq(i).find(".sname").text();
+                    if (name == sname) {
+                        yn = 1
+                        no = i
+                    }
+                };
+                if (yn == 0) {
+                    //在购物车中加入商品
+                    var AddDiv = "<div class='goods' style='margin-bottom:-8%;width:100%;height:30%;padding:7% 7% 7% 6.2%;overflow:hidden;'><div  style='margin-bottom:6%;width:100%;height:100%;overflow:hidden;background-color:#000000;background-color:rgba(0,0,0,0.4);'><div style='float:left;width:33%;height:100%'><img style='width:100%;height:100%' src='" + src + "'/></div><div style='float:left;width:57%;margin-left:5%;padding-top:3%;'><p class='sname'>" + name + "</p><p style='text-align:right;'>￥<span class='sprice'>" + price + "</span>&nbsp&nbspX&nbsp&nbsp<span class='snum'>1</span></p></div></div></div>"
+                    $("#Buycar").append(AddDiv);
+                }
+                else {
+                    var much = $("#Buycar").find(".goods").eq(no).find(".snum").text()
+                    much++
+                    $("#Buycar").find(".goods").eq(no).find(".snum").text(much)
+                }
+            }
+            if (col == 2) {
+                var much = $(".CarBG").find(".snum").text();
+                much--
+                if (much < 1 && much == "") {
+                    $(".CarBG").remove();
+                }
+                $(".CarBG").find(".snum").text(much);
+            }
+            var num2 = num = $("#Buycar").find(".goods").length;  //添加商品后购物车中物品的个数
+            //计算总价格
+            sum = 0 //初始化总价格
+            for (i = 0; i < num2; i++) {               
+                var sprice = $("#Buycar").find(".goods").eq(i).find(".sprice").text();            
+                var snum = $("#Buycar").find(".goods").eq(i).find(".snum").text();
+                sum += sprice * snum
+            }
+            $("#Showgoods").find("#sum").text(sum);
+            var miss = false
+            var ch = false
+            
+            if (col3row == $("#Showgoods").find(".goods").length - 1) {
+                ch = true
+            }
+            //弹出模态框
+            
+            if (col == 2 && $("#Showgoods").find("#POK").hasClass("CarBG")) {
+                if (col == 2 && ch) {
+                    
+                    $("#myModal").find("#showprice").text(sum);
+                    $("#Showgoods").find("#OK").attr("data-target", "#myModal")
+                    miss = true;
+                }
+                $("#Showgoods").find("#OK").click();
+                $("#Showgoods").find("#OK").removeAttr("data-target", "#myModal")
+                nb++
+            }
+            //关闭模态框
+            if (nb > 1) {
+                if (miss == true) {
+                    $(".modal-footer").find("#close").click();
+                }
+                nb = 0
+            }
+        }
+        //添加数据
+        function Addlist(list, id) {
+            var divname
+            var divprice
+            var divabstract
+            var divsrc
+            $(id).empty();
+            for (i = 0; i < list.length; i++) {
+                divname = list[i].name
+                divprice = list[i].price
+                divabstract = list[i].abstract
+                divsrc = list[i].src
+                var div = "<div id='wpxz' class='goods' style='border:1px solid red;width:33%;height:33%;overflow:hidden;float:left;'><div id='cg'  style='width:100%;height:100.9%;padding:6%'><div style='width:100%;height:100%;float:left'><img style='width:100%;height:100%' src='" + divsrc + "'' /></div><div style='float:left;width:100%;margin-top:-15%;overflow:hidden;background-color:#000000;background-color:rgba(0,0,0,0.4);height:15%;padding-left:3%;padding-right:3%;'><p style='float:left;color:#ffffff;'><span class='name'>" + divname + "</span></p><p style='text-align:right;float:right;color:#ffffff;'><span>￥</span><span class='price'>" + divprice + "</span></p></div></div></div>"
+                $(id).append(div);
+            }
+        }
+        $(function () {
+            Addlist(goodsList[0], GoodsListDiv);
+            cg();
+        })
+        //判断屏幕分辨率
+        function cg() {
+            if (window.screen.width < 1400) {
+                alert("444")
+                $("#GoodsListDiv").find(".goods").addClass("goodxz")
+            }
+        } 
+    </script>
+
+</head>
+<body>
+
+    @*<div class="goods" style="width:90%;height:20%;margin-bottom:2%;overflow:hidden;background-color:#000000;background-color:rgba(0,0,0,0.4);">
+        <div style="float:left;width:33%;height:100%"><img style="width:100%;height:100%" src="~/Content/img/xyy.jpg"/></div>
+        <div class="" style="float:left;width:60%;margin-left:2%;">
+            <p  style="padding-top:10%;display:block;text-align:right;margin-bottom:10%;">名称</p>
+            <p></p>
+        </div>
+    </div>*@
+    @*<div class='goods' style='width:380px;height:110px;overflow:hidden;margin-bottom:20px'><div style='float:left'><img style='width:100px;height:110px;float:left' src='" + src + "' /></div><div style='width:280px;height:110px;float:left;width:380px;height:150px;'><p class='sname'></p><p col><span class='sprice'>546544555555555555555555555555555</span>X<span class='snum'>1</span></p></div></div>*@
+    @*<div class="goods" style="overflow:hidden">
+        <div style="width:60px;height:50px;float:left"><img src='" + src + "' /></div>
+        <div style="float:left;width:100px;height:50px;">
+            <p class="sname">" + name + "</p>
+            <p><span class="sprice">" + price + "</span>X<span class='snum'></span></p>
+        </div>
+    </div>*@
+    @*<div class='goods' style='margin-bottom;overflow:hidden;margin-bottom:15px;background-color:#000000;background-color:rgba(0,0,0,0.3)'><div style="width:200px;height:100px;"><img style='margin-left:-30px;' src='" + src + "'></div><div style='width:150px'><p class='sname' style='font-size:11px;'>" + name + "</p><p style='font-size:10px;text-align:right;margin-top:-12px'><span hidden='hidden' class='sprice'>" + price + "</span>X<span class='snum' style='font-size:10px'>1</span></p></div></div>*@
+    @*<div class='goods' style="border:1px solid red;padding:5px;overflow:hidden;width:250px;height:250px"><div style='border:1px solid red;width:240px;height:240px;overflow:hidden;float:left;margin-right:7.5%;margin-bottom:4%'><div style='border:1px solid green;float:left'><img style='width:240px;height:240px' src='" + divsrc + "' ' /></div><div style='border:1px solid #428bca;float:left;width:100%;margin-top:-43px;overflow:hidden;background-color:#000000;background-color:rgba(0,0,0,0.4);height:40px;padding-left:10px;padding-right:10px;'><p style='float:left;line-height:40px;color:#ffffff;'><span>" + divname + "</span></p><p style='line-height:40px;text-align:right;float:right;color:#ffffff;'><span>$</span><span>" + divprice + "</span></p></div></div></div>*@
+    @*<div style="overflow:hidden;border:1px solid red;width:30%;height:3"><div style="margin-bottom: border:1px solid green;back-im"><img src='" + divsrc + "' /></div><div style="border:1px solid #428bca;margin-top:-30px;overflow:hidden;"><p style="float:left"><span>" + divname + "</span></p><p style="padding-left:10px;padding-right:10px;:30px; background-color:#000000;opacity:0.5;text-align:right;float:right"><span>$</span><span>" + divprice + "</span></p></div></div>*@
+    @*<div class='goods' style='overflow:hidden;border:1px solid red;width:30%;float:left'><div><img style='width:100%;height:100%' src='" + divsrc + "' /></div><div style='margin-top:-35px;'><span class='name' style='background-color:#000000 transparent'font-size:18px'>" + divname + "</span><span style='text-align:left'>￥<span style='font-size:15px;color:#ff6a00'>" + divprice + "</span></span></div></div>*@
+    @*<div class='goods' style='border:1px solid red;width:30%;float:left'><div><img src='" + divsrc + "' /></div><div><p class='name' style='font-size:18px'>" + divname + "</p><p style='font-size:15px'>" + divabstract + "</p><p style='font-size:15px;text-align:right'>价格<span style='color:#ff6a00'>￥<span style="text-align:right"></span></span><span style='font-size:15px;color:#ff6a00'>" + divprice + "</span></p></div></div>*@
+    @*<div class='goods' style='margin-bottom:40px'><div style='border:1px solid red'><img src='" + divsrc + "'></div><div style='border:1px solid red;float:left'><p class='name' style='font-size:18px'>" + divname + "</p><p style='font-size:15px'>" + divabstract + "</p><p style='font-size:15px;text-align:right'>价格<span style='color:#ff6a00'>￥</span><span style='font-size:15px;color:#ff6a00'>" + divprice + "</span></p></div></div>
+    <div class="goods"><div><img src='" + divsrc + "' /></div><div><p class='name' style='font-size:18px'>" + divname + "</p><p style='font-size:15px'>" + divabstract + "</p><p style='font-size:15px;text-align:right'>价格<span style='color:#ff6a00'>￥</span><span style='font-size:15px;color:#ff6a00'>" + divprice + "</span></p></div></div>*@
+
+    <div id="All" style="letter-spacing:1px;overflow:hidden;font-family:'Microsoft YaHei';height:100%;width:100%;background:url(../../Content/img/BG.jpg) top center no-repeat; background-size:cover;">
+        @*<div style="text-align:center;width:28%;height:30%;border:1px solid red;background:url(../../Content/img/wpxz.png);background-size:100%">
+            <div style="width:85%;height:90%;background-color:#000000;margin:10px"></div>
+        </div>*@
+        <div id="nav" style="width:21.5%;height:100%;float:left;border:1px solid #428bca;">
+            <ul class="nav nav-pills nav-stacked" style="text-align:center; font-size:xx-large;letter-spacing:4px;margin-top:80%;">
+                <li id="dd" role="presentation" class="active" onfocus="this.blur()"><a href="#GoodsListDiv" onclick="Addlist(goodsList[0], GoodsListDiv);" data-toggle="tab" onfocus="this.blur()"><span>限时购物</span></a></li>
+                <li role="presentation" onfocus="return false;"><a href="#GoodsListDiv" onclick="Addlist(goodsList[1], GoodsListDiv);" data-toggle="tab" onfocus="this.blur()"><span>酒店精品</span></a></li>
+                <li role="presentation"><a href="#GoodsListDiv" data-toggle="tab" onclick="Addlist(goodsList[2], GoodsListDiv);" onfocus="this.blur()"><span>食品饮料</span></a></li>
+                <li role="presentation" onfocus="return false;"><a href="#GoodsListDiv" data-toggle="tab" onclick="Addlist(goodsList[3], GoodsListDiv);" onfocus="this.blur()"><span>日常用品</span></a></li>
+                <li role="presentation" onfocus="return false;"><a href="#GoodsListDiv" data-toggle="tab" onclick="Addlist(goodsList[4], GoodsListDiv);" onfocus="this.blur()"><span>当地特产</span></a></li>
+            </ul>
+        </div>
+        <!--列表-->
+        <div class="tab-content tab-pane active size1" style="color:#ffffff;width:54.5%;height:100%;float:left">
+            <div  class="tab-pane active" id="GoodsListDiv" style="margin-top:5%;height:92%;width:95%;overflow:hidden;margin-left:3%;border:1px solid red">
+
+            </div>
+        </div>
+
+        <!--购物车-->
+        <div id="Showgoods" style="border:2px solid #ffffff;color:#ffffff;width:24%;height:100%;float:left;padding-left:2%;padding-right:1%">
+            <div class="but" style="margin-top:40px;height:16%">
+                <p style="font-size:20px;letter-spacing:3px;font-weight:bold">操作提示：</p>
+                <p style="font-size:18px">购物车内选中的商品按<span style="color:#fcff21">OK</span>键一次则减少可一件商品</p>               
+            </div>
+            <p style="letter-spacing:2px;font-size:20px;font-weight:bold">已选商品：</p>
+                <div style="border:1px solid #ffffff;width:94%;"></div>    
+            <div style="height:55%;padding-top:3%;">
+                <div id="Buycar" style="height:100%;margin-top:-6%" >
+
+                </div>
+            </div>  
+            <div style="border:1px solid #ffffff;width:94%;margin-bottom:-3%"></div>            
+            <div style="height:16%">
+                <h3>总计：<span style="color:#fcff21">￥</span><span id="sum" style="color:#fcff21">0</span></h3>
+                <div id="POK" class="goods" style="height:65%;width:95%;margin-top:-3%;border:1px solid red;padding:5.3% 6.8% 7.9% 6.7%"><button id="OK" data-toggle="modal" class="btn btn-primary btn-lg " tabindex="-1" onfocus="this.blur()">确认购买</button></div>
+            </div>
+        </div>
+        <!--显示支付结果-->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+             aria-labelledby="myModalLabel" aria-hidden="true" style="margin-top:50px;">
+            <div class="modal-dialog" style="margin-top:150px;height:300px;width:550px;">
+                <div class="modal-content" style="font-family:'Microsoft YaHei'">
+                    <div class=" modal-body" style="height:300px;width:500px;overflow:hidden;padding-top:50px;">
+                        <div style="float:left"><img src="Content/img/gwd.png" /></div>
+                        <div id="erro" style="float:left;margin-left:230px;margin-top:-160px;font-size:25px;color:#ff6a00;width:auto"><p style="font-size:25px;width:auto">您的商品已订购成功</p><p style="font-size:20px;color:#9d9d9d;width:auto">请去前台支付相应金额</p><p style="font-size:20px;margin-top:-10px;color:#9d9d9d;width:auto">并领取所购商品</p><p style="font-size:22px;color:#9d9d9d">总金额为:<span style="color:#ff6a00">￥</span><span style="color:#ff6a00" id="showprice"></span></p></div>
+                        <p style="font-size:20px;margin-top:180px;margin-left:180px;">按<span style="color:#ff6a00">OK</span>键返回商城页面</p>
+                    </div>
+                </div>
+            </div>
+            <div style="display:none" class="modal-footer">
+                <button href="#" id="close" class="btn" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script language="JavaScript" type="">
+        document.onkeydown = keyFunction</script>
+</body>
+</html>
+
+

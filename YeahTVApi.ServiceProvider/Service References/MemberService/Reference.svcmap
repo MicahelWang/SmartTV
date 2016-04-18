@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1dd586a4-acd9-461d-b26b-0308dfe55fcb" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://vwebsite02.httest.loc:2257/MemberService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MemberService.wsdl" MetadataType="Wsdl" ID="9c7b9140-47fa-404f-aa79-c38541c38d95" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberService.svc?wsdl" />
+    <MetadataFile FileName="MemberService.xsd" MetadataType="Schema" ID="f6bfeb38-1857-464c-8128-98ee3f3ffd77" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MemberService1.xsd" MetadataType="Schema" ID="0a577829-4130-43c5-ac56-9dda23ac6ac2" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd3" />
+    <MetadataFile FileName="MemberService4.xsd" MetadataType="Schema" ID="e9b1bada-654e-4c72-8524-9a2114209013" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd10" />
+    <MetadataFile FileName="MemberService2.xsd" MetadataType="Schema" ID="2353482e-3e4f-4fed-9fc0-3562cebc9a27" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd8" />
+    <MetadataFile FileName="MemberService3.xsd" MetadataType="Schema" ID="fdb86640-1804-4f40-8175-17e552c0401c" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd11" />
+    <MetadataFile FileName="MemberService5.xsd" MetadataType="Schema" ID="646e786c-7284-4b04-88f3-9a9ba04a9950" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd4" />
+    <MetadataFile FileName="MemberService6.xsd" MetadataType="Schema" ID="09636566-593a-4174-9417-3f1a0c639da2" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd1" />
+    <MetadataFile FileName="MemberService7.xsd" MetadataType="Schema" ID="a74238cc-7fb9-4aa0-b6c1-75b2270047dc" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd6" />
+    <MetadataFile FileName="MemberService8.xsd" MetadataType="Schema" ID="af63670e-abe9-43af-b8d3-6e2476b07999" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MemberService.disco" MetadataType="Disco" ID="8aa724df-b946-4df7-9a20-38e884c4c0fd" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberService.svc?disco" />
+    <MetadataFile FileName="MemberService9.xsd" MetadataType="Schema" ID="6c30f7f2-9330-4b59-836c-b6977f340f79" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd9" />
+    <MetadataFile FileName="MemberService10.xsd" MetadataType="Schema" ID="9a1bd186-0f11-4932-8b0c-889e81a089e9" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd5" />
+    <MetadataFile FileName="MemberService11.xsd" MetadataType="Schema" ID="94bf76da-6bf0-417f-a332-37489db0c4e6" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd7" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

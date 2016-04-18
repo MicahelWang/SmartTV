@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Dto" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Dto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity" />
+  <xs:complexType name="ArrayOfMemberReferrerDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MemberReferrerDto" nillable="true" type="tns:MemberReferrerDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMemberReferrerDto" nillable="true" type="tns:ArrayOfMemberReferrerDto" />
+  <xs:complexType name="MemberReferrerDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="ApplicantLevel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ApplicantName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CashValue" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CreateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsReturnCash" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ReturnCashTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="SysNo" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MemberReferrerDto" nillable="true" type="tns:MemberReferrerDto" />
+  <xs:complexType name="ArrayOfCoBrandedDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CoBrandedDto" nillable="true" type="tns:CoBrandedDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCoBrandedDto" nillable="true" type="tns:ArrayOfCoBrandedDto" />
+  <xs:complexType name="CoBrandedDto">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity" base="q1:BizEntityBaseOfCoBrandedDtoBV_P9UsXn">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CardName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CardType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="HasHaven" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CoBrandedDto" nillable="true" type="tns:CoBrandedDto" />
+</xs:schema>

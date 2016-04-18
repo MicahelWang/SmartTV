@@ -1,0 +1,462 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script src="../js/jquery.min.js"></script>
+    <title>打车、租车</title>
+
+    <script type="text/javascript">
+        $(window).load(function () {
+            loadVerifyCode();
+            jQuery.fn.center = function () {
+                this.css("position", "absolute");
+                this.css("top", ($(window).height() - this.height()) / 2 + $(window).scrollTop() + "px");
+                this.css("left", ($(window).width() - this.width()) / 2 + $(window).scrollLeft() + "px");
+                return this;
+            },
+           $("#divContent").center();
+        });
+        /**************加载验证码*****************/
+        function loadVerifyCode() {
+            // $('#divMsg').html("加载验证码");
+            $.ajax({
+                type: "GET",
+                url: "/CarTest/GetVerifyCode?" + RndNum(4),
+                dataType: "json",
+                success: function (data) {
+                    $('#imgVerifyCode').attr("src", data.imgData);
+                    $('#txtVerifyCode').val(data.imgCode);
+                    // $('#divMsg').html("验证码加载成功");
+
+                }
+            });
+        }
+
+        function RndNum(n) {
+            var rnd = "";
+            for (var i = 0; i < n; i++)
+                rnd += Math.floor(Math.random() * 10);
+            return rnd;
+        }
+
+        var action;
+        /**************叫车(验证js来源强生官网)*****************/
+        function takeTaix() {
+            //手机号码
+            var p = $('#txtMobileNo').val();
+            if (p == "") {
+                $('#divMsg').html('联系电话不能为空!');
+                $('#txtMobileNo').focus();
+                return;
+            }
+            if (!checknum(p)) {
+                $('#divMsg').html('联系电话只能为数字！');
+                $('#txtMobileNo').focus();
+                return;
+            }
+            //联系人姓氏
+            var contacts = $("#txtContacts");
+            if (contacts.val() == "") {
+                $('#divMsg').html('请输入联系人姓氏！');
+                contacts.focus();
+                return;
+            }
+            //上车路名
+            var onStation = $("#txtOnStation");
+            if (onStation.val() == "") {
+                $('#divMsg').html('请输入上车路名！');
+                onStation.focus();
+                return;
+            }
+            //近(路口)
+            var crossing = $("#txtCrossing");
+            if (crossing.val() == "") {
+                $('#divMsg').html('请输入交叉路口！');
+                crossing.focus();
+                return;
+            }
+            //门牌号码
+            var address = $("#txtAddress");
+            if (address.val() == "") {
+                $('#divMsg').html('请输入门牌号码！');
+                address.focus();
+                return;
+            }
+            //候车地点
+            var addressW = $("#txtAddressW");
+            if (addressW.val() == "") {
+                $('#divMsg').html('请输入候车地点！');
+                addressW.focus();
+                return;
+            }
+            //验证码
+            var rand = $('#txtVerifyCode').val();
+            if (rand.length != 4) {
+                $('#divMsg').html('您输入的验证码错误！');
+                $('#txtVerifyCode').focus();
+                return;
+            }
+
+            $('#divMsg').html("正在请求...请稍等.");
+            $.ajax({
+                type: "GET",
+                url: "/CarTest/TakeTaxiTest?mobileNo=" + p + "&contacts=" + contacts.val() + "&onStation=" + onStation.val() + "&crossing=" + crossing.val() + "&address=" + address.val() + "&addressW=" + addressW.val() + "&verifyCode=" + rand,
+                dataType: "text",
+                success: function (data) {
+                    console.log(data);
+                    if (data.indexOf('预定失败') == -1) {
+                        $('#divMsg').html("");
+                        showBg();
+                        action = setInterval("refreshResult(" + data + ")", 5000);
+                    } else {
+                        $('#divMsg').html(data);
+                        loadVerifyCode();
+                    }
+                }, error: function (err) {
+                    loadVerifyCode();
+                    $('#divMsg').html("err:" + err);
+                }
+            });
+        }
+
+        function checknum(p) {
+            var length = p.length;
+            var nums = "1234567890";
+            if (length == 11 || length == 8) {
+                for (var i = 0; i < length; i++) {
+                    var str = p.charAt(i);
+                    if (nums.indexOf(str) == -1) {
+                        $('#divMsg').html('您输入的不是有效的电话号码！');
+                        $('#txtMobileNo').focus();
+                        return false;
+                    }
+                }
+            } else {
+                $('#divMsg').html('您输入的不是有效的电话号码！');
+                $('#txtMobileNo').focus();
+                return false;
+            }
+            return true;
+        }
+        /*****************定时刷新叫车请求结果**********************/
+        function refreshResult(orderId) {
+            $.ajax({
+                type: "GET",
+                url: "/CarTest/GetOrderResult?orderId=" + orderId,
+                dataType: "text",
+                success: function (data) {
+                    try {
+                        var rdata = JSON.parse(data);
+                        $('#sp_strTime').html(rdata[0].strDate + " " + rdata[0].StrTime);
+                        //$('#sp_tel').html(rdata[0].tel);
+                        //$('#sp_onStation').html(rdata[0].onStation);
+                        // $('#sp_addressW').html(rdata[0].addressW);
+                        //$('#sp_num').html(rdata[0].num);
+                        $('#sp_carno').html(rdata[0].carno);
+                        $('#sp_status').html(rdata[0].status == 1 ? "订单成功" : "请等待...正在派车...");
+                        // $('#sp_content').html(rdata[0].context);
+                        if (rdata[0].status == 1) {
+                            // 成功日志
+                            $.ajax({
+                                type: "GET",
+                                url: "/CarTest/SaveSuccessLog?result=" + data,
+                                dataType: "text",
+                                success: function () {
+                                    console.log("记录日志成功");
+                                }
+                            });
+                            if (action)
+                                clearInterval(action);
+                        }
+                    } catch (e) {
+                        $('#divResultMsg').html("预定失败了，重新检查输入，然后重试");
+                        loadVerifyCode();
+                        if (action)
+                            clearInterval(action);
+                    }
+
+                }, error: function (xhr, textStatus, errorThrown) {
+
+                    $('#divResultMsg').html("预定失败了，重新检查输入，然后重试" + errorThrown);
+                    $("#divResultMsg").append("<br/>" + xhr.status);
+                    $("#divResultMsg").append("<br/>" + xhr.readyState);
+                    loadVerifyCode();
+                },
+            });
+
+        }
+
+
+
+        //显示灰色 jQuery 遮罩层 
+        function showBg() {
+            var bh = $("body").height();
+            var bw = $("body").width();
+            $("#fullbg").css({
+                height: bh,
+                width: bw,
+                display: "block"
+            });
+            $("#dialog").show();
+        }
+        //关闭灰色 jQuery 遮罩 
+        function closeBg() {
+            if (action)
+                clearInterval(action);
+            $("#fullbg,#dialog").hide();
+        }         
+       
+    </script>
+
+    <style type="text/css">
+        body {
+            background-color: #DBE9E9;
+            font-size: 50px;
+            font-family: "微软雅黑";
+        }
+
+
+        #divTitle {
+            margin: 20px;
+            color: #499088;
+            text-align: center;
+        }
+
+
+        .input {
+            border: 0px;
+            background-color: white;
+            margin-left: 5px;
+            margin-right: 5px;
+            font-size: 18px;
+            color: gray;
+            width: 400px;
+            outline: none;
+        }
+
+        .button {
+            background-color: #C4B266;
+            border: 0px;
+            color: white;
+            font-size: 30px;
+            font-family: "微软雅黑";
+            text-align: center;
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            text-align: center;
+            width: 200px;
+            height: 50px;
+        }
+
+
+        li {
+            list-style-type: none;
+            line-height: 80px;
+            color: #494949;
+        }
+
+        #main {
+            font-size: 20px;
+            text-align: center;
+        }
+
+        #fullbg {
+            background-color: gray;
+            left: 0;
+            opacity: 0.5;
+            position: absolute;
+            top: 0;
+            z-index: 3;
+            filter: alpha(opacity=50);
+            -moz-opacity: 0.5;
+            -khtml-opacity: 0.5;
+        }
+
+        #dialog {
+            background-color: #fff;
+            border: 5px solid rgba(0,0,0, 0.4);
+            height: 400px;
+            left: 50%;
+            margin: -200px 0 0 -250px;
+            padding: 1px;
+            position: fixed !important; /* 浮动对话框 */
+            position: absolute;
+            top: 50%;
+            width: 500px;
+            z-index: 5;
+            border-radius: 5px;
+            display: none;
+        }
+
+            #dialog p {
+                margin: 0 0 12px;
+                height: 24px;
+                line-height: 24px;
+                background: #CCCCCC;
+            }
+
+                #dialog p.close {
+                    text-align: right;
+                    padding-right: 10px;
+                }
+
+                    #dialog p.close a {
+                        color: #fff;
+                        text-decoration: none;
+                    }
+
+
+        /**************输入框*****************/
+        .box {
+            border: 1px solid #C7CDCB;
+            background-color: white;
+            border-radius: 15px;
+            -webkit-border-radius: 15px;
+            -moz-border-radius: 15px;
+            width: 550px;
+            height: 60px;
+            margin-top: 10px;
+        }
+
+            .box:hover {
+                border: 1px solid #FFDB2A;
+            }
+
+        .pre {
+            float: left;
+            width: 80px;
+            line-height: 60px;
+            font-size: 18px;
+            padding-left: 5px;
+            color: gray;
+            border-right: 1px solid #BBBBBB;
+        }
+
+        .div_input {
+            float: left;
+            width: 50px;
+            line-height: 60px;
+            font-size: 18px;
+            padding-left: 5px;
+            color: gray;
+        }
+
+        .icon_mobile {
+            background-image: url('../img/car_icon.png');
+            background-repeat: no-repeat;
+            background-position: 10px -745px;
+            float: left;
+            width: 70px;
+            height: 80px;
+        }
+
+        .icon_Code {
+            background-image: url('../img/car_icon.png');
+            background-repeat: no-repeat;
+            background-position: 10px -560px;
+            float: left;
+            width: 70px;
+            height: 80px;
+        }
+
+        .box_left_mobile {
+            float: left;
+        }
+
+        .box_right_code {
+            float: right;
+            line-height: 50px;
+            text-align: center;
+            padding-right: 5px;
+        }
+    </style>
+
+
+</head>
+<body>
+    <div id="divContent">
+        <div id="divTitle">
+            打车 <div style="color: gray; font-size: 12px;">强生出租:电调费:￥4.0</div>
+        </div>
+       
+        <div class="box hover">
+            <div class="pre">电话</div>
+            <div class="div_input">
+                <input id="txtMobileNo"  type="number" class="input" />
+            </div>
+        </div>
+
+        <div class="box hover">
+            <div class="pre">联系姓氏</div>
+            <div class="div_input">
+                <input id="txtContacts" maxlength="2" class="input" />
+            </div>
+        </div>
+        <div class="box hover">
+            <div class="pre">上车路名</div>
+            <div class="div_input">
+                <input id="txtOnStation" class="input" value="虹桥路" />
+            </div>
+        </div>
+        <div class="box hover">
+            <div class="pre">近(路口)</div>
+            <div class="div_input">
+                <input id="txtCrossing" class="input" value="剑河路" />
+            </div>
+        </div>
+        <div class="box hover">
+            <div class="pre">门牌号码</div>
+            <div class="div_input">
+                <input id="txtAddress" class="input" value="虹桥路2266号" />
+            </div>
+
+        </div>
+        <div class="box hover">
+            <div class="pre">候车地点</div>
+            <div class="div_input">
+                <input id="txtAddressW" class="input" value="虹桥路2266号" />
+            </div>
+        </div>
+        <div class="box hover">
+            <div class="pre">验证码</div>
+            <div class="div_input">
+                <input id="txtVerifyCode" class="input" />
+            </div>
+            <div class="box_right_code">
+                <img id="imgVerifyCode" />
+            </div>
+        </div>
+        <div style="color: gray; font-size: 12px;text-align: center">目前验证码:0会识别成9，2会识别成7(仅测试)</div>
+        <div style="text-align: center">
+            <input type="button" style="margin-top: 20px" value="叫车" class="button" onclick="javascript: takeTaix();" />
+        </div>
+        <div id="divMsg" style="font-size: 20px; color: gray; text-align: center" />
+    </div>
+    <div id="main">
+        <div id="fullbg"></div>
+        <div id="dialog">
+
+            <div id="divResultMsg">
+                <ul style="text-align: left">
+                    <li>候车时间:&nbsp;&nbsp;<span id="sp_strTime"></span></li>
+                    <!-- <li>订车电话:&nbsp;&nbsp;<span id="sp_tel"></span></li>
+                        <li>上车路名:&nbsp;&nbsp;<span id="sp_onStation"></span></li>
+                        <li>候车地点:&nbsp;&nbsp;<span id="sp_addressW"></span></li>
+                        <li>订车数量:&nbsp;&nbsp;<span id="sp_num"></span></li>-->
+                    <li>状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态:&nbsp;&nbsp;<span id="sp_status"></span></li>
+                    <li>车&nbsp;&nbsp;牌&nbsp;&nbsp;号:&nbsp;&nbsp;<span id="sp_carno"></span></li>
+                    <!--<li>说&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;明:&nbsp;&nbsp;<span id="sp_content"></span></li>-->
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div style="text-align: center">
+                <input type="button" style="margin-top: 20px" value="关闭" class="button" onclick="javascript: closeBg();" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

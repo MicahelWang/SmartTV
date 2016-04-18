@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Reservation" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Reservation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.RsvnAndRcpn" />
+  <xs:import schemaLocation="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Base" />
+  <xs:complexType name="RsvnSheet">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Base" base="q1:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ActivityCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ArrDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="ArrTime" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="AssType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AssureInfo" nillable="true" type="tns:RsvnSheetAssure" />
+          <xs:element minOccurs="0" name="BillID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BookerID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BookerLevel" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.RsvnAndRcpn" minOccurs="0" name="CategoryInfo" nillable="true" type="q2:CustomerCategory" />
+          <xs:element minOccurs="0" name="CategoryInfoStr" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CompanyName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="CreateDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DaysCount" type="xs:int" />
+          <xs:element minOccurs="0" name="DepDate" nillable="true" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="DepTime" nillable="true" type="xs:dateTime" />
+          <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="DetailsArray" nillable="true" type="q3:ArrayOfanyType" />
+          <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Hobbies" nillable="true" type="q4:ArrayOfanyType" />
+          <xs:element minOccurs="0" name="HotelID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="IsDelete" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsGiveBreakfast" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsHasWait" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="IsWait" nillable="true" type="xs:boolean" />
+          <xs:element minOccurs="0" name="LinkManMobile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LinkManName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="LinkManPhone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MemFax" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MemberEmail" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MemberMobile" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MemberName" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="MemberPhone" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="ModifyDate" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="OperatorID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrderID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="OrderStatus" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RcpnTypeStr" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="SrcId" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RsvnSheet" nillable="true" type="tns:RsvnSheet" />
+  <xs:complexType name="RsvnSheetAssure">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Base" base="q5:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="BillId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Type" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RsvnSheetAssure" nillable="true" type="tns:RsvnSheetAssure" />
+  <xs:complexType name="RsvnHobby">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Base" base="q6:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="HobbyId" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RsvnHobby" nillable="true" type="tns:RsvnHobby" />
+  <xs:complexType name="RsvnDetail">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Base" base="q7:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ActivityCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AssignCount" type="xs:int" />
+          <xs:element minOccurs="0" name="AssignsArray" nillable="true" type="tns:ArrayOfRsvnDetailAssign" />
+          <xs:element minOccurs="0" name="AvgPrice" type="xs:decimal" />
+          <xs:element minOccurs="0" name="CheckInCount" type="xs:int" />
+          <xs:element minOccurs="0" name="Days" type="xs:int" />
+          <xs:element minOccurs="0" name="FstPrice" type="xs:decimal" />
+          <xs:element minOccurs="0" name="HotelID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="PricesArray" nillable="true" type="tns:ArrayOfRsvnDetailPrice" />
+          <xs:element minOccurs="0" name="RateCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RoomCount" type="xs:int" />
+          <xs:element minOccurs="0" name="RoomType" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="StatusCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RsvnDetail" nillable="true" type="tns:RsvnDetail" />
+  <xs:complexType name="ArrayOfRsvnDetailAssign">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RsvnDetailAssign" nillable="true" type="tns:RsvnDetailAssign" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRsvnDetailAssign" nillable="true" type="tns:ArrayOfRsvnDetailAssign" />
+  <xs:complexType name="RsvnDetailAssign">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q8="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Base" base="q8:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="IsCheckIn" type="xs:boolean" />
+          <xs:element minOccurs="0" name="ReceiveID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RoomNo" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RsvnDetailAssign" nillable="true" type="tns:RsvnDetailAssign" />
+  <xs:complexType name="ArrayOfRsvnDetailPrice">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RsvnDetailPrice" nillable="true" type="tns:RsvnDetailPrice" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRsvnDetailPrice" nillable="true" type="tns:ArrayOfRsvnDetailPrice" />
+  <xs:complexType name="RsvnDetailPrice">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Base" base="q9:EntityBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ActivityCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="BizDay" type="xs:dateTime" />
+          <xs:element minOccurs="0" name="MarketPrice" type="xs:decimal" />
+          <xs:element minOccurs="0" name="Price" type="xs:decimal" />
+          <xs:element minOccurs="0" name="RateCode" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RoomType" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RsvnDetailPrice" nillable="true" type="tns:RsvnDetailPrice" />
+  <xs:complexType name="ArrayOfRsvnSheet">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RsvnSheet" nillable="true" type="tns:RsvnSheet" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRsvnSheet" nillable="true" type="tns:ArrayOfRsvnSheet" />
+</xs:schema>

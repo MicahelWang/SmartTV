@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Response" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Response" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Activity.ActivityCRMSync" />
+  <xs:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.eCoupons" />
+  <xs:complexType name="GetInviteCodeResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Activity.ActivityCRMSync" base="q1:CallResultDto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="InviteCode" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetInviteCodeResponse" nillable="true" type="tns:GetInviteCodeResponse" />
+  <xs:complexType name="GetMemberIDByInviteCodeResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Activity.ActivityCRMSync" base="q2:CallResultDto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="MemberID" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetMemberIDByInviteCodeResponse" nillable="true" type="tns:GetMemberIDByInviteCodeResponse" />
+  <xs:complexType name="BindMemberRelationResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q3="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Activity.ActivityCRMSync" base="q3:CallResultDto">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="BindMemberRelationResponse" nillable="true" type="tns:BindMemberRelationResponse" />
+  <xs:complexType name="GetGuestMemberInfoListResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q4="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Activity.ActivityCRMSync" base="q4:CallResultDto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="GuestMemberInfoList" nillable="true" type="tns:ArrayOfMemberInfoDetail" />
+          <xs:element minOccurs="0" name="HostMemberInfo" nillable="true" type="tns:MemberInfoDetail" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetGuestMemberInfoListResponse" nillable="true" type="tns:GetGuestMemberInfoListResponse" />
+  <xs:complexType name="ArrayOfMemberInfoDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MemberInfoDetail" nillable="true" type="tns:MemberInfoDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMemberInfoDetail" nillable="true" type="tns:ArrayOfMemberInfoDetail" />
+  <xs:complexType name="MemberInfoDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BindTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CreateBy" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CreateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ExpireTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="IsHanting" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MemberID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MemberLevel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MemberLevelName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RegisterTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Remark" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatusCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatusCodeName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MemberInfoDetail" nillable="true" type="tns:MemberInfoDetail" />
+  <xs:complexType name="GetWechatInfoListResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q5="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Activity.ActivityCRMSync" base="q5:CallResultDto">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="WechatInfoList" nillable="true" type="tns:ArrayOfWechatInfoDetail" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GetWechatInfoListResponse" nillable="true" type="tns:GetWechatInfoListResponse" />
+  <xs:complexType name="ArrayOfWechatInfoDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="WechatInfoDetail" nillable="true" type="tns:WechatInfoDetail" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfWechatInfoDetail" nillable="true" type="tns:ArrayOfWechatInfoDetail" />
+  <xs:complexType name="WechatInfoDetail">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AvatarUrl" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="City" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Country" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LanguageCode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MemberID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Province" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sex" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WechatInfoDetail" nillable="true" type="tns:WechatInfoDetail" />
+  <xs:complexType name="SetThirdPartyAttentionInfoResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q6="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Activity.ActivityCRMSync" base="q6:CallResultDto">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SetThirdPartyAttentionInfoResponse" nillable="true" type="tns:SetThirdPartyAttentionInfoResponse" />
+  <xs:complexType name="GiveCouponAsyncResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q7="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Activity.ActivityCRMSync" base="q7:CallResultDto">
+        <xs:sequence>
+          <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.eCoupons" minOccurs="0" name="FailedList" nillable="true" type="q8:ArrayOfFailedCouponInfo" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="GiveCouponAsyncResponse" nillable="true" type="tns:GiveCouponAsyncResponse" />
+  <xs:complexType name="ActivateValueResponse">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CRMResponseBase">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ActivateValueResponse" nillable="true" type="tns:ActivateValueResponse" />
+  <xs:complexType name="CRMResponseBase">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Code" type="xs:int" />
+      <xs:element minOccurs="0" name="IsOK" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CRMResponseBase" nillable="true" type="tns:CRMResponseBase" />
+  <xs:complexType name="MixPaymentRespone">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q9="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Activity.ActivityCRMSync" base="q9:CallResultDto">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="MixPaymentRespone" nillable="true" type="tns:MixPaymentRespone" />
+</xs:schema>

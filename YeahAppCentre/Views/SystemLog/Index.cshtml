@@ -1,0 +1,102 @@
+﻿@using YeahTVApi.DomainModel.SearchCriteria
+@using YeahTVApi.DomainModel
+@{
+    ViewBag.Title = "系统日志管理";
+}
+<style>
+
+    #fullContent {
+        word-break:break-all;
+    }
+</style>
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            系统日志
+            <small>
+                <i class="icon-double-angle-right"></i>
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-header">
+                系统日志列表
+            </div>
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    @{
+                        var list = ViewBag.List as PagedViewList<MongoLog>;
+                        var condition = ViewBag.logCriteria as MongoCriteria;
+                    }
+                    @Html.Partial("Condition", condition)
+                    @Html.Partial("List", list) 
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_info">
+                                <ul class="list-inline action-buttons">
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            @{
+                                string querystring = condition.ToQueryString();
+                            }
+                            @if (list.Source.Count > 0)
+                            {
+                                @Html.Pagination(list.PageIndex, list.PageSize, list.TotalCount, "#list", Url.Action("List") + querystring)
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- inline scripts related to this page -->
+@section scripts{
+<script src="~/Scripts/reduceContent.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            //查看
+            $(document).delegate("tr [data-optype=view]", "click",
+                function () {
+                    openDialog(GetDefaultOpt('@OpType.View.GetValueStr()', GetKey($(this))));
+                });
+        });
+
+
+
+        function GetDefaultOpt(type, key) {
+            var map = {
+                '@OpType.View.GetValueStr()': '@OpType.View.GetDescription()',
+                '@OpType.Add.GetValueStr()': '@OpType.Add.GetDescription()',
+                '@OpType.Update.GetValueStr()': "@OpType.Update.GetDescription()",
+                '@OpType.Delete.GetValueStr()': "@OpType.Delete.GetDescription()"
+            };
+            var opt = {};
+            opt.title = "系统日志 -> " + map[type];
+            opt.url = '@Html.Raw(Url.Action("Edit", new {type = "_type_", id = "_id_"}))'.replace('_id_', key).replace('_type_', type);
+            return opt;
+        }
+
+
+        function GetKey(jqObj) {
+            var tagName = jqObj[0].tagName;
+            if (tagName == "A") {
+                var tr = jqObj.closest("tr");
+                return tr.find("input.key").val();
+            } else if (tagName == "TR") {
+                return jqObj.find("input.key").val();
+            }
+            return '';
+        }
+        function SetKeyReadonly() {
+            $("div.modal-dialog input,select,textarea").attr("readonly", "readonly");
+        }
+
+    </script>
+}

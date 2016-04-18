@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.RsvnAndRcpn" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.RsvnAndRcpn" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="CustomerCategory">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="LevelId" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="categoryStr" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CustomerCategory" nillable="true" type="tns:CustomerCategory" />
+  <xs:complexType name="SrcCRS">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Src">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SrcCRS" nillable="true" type="tns:SrcCRS" />
+  <xs:complexType name="Src">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="srcId" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Src" nillable="true" type="tns:Src" />
+  <xs:complexType name="SrcOther">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Src">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SrcOther" nillable="true" type="tns:SrcOther" />
+  <xs:complexType name="SrcETT">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Src">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SrcETT" nillable="true" type="tns:SrcETT" />
+  <xs:complexType name="SrcGDS">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Src">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SrcGDS" nillable="true" type="tns:SrcGDS" />
+  <xs:complexType name="SrcWeb">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Src">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SrcWeb" nillable="true" type="tns:SrcWeb" />
+  <xs:complexType name="CstCtgyBookingCard">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CustomerCategory">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CardNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Info" nillable="true" type="tns:SheetGuest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CstCtgyBookingCard" nillable="true" type="tns:CstCtgyBookingCard" />
+  <xs:complexType name="SheetGuest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Fax" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Mobile" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Phone" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SheetGuest" nillable="true" type="tns:SheetGuest" />
+  <xs:complexType name="CstCtgyCompanyMember">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CustomerCategory">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CardNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Info" nillable="true" type="tns:SheetGuest" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CstCtgyCompanyMember" nillable="true" type="tns:CstCtgyCompanyMember" />
+  <xs:complexType name="CstCtgyMember">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CustomerCategory">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="CardNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Info" nillable="true" type="tns:SheetGuest" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CstCtgyMember" nillable="true" type="tns:CstCtgyMember" />
+  <xs:complexType name="CstCtgyNonMember">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CustomerCategory">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CstCtgyNonMember" nillable="true" type="tns:CstCtgyNonMember" />
+  <xs:complexType name="RcpnTypeFree">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReceptionType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RcpnTypeFree" nillable="true" type="tns:RcpnTypeFree" />
+  <xs:complexType name="ReceptionType">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="receptionTypeStr" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReceptionType" nillable="true" type="tns:ReceptionType" />
+  <xs:complexType name="RcpnTypeHour">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReceptionType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Hours" type="xs:int" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RcpnTypeHour" nillable="true" type="tns:RcpnTypeHour" />
+  <xs:complexType name="RcpnTypeLongTerm">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReceptionType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ContractNo" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RcpnTypeLongTerm" nillable="true" type="tns:RcpnTypeLongTerm" />
+  <xs:complexType name="RcpnTypeMeeting">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReceptionType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ContractNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RefGroupRecID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RefOrderNo" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RcpnTypeMeeting" nillable="true" type="tns:RcpnTypeMeeting" />
+  <xs:complexType name="RcpnTypeNormal">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReceptionType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RcpnTypeNormal" nillable="true" type="tns:RcpnTypeNormal" />
+  <xs:complexType name="RcpnTypeTrip">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReceptionType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="ContractNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RefGroupRecID" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="RefOrderNo" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RcpnTypeTrip" nillable="true" type="tns:RcpnTypeTrip" />
+  <xs:complexType name="RcpnTypeSelf">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ReceptionType">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RcpnTypeSelf" nillable="true" type="tns:RcpnTypeSelf" />
+  <xs:complexType name="SrcHotel">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:Src">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SrcHotel" nillable="true" type="tns:SrcHotel" />
+  <xs:complexType name="CstCtgyAgency">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:CustomerCategory">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="AgencyId" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="AgencyOrderNo" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="CstCtgyAgency" nillable="true" type="tns:CstCtgyAgency" />
+</xs:schema>

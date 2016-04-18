@@ -1,0 +1,195 @@
+﻿
+<h3 class="blue">首页广告内容<label style="display:none;color:red" id="picCarouselState">(修改中)</label></h3>
+<script src="~/Scripts/assets/js/ace-elements.min.js"></script>
+<script src="~/Scripts/assets/js/fuelux/fuelux.spinner.min.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+        //  setSpaner();
+        CarouselUpdaloadImage($("#PicCarouselBtn"));
+       getPic();
+    });
+    function setSpaner(ab) {
+        $('#spinner1').ace_spinner({ value: ab || 1, min: 1, max: 10, step: 1, btn_up_class: 'btn-info', btn_down_class: 'btn-info' })
+				.on('change', function () {
+				    $('#picCarouselState').css('display', 'block');
+				});
+    }
+    function CarouselUpdaloadImage(obj) {
+        var Coversetting = {
+            single: true,
+            container: $("#PicCarouselsrc"),
+            targetOjb: $("#PicCarouselValue"),
+            showFullPath: true,
+            limitSize: 500,
+            callback: function (data) {
+                var t = $("tr.temp").clone(true);
+                t.removeClass("temp hidden").find("td:eq(2)").text(data.FilePath);
+                t.show().find("td:first").text($("#tbodyPic").find("tr").length + 1);
+                $("#tbodyPic").append(t);
+                $(obj).html('<i class="icon-cloud-upload bigger-110"></i>上传图片')
+                $("#picCarouselState").css("display", "block");
+            }
+        };
+        $(obj).binduploadify(Coversetting);
+    }
+    function getPic() {
+        $.ajax({
+            async: true,
+            type: 'Get',
+            url: "/IUHotelConfig/IUPicCarousel",
+            data: { "brandID": brandID },
+            dataType: "json",
+            success: function (resultResponse) {
+                try {
+                    if (resultResponse == "") {
+                        return false;
+                    }
+                    var resultResponse = JSON.parse(resultResponse);
+                    $.each(resultResponse.home_pictures, function (i, v) {
+                        var t = $("tr.temp").clone(true);
+                        t.removeClass("temp hidden").find("td:eq(2)").text(v);
+                        t.show().find("td:first").text(i + 1);
+                        $("#tbodyPic").append(t);
+                    });
+                    setSpaner(resultResponse.home_pictures_cycle_time);
+                }
+                catch (e) {
+                    setSpaner(1);
+                }
+            },
+            error: function (a) {
+                console.log("IUPicCarousel", a);
+                setSpaner(1);
+            }
+        });
+    }
+    function savePic(obj) {
+        var pars = {
+            "home_pictures": [
+              "http://7xk6tw.dl1.z0.glb.clouddn.com/iu_home_ad0.png",
+              "http://7xk6tw.dl1.z0.glb.clouddn.com/iu_home_ad1.jpg",
+              "http://7xk6tw.dl1.z0.glb.clouddn.com/iu_home_ad2.jpg",
+              "http://7xk6tw.dl1.z0.glb.clouddn.com/iu_home_ad3.jpg",
+              "http://7xk6tw.dl1.z0.glb.clouddn.com/iu_home_ad4.jpg"
+            ],
+            "home_pictures_cycle_time": 3,
+            "home_background_musaudio": "http://7xj6u1.com2.z0.glb.qiniucdn.com/iu_IAmYou_startMusic.mp3",
+            "brandID": brandID
+        };
+        pars.home_pictures = [];
+        $.each($("#tbodyPic tr"), function (i, v) {
+            pars.home_pictures.push($(v).find("td:eq(2)").text());
+        });
+        pars.home_pictures_cycle_time = $("#spinner1").val();
+        $.ajax({
+            async: true,
+            type: 'Post',
+            url: "/IUHotelConfig/IUPicCarousel",
+            data: pars,
+            dataType: "json",
+            beforeSend: function () {
+                $(obj).attr("disabled", true);
+            },
+            complete: function () { $(obj).removeAttr("disabled"); },
+            success: function (data) {
+                alert(data);
+                if (data == "操作成功！")
+                $("#picCarouselState").css("display", "none");
+            },
+            error: function (a) {
+                console.log(a);
+            }
+        });
+    }
+    function movePic(o) {
+        var prev = $(o).parents("tr").prev();
+        if (prev.length > 0) {
+            $(o).parents("tr").insertBefore(prev);
+            $("#picCarouselState").css("display", "block");
+        }
+    }
+    function lookPic(obj) {
+        $("#modalContent").html("<img style='width:100%;' src=" + $(obj).parents("tr").find("td:eq(2)").text() + ">");
+        $("#modal").modal("show");
+        $("div.modal-backdrop").css("overflow", "hidden");
+    }
+</script>
+<style>
+
+</style>
+<div style="padding:0px;margin:0px;" action="/TVChanel/AddTVChannel" class="form-horizontal col-md-6" data-ajax="true" data-ajax-method="Post" data-ajax-success="Success" id="form0" method="post" role="form" novalidate="novalidate">
+    <div class="col-md-12" style="padding:0px;margin:0px;">
+        <div class="col-md-10" style="padding:0px;margin:0px;">
+            <table class=" table table-striped table-bordered table-hover datatable text-center">
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>类型</th>
+                        <th>文件</th>
+                        <th>操作</th>
+                    </tr>
+                    <tr class="temp hidden">
+                        <td>1</td>
+                        <td>图片</td>
+                        <td style="text-align:left;">http://7xk6tw.dl1.z0.glb.clouddn.com/iu_home_ad0.png</td>
+                        <td>
+                            <a data-optype="view" href="javascript:void(0)" onclick="movePic(this)" class="tooltip-info" data-rel="tooltip" title="" data-original-title="上移">
+                                上移
+                            </a>|
+                            <a data-optype="isUsed" href="javascript:void(0)" onclick="if (confirm('您确定要删除该图片吗?')) { $(this).parents('tr').remove(); $('#picCarouselState').css('display', 'block'); }" class="tooltip-success" data-rel="tooltip" title="" data-original-title="删除">
+                                删除
+                            </a>|
+                            <a data-optype="isUsed" href="javascript:void(0)" onclick="lookPic(this);" class="tooltip-success" data-rel="tooltip" title="" data-original-title="查看">
+                                查看
+                            </a>
+                        </td>
+                    </tr>
+                </thead>
+                <tbody id="tbodyPic"></tbody>
+            </table>
+        </div>
+    </div>
+    <br /><br />
+    <div class="form-group">
+        <div class="col-md-5 input-group">
+            <span class="input-group-btn">
+                轮播时间：(单位s)
+            </span>
+            <input type="text" onfocus="this.blur()" class="input-mini spinner-input form-control" style="" id="spinner1" maxlength="3">
+        </div>
+    </div>
+    <br /><br />
+    <div class="form-group">
+        <div class="col-md-5 input-group">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-success btn-sm" onclick="savePic(this)">
+                    <i class="icon-ok bigger-110"></i>
+                    应用到电视
+                </button>
+                <button type="button" class="btn btn-primary  btn-sm back">
+                    <i class="icon-reply  bigger-110"></i>
+                    返回
+                </button>
+            </span>
+            <span class="input-group-btn">
+            </span>
+        </div>
+    </div>
+</div>
+<div class="col-md-6" style="padding:0px;margin:0px;">
+    <h4>添加一项</h4>
+    <div class="col-md-12" style="padding:0px;margin:0px;">
+        <div class="col-md-7" style="padding:0px;margin:0px;"><input type="text" id="PicCarouselValue" readonly="readonly" class="form-control search-query hidden"></div>
+    </div>
+    <div>
+        <button class="btn  btn-purple btn-sm" id="PicCarouselBtn">
+            <i class="icon-cloud-upload bigger-110"></i>
+            上传图片
+        </button><label error-info="">图片文件格式为png/jpg且图片大小不超过500KB</label>
+    </div>
+    <br />
+    <div class="col-md-8 left" style="padding-left:0px;">
+        <img id="PicCarouselsrc" src="" style="width:500px;height:350px;" />
+    </div>
+</div>

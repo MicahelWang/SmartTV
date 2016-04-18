@@ -1,0 +1,34 @@
+﻿@model YeahTVApi.DomainModel.SearchCriteria.DeviceTraceCriteria
+<div class="row">
+    <div class="col-sm-12 tab-search">
+        @using (Html.BeginForm("Index", "DeviceTrace", FormMethod.Post, new { novalidate = "novalidate" }))
+        {
+            <label> 设备类型</label>
+            <span class="input-icon">
+                @Html.DropDownListFor(model => model.DeviceType, DropDownExtensions.GetSelectList(typeof(DeviceType), Model.DeviceType.HasValue ? Model.DeviceType.Value.GetValueStr() : ""))
+            </span>
+            <label> 设备号</label>
+            <span class="input-icon">
+                @Html.EditorFor(model => model.DeviceSeries, new { htmlAttributes = new { @class = "" } })
+            </span>
+
+            <label> 房间号</label>
+            <span class="input-icon">
+                @Html.EditorFor(model => model.RoomNo, new { htmlAttributes = new { @class = "" } })
+            </span>
+
+            <label> 酒店名称</label>
+            <span class="input-icon">
+                <input id="hotelName" name="hotelName" value="@ViewBag.HotelName" class="form-control" data-provide="typeahead" autocomplete="off" />
+                @Html.HiddenFor(m => m.HotelId)
+            </span>
+            <span class="input-icon">
+                <button type="submit" class="btn btn-sm btn-success">查询</button>
+            </span>
+
+            @Html.HiddenFor(m => m.SortFiled);
+            @Html.HiddenFor(m => m.OrderAsc);
+        }
+        <div class="clear"></div>
+    </div>
+</div>

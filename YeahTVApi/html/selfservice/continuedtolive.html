@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>续住</title>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex" />
+    <script src="../js/jquery.min.js"></script>
+ 
+    <script type="text/javascript">
+        $.ajax({
+            type: "GET",
+            url: "/Price/checkOut?GeOrderPrice=" + sReceiveId,
+            dataType: "json",
+            success: function (data) {
+                if (data.ResultType == 0) {
+                    window.location.href = "checkout.html";
+                } else {
+                    alert(data.Message);
+                }
+
+            }
+        });
+
+    </script>
+</head>
+<body class="xuzhu">
+   		<header class="xz_name">续住</header>
+   		<div class="xz_main">
+		   <div class="xz_now">
+			   <ul class="clearfix">
+				   <li>高级双人房(8103)
+				   </li>
+				   <li>9.16下午4点退房
+				   </li>
+				   <li class="xz_left">房费欠费：80元
+				   </li>
+			   </ul> 
+			   
+		
+		   </div>
+		   <div class="xz_future">
+			   <div class="xz_days">
+				   <ul class="clearfix">
+					   <li><a href="#" class="select">一天</a>
+					   </li>
+					   <li><a href="#">两天</a>
+					   </li>
+					   <li><a href="#">三天</a>
+					   </li>
+				   </ul>
+				   <div class="xz_leaving">
+				      续房离店时间：2014.9.18（星期三）下午4:00 
+				   </div> 	
+			   </div>
+			   <div class="xz_price">
+				   <p class="xz_price_name">总金额
+				   </p>
+				   <p class="xz_price_number">¥540元
+				   </p>
+				   <p class="xz_price_everyday">每天房价：¥180 ¥180 ¥180
+				   </p>
+			   </div>
+		   </div>
+	   </div>
+	   
+        <div class="btn btn-blue-green"><a href="">支付宝（扫码支付）</a> </div>
+
+    
+   
+
+
+</body></html>

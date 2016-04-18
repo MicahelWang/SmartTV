@@ -1,0 +1,56 @@
+﻿<script>
+    $(function () {
+        $.ajax({
+            type: "GET",
+            url: "/IUHotelConfig/IUAutoToHome",
+            data: { "BrandId": brandID },
+            dataType: "JSON",
+            success: function (data) {
+                if (data == true) {
+                    $("#chexbox").attr("checked", true);
+                }
+            }
+        })
+    });
+    function AutoToHome_Aplay(obj) {
+        var auto=false;
+        var chexbox = document.getElementById("chexbox");
+        if (chexbox.checked) {
+            auto = true;
+        }
+        $.ajax({
+            type: "Post",
+            url: "/IUHotelConfig/EditIUAutoToHome",
+            data: { "BrandId": brandID,"AutoToHome":auto},
+            dataType: "JSON",
+            beforeSend: function () {
+                $(obj).attr("disabled", true);
+            },
+            complete: function () { $(obj).removeAttr("disabled"); },
+            success: function (data) {
+                alert(data);
+                if (data=="操作成功！")
+                $("#AutoHomeState").css("display", "none");
+            }, error: function (data) {
+                console.log("AutoHomeState", data);
+                alert("操作失败");
+            }
+        });
+    }
+    
+</script>
+<h3 class="blue">自动跳转至首页<label style="display:none;color:red" id="AutoHomeState">(修改中)</label></h3>
+<div action="/TVChanel/AddTVChannel" class="form-horizontal col-md-4" data-ajax="true" data-ajax-method="Post" data-ajax-success="Success" id="form0" method="post" role="form" novalidate="novalidate">
+   启动成功自动跳转至首页&nbsp;<input id="chexbox" onclick='$("#AutoHomeState").css("display", "block");' type="checkbox" />
+    <br /><br />
+    <span class="input-group-btn">
+        <button type="button" class="btn btn-success btn-sm" onclick="AutoToHome_Aplay(this)">
+            <i class="icon-ok bigger-110"></i>
+            应用到电视
+        </button>
+        <button type="button" class="btn btn-primary  btn-sm back">
+            <i class="icon-reply  bigger-110"></i>
+            返回
+        </button>
+    </span>
+</div>

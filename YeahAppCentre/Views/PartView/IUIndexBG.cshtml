@@ -1,0 +1,107 @@
+﻿
+<h3 class="blue">首页背景图<label style="display:none;color:red" id="indexBgState">(修改中)</label></h3>
+<script type="text/javascript">
+
+    $(function () {
+        IndexBG($("#indexBGbtn"));
+        getIndexBgPic();
+    });
+    function IndexBG_Aplay(obj) {
+        $.ajax({
+            type: "Post",
+            url: "/IUHotelConfig/IUIndexBG",
+            data: { "brandId": brandID, "value":$("#IndexBgValue").val() == "" ? "" : domainResourseUrl + $("#IndexBgValue").val()},
+            dataType: "JSON",
+            beforeSend: function () {
+                $(obj).attr("disabled", true);
+            },
+            complete: function () { $(obj).removeAttr("disabled"); },
+            success: function (data) {
+                alert(data);
+                if (data == "操作成功！")
+                $("#indexBgState").css("display", "none");
+            },
+            error: function (data) {
+                console.log("IndexBG_Aplay", data);
+                alert("操作失败!")
+            }
+        })
+    }
+    function getIndexBgPic() {
+        $.ajax({
+            async: true,
+            type: 'Get',
+            url: "/IUHotelConfig/IUIndexBG",
+            data: {"brandID":brandID},
+            dataType: "json",
+            success: function (resultResponse) {
+                $("#IndexBgValue").val(getFileName(resultResponse))
+                $("#IndexBgdsrc").attr("src",resultResponse);
+            },
+            error: function (a) {
+                console.log("IUIndexBG", a);
+            }
+        });
+    }
+    function IndexBG(obj) {
+        //var divObj = $(obj).parents("div.form-group").siblings().first();
+        var Coversetting = {
+            single: true,
+            container: $("#IndexBgdsrc"),
+            targetOjb: $("#IndexBgValue"),
+            showFullPath: true,
+            limitSize: 500,
+            callback: function (data) {
+                $("#IndexBgValue").val(getFileName(data.FilePath));
+                $("#indexBgState").css("display", "block");
+            }
+        };
+        $(obj).binduploadify(Coversetting);
+    }
+</script>
+<div action="/TVChanel/AddTVChannel" class="form-horizontal col-md-4" data-ajax="true" data-ajax-method="Post" data-ajax-success="Success" id="form0" method="post" role="form" novalidate="novalidate">
+    <div class="form-group">
+        <div class="col-md-12 input-group">
+            <input style="background-color:#EFF3F7!important;cursor:auto; border:none;" type="text" id="IndexBgValue" readonly="readonly" class="form-control search-query" placeholder="暂无首页背景图">
+            <span class="input-group-btn">
+                <button type="button" class=" btn  hidden btn-xs btn-warning"></button>
+            </span>
+        </div>
+        <div class="col-md-7">
+        </div>
+    </div>
+    <div class="form-group"></div>
+    <div class="form-group">
+        <div class="col-md-12 input-group">
+            <span class="input-group-btn">
+                <button class="btn  btn-purple btn-sm" id="indexBGbtn">
+                    <i class="icon-cloud-upload bigger-110"></i>
+                    上传图片
+                </button>
+            </span>
+            <label class="" error-info="">图片文件格式为png/jpg且图片大小不超过500KB</label>
+        </div>
+        <div class="col-md-7">
+        </div>
+    </div>
+    <div class="form-group"></div>
+    <div class="form-group">
+        <div class="col-md-12 input-group">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-success btn-sm" onclick="IndexBG_Aplay(this)">
+                    <i class="icon-ok bigger-110"></i>
+                    应用到电视
+                </button>
+                <button type="button" class="btn btn-primary  btn-sm back">
+                    <i class="icon-reply  bigger-110"></i>
+                    返回
+                </button>
+            </span>
+            <span class="input-group-btn">
+            </span>
+        </div>
+    </div>
+</div>
+<div class="col-md-8 center">
+    <img id="IndexBgdsrc" src="" style="width:800px;height:450px;" />
+</div>

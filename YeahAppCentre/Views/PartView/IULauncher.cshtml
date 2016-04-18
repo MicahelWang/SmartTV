@@ -1,0 +1,83 @@
+﻿<h3 class="blue">首页广告内容</h3>
+    <script type="text/javascript">
+        $(function () {
+            var operation = '';
+            if (operation == 'Add') {
+                document.getElementById('form0').action = addUrl;
+                bindCoverUpload();
+                bindPosterUpload();
+            } else if (operation == 'Update') {
+
+                $.getJSON(url + "?PageIndex=1&Id=" + clickId,
+                function (data) {
+                    $.each(data.Source, function () {
+                        $('#Id').attr('value', this.Id);
+                        $('#Name').attr('value', this.Name);
+                        $('#NameEn').attr('value', this.NameEn);
+                        $('#MovieReview').text(this.MovieReview);
+                        $('#MovieReviewEn').text(this.MovieReviewEn);
+                        $('#CoverAddress').val(this.CoverAddress);
+                        $('#PosterAddress').val(this.PosterAddress);
+                        bindCoverUpload();
+                        bindPosterUpload();
+                    });
+                });
+                document.getElementById('form0').action = updateUrl;
+
+            }
+            LauncherLoad($("#LauncherBtn"));
+            //$("form").removeData("validator").removeData("unobtrusiveValidation");
+            //$.validator.unobtrusive.parse($("form"));
+
+        });
+        function Success(data) {
+            console.log(data)
+        }
+        function Launcher_Aplay() {
+
+        }
+    </script>
+    <div action="/TVChanel/AddTVChannel" class="col-md-5 form-horizontal" data-ajax="true" data-ajax-method="Post" data-ajax-success="Success"
+     id="form0" method="post" role="form" novalidate="novalidate">
+    <div class="form-group">
+        <div class="col-md-12 input-group">
+            <input id="LauncherValue" type="text"  readonly="readonly" value="http://resource.yeah-info.com/c42ccbbf-54dc-4541-a822-4e7b4f72d853.mp3"
+                   class="form-control search-query" placeholder="pleace upload Mp3...">
+            <span class="input-group-btn">
+                <button type="button" id="" class="btn  hidden btn-xs btn-warning"></button>
+            </span>
+        </div>
+        <div class="col-md-">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12 input-group">
+            <span class="input-group-btn">
+                <button class="btn  btn-purple btn-sm" id="LauncherBtn">
+                    <i class="icon-cloud-upload bigger-110"></i>
+                    上传视频
+                </button>
+            </span>
+            <label class="" error-info="">视频文件不大于20M，且文件为Mp4格式）</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-12 input-group">
+            <span class="input-group-btn">
+                <button type="button" class="btn btn-success btn-sm" onclick="Launcher_Aplay()">
+                    <i class="icon-ok bigger-110"></i>
+                    应用到电视
+                </button>
+                <button type="button" class="btn btn-primary  btn-sm back">
+                    <i class="icon-reply  bigger-110"></i>
+                    返回
+                </button>
+            </span>
+            <span class="input-group-btn">
+            </span>
+        </div>
+    </div>
+</div>
+   <div class="col-md-7" style="padding:0px;margin-top:-50px;">
+    <video id="LauncherSrc" style="width:800px;height:500px;" src="ceshi.Mp4" controls="controls" autoplay="autoplay"></video>
+</div>

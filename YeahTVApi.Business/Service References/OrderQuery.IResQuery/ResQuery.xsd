@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Htinns.PMS.DAL.Reservation" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.DAL.Reservation" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Reservation" />
+  <xs:complexType name="SQLRsvnSheetProxy">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q1="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Reservation" base="q1:RsvnSheet">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SQLRsvnSheetProxy" nillable="true" type="tns:SQLRsvnSheetProxy" />
+  <xs:complexType name="SQlRsvnDetailProxy">
+    <xs:complexContent mixed="false">
+      <xs:extension xmlns:q2="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Reservation" base="q2:RsvnDetail">
+        <xs:sequence />
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="SQlRsvnDetailProxy" nillable="true" type="tns:SQlRsvnDetailProxy" />
+</xs:schema>

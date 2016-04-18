@@ -1,0 +1,128 @@
+﻿@model TvDocumentElement
+@{
+    OpType opType = ViewBag.OpType;
+}
+<div class="eidtElementForm">
+    <div class="col-md-8">
+        <input type="hidden" name="opType" value="@opType.GetValueStr()" />
+        @Html.HiddenFor(m => m.Id)
+        <table class="table-bordered table06">
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.ParentId, htmlAttributes: new { @class = "" })
+                </td>
+                <td>
+                    @Html.Label("ParentName", ViewBag.ParentName as string, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.HiddenFor(model => model.ParentId)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Orders, htmlAttributes: new { @class = "" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Orders, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.Hidden("TemplateId", @Model.TemplateId)
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-md-4">
+        @if (opType == OpType.Add)
+        {
+            <button type="button" class="btn btn-primary" id="btnAddElement">添加节点</button>
+        }
+        else if (opType == OpType.Update && (@Model.TemplateElement != null && @Model.TemplateElement.Editable))
+        {
+            <button type="button" class="btn btn-success" id="btnUpdateElement">修改节点</button>
+        }
+    </div>
+</div>
+@if (opType == OpType.Update)
+{
+    <div>
+        <div class="col-md-12">
+            <table class="table-bordered table06">
+                <tr>
+                    <th></th>
+                    <th>属性名</th>
+                    <th>数据类型</th>
+                    <th>描述</th>
+                    <th>属性值</th>
+                    <th>操作</th>
+                </tr>
+                @{ var attributes = Model.Attributes.ToList(); }
+                @foreach (var item in attributes)
+                {
+                    <tr>
+                        @{
+                    var datatype = item.TemplateAttribute.DataType;
+                        }
+                        <td>
+                            <a class="empty" style="cursor:pointer;" onclick="expandTable(this);">
+                                <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                            </a>
+                        </td>
+                        <td>
+                            @Html.Hidden("attributeId", item.Id)
+                            @Html.Hidden("attributeParentId", item.ParentId)
+                            @Html.TextBox("attributeText", item.Text)
+                        </td>
+                        <td>@Html.Label("attributeDataType", ((TemplateDataType)item.TemplateAttribute.DataType).GetDescription())</td>
+                        <td>@Html.Label("attributeDescription", item.TemplateAttribute.Description??"")</td>
+                        <td>
+                            @if (item.TemplateAttribute != null && item.TemplateAttribute.Editable)
+                            {
+                                @Html.TextBox("attributeValue", item.Value, new { @style = "width:300px" })
+                                if (datatype != (int)TemplateDataType.Text && datatype != (int)TemplateDataType.List && datatype != (int)TemplateDataType.Color)
+                                {
+                                    <button name="parrent-upload" type="button" class="btn btn-sm btn-success parrent-upload">上传</button>
+                                }
+                            }
+                            else
+                            {
+                                @Html.TextBox("attributeValue", item.Value, new { @readonly = false, @style = "width:300px" })
+                            }
+                            @if (datatype == (int)TemplateDataType.Image)
+                            {
+                                if (string.IsNullOrEmpty(item.Value))
+                                {
+                                    <img id="CoverimgIcon" width="100"  style="display:none" />
+                                }
+                                else
+                                {
+                                    <img id="CoverimgIcon" width="100" src="@item.Value" />
+                                }
+                            }
+                             
+
+                            @if (datatype == (int)TemplateDataType.Audio||datatype == (int)TemplateDataType.Video)
+                            {
+                                <button type="button" data-optype="preview" class="btn btn-sm btn-success preview">预览</button>
+                            }
+                            else
+                            {
+                                <button type="button" data-optype="preview"  style="display:none" class="btn btn-sm btn-success preview">预览</button>
+                            }
+                        </td>
+                        <td>
+                            @if (item.TemplateAttribute != null && item.TemplateAttribute.Editable)
+                            {
+                                <button type="button" class="btn btn-sm btn-success editAttribute">修改值</button>
+                            }
+                            
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}

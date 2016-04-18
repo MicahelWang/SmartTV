@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{430AFD5D-2462-4D0E-B2CA-E1C68032BFB0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YeahTVApiLibrary.Infrastructure</RootNamespace>
+    <AssemblyName>YeahTVApiLibrary.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Qiniu.4.0">
+      <HintPath>..\packages\Qiniu.6.1.8.2\lib\Net40\Qiniu.4.0.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApiInterface\IHttpContextService.cs" />
+    <Compile Include="FactoryInterface\IHotelTypeFactory.cs" />
+    <Compile Include="HotelMemberInfoInterface\IHotelMemberInfoManager.cs" />
+    <Compile Include="ManagerInterface\IAuthTVTokenManager.cs" />
+    <Compile Include="ManagerInterface\IOrderQRCodeRecordManager.cs" />
+    <Compile Include="ManagerInterface\IScoreExchangManager.cs" />
+    <Compile Include="ManagerInterface\IGlobalConfigManager.cs" />
+    <Compile Include="ManagerInterface\IHCSCacheVersionManager.cs" />
+    <Compile Include="ManagerInterface\IBaseManager.cs" />
+    <Compile Include="ManagerInterface\IHotelMovieTraceNoTemplateManager.cs" />
+    <Compile Include="ManagerInterface\IOpenApiManager.cs" />
+    <Compile Include="ManagerInterface\IWeiXinService.cs" />
+    <Compile Include="ManagerInterface\IStoreOrderManager.cs" />
+    <Compile Include="ManagerInterface\ITagManager.cs" />
+    <Compile Include="ManagerInterface\ILocalizeResourceManager.cs" />
+    <Compile Include="ManagerInterface\IMovieForLocalizeManager.cs" />
+    <Compile Include="ManagerInterface\IHCSGlobalConfigManager.cs" />
+    <Compile Include="ManagerInterface\IHCSTaskManager.cs" />
+    <Compile Include="ManagerInterface\IVODOrderManager.cs" />
+    <Compile Include="ManagerInterface\IVODPaymentRequestManager.cs" />
+    <Compile Include="ManagerInterface\IVODPaymentResultManager.cs" />
+    <Compile Include="ManagerInterface\IVODRequestManager.cs" />
+    <Compile Include="ManagerInterface\IAuthCertigierManager.cs" />
+    <Compile Include="ManagerInterface\IAuthUserDeviceTraceManager.cs" />
+    <Compile Include="ManagerInterface\IBackupDeviceManager.cs" />
+    <Compile Include="ManagerInterface\ICacheManager.cs" />
+    <Compile Include="ManagerInterface\IConstantSystemConfigManager.cs" />
+    <Compile Include="ManagerInterface\IHotelMovieTraceManager.cs" />
+    <Compile Include="ManagerInterface\IFileUploadServiceManager.cs" />
+    <Compile Include="ManagerInterface\IImageUpdateServiceProvider.cs" />
+    <Compile Include="ManagerInterface\IMovieTemplateRelationManager.cs" />
+    <Compile Include="ManagerInterface\IMovieTemplateManager.cs" />
+    <Compile Include="ManagerInterface\IMovieManager.cs" />
+    <Compile Include="ManagerInterface\IQiniuCloudManager.cs" />
+    <Compile Include="ManagerInterface\IQiniuCloudService.cs" />
+    <Compile Include="ManagerInterface\ITVChannelManager.cs" />
+    <Compile Include="ManagerInterface\IHotelTVChannelManager.cs" />
+    <Compile Include="ManagerInterface\IDeviceAppsMonitorManager.cs" />
+    <Compile Include="ManagerInterface\IAppLibraryManager.cs" />
+    <Compile Include="ManagerInterface\ILogManager.cs" />
+    <Compile Include="ManagerInterface\IMongoLogManager.cs" />
+    <Compile Include="ManagerInterface\IRedisCacheService.cs" />
+    <Compile Include="ManagerInterface\IRedisCacheManager.cs" />
+    <Compile Include="ManagerInterface\IDeviceTraceManager.cs" />
+    <Compile Include="ManagerInterface\IRequestApiService.cs" />
+    <Compile Include="ManagerInterface\ISystemConfigManager.cs" />
+    <Compile Include="ManagerInterface\ITVHotelConfigManager.cs" />
+    <Compile Include="ManagerInterface\IUserManager.cs" />
+    <Compile Include="MogoRepositoriesInterface\IMongoDeviceTraceManager.cs" />
+    <Compile Include="MogoRepositoriesInterface\IMongoDeviceTraceRepository.cs" />
+    <Compile Include="MogoRepositoriesInterface\IMongoLogRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoriesInterface\IBsaeRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IAuthTVTokenRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IOrderQRCodeRecordRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IScoreExchangRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IGlobalConfigRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IHCSCacheVersionRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IHCSJobRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IHotelMovieTraceNoTemplateRepertory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ManagerInterface\IHotelPermitionManager.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IHotelPermitionRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\ILocalizeResourceRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IAppVersionLibraryRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IAuthCertigierManagerRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IAuthUserDeviceTraceRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IBackupDeviceRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IHCSConfigRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IHCSTaskRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IHotelMovieTraceRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IMovieForLocalizeRepertory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RepositoriesInterface\IRepertory\IStoreOrderRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\ITagRepertory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="RepositoriesInterface\IRepertory\IVODRequestRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IVODPaymentRequestRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IVODPaymentResultRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IVODOrderRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IMovieTemplateRelationRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IMovieTemplateRepertory.cs" />
+    <Compile Include="ManagerInterface\ISysAttachmentManager.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\ISysAttachmentRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\ITVChannelRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IMovieRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IHotelTvChannelRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IDeviceAppsMonitorRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\ISystemLogRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IBehaviorLogRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IAppsLibraryRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IDeviceTraceLibraryRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\ISystemConfigRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\IAppPublishLibraryRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IRepertory\ITVHotelConfigRepertory.cs" />
+    <Compile Include="RepositoriesInterface\IUnitOfWork.cs" />
+    <Compile Include="WrapperFacadeInterface\IMovieForLocalizeWrapperFacade.cs" />
+    <Compile Include="WrapperFacadeInterface\IHotelMovieTraceNoTemplateWrapperFacade.cs" />
+    <Compile Include="WrapperFacadeInterface\IMovieTemplateRelationWrapperFacade.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YeahTVApi.Common\YeahTVApi.Common.csproj">
+      <Project>{27ec8548-1bec-4f32-a43e-341430cd6ff3}</Project>
+      <Name>YeahTVApi.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.DomainModel\YeahTVApi.DomainModel.csproj">
+      <Project>{7b4ce815-38cb-4ee4-8860-8381cf2de60a}</Project>
+      <Name>YeahTVApi.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.Entity\YeahTVApi.Entity.csproj">
+      <Project>{dff8075a-64c7-44d7-982b-f0c7cbc096e9}</Project>
+      <Name>YeahTVApi.Entity</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ScoreExchangeInterface\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

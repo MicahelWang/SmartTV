@@ -1,0 +1,74 @@
+﻿@model PagedViewList<TVHotelConfig>
+<tr>
+    <td></td>
+    <td colspan="2">
+        <table id="viewTable" class="table table-striped table-bordered table-hover dataTable">
+            <thead>
+                <tr role="row">
+
+                    @*<th>酒店名称</th>*@
+                    @*<th>配置编码</th>*@
+                    <th>配置名称</th>
+                    <th>配置值</th>
+                    <th>是否启用</th>
+                    <th>最后更新人</th>
+                    <th>最后更新时间</th>
+                    <th>创建时间</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Source)
+                {
+
+                    <tr>
+                        @*<td>
+
+                            </td>*@
+                        <td>
+                            <input type="hidden" class="key" value="@item.Id" />
+                            <input type="hidden" class="version" value="@item.HotelId" />
+                            @*@Html.Action("GetHotelNameById", new { hotelId = item.HotelId })*@
+                            @*@item.ConfigCode*@
+
+                            @item.ConfigName
+                        </td>
+                        <td>
+                            @item.ConfigValue
+                        </td>
+                        <td>
+                            @if (item.Active != null && (bool)item.Active)
+                            {
+                                <i class="icon-ok green"></i>
+                            }
+                            else
+                            {
+                                <i class="icon-remove red"></i>
+                            }
+                        </td>
+                        <td>
+                            @item.LastUpdater
+                        </td>
+                        <td>
+                            @item.LastUpdateTime.ToDateTimeStr()
+                        </td>
+                        <td>
+                            @item.CreateTime.ToDateTimeStr()
+                        </td>
+                        <td>
+                            <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                <a data-optype="view" data-action="@(item.ConfigCode.ToLower() == "hotelpayment" ? "EditHotelPayment" : "AddOrEdit")" class="blue" href="javascript:void(0)">
+                                    <i class="icon-zoom-in bigger-130"></i>
+                                </a>
+                                <a data-optype="edit" data-action="@(item.ConfigCode.ToLower() == "hotelpayment" ? "EditHotelPayment" : "AddOrEdit")" class="green" href="javascript:void(0)">
+                                    <i class="icon-pencil bigger-130"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </td>
+</tr>

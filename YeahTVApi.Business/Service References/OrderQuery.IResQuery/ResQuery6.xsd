@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/System.Xml.Linq" />
+  <xs:complexType name="QueryTerm">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Expression" nillable="true">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:any minOccurs="0" processContents="lax" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" name="IsDescending" type="xs:boolean" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/System.Xml.Linq" minOccurs="0" name="OrderByProperty" nillable="true" type="q1:ArrayOfXElement" />
+      <xs:element minOccurs="0" name="PageIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="PageSize" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryTerm" nillable="true" type="tns:QueryTerm" />
+</xs:schema>

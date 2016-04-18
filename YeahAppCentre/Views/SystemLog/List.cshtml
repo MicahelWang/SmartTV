@@ -1,0 +1,55 @@
+﻿@model PagedViewList<YeahTVApi.DomainModel.MongoLog>
+<div class="row" id="list">
+    <table id="viewTable" class="table table-striped table-bordered table-hover dataTable">
+        <thead>
+            <tr role="row">
+                <th>日志内容</th>
+                <th>日志详情</th>
+                <th>日志类型</th>
+                <th>APP类型</th>
+                <th>创建时间</th>
+                <td></td>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model.Source != null)
+            {
+                foreach (var item in Model.Source)
+                {
+
+                    <tr>
+                        <td class="reduceContent">
+                            <input type="hidden" class="key" value="@item.Id" />
+                            <p class="displayContent"></p><input class="cotentHid" type="hidden" value="@item.MessageInfo" />
+                        </td>
+                        <td class="reduceContent">
+                            <p class="displayContent"></p><input class="cotentHid" type="hidden" value="@item.MessageEx" />
+                        </td>
+                        <td>
+                            @(((LogType)Enum.Parse(typeof(LogType), item.MessageType)).GetDescription())
+                        </td>
+                        <td>
+                            @(((AppType)Enum.Parse(typeof(AppType), item.AppType)).GetDescription())
+                        </td>
+                        <td>
+                            @item.CreateTime.ToDateTimeStr(DateFormate.yyyyMMddHHmmss)
+                        </td>
+                        <td>
+                            <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                <a data-optype="view" class="blue" href="javascript:void(0)">
+                                    <i class="icon-zoom-in bigger-130"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+
+        $(".reduceContent").reduceCotent(50);
+    });
+</script>

@@ -1,0 +1,21 @@
+﻿@using YeahTVApi.Common
+@using YeahTVApi.Resource
+<body style="background-color: #244979; color:white; text-align: center">
+    <div style="padding-top: 200px;">
+        <h2>@ViewData[PubFun.RedirectMessage]</h2>
+        <span id="dd">10</span>
+    </div>
+
+    <script type="text/javascript">
+        function run() {
+            var s = document.getElementById("dd");
+            if (s.innerHTML == 0) {
+                window.location.href = "/SelfService/Index";
+                return false;
+            }
+            s.innerHTML = s.innerHTML * 1 - 1;
+        }
+        window.setInterval("run();", 1000);
+
+    </script>
+</body>

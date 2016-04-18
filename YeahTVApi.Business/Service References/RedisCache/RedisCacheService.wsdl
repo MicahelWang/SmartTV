@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="RedisCacheService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://10.1.249.219:8090/RedisCacheService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://10.1.249.219:8090/RedisCacheService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://10.1.249.219:8090/RedisCacheService.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IRedisCacheService_Get_InputMessage">
+    <wsdl:part name="parameters" element="tns:Get" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_Get_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_Set_InputMessage">
+    <wsdl:part name="parameters" element="tns:Set" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_Set_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_SetWithExpireIn_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetWithExpireIn" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_SetWithExpireIn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetWithExpireInResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_AddItemToSet_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddItemToSet" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_AddItemToSet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddItemToSetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_GetAllItemsFromSet_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllItemsFromSet" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_GetAllItemsFromSet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllItemsFromSetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_SetEntryInHash_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetEntryInHash" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_SetEntryInHash_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetEntryInHashResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_GetValueFromHash_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetValueFromHash" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_GetValueFromHash_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetValueFromHashResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_GetValuesFromHash_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesFromHash" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_GetValuesFromHash_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetValuesFromHashResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_AddItemToSortSet_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddItemToSortSet" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_AddItemToSortSet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddItemToSortSetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_GetAllItemsFromSortedSet_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllItemsFromSortedSet" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_GetAllItemsFromSortedSet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllItemsFromSortedSetResponse" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_GetRangeFromSortedSet_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRangeFromSortedSet" />
+  </wsdl:message>
+  <wsdl:message name="IRedisCacheService_GetRangeFromSortedSet_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRangeFromSortedSetResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IRedisCacheService">
+    <wsdl:operation name="Get">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRedisCacheService/Get" message="tns:IRedisCacheService_Get_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRedisCacheService/GetResponse" message="tns:IRedisCacheService_Get_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Set">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRedisCacheService/Set" message="tns:IRedisCacheService_Set_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRedisCacheService/SetResponse" message="tns:IRedisCacheService_Set_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetWithExpireIn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRedisCacheService/SetWithExpireIn" message="tns:IRedisCacheService_SetWithExpireIn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRedisCacheService/SetWithExpireInResponse" message="tns:IRedisCacheService_SetWithExpireIn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddItemToSet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRedisCacheService/AddItemToSet" message="tns:IRedisCacheService_AddItemToSet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRedisCacheService/AddItemToSetResponse" message="tns:IRedisCacheService_AddItemToSet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllItemsFromSet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRedisCacheService/GetAllItemsFromSet" message="tns:IRedisCacheService_GetAllItemsFromSet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRedisCacheService/GetAllItemsFromSetResponse" message="tns:IRedisCacheService_GetAllItemsFromSet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetEntryInHash">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRedisCacheService/SetEntryInHash" message="tns:IRedisCacheService_SetEntryInHash_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRedisCacheService/SetEntryInHashResponse" message="tns:IRedisCacheService_SetEntryInHash_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetValueFromHash">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRedisCacheService/GetValueFromHash" message="tns:IRedisCacheService_GetValueFromHash_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRedisCacheService/GetValueFromHashResponse" message="tns:IRedisCacheService_GetValueFromHash_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesFromHash">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRedisCacheService/GetValuesFromHash" message="tns:IRedisCacheService_GetValuesFromHash_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRedisCacheService/GetValuesFromHashResponse" message="tns:IRedisCacheService_GetValuesFromHash_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddItemToSortSet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRedisCacheService/AddItemToSortSet" message="tns:IRedisCacheService_AddItemToSortSet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRedisCacheService/AddItemToSortSetResponse" message="tns:IRedisCacheService_AddItemToSortSet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllItemsFromSortedSet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRedisCacheService/GetAllItemsFromSortedSet" message="tns:IRedisCacheService_GetAllItemsFromSortedSet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRedisCacheService/GetAllItemsFromSortedSetResponse" message="tns:IRedisCacheService_GetAllItemsFromSortedSet_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRangeFromSortedSet">
+      <wsdl:input wsaw:Action="http://tempuri.org/IRedisCacheService/GetRangeFromSortedSet" message="tns:IRedisCacheService_GetRangeFromSortedSet_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IRedisCacheService/GetRangeFromSortedSetResponse" message="tns:IRedisCacheService_GetRangeFromSortedSet_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IRedisCacheService" type="tns:IRedisCacheService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Get">
+      <soap:operation soapAction="http://tempuri.org/IRedisCacheService/Get" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Set">
+      <soap:operation soapAction="http://tempuri.org/IRedisCacheService/Set" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetWithExpireIn">
+      <soap:operation soapAction="http://tempuri.org/IRedisCacheService/SetWithExpireIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddItemToSet">
+      <soap:operation soapAction="http://tempuri.org/IRedisCacheService/AddItemToSet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllItemsFromSet">
+      <soap:operation soapAction="http://tempuri.org/IRedisCacheService/GetAllItemsFromSet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetEntryInHash">
+      <soap:operation soapAction="http://tempuri.org/IRedisCacheService/SetEntryInHash" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetValueFromHash">
+      <soap:operation soapAction="http://tempuri.org/IRedisCacheService/GetValueFromHash" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetValuesFromHash">
+      <soap:operation soapAction="http://tempuri.org/IRedisCacheService/GetValuesFromHash" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddItemToSortSet">
+      <soap:operation soapAction="http://tempuri.org/IRedisCacheService/AddItemToSortSet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllItemsFromSortedSet">
+      <soap:operation soapAction="http://tempuri.org/IRedisCacheService/GetAllItemsFromSortedSet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRangeFromSortedSet">
+      <soap:operation soapAction="http://tempuri.org/IRedisCacheService/GetRangeFromSortedSet" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RedisCacheService">
+    <wsdl:port name="BasicHttpBinding_IRedisCacheService" binding="tns:BasicHttpBinding_IRedisCacheService">
+      <soap:address location="http://10.1.249.219:8090/RedisCacheService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

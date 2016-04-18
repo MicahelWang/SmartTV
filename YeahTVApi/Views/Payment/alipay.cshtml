@@ -1,0 +1,31 @@
+﻿@using YeahTVApi.Resource
+
+<body class="alipay">
+    <header class="alipay_name">@YeahTVApiMessage.CommonPayment</header>
+
+    <div class="alipay_main">
+        <p class="alipay_tips">
+            @YeahTVApiMessage.CommonAlipayQRPayTip
+        </p>
+        @{
+
+            var totalPrice = ViewData["totalPrice"];
+            var day = ViewData["day"];
+            var url = ViewData["payUrl"];
+        }
+        <div class="ali_code">
+            <img src="@url" class="ali_code_money">
+        </div>
+        <p class="ali_price_name">@YeahTVApiMessage.RoomServiceTotalPrice</p>
+        <p class="ali_price">¥@totalPrice</p>
+    </div>
+
+    <script type="text/javascript">
+        function testCallBack() {
+            window.location.href = "/Payment/AlipayQRPayCallBack";
+            //document.getElementsByTagName("form")[0].submit();
+        }
+       // window.setTimeout("testCallBack()", 5000);
+
+    </script>
+</body>

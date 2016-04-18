@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/HuaZhu.PMS.Interface.SmartTVService.DataContract" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/HuaZhu.PMS.Interface.SmartTVService.DataContract" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfRcpnSheetDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RcpnSheetDataContract" nillable="true" type="tns:RcpnSheetDataContract" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRcpnSheetDataContract" nillable="true" type="tns:ArrayOfRcpnSheetDataContract" />
+  <xs:complexType name="RcpnSheetDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CardNo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CheckInDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CheckOutDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CheckinSrc" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CusCategory" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CusName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CusTel" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IDType" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="InmateRecID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MemberID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecStatusID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiveID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Sex" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RcpnSheetDataContract" nillable="true" type="tns:RcpnSheetDataContract" />
+  <xs:complexType name="ArrayOfMorningCallDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="MorningCallDataContract" nillable="true" type="tns:MorningCallDataContract" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfMorningCallDataContract" nillable="true" type="tns:ArrayOfMorningCallDataContract" />
+  <xs:complexType name="MorningCallDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CallTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Cnt" type="xs:int" />
+      <xs:element minOccurs="0" name="CusAccID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CusName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HotelID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Interlude" type="xs:int" />
+      <xs:element minOccurs="0" name="McID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ModifyDate" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OperatorID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ReceiveID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StatusID" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="MorningCallDataContract" nillable="true" type="tns:MorningCallDataContract" />
+  <xs:complexType name="ResponseResultDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ErrogMsg" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Success" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResponseResultDataContract" nillable="true" type="tns:ResponseResultDataContract" />
+</xs:schema>

@@ -1,0 +1,665 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{34D757AA-C273-4D01-815C-8234DF614653}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YeahTVApi</RootNamespace>
+    <AssemblyName>YeahTVApi</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>
+    </DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
+    <PackageAsSingleFile>false</PackageAsSingleFile>
+    <ExcludeApp_Data>true</ExcludeApp_Data>
+    <PrecompileBeforePublish>true</PrecompileBeforePublish>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PublishDatabases>true</PublishDatabases>
+    <IncludeIisSettings>true</IncludeIisSettings>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PackageAsSingleFile>false</PackageAsSingleFile>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PublishDatabases>false</PublishDatabases>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime, Version=3.4.1.9004, Culture=neutral, PublicKeyToken=eb42632606e9261f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.1\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah.Mvc">
+      <HintPath>..\packages\Elmah.MVC.2.1.1\lib\net40\Elmah.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.121\lib\net45\EntityFramework.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.Extended">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.121\lib\net45\EntityFramework.Extended.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HotelResvProcess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DllReference\HotelResvProcess.dll</HintPath>
+    </Reference>
+    <Reference Include="HT.Log">
+      <HintPath>..\DllReference\HT.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="HTPayCenter">
+      <HintPath>..\DllReference\HTPayCenter.dll</HintPath>
+    </Reference>
+    <Reference Include="HZ.Common.Log">
+      <HintPath>..\DllReference\HZ.Common.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="HZ.ExceptionContract, Version=1.0.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DllReference\HZ.ExceptionContract.dll</HintPath>
+    </Reference>
+    <Reference Include="HZ.Web.Authorization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DllReference\HZ.Web.Authorization.dll</HintPath>
+    </Reference>
+    <Reference Include="MemberInfoProcess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\DllReference\MemberInfoProcess.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\CommonServiceLocator.1.2\lib\portable-windows8+net40+sl5+windowsphone8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.Interception.3.5.1404.0\lib\Net45\Microsoft.Practices.Unity.Interception.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Interception.Configuration, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.Interception.3.5.1404.0\lib\Net45\Microsoft.Practices.Unity.Interception.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Mvc, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.Mvc.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.3.5.1404.0\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.9.6\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data.Entity.EF6">
+      <HintPath>..\packages\MySql.Data.Entity.6.9.6\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="ServiceStack.Common">
+      <HintPath>..\DllReference\ServiceStack.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Unity.WebApi, Version=5.1.0.0, Culture=neutral, PublicKeyToken=43da31bc42a85347, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Unity.WebAPI.5.1\lib\net45\Unity.WebApi.dll</HintPath>
+    </Reference>
+    <Reference Include="Vidar.Common">
+      <HintPath>..\DllReference\Vidar.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing, Version=0.14.0.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation">
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\UnityActionFilterProvider.cs" />
+    <Compile Include="App_Start\UnityConfig.cs" />
+    <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Behavior\UnitOfWorkInterceptionBehavior.cs" />
+    <Compile Include="Controllers\AppController.cs" />
+    <Compile Include="Controllers\BackupDeviceController.cs" />
+    <Compile Include="Controllers\BaseWebController.cs" />
+    <Compile Include="Controllers\CacheController.cs" />
+    <Compile Include="Controllers\DeviceTraceController.cs" />
+    <Compile Include="Controllers\DianPingController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MovieTVChanelsResourcesController.cs" />
+    <Compile Include="Controllers\HotelController.cs" />
+    <Compile Include="Controllers\HotelTVChannelController.cs" />
+    <Compile Include="Controllers\PaymentController.cs" />
+    <Compile Include="Controllers\ScoreExchangeController.cs" />
+    <Compile Include="Controllers\TVHotelConfigController.cs" />
+    <Compile Include="Controllers\UploadFileController.cs" />
+    <Compile Include="Filter\AppLogAttribute.cs" />
+    <Compile Include="Filter\RedisCacheHandlerAttribute.cs" />
+    <Compile Include="Filter\CallApiFilterAttribute.cs" />
+    <Compile Include="Filter\GuestAttribute.cs" />
+    <Compile Include="Filter\HTWebFilterAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resx\Files.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="baidu.html" />
+    <Content Include="baidu_js.html" />
+    <Content Include="Content\selfService.css" />
+    <Content Include="Global.asax" />
+    <Content Include="html\car\car.html" />
+    <Content Include="html\car\home.html" />
+    <Content Include="html\car\cartest.html" />
+    <Content Include="html\css\grids-min.css" />
+    <Content Include="html\css\lib.css" />
+    <Content Include="html\css\reset.css" />
+    <Content Include="html\css\rewrite.css" />
+    <Content Include="html\css\selfService.css" />
+    <Content Include="html\css\shopstyle.css" />
+    <Content Include="html\css\theme.css" />
+    <Content Include="html\css\utils.css" />
+    <Content Include="html\Default.html" />
+    <Content Include="html\error.html" />
+    <Content Include="html\home.html" />
+    <Content Include="html\img\alicode.png" />
+    <Content Include="html\img\appQr.png" />
+    <Content Include="html\img\bg_pic_myhz15.jpg" />
+    <Content Include="html\img\bg_pic_myhz15_old.jpg" />
+    <Content Include="html\img\bg_pic_myhz30.jpg" />
+    <Content Include="html\img\brand_icons.png" />
+    <Content Include="html\img\car_home.jpg" />
+    <Content Include="html\img\car_icon.png" />
+    <Content Include="html\img\code.png" />
+    <Content Include="html\img\game.jpg" />
+    <Content Include="html\img\game1.jpg" />
+    <Content Include="html\img\game2.jpg" />
+    <Content Include="html\img\game3.jpg" />
+    <Content Include="html\img\game4.jpg" />
+    <Content Include="html\img\game5.jpg" />
+    <Content Include="html\img\intro_text.png" />
+    <Content Include="html\img\kefang.jpg" />
+    <Content Include="html\img\leave50.jpg" />
+    <Content Include="html\img\leave50_1.jpg" />
+    <Content Include="html\img\leave50_2.jpg" />
+    <Content Include="html\img\load_mask.gif" />
+    <Content Include="html\img\myhz_icon.png" />
+    <Content Include="html\img\pic_1.jpg" />
+    <Content Include="html\img\pic_2.jpg" />
+    <Content Include="html\img\pic_3.jpg" />
+    <Content Include="html\img\pt.png" />
+    <Content Include="html\img\selectDay.jpg" />
+    <Content Include="html\img\selectDay_1.jpg" />
+    <Content Include="html\img\shop_icon.png" />
+    <Content Include="html\img\star.png" />
+    <Content Include="html\img\title_icon.png" />
+    <Content Include="html\img\title_icon_old.png" />
+    <Content Include="html\js\jcoverflip\jquery-1.js" />
+    <Content Include="html\css\jquery-ui-1.css" />
+    <Content Include="html\js\jcoverflip\jquery-ui-1.js" />
+    <Content Include="html\js\jcoverflip\jquery.js" />
+    <Content Include="html\js\jquery.kxbdmarquee.js" />
+    <Content Include="html\js\jquery.min.js" />
+    <Content Include="html\js\jquery.mobile-1.4.3.min.js" />
+    <Content Include="html\js\keycode.js" />
+    <Content Include="html\js\main.leaf.js" />
+    <Content Include="html\js\ndoo.js" />
+    <Content Include="html\js\ndoo_prep.js" />
+    <Content Include="html\js\tv_huazhu_track.js" />
+    <Content Include="html\js\utils.js" />
+    <Content Include="html\js\keyEventHandler.js" />
+    <Content Include="html\js\gameHandler.js" />
+    <Content Include="html\js\zepto.min.js" />
+    <Content Include="html\room\room_status.html" />
+    <Content Include="html\selfservice\home.html" />
+    <Content Include="html\selfservice\continuedtolive.html" />
+    <Content Include="html\selfservice\checkout.html" />
+    <Content Include="images\ad.jpg" />
+    <Content Include="images\appQr.png" />
+    <Content Include="images\bg_app.png" />
+    <Content Include="images\bg_around.png" />
+    <Content Include="images\bg_brand.jpg" />
+    <Content Include="images\bg_brand.png" />
+    <Content Include="images\bg_clock.png" />
+    <Content Include="images\bg_code.jpg" />
+    <Content Include="images\bg_code.png" />
+    <Content Include="images\bg_myhuazhu.png" />
+    <Content Include="images\bg_play.png" />
+    <Content Include="images\bg_taxi.png" />
+    <Content Include="images\bg_tv.jpg" />
+    <Content Include="images\bg_weather.jpg" />
+    <Content Include="images\bg_weather.png" />
+    <Content Include="images\game.png" />
+    <Content Include="images\game_bg.png" />
+    <Content Include="images\haiyou.png" />
+    <Content Include="images\hanting.png" />
+    <Content Include="images\icon_1080\index_around.png" />
+    <Content Include="images\icon_1080\index_clock.png" />
+    <Content Include="images\icon_1080\index_code.png" />
+    <Content Include="images\icon_1080\index_location.png" />
+    <Content Include="images\icon_1080\index_myhuazhu.png" />
+    <Content Include="images\icon_1080\index_play.png" />
+    <Content Include="images\icon_1080\index_qrcode.png" />
+    <Content Include="images\icon_1080\index_taxi.png" />
+    <Content Include="images\icon_1080\index_weather.png" />
+    <Content Include="images\icon_720\index_around.png" />
+    <Content Include="images\icon_720\index_clock.png" />
+    <Content Include="images\icon_720\index_code.png" />
+    <Content Include="images\icon_720\index_location.png" />
+    <Content Include="images\icon_720\index_myhuazhu.png" />
+    <Content Include="images\icon_720\index_play.png" />
+    <Content Include="images\icon_720\index_qrcode.png" />
+    <Content Include="images\icon_720\index_taxi.png" />
+    <Content Include="images\icon_720\index_weather.png" />
+    <Content Include="images\logohaiyou.png" />
+    <Content Include="images\logohanting.png" />
+    <Content Include="images\logomanxing.png" />
+    <Content Include="images\logoquanji.png" />
+    <Content Include="images\logoxingcheng.png" />
+    <Content Include="images\logoxiyue.png" />
+    <Content Include="images\qrcode.png" />
+    <Content Include="images\quanji.png" />
+    <Content Include="html\img\xuzhu.jpg" />
+    <Content Include="islive.aspx" />
+    <Content Include="jquery-1.9.1.min.js" />
+    <Content Include="map.html" />
+    <Content Include="Resources\VcCode1.txt" />
+    <Content Include="Views\Game\Index.cshtml" />
+    <Content Include="Views\HotelCommodity\index.cshtml" />
+    <Content Include="Views\HotelCommodity\shopCart.cshtml" />
+    <Content Include="Views\HotelCommodity\pay.cshtml" />
+    <Content Include="Views\HotelCommodity\finish.cshtml" />
+    <None Include="Properties\PublishProfiles\FilePublish.pubxml" />
+    <None Include="Properties\PublishProfiles\YeahTVApi.pubxml" />
+    <None Include="Views\SelfService\checkout.cshtml" />
+    <None Include="Views\SelfService\continuedtolive.cshtml" />
+    <None Include="Views\SelfService\home.cshtml" />
+    <None Include="Views\Payment\alipay.cshtml" />
+    <None Include="Views\Game\test.cshtml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\dbtest.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\apptest.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Config\app.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Config\db.config">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Config\dbdev.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Out.cshtml" />
+    <Content Include="Views\SelfService\qr.cshtml" />
+    <Content Include="Web.unity.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YeahAppCentre.Web.Utility\YeahAppCentre.Web.Utility.csproj">
+      <Project>{cc948dff-24b0-459c-acec-eb42f30548fe}</Project>
+      <Name>YeahAppCentre.Web.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.Common\YeahTVApi.Common.csproj">
+      <Project>{27ec8548-1bec-4f32-a43e-341430cd6ff3}</Project>
+      <Name>YeahTVApi.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.DomainModel\YeahTVApi.DomainModel.csproj">
+      <Project>{7b4ce815-38cb-4ee4-8860-8381cf2de60a}</Project>
+      <Name>YeahTVApi.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.EntityFrameworkLibraryRepository\YeahTVApiLibrary.EntityFrameworkRepository.csproj">
+      <Project>{7cf570bc-6606-451d-bd4c-9965fcbadec6}</Project>
+      <Name>YeahTVApiLibrary.EntityFrameworkRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.EntityFrameworkRepository\YeahTVApi.EntityFrameworkRepository.csproj">
+      <Project>{450011b6-8513-49a2-b394-f96088dc96cb}</Project>
+      <Name>YeahTVApi.EntityFrameworkRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.Entity\YeahTVApi.Entity.csproj">
+      <Project>{dff8075a-64c7-44d7-982b-f0c7cbc096e9}</Project>
+      <Name>YeahTVApi.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.Infrastructure\YeahTVApi.Infrastructure.csproj">
+      <Project>{5bd5da36-20cb-4115-b7d6-39c0baf42904}</Project>
+      <Name>YeahTVApi.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.Manager\YeahTVApi.Manager.csproj">
+      <Project>{ce4d7169-c902-439c-a679-d074ea4f860c}</Project>
+      <Name>YeahTVApi.Manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.Resource\YeahTVApi.Resource.csproj">
+      <Project>{5d3ac4df-b7b9-4b5a-9be1-97221533ace8}</Project>
+      <Name>YeahTVApi.Resource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.ServiceProvider\YeahTVApi.ServiceProvider.csproj">
+      <Project>{e211535b-6c5c-4a9d-928d-e9a5eb77b4e0}</Project>
+      <Name>YeahTVApi.ServiceProvider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApiLibrary.Interface\YeahTVApiLibrary.Infrastructure.csproj">
+      <Project>{430afd5d-2462-4d0e-b2ca-e1c68032bfb0}</Project>
+      <Name>YeahTVApiLibrary.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApiLibrary.Manager\YeahTVApiLibrary.Manager.csproj">
+      <Project>{2b2e290c-1642-4595-8abf-b1e217103df1}</Project>
+      <Name>YeahTVApiLibrary.Manager</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApiLibrary.MongoRepository\YeahTVApiLibrary.MongoRepository.csproj">
+      <Project>{b9658d3a-9ffd-4668-84af-36783f4f8b58}</Project>
+      <Name>YeahTVApiLibrary.MongoRepository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApiLibrary.Service\YeahTVApiLibrary.Service.csproj">
+      <Project>{9be7ab26-6ca2-43bd-a24f-08e98254f060}</Project>
+      <Name>YeahTVApiLibrary.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApiLibrary.WrapperFacade\YeahTVApiLibrary.WrapperFacade.csproj">
+      <Project>{d2319324-577b-4ced-a0c8-6c3c4a026729}</Project>
+      <Name>YeahTVApiLibrary.WrapperFacade</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApiLibrary\YeahTVApiLibrary.csproj">
+      <Project>{fa80cae9-b52d-4236-9f91-3eb8e2c60219}</Project>
+      <Name>YeahTVApiLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx" />
+    <EmbeddedResource Include="Resx\Files.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Handler\" />
+    <Folder Include="Views\BackupDevice\" />
+    <Folder Include="Views\Default\" />
+    <Folder Include="Views\DeviceTrace\" />
+    <Folder Include="Views\Feedback\" />
+    <Folder Include="Views\MovieTVResources\" />
+    <Folder Include="Views\PromulgateToken\" />
+    <Folder Include="Views\ReceiveMinusPoint\" />
+    <Folder Include="Views\TvHotelConfig\" />
+    <Folder Include="Views\UnloadFile\" />
+    <Folder Include="Views\WorkApp\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Preview|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PublishDatabases>false</PublishDatabases>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PublishDatabases>false</PublishDatabases>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <PublishDatabases>false</PublishDatabases>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Preview|x64'">
+    <OutputPath>bin\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <PublishDatabases>false</PublishDatabases>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PublishDatabases>false</PublishDatabases>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <PublishDatabases>false</PublishDatabases>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Preview|x86'">
+    <OutputPath>bin\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <PublishDatabases>false</PublishDatabases>
+    <IncludeIisSettings>false</IncludeIisSettings>
+    <FilesToIncludeForPublish>OnlyFilesToRunTheApp</FilesToIncludeForPublish>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:1778/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

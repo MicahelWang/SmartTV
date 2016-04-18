@@ -1,0 +1,78 @@
+﻿@model YeahTVApi.DomainModel.Models.DomainModels.GlobalConfig
+
+@{
+    OpType opType = ViewBag.OpType;
+}
+
+@using (Ajax.BeginForm("AddOrEdit", new { }, new AjaxOptions
+{
+    
+    HttpMethod = "Post",
+    OnSuccess = "Success",
+}, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-horizontal">
+        <input type="hidden" name="Type" value="@opType.GetValueStr()" />
+        <input type="hidden" name="PermitionType" value="@Model.PermitionType" />
+        <input type="hidden" name="TypeId" value="@Model.TypeId" />
+
+        @Html.HiddenFor(m => m.Id)
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConfigName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ConfigName, ViewBag.GlobalConfigDescribe as IEnumerable<SelectListItem>, new { htmlAttributes = new { @class = "form-control" } })
+</div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ConfigValue, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ConfigValue, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.HiddenFor(model => model.ConfigDescribe, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.ConfigDescribe, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        @if (opType == OpType.View)
+        {
+
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastUpdateUser, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LastUpdateUser, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastUpdateTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LastUpdateTime, new { htmlAttributes = new { @class = "form-control" } })
+                </div>
+            </div>
+
+        }
+
+    </div>
+
+}
+@if (opType == OpType.View)
+{
+    <script>
+        SetKeyReadonly();
+    </script>
+}
+
+<script>
+
+    $(document).ready(function () {
+        $("#ConfigDescribe").val($("#ConfigName option:selected").html());
+        $("#ConfigName").change(function () {
+            var selText = $("#ConfigName option:selected").html();
+            $("#ConfigDescribe").val(selText);
+        });
+    });
+
+</script>

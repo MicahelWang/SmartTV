@@ -1,0 +1,149 @@
+﻿@model  TVHotelConfig
+
+@{
+    OpType opType = ViewBag.OpType;
+}
+
+
+@using (Ajax.BeginForm("AddOrEdit", new { }, new AjaxOptions
+{
+    HttpMethod = "Post",
+    OnSuccess = "Success",
+}, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-horizontal">
+        <input type="hidden" name="opType" value="@opType.GetValueStr()" />
+
+        @Html.HiddenFor(m => m.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.HotelId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(m => m.HotelId, new { Id = "hotelIdCondition" })
+                @Html.TextBox("hotelNameCondition", UtilityHelper.GetHotelName(Model.HotelId), new { @class = "form-control" })
+            </div>
+        </div>
+        @if (opType == OpType.Update||opType== OpType.View)
+        {
+            <div class="form-group hidden">
+                @Html.LabelFor(model => model.ConfigCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ConfigCode, new { htmlAttributes = new { @class = "form-control", @readOnly = "readonly" } })
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConfigName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ConfigName, new { htmlAttributes = new { @class = "form-control", @readOnly = "readonly" } })
+
+                </div>
+            </div>
+
+        }
+        else
+        {
+            @Html.HiddenFor(m => m.ConfigName)
+            <div class="form-group hidden">
+                @Html.LabelFor(model => model.ConfigCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ConfigCode, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.ConfigName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @*@Html.EditorFor(model => model.ConfigName, new { htmlAttributes = new { @class = "form-control" } })*@
+                    @Html.DropDownList("tvhotelconfigTypeList", ViewBag.tvhotelconfigTypeList as IEnumerable<SelectListItem>, new { htmlAttributes = new { @class = "form-control" } })
+
+                </div>
+            </div>
+
+        }
+
+
+        <div class="form-group StorePaymentBox UnnomalBox">
+            @Html.LabelFor(model => model.ConfigValue, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+    var selectListItems = ViewBag.PayPaymentModels as IEnumerable<SelectListItem>;
+                }
+                @if (selectListItems != null)
+                {
+                    var i = 0;
+                    foreach (var item in selectListItems)
+                    {
+                        @Html.CheckBox("StorePayConfig.PaymentModels[" + i.ToString() + "]", item.Selected, new
+                            {
+                                value = item.Value,
+                            });
+                              i++;
+                            @Html.Label(item.Value, item.Text, new { htmlAttributes = new { @class = "form-control" } });
+                    }
+                }
+
+            </div>
+        </div>
+
+        <div class="form-group StorePaymentBox UnnomalBox">
+            @Html.LabelFor(model => model.StorePayConfig.SentRoom, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBox("StorePayConfig.SentRoom", Model.StorePayConfig == null || (Model.StorePayConfig.SentRoom ?? true), new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+
+
+        <div class="form-group ConfigValueBox">
+            @Html.LabelFor(model => model.ConfigValue, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                 @Html.EditorFor(model => model.ConfigValue, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+
+        <div class="form-group EnableMeng UnnomalBox">
+            @Html.LabelFor(model => model.ConfigValue, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.IsEnableMeng, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+
+        <div class="form-group ActiveBox">
+            @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBox("Active", Model.Active ?? false, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    </div>
+}
+
+
+
+<script>
+
+    changeBox('@Model.ConfigCode');
+
+</script>
+
+@if (opType == OpType.View)
+{
+    <script>
+        SetKeyReadonly();
+    </script>
+}
+
+@if (opType == OpType.Update)
+{
+    <script>
+        $("#hotelNameCondition").attr("disabled", "disabled");
+    </script>
+}
+else
+{
+    @Scripts.Render("~/bundles/GetHotelNames");
+    <script>
+        GetHotelNames('@Url.Action("GetHotelNames", "Unity")', $("#hotelNameCondition"), $("#hotelIdCondition"));
+    </script>
+}

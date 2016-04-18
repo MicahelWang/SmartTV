@@ -1,0 +1,106 @@
+﻿@model PagedViewList<MovieForLocalize>
+<div class="row" id="list">
+    <table id="viewTable" class="table table-striped table-bordered table-hover dataTable">
+        <thead>
+            <tr role="row">
+                <th>影片名称</th>
+                <th>影片分类</th>
+                <th class="sorting" sortfield="HotelCount">分发酒店数量</th>
+                <th class="sorting" sortfield="Rate">推荐/评分</th>
+                <th class="sorting" sortfield="DefaultAmount">默认价格</th>
+                <th class="sorting" sortfield="LastUpdateTime">更新时间</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                var zh = "zh-cn";
+                var en = "en-us";
+            }
+            @if (Model.Source != null)
+            {
+                foreach (var item in Model.Source)
+                {
+
+                    <tr>
+                        <td>
+                            <input type="hidden" class="key" value="@item.Id" />
+                            @foreach (var l in item.Names)
+                            {
+                                if (l.Lang.ToLower() == zh)
+                                {
+                                    @l.Content;
+                                              break;
+                                }
+                            }
+
+                        </td>
+                        <td>
+                            @*Html.Action("GetHotelNameById", new { hotelId = item.HotelId })*@
+                            @{
+                            string str = "";
+                            foreach (var tag in item.Tags)
+                            {
+                                foreach (var r in tag)
+                                {
+                                    if (r.Lang.ToLower() == zh) 
+                                    { 
+                                        str += r.Content + ",";
+                                    }
+                                }
+                            }
+                            }
+                            @str.TrimEnd(',')
+                        </td>
+                        <td>
+                            @item.HotelCount
+                        </td>
+                        <td>
+                            @item.Rate
+                        </td>
+                        <td>
+                            @item.DefaultAmount
+                        </td>
+                        <td>
+                            @item.LastUpdateTime.ToDateTimeStr(DateFormate.yyyyMMddHHmmss)
+                        </td>
+                        <td>
+                            <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                <a data-optype="distribution" class="blue" href="@Url.Action("Distribute",new
+                                                                                 {
+                                                                                     movieId = @item.Id,
+                                                                                     pageIndex = Model.PageIndex
+                                                                                 })">
+                                    分发
+                                </a>
+                                @if (item.IsTop != null && bool.Parse(item.IsTop.ToString()))
+                                {
+                                    <a data-optype="cancelTop" class="blue" href="javascript:void(0)">
+                                        取消置顶
+                                    </a>
+                                }
+                                else
+                                {
+                                    <a data-optype="setTop" class="blue" href="javascript:void(0)">
+                                        设为置顶
+                                    </a>
+                                }
+                                <a data-optype="edit" class="green" href="@Url.Action("Edit", "VOD", new { id = item.Id})">
+                                    <i class="icon-pencil bigger-130"></i>
+                                </a>
+                                @*<a data-optype="delete" class="badge-yellow" href="javascript:void(0)">
+                                        <i class="icon-trash bigger-130"></i>
+                                    </a>*@
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+        SetSortingClass();
+    })
+</script>

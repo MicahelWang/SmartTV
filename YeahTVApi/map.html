@@ -1,0 +1,161 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0,user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>地图显示</title>
+<link rel="stylesheet" type="text/css" href="http://developer.amap.com/Public/css/demo.Default.css" />
+<style> 
+.markerContentStyle span{ 
+left:-20px; 
+top:70px;
+color:blue;
+font-family:微软雅黑;
+} 
+</style>
+
+<script src="jquery-1.9.1.min.js"></script>
+<script language="javascript" src="http://webapi.amap.com/maps?v=1.3&key=8b14c3324f5389cafe9664e854aab7c0"></script>
+<script language="javascript">
+var URL_Request=function (paras) {
+	var url = location.href;
+	var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+	var paraObj = {};
+	for (i = 0; j = paraString[i]; i++) {
+		paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+	}
+	var returnValue = paraObj[paras.toLowerCase()];
+	return returnValue;
+};
+var hotelBrandList;
+var mapObj;
+var markers = [];
+var lat="";
+var lng="";
+var categorytype=URL_Request("categorytype")?URL_Request("categorytype"):""; 
+var geo = URL_Request("geo") ? URL_Request("geo") : "";
+var hotelIcon = URL_Request("hotelIcon") ? URL_Request("hotelIcon") : "";
+if(geo){
+	lat = geo.split("|")[0];
+	lng = geo.split("|")[1];
+}
+$(function () {
+	loadHotelBrand();
+});
+
+var loadHotelBrand = function () {
+	var hotelDetailSearch = "categorytype=" + categorytype + "&geo=" + geo;
+	$.ajax({
+		type: "get",
+		url: "../Dianping/GetShopList",
+		data: hotelDetailSearch,
+		success: function (msg) {
+		    var date = $.parseJSON(msg);
+		        mapInit(date);
+		}
+	});
+};
+
+//初始化地图对象，加载地图
+function mapInit(obj) {
+	if (mapObj) {
+        mapObj.destroy();
+    }
+	markers = [];
+    mapObj = new AMap.Map("iCenter",{
+        rotateEnable:true,
+        dragEnable:true,
+        zoomEnable:true,
+        zooms:[3,18],
+        //二维地图显示视口
+        view: new AMap.View2D({
+            center:new AMap.LngLat(lng,lat),//地图中心点
+            zoom:16 //地图显示的缩放级别
+        })
+    });
+
+    addMarker();
+    if (obj.ResultType == 0) {
+        addMarkers(obj);
+    }
+
+	var docHeight = $(window).height();
+    var docWidth = $(window).width();
+	$("#iCenter").css("height",docHeight);
+	$("#iCenter").css("width",docWidth);
+	mapObj.setFitView();
+	
+}
+
+
+//添加带文本的点标记覆盖物
+function addMarker(){
+    //自定义点标记内容  
+    var markerContent = document.createElement("div");
+    markerContent.className = "markerContentStyle";
+     
+    //点标记中的图标
+    var markerImg= document.createElement("img");
+     markerImg.className="markerlnglat";
+     markerImg.src = hotelIcon;
+     markerContent.appendChild(markerImg);
+     marker = new AMap.Marker({
+        map:mapObj,
+        position:new AMap.LngLat(lng,lat), //基点位置
+        offset:new AMap.Pixel(-18,-36), //相对于基点的偏移位置
+        draggable:false, 
+        content:markerContent   //自定义点标记覆盖物内容
+    });
+    marker.setMap(mapObj);  //在地图上添加点
+}
+
+
+function addMarkers(obj){
+	var list = obj.list;
+	for(var i=0;i<list.length;i++){
+		addMarkersList(list[i]);
+	}
+}
+
+var addMarkersList = function(list){
+	//自定义点标记内容  
+	var markerContent = document.createElement("div");
+	markerContent.className = "markerContentStyle";
+	//点标记中的图标
+	var markerImg= document.createElement("img");
+	 markerImg.className="markerlnglat";
+	 markerImg.src=list.IconURL;  
+	 markerContent.appendChild(markerImg);
+	 //点标记中的文本
+	 //var markerSpan = document.createElement("span");
+	 //markerSpan.innerHTML = list.shopName;
+	 //markerContent.appendChild(markerSpan);
+	 marker = new AMap.Marker({
+		map:mapObj,
+		position:new AMap.LngLat(list.longitude,list.latitude), //基点位置
+		offset:new AMap.Pixel(-18,-36), //相对于基点的偏移位置
+		draggable:false, 
+		content:markerContent   //自定义点标记覆盖物内容
+	});
+	marker.setMap(mapObj);  //在地图上添加点
+}
+
+
+var URL_Request=function (paras) {
+	var url = location.href;
+	var paraString = url.substring(url.indexOf("?") + 1, url.length).split("&");
+	var paraObj = {};
+	for (i = 0; j = paraString[i]; i++) {
+		paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+	}
+	var returnValue = paraObj[paras.toLowerCase()];
+	return returnValue;
+};
+
+
+</script>
+</head>
+<body>
+    <div id="iCenter"></div>   
+</body>
+</html>                  

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1f145957-ce0b-4352-9e99-3940c37a63fc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://10.1.81.69:8022/PmsService.svc/mex/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service1.wsdl" MetadataType="Wsdl" ID="f4246b39-5385-4352-b8fd-444b486dc6bf" SourceId="1" SourceUrl="http://10.1.81.69:8022/PmsService.svc/mex/mex" />
+    <MetadataFile FileName="service2.xsd" MetadataType="Schema" ID="89503ba9-8795-4a7e-ab86-ef6de83ac469" SourceId="1" SourceUrl="http://10.1.81.69:8022/PmsService.svc/mex/mex" />
+    <MetadataFile FileName="service21.xsd" MetadataType="Schema" ID="a241dc0a-1c93-44a0-9425-2767955d0c7c" SourceId="1" SourceUrl="http://10.1.81.69:8022/PmsService.svc/mex/mex" />
+    <MetadataFile FileName="HuaZhu.PMS.Interface.SmartTVService.DataContract1.xsd" MetadataType="Schema" ID="b72e9e33-8b5c-4d63-873c-62069591643a" SourceId="1" SourceUrl="http://10.1.81.69:8022/PmsService.svc/mex/mex" />
+    <MetadataFile FileName="Arrays1.xsd" MetadataType="Schema" ID="2a2a7b5c-4d2d-4918-ba82-c34982527b4f" SourceId="1" SourceUrl="http://10.1.81.69:8022/PmsService.svc/mex/mex" />
+    <MetadataFile FileName="Htinns.PMS.Entity.GoodsSales1.xsd" MetadataType="Schema" ID="bbf6340f-c377-4106-8505-5ecfcf5d2b56" SourceId="1" SourceUrl="http://10.1.81.69:8022/PmsService.svc/mex/mex" />
+    <MetadataFile FileName="Htinns.PMS.Entity.Base1.xsd" MetadataType="Schema" ID="213acd63-bea5-4ab6-906e-900b599dabb2" SourceId="1" SourceUrl="http://10.1.81.69:8022/PmsService.svc/mex/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

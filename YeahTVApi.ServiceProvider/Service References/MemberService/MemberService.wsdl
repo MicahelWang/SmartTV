@@ -1,0 +1,1582 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MemberService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSHttpBinding_IMemberService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.BasicInfo" />
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Request" />
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Response" />
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Activity.ActivityCRMSync" />
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd6" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.ThirdParty" />
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd8" namespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.eCoupons" />
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity" />
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd10" />
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberService.svc?xsd=xsd11" namespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Dto" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMemberService_GetMemberUsualContactByMemberID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberUsualContactByMemberID" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberUsualContactByMemberID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberUsualContactByMemberIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberUsualHotelByMemberID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberUsualHotelByMemberID" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberUsualHotelByMemberID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberUsualHotelByMemberIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_DeleteMemberUsualContactByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMemberUsualContactByID" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_DeleteMemberUsualContactByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMemberUsualContactByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_DeleteMemberUsualContact_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMemberUsualContact" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_DeleteMemberUsualContact_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMemberUsualContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_DeleteMemberUsualHotelByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMemberUsualHotelByID" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_DeleteMemberUsualHotelByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMemberUsualHotelByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_DeleteMemberUsualHotel_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMemberUsualHotel" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_DeleteMemberUsualHotel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteMemberUsualHotelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetRoomDayByMemberID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomDayByMemberID" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetRoomDayByMemberID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomDayByMemberIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetInviteCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInviteCode" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetInviteCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInviteCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberIDByInviteCode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberIDByInviteCode" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberIDByInviteCode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberIDByInviteCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_BindMemberRelation_InputMessage">
+    <wsdl:part name="parameters" element="tns:BindMemberRelation" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_BindMemberRelation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BindMemberRelationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetGuestMemberInfoList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetGuestMemberInfoList" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetGuestMemberInfoList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetGuestMemberInfoListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetWechatInfoList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWechatInfoList" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetWechatInfoList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWechatInfoListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_SetThirdPartyAttentionInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetThirdPartyAttentionInfo" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_SetThirdPartyAttentionInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetThirdPartyAttentionInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_IsWeChatFocusOn_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsWeChatFocusOn" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_IsWeChatFocusOn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsWeChatFocusOnResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GiveCouponAsync_InputMessage">
+    <wsdl:part name="parameters" element="tns:GiveCouponAsync" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GiveCouponAsync_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GiveCouponAsyncResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_ActivateValue_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActivateValue" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_ActivateValue_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActivateValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_MemberMixPayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:MemberMixPayment" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_MemberMixPayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MemberMixPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_SearchByOnlyJson_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchByOnlyJson" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_SearchByOnlyJson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchByOnlyJsonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_Upgrade_InputMessage">
+    <wsdl:part name="parameters" element="tns:Upgrade" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_Upgrade_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpgradeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_Upgrade4MGM1_InputMessage">
+    <wsdl:part name="parameters" element="tns:Upgrade4MGM1" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_Upgrade4MGM1_OutputMessage">
+    <wsdl:part name="parameters" element="tns:Upgrade4MGM1Response" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_Degrade_InputMessage">
+    <wsdl:part name="parameters" element="tns:Degrade" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_Degrade_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DegradeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_RegisterNetMember_InputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterNetMember" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_RegisterNetMember_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RegisterNetMemberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberLevel_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberLevel" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberLevel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberLevelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_IsDefaultCompanyPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsDefaultCompanyPassword" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_IsDefaultCompanyPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsDefaultCompanyPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_AddIDCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddIDCard" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_AddIDCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddIDCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberIdByIdNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberIdByIdNo" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberIdByIdNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberIdByIdNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetInvoiceTitleByMemberID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceTitleByMemberID" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetInvoiceTitleByMemberID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetInvoiceTitleByMemberIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_AddInvoiceTitle_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddInvoiceTitle" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_AddInvoiceTitle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddInvoiceTitleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_DeleteInvoiceTitle_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteInvoiceTitle" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_DeleteInvoiceTitle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteInvoiceTitleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UsedInvoiceTitle_InputMessage">
+    <wsdl:part name="parameters" element="tns:UsedInvoiceTitle" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UsedInvoiceTitle_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UsedInvoiceTitleResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_SearchByCRS_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchByCRS" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_SearchByCRS_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchByCRSResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_SearchByPhone_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchByPhone" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_SearchByPhone_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchByPhoneResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_QueryMemberForCRS_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryMemberForCRS" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_QueryMemberForCRS_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryMemberForCRSResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberInfoByExtCardNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberInfoByExtCardNo" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberInfoByExtCardNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberInfoByExtCardNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_BindThirdParty_InputMessage">
+    <wsdl:part name="parameters" element="tns:BindThirdParty" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_BindThirdParty_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BindThirdPartyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberIdByThirdParty_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberIdByThirdParty" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberIdByThirdParty_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberIdByThirdPartyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetByMemberId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByMemberId" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetByMemberId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByMemberIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdateLevelByMemberId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLevelByMemberId" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdateLevelByMemberId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLevelByMemberIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdateLevelByThirdPartyId_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLevelByThirdPartyId" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdateLevelByThirdPartyId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateLevelByThirdPartyIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UnBindThirdParty_InputMessage">
+    <wsdl:part name="parameters" element="tns:UnBindThirdParty" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UnBindThirdParty_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnBindThirdPartyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_setSynchronization_InputMessage">
+    <wsdl:part name="parameters" element="tns:setSynchronization" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_setSynchronization_OutputMessage">
+    <wsdl:part name="parameters" element="tns:setSynchronizationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_IsHtMemberByMobile_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsHtMemberByMobile" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_IsHtMemberByMobile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsHtMemberByMobileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_IsHtMemberByMobileEx_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsHtMemberByMobileEx" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_IsHtMemberByMobileEx_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsHtMemberByMobileExResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_MemberReferrerRegister_InputMessage">
+    <wsdl:part name="parameters" element="tns:MemberReferrerRegister" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_MemberReferrerRegister_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MemberReferrerRegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetReferrerMemberCountThisYear_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReferrerMemberCountThisYear" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetReferrerMemberCountThisYear_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReferrerMemberCountThisYearResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberReferrers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberReferrers" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberReferrers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberReferrersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetCoBrandedStatus_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoBrandedStatus" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetCoBrandedStatus_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCoBrandedStatusResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_CreateMemberUsualContact_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateMemberUsualContact" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_CreateMemberUsualContact_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateMemberUsualContactResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_CreateMemberUsualHotel_InputMessage">
+    <wsdl:part name="parameters" element="tns:CreateMemberUsualHotel" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_CreateMemberUsualHotel_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CreateMemberUsualHotelResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_DoWork_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoWork" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_DoWork_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoWorkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_AddMember_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddMember" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_AddMember_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddMemberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_AddMemberAndCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddMemberAndCard" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_AddMemberAndCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddMemberAndCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_MemberRegister_InputMessage">
+    <wsdl:part name="parameters" element="tns:MemberRegister" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_MemberRegister_OutputMessage">
+    <wsdl:part name="parameters" element="tns:MemberRegisterResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdateMember_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMember" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdateMember_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMemberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_IsCanUpdateMemberQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsCanUpdateMemberQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_IsCanUpdateMemberQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsCanUpdateMemberQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdateMemberQuestion_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMemberQuestion" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdateMemberQuestion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMemberQuestionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdateEmail_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEmail" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdateEmail_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateEmailResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdateMobile_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMobile" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdateMobile_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateMobileResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdateIdNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateIdNo" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdateIdNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateIdNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_LoginCheck_InputMessage">
+    <wsdl:part name="parameters" element="tns:LoginCheck" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_LoginCheck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:LoginCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdatePassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePassword" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpdatePassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdatePasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_CheckPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckPassword" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_CheckPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_ResetPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPassword" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_ResetPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_ResetMemberPassword_InputMessage">
+    <wsdl:part name="parameters" element="tns:ResetMemberPassword" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_ResetMemberPassword_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ResetMemberPasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_PersonInfoCheck_InputMessage">
+    <wsdl:part name="parameters" element="tns:PersonInfoCheck" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_PersonInfoCheck_OutputMessage">
+    <wsdl:part name="parameters" element="tns:PersonInfoCheckResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberInfo" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberInfoJson_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberInfoJson" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberInfoJson_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberInfoJsonResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberById" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberInfoByCardNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberInfoByCardNo" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetMemberInfoByCardNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberInfoByCardNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_Freeze_InputMessage">
+    <wsdl:part name="parameters" element="tns:Freeze" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_Freeze_OutputMessage">
+    <wsdl:part name="parameters" element="tns:FreezeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_Destroy_InputMessage">
+    <wsdl:part name="parameters" element="tns:Destroy" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_Destroy_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DestroyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_Unfreeze_InputMessage">
+    <wsdl:part name="parameters" element="tns:Unfreeze" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_Unfreeze_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UnfreezeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpgradeByPoint_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpgradeByPoint" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpgradeByPoint_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpgradeByPointResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpgradeByMoney_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpgradeByMoney" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpgradeByMoney_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpgradeByMoneyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpgradeByAccredit_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpgradeByAccredit" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_UpgradeByAccredit_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpgradeByAccreditResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_QueryMember_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryMember" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_QueryMember_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryMemberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_SetEmailFlag_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetEmailFlag" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_SetEmailFlag_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetEmailFlagResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_ActivateEmailFlag_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActivateEmailFlag" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_ActivateEmailFlag_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActivateEmailFlagResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetPasswordUnion_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPasswordUnion" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_GetPasswordUnion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPasswordUnionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_DelayExpireTime_InputMessage">
+    <wsdl:part name="parameters" element="tns:DelayExpireTime" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_DelayExpireTime_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DelayExpireTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_SearchByOnly_InputMessage">
+    <wsdl:part name="parameters" element="tns:SearchByOnly" />
+  </wsdl:message>
+  <wsdl:message name="IMemberService_SearchByOnly_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SearchByOnlyResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IMemberService">
+    <wsdl:operation name="GetMemberUsualContactByMemberID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetMemberUsualContactByMemberID" message="tns:IMemberService_GetMemberUsualContactByMemberID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetMemberUsualContactByMemberIDResponse" message="tns:IMemberService_GetMemberUsualContactByMemberID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberUsualHotelByMemberID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetMemberUsualHotelByMemberID" message="tns:IMemberService_GetMemberUsualHotelByMemberID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetMemberUsualHotelByMemberIDResponse" message="tns:IMemberService_GetMemberUsualHotelByMemberID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMemberUsualContactByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/DeleteMemberUsualContactByID" message="tns:IMemberService_DeleteMemberUsualContactByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/DeleteMemberUsualContactByIDResponse" message="tns:IMemberService_DeleteMemberUsualContactByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMemberUsualContact">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/DeleteMemberUsualContact" message="tns:IMemberService_DeleteMemberUsualContact_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/DeleteMemberUsualContactResponse" message="tns:IMemberService_DeleteMemberUsualContact_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMemberUsualHotelByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/DeleteMemberUsualHotelByID" message="tns:IMemberService_DeleteMemberUsualHotelByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/DeleteMemberUsualHotelByIDResponse" message="tns:IMemberService_DeleteMemberUsualHotelByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMemberUsualHotel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/DeleteMemberUsualHotel" message="tns:IMemberService_DeleteMemberUsualHotel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/DeleteMemberUsualHotelResponse" message="tns:IMemberService_DeleteMemberUsualHotel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomDayByMemberID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetRoomDayByMemberID" message="tns:IMemberService_GetRoomDayByMemberID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetRoomDayByMemberIDResponse" message="tns:IMemberService_GetRoomDayByMemberID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInviteCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetInviteCode" message="tns:IMemberService_GetInviteCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetInviteCodeResponse" message="tns:IMemberService_GetInviteCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberIDByInviteCode">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetMemberIDByInviteCode" message="tns:IMemberService_GetMemberIDByInviteCode_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetMemberIDByInviteCodeResponse" message="tns:IMemberService_GetMemberIDByInviteCode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BindMemberRelation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/BindMemberRelation" message="tns:IMemberService_BindMemberRelation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/BindMemberRelationResponse" message="tns:IMemberService_BindMemberRelation_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGuestMemberInfoList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetGuestMemberInfoList" message="tns:IMemberService_GetGuestMemberInfoList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetGuestMemberInfoListResponse" message="tns:IMemberService_GetGuestMemberInfoList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWechatInfoList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetWechatInfoList" message="tns:IMemberService_GetWechatInfoList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetWechatInfoListResponse" message="tns:IMemberService_GetWechatInfoList_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetThirdPartyAttentionInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/SetThirdPartyAttentionInfo" message="tns:IMemberService_SetThirdPartyAttentionInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/SetThirdPartyAttentionInfoResponse" message="tns:IMemberService_SetThirdPartyAttentionInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsWeChatFocusOn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/IsWeChatFocusOn" message="tns:IMemberService_IsWeChatFocusOn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/IsWeChatFocusOnResponse" message="tns:IMemberService_IsWeChatFocusOn_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GiveCouponAsync">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GiveCouponAsync" message="tns:IMemberService_GiveCouponAsync_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GiveCouponAsyncResponse" message="tns:IMemberService_GiveCouponAsync_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivateValue">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/ActivateValue" message="tns:IMemberService_ActivateValue_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/ActivateValueResponse" message="tns:IMemberService_ActivateValue_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MemberMixPayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/MemberMixPayment" message="tns:IMemberService_MemberMixPayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/MemberMixPaymentResponse" message="tns:IMemberService_MemberMixPayment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchByOnlyJson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/SearchByOnlyJson" message="tns:IMemberService_SearchByOnlyJson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/SearchByOnlyJsonResponse" message="tns:IMemberService_SearchByOnlyJson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Upgrade">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/Upgrade" message="tns:IMemberService_Upgrade_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/UpgradeResponse" message="tns:IMemberService_Upgrade_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Upgrade4MGM1">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/Upgrade4MGM1" message="tns:IMemberService_Upgrade4MGM1_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/Upgrade4MGM1Response" message="tns:IMemberService_Upgrade4MGM1_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Degrade">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/Degrade" message="tns:IMemberService_Degrade_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/DegradeResponse" message="tns:IMemberService_Degrade_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RegisterNetMember">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/RegisterNetMember" message="tns:IMemberService_RegisterNetMember_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/RegisterNetMemberResponse" message="tns:IMemberService_RegisterNetMember_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberLevel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetMemberLevel" message="tns:IMemberService_GetMemberLevel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetMemberLevelResponse" message="tns:IMemberService_GetMemberLevel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsDefaultCompanyPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/IsDefaultCompanyPassword" message="tns:IMemberService_IsDefaultCompanyPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/IsDefaultCompanyPasswordResponse" message="tns:IMemberService_IsDefaultCompanyPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddIDCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/AddIDCard" message="tns:IMemberService_AddIDCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/AddIDCardResponse" message="tns:IMemberService_AddIDCard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberIdByIdNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetMemberIdByIdNo" message="tns:IMemberService_GetMemberIdByIdNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetMemberIdByIdNoResponse" message="tns:IMemberService_GetMemberIdByIdNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceTitleByMemberID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetInvoiceTitleByMemberID" message="tns:IMemberService_GetInvoiceTitleByMemberID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetInvoiceTitleByMemberIDResponse" message="tns:IMemberService_GetInvoiceTitleByMemberID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddInvoiceTitle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/AddInvoiceTitle" message="tns:IMemberService_AddInvoiceTitle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/AddInvoiceTitleResponse" message="tns:IMemberService_AddInvoiceTitle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInvoiceTitle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/DeleteInvoiceTitle" message="tns:IMemberService_DeleteInvoiceTitle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/DeleteInvoiceTitleResponse" message="tns:IMemberService_DeleteInvoiceTitle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UsedInvoiceTitle">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/UsedInvoiceTitle" message="tns:IMemberService_UsedInvoiceTitle_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/UsedInvoiceTitleResponse" message="tns:IMemberService_UsedInvoiceTitle_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchByCRS">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/SearchByCRS" message="tns:IMemberService_SearchByCRS_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/SearchByCRSResponse" message="tns:IMemberService_SearchByCRS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchByPhone">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/SearchByPhone" message="tns:IMemberService_SearchByPhone_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/SearchByPhoneResponse" message="tns:IMemberService_SearchByPhone_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryMemberForCRS">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/QueryMemberForCRS" message="tns:IMemberService_QueryMemberForCRS_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/QueryMemberForCRSResponse" message="tns:IMemberService_QueryMemberForCRS_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberInfoByExtCardNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetMemberInfoByExtCardNo" message="tns:IMemberService_GetMemberInfoByExtCardNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetMemberInfoByExtCardNoResponse" message="tns:IMemberService_GetMemberInfoByExtCardNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="BindThirdParty">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/BindThirdParty" message="tns:IMemberService_BindThirdParty_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/BindThirdPartyResponse" message="tns:IMemberService_BindThirdParty_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberIdByThirdParty">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetMemberIdByThirdParty" message="tns:IMemberService_GetMemberIdByThirdParty_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetMemberIdByThirdPartyResponse" message="tns:IMemberService_GetMemberIdByThirdParty_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByMemberId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetByMemberId" message="tns:IMemberService_GetByMemberId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetByMemberIdResponse" message="tns:IMemberService_GetByMemberId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLevelByMemberId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/UpdateLevelByMemberId" message="tns:IMemberService_UpdateLevelByMemberId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/UpdateLevelByMemberIdResponse" message="tns:IMemberService_UpdateLevelByMemberId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLevelByThirdPartyId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/UpdateLevelByThirdPartyId" message="tns:IMemberService_UpdateLevelByThirdPartyId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/UpdateLevelByThirdPartyIdResponse" message="tns:IMemberService_UpdateLevelByThirdPartyId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UnBindThirdParty">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/UnBindThirdParty" message="tns:IMemberService_UnBindThirdParty_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/UnBindThirdPartyResponse" message="tns:IMemberService_UnBindThirdParty_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="setSynchronization">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/setSynchronization" message="tns:IMemberService_setSynchronization_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/setSynchronizationResponse" message="tns:IMemberService_setSynchronization_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsHtMemberByMobile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/IsHtMemberByMobile" message="tns:IMemberService_IsHtMemberByMobile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/IsHtMemberByMobileResponse" message="tns:IMemberService_IsHtMemberByMobile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsHtMemberByMobileEx">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/IsHtMemberByMobileEx" message="tns:IMemberService_IsHtMemberByMobileEx_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/IsHtMemberByMobileExResponse" message="tns:IMemberService_IsHtMemberByMobileEx_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MemberReferrerRegister">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/MemberReferrerRegister" message="tns:IMemberService_MemberReferrerRegister_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/MemberReferrerRegisterResponse" message="tns:IMemberService_MemberReferrerRegister_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReferrerMemberCountThisYear">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetReferrerMemberCountThisYear" message="tns:IMemberService_GetReferrerMemberCountThisYear_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetReferrerMemberCountThisYearResponse" message="tns:IMemberService_GetReferrerMemberCountThisYear_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberReferrers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetMemberReferrers" message="tns:IMemberService_GetMemberReferrers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetMemberReferrersResponse" message="tns:IMemberService_GetMemberReferrers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCoBrandedStatus">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetCoBrandedStatus" message="tns:IMemberService_GetCoBrandedStatus_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetCoBrandedStatusResponse" message="tns:IMemberService_GetCoBrandedStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateMemberUsualContact">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/CreateMemberUsualContact" message="tns:IMemberService_CreateMemberUsualContact_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/CreateMemberUsualContactResponse" message="tns:IMemberService_CreateMemberUsualContact_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateMemberUsualHotel">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/CreateMemberUsualHotel" message="tns:IMemberService_CreateMemberUsualHotel_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/CreateMemberUsualHotelResponse" message="tns:IMemberService_CreateMemberUsualHotel_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DoWork">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/DoWork" message="tns:IMemberService_DoWork_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/DoWorkResponse" message="tns:IMemberService_DoWork_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMember">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/AddMember" message="tns:IMemberService_AddMember_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/AddMemberResponse" message="tns:IMemberService_AddMember_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddMemberAndCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/AddMemberAndCard" message="tns:IMemberService_AddMemberAndCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/AddMemberAndCardResponse" message="tns:IMemberService_AddMemberAndCard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="MemberRegister">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/MemberRegister" message="tns:IMemberService_MemberRegister_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/MemberRegisterResponse" message="tns:IMemberService_MemberRegister_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMember">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/UpdateMember" message="tns:IMemberService_UpdateMember_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/UpdateMemberResponse" message="tns:IMemberService_UpdateMember_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsCanUpdateMemberQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/IsCanUpdateMemberQuestion" message="tns:IMemberService_IsCanUpdateMemberQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/IsCanUpdateMemberQuestionResponse" message="tns:IMemberService_IsCanUpdateMemberQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMemberQuestion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/UpdateMemberQuestion" message="tns:IMemberService_UpdateMemberQuestion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/UpdateMemberQuestionResponse" message="tns:IMemberService_UpdateMemberQuestion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEmail">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/UpdateEmail" message="tns:IMemberService_UpdateEmail_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/UpdateEmailResponse" message="tns:IMemberService_UpdateEmail_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMobile">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/UpdateMobile" message="tns:IMemberService_UpdateMobile_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/UpdateMobileResponse" message="tns:IMemberService_UpdateMobile_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateIdNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/UpdateIdNo" message="tns:IMemberService_UpdateIdNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/UpdateIdNoResponse" message="tns:IMemberService_UpdateIdNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginCheck">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/LoginCheck" message="tns:IMemberService_LoginCheck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/LoginCheckResponse" message="tns:IMemberService_LoginCheck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/UpdatePassword" message="tns:IMemberService_UpdatePassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/UpdatePasswordResponse" message="tns:IMemberService_UpdatePassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/CheckPassword" message="tns:IMemberService_CheckPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/CheckPasswordResponse" message="tns:IMemberService_CheckPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/ResetPassword" message="tns:IMemberService_ResetPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/ResetPasswordResponse" message="tns:IMemberService_ResetPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ResetMemberPassword">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/ResetMemberPassword" message="tns:IMemberService_ResetMemberPassword_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/ResetMemberPasswordResponse" message="tns:IMemberService_ResetMemberPassword_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="PersonInfoCheck">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/PersonInfoCheck" message="tns:IMemberService_PersonInfoCheck_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/PersonInfoCheckResponse" message="tns:IMemberService_PersonInfoCheck_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetMemberInfo" message="tns:IMemberService_GetMemberInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetMemberInfoResponse" message="tns:IMemberService_GetMemberInfo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberInfoJson">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetMemberInfoJson" message="tns:IMemberService_GetMemberInfoJson_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetMemberInfoJsonResponse" message="tns:IMemberService_GetMemberInfoJson_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetMemberById" message="tns:IMemberService_GetMemberById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetMemberByIdResponse" message="tns:IMemberService_GetMemberById_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberInfoByCardNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetMemberInfoByCardNo" message="tns:IMemberService_GetMemberInfoByCardNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetMemberInfoByCardNoResponse" message="tns:IMemberService_GetMemberInfoByCardNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Freeze">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/Freeze" message="tns:IMemberService_Freeze_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/FreezeResponse" message="tns:IMemberService_Freeze_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Destroy">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/Destroy" message="tns:IMemberService_Destroy_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/DestroyResponse" message="tns:IMemberService_Destroy_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Unfreeze">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/Unfreeze" message="tns:IMemberService_Unfreeze_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/UnfreezeResponse" message="tns:IMemberService_Unfreeze_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpgradeByPoint">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/UpgradeByPoint" message="tns:IMemberService_UpgradeByPoint_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/UpgradeByPointResponse" message="tns:IMemberService_UpgradeByPoint_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpgradeByMoney">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/UpgradeByMoney" message="tns:IMemberService_UpgradeByMoney_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/UpgradeByMoneyResponse" message="tns:IMemberService_UpgradeByMoney_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpgradeByAccredit">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/UpgradeByAccredit" message="tns:IMemberService_UpgradeByAccredit_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/UpgradeByAccreditResponse" message="tns:IMemberService_UpgradeByAccredit_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryMember">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/QueryMember" message="tns:IMemberService_QueryMember_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/QueryMemberResponse" message="tns:IMemberService_QueryMember_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetEmailFlag">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/SetEmailFlag" message="tns:IMemberService_SetEmailFlag_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/SetEmailFlagResponse" message="tns:IMemberService_SetEmailFlag_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActivateEmailFlag">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/ActivateEmailFlag" message="tns:IMemberService_ActivateEmailFlag_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/ActivateEmailFlagResponse" message="tns:IMemberService_ActivateEmailFlag_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPasswordUnion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/GetPasswordUnion" message="tns:IMemberService_GetPasswordUnion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/GetPasswordUnionResponse" message="tns:IMemberService_GetPasswordUnion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DelayExpireTime">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/DelayExpireTime" message="tns:IMemberService_DelayExpireTime_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/DelayExpireTimeResponse" message="tns:IMemberService_DelayExpireTime_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SearchByOnly">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberService/SearchByOnly" message="tns:IMemberService_SearchByOnly_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberService/SearchByOnlyResponse" message="tns:IMemberService_SearchByOnly_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSHttpBinding_IMemberService" type="tns:IMemberService">
+    <wsp:PolicyReference URI="#WSHttpBinding_IMemberService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetMemberUsualContactByMemberID">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetMemberUsualContactByMemberID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberUsualHotelByMemberID">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetMemberUsualHotelByMemberID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMemberUsualContactByID">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/DeleteMemberUsualContactByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMemberUsualContact">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/DeleteMemberUsualContact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMemberUsualHotelByID">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/DeleteMemberUsualHotelByID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteMemberUsualHotel">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/DeleteMemberUsualHotel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomDayByMemberID">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetRoomDayByMemberID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInviteCode">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetInviteCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberIDByInviteCode">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetMemberIDByInviteCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BindMemberRelation">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/BindMemberRelation" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGuestMemberInfoList">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetGuestMemberInfoList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWechatInfoList">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetWechatInfoList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetThirdPartyAttentionInfo">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/SetThirdPartyAttentionInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsWeChatFocusOn">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/IsWeChatFocusOn" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GiveCouponAsync">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GiveCouponAsync" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateValue">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/ActivateValue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MemberMixPayment">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/MemberMixPayment" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchByOnlyJson">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/SearchByOnlyJson" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Upgrade">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/Upgrade" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Upgrade4MGM1">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/Upgrade4MGM1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Degrade">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/Degrade" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegisterNetMember">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/RegisterNetMember" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberLevel">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetMemberLevel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsDefaultCompanyPassword">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/IsDefaultCompanyPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddIDCard">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/AddIDCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberIdByIdNo">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetMemberIdByIdNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInvoiceTitleByMemberID">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetInvoiceTitleByMemberID" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddInvoiceTitle">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/AddInvoiceTitle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteInvoiceTitle">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/DeleteInvoiceTitle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UsedInvoiceTitle">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/UsedInvoiceTitle" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchByCRS">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/SearchByCRS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchByPhone">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/SearchByPhone" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryMemberForCRS">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/QueryMemberForCRS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberInfoByExtCardNo">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetMemberInfoByExtCardNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BindThirdParty">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/BindThirdParty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberIdByThirdParty">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetMemberIdByThirdParty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByMemberId">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetByMemberId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLevelByMemberId">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/UpdateLevelByMemberId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateLevelByThirdPartyId">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/UpdateLevelByThirdPartyId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UnBindThirdParty">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/UnBindThirdParty" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="setSynchronization">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/setSynchronization" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsHtMemberByMobile">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/IsHtMemberByMobile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsHtMemberByMobileEx">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/IsHtMemberByMobileEx" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MemberReferrerRegister">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/MemberReferrerRegister" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetReferrerMemberCountThisYear">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetReferrerMemberCountThisYear" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberReferrers">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetMemberReferrers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCoBrandedStatus">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetCoBrandedStatus" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMemberUsualContact">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/CreateMemberUsualContact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateMemberUsualHotel">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/CreateMemberUsualHotel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DoWork">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/DoWork" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMember">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/AddMember" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddMemberAndCard">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/AddMemberAndCard" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="MemberRegister">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/MemberRegister" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMember">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/UpdateMember" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsCanUpdateMemberQuestion">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/IsCanUpdateMemberQuestion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMemberQuestion">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/UpdateMemberQuestion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateEmail">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/UpdateEmail" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateMobile">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/UpdateMobile" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateIdNo">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/UpdateIdNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginCheck">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/LoginCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdatePassword">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/UpdatePassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckPassword">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/CheckPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetPassword">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/ResetPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ResetMemberPassword">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/ResetMemberPassword" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PersonInfoCheck">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/PersonInfoCheck" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberInfo">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetMemberInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberInfoJson">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetMemberInfoJson" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberById">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetMemberById" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberInfoByCardNo">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetMemberInfoByCardNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Freeze">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/Freeze" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Destroy">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/Destroy" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Unfreeze">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/Unfreeze" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpgradeByPoint">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/UpgradeByPoint" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpgradeByMoney">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/UpgradeByMoney" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpgradeByAccredit">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/UpgradeByAccredit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryMember">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/QueryMember" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetEmailFlag">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/SetEmailFlag" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActivateEmailFlag">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/ActivateEmailFlag" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetPasswordUnion">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/GetPasswordUnion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DelayExpireTime">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/DelayExpireTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SearchByOnly">
+      <soap12:operation soapAction="http://tempuri.org/IMemberService/SearchByOnly" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MemberService">
+    <wsdl:port name="WSHttpBinding_IMemberService" binding="tns:WSHttpBinding_IMemberService">
+      <soap12:address location="http://vwebsite02.httest.loc:2257/MemberService.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://vwebsite02.httest.loc:2257/MemberService.svc</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

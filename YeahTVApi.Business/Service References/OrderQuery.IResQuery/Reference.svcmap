@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="f8b4ac78-00d6-4a78-b578-b03e6d09c978" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://10.1.249.75:9090/resquery.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ResQuery.xsd" MetadataType="Schema" ID="b995d9b5-7e0c-485e-9031-6184cf78ba89" SourceId="1" SourceUrl="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd1" />
+    <MetadataFile FileName="ResQuery1.xsd" MetadataType="Schema" ID="a45e2776-f106-4f40-a1af-cb22c6a07f9e" SourceId="1" SourceUrl="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd0" />
+    <MetadataFile FileName="ResQuery2.xsd" MetadataType="Schema" ID="104a3d63-e4da-4b81-8a44-678d50308c87" SourceId="1" SourceUrl="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd3" />
+    <MetadataFile FileName="ResQuery3.xsd" MetadataType="Schema" ID="b2c21ba8-27a7-4071-8cae-b486e97d2040" SourceId="1" SourceUrl="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd2" />
+    <MetadataFile FileName="ResQuery4.xsd" MetadataType="Schema" ID="df32575f-3158-47bd-a096-164d390d8b62" SourceId="1" SourceUrl="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd5" />
+    <MetadataFile FileName="ResQuery5.xsd" MetadataType="Schema" ID="1ee3091d-390c-45c2-ad68-eae00dc6eb5f" SourceId="1" SourceUrl="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd4" />
+    <MetadataFile FileName="ResQuery6.xsd" MetadataType="Schema" ID="b05fd710-02b8-4c87-8941-2c0b57c3c47a" SourceId="1" SourceUrl="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd7" />
+    <MetadataFile FileName="ResQuery7.xsd" MetadataType="Schema" ID="72e1c5ac-6111-4e54-90ef-3ada4b97e567" SourceId="1" SourceUrl="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd6" />
+    <MetadataFile FileName="ResQuery.disco" MetadataType="Disco" ID="eda6578a-3cfa-4c57-89b6-b9c018bc6bf8" SourceId="1" SourceUrl="http://pmsrecon-web:9090/ResQuery.svc?disco" />
+    <MetadataFile FileName="ResQuery8.xsd" MetadataType="Schema" ID="8cb202d1-9d92-49d7-9349-f65ab6d8d062" SourceId="1" SourceUrl="http://pmsrecon-web:9090/ResQuery.svc?xsd=xsd8" />
+    <MetadataFile FileName="ResQuery.wsdl" MetadataType="Wsdl" ID="ba6233ef-343b-4039-9521-dab4c39e8a54" SourceId="1" SourceUrl="http://pmsrecon-web:9090/ResQuery.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

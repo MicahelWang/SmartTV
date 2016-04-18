@@ -1,0 +1,54 @@
+﻿@model YeahTVApi.DomainModel.Models.CoreSysGroup
+@{
+    OpType opType = ViewBag.OpType;
+}
+@using (Ajax.BeginForm("AddOrEdit", new { Controller="Group"}, new AjaxOptions()
+{
+    HttpMethod = "Post",
+    OnSuccess = "Success"
+}, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-horizontal">
+        @Html.HiddenFor(model =>model.Id)
+        <input type="hidden" name="type" value="@opType.GetValueStr()" />
+        <div class="form-group">
+            @Html.LabelFor(model => model.GroupCode, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GroupCode, new { htmlAttributes = new { @class = "form-control " ,@readOnly="readonly"}})
+                @Html.ValidationMessageFor(model => model.GroupCode, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GroupName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GroupName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GroupName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ApiKey, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ApiKey, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ApiKey, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.TemplateId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TemplateId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TemplateId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+      
+    </div>
+}
+
+@if (opType == OpType.View)
+{
+    <script>
+        SetKeyReadonly();
+    </script>
+}

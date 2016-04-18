@@ -1,0 +1,317 @@
+﻿@model UserCondition
+@{
+    ViewBag.Title = "用户管理";
+}
+
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            用户管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="widget-box">
+                <div class="widget-header header-color-blue">
+                    <h5 class="bigger lighter">
+                        <i class="icon-table"></i>
+                        用户管理
+                    </h5>
+                </div>
+            </div>
+            @{
+                UserCondition condition = ViewBag.Condition as UserCondition;
+            }
+            @Html.Partial("Condition", condition)
+
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    @{
+                        var list = ViewBag.List as IPagedList<ErpSysUser>;
+                    }
+                    @Html.Partial("List", list)
+                    <div class="row">
+                        <div class="col-sm-6">
+
+                            <div class="dataTables_info">
+                                <ul class="list-inline action-buttons">
+                                    <li data-original-title="新增" id="btnNew">
+                                        <div class="ui-pg-div">
+                                            <a href="#"><span class="ui-icon icon-plus-sign purple"></span></a>
+                                        </div>
+                                    </li>
+                                    <li data-original-title="删除" id="btnDelete">
+                                        <div class="ui-pg-div">
+                                            <a href="#"><span class="ui-icon icon-trash red"></span></a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            @{
+                                string querystring = condition.ToQueryString();
+                            }
+                            @Html.Pagination(list, "#list", Url.Action("List") + querystring)
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+@section styles{
+    <link rel="stylesheet" href="~/Scripts/assets/css/chosen.css" />
+
+}
+<!-- inline scripts related to this page -->
+@section scripts{
+    <script src="~/Scripts/assets/js/chosen.jquery.min.js"></script>
+
+    <script type="text/javascript">
+        jQuery(function ($) {
+
+            $(".dataTable tbody tr:even").addClass("even");
+            $(".dataTable tbody tr:odd").addClass("odd");
+            $(document).delegate("table th input:checkbox", "click", function () {
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                    .each(function () {
+                        this.checked = that.checked;
+                        $(this).closest('tr').toggleClass('selected');
+                    });
+
+            });
+
+            $(".chosen-select").chosen();
+            $('#chosen-multiple-style').on('click', function (e) {
+                var target = $(e.target).find('input[type=radio]');
+                var which = parseInt(target.val());
+                if (which == 2) $('#form-field-select-4').addClass('tag-input-style');
+                else $('#form-field-select-4').removeClass('tag-input-style');
+            });
+
+            $('[data-rel="tooltip"]').tooltip({ placement: tooltipPlacement });
+
+            function tooltipPlacement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table');
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+
+                var off2 = $source.offset();
+                var w2 = $source.width();
+
+                if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+                return 'left';
+            }
+        })
+    </script>
+
+    <script>
+
+    $(document).ready(function () {
+        //修改
+        $(document).delegate("tr [data-optype=edit]", "click",
+            function () {
+                //openDialog(GetDefaultOpt('@OpType.Update.GetValueStr()', GetKey($(this))));
+
+                window.location.href = '@Html.Raw(Url.Action("EditeIndex", new { type = @OpType.Update.GetValueStr(), id = "_id_" }))'.replace('_id_', GetKey($(this)));
+            });
+
+
+        $(document).delegate("tr [data-optype=addlogin]", "click",
+            function () {
+                openDialog(GetLoginOpt('@OpType.Add.GetValueStr()', GetKey($(this))));
+            });
+        $(document).delegate("tr [data-optype=editlogin]", "click",
+            function () {
+                openDialog(GetLoginOpt('@OpType.Update.GetValueStr()', GetKey($(this))));
+            });
+        //查看
+        $(document).delegate("tr [data-optype=view]", "click",
+            function () {
+                //openDialog(GetDefaultOpt('@OpType.View.GetValueStr()', GetKey($(this))));
+                window.location.href = '@Html.Raw(Url.Action("EditeIndex", new { type = @OpType.View.GetValueStr(), id = "_id_" }))'.replace('_id_', GetKey($(this)));
+            });
+        //单行删除
+        $(document).delegate("tr [data-optype=delete]", "click",
+            function () {
+                var that = this;
+                var tr = $(this).parents("tr");
+                $.messager.confirm("提示", "您是否确认要删除【" + $("td:eq(1)", tr).text() + "】？", function () {
+                    var $parent = $(that).closest('tr');
+                    var key = GetKey($parent);
+                    var deleteUrl = '@Html.Raw(Url.Action("BatchDelete", new {id = "_id_"}))'.replace("_id_", key);
+                    $.post(deleteUrl, function (data) {
+                        if (data === "Success") {
+                            $parent.remove();
+                            Mc.Msg("保存成功！", function () { });
+                        } else {
+                            Mc.Error(data);
+                        }
+                    });
+
+                });
+            });
+        //批量删除
+        $(document).delegate("#btnDelete", "click",
+            function () {
+                var selectArray = $('#viewTable').find('tr > td:first-child input:checkbox:checked');
+                if (selectArray.length === 0) {
+                    Mc.Warning("请选择您要删除的行.");
+                    return;
+                }
+                var deleteUrl = '@Html.Raw(Url.Action("BatchDelete", new {id = "_id_"}))';
+                $.messager.confirm("提示", "确认删除当前选中的" + selectArray.length + "条记录？", function () {
+                    var keyArray = new Array();
+                    selectArray.each(function () {
+                        var tr = $(this).closest('tr');
+                        var key = tr.find("input.key").val();
+                        keyArray.push(key);
+                    });
+                    deleteUrl = deleteUrl.replace("_id_", keyArray.join(","));
+                    $.post(deleteUrl, function (data) {
+                        if (data === "Success") {
+                            selectArray.each(function () {
+                                var $parent = $(this).closest("tr");
+                                $parent.remove();
+                            });
+                            Mc.Msg("保存成功！", function () { });
+
+                        } else {
+                            Mc.Error(data);
+                        }
+                    });
+
+
+                });
+            });
+        //新增
+        $(document).delegate("#btnNew", "click",
+            function () {
+                //openDialog(GetDefaultOpt('@OpType.Add.GetValueStr()', 0));
+                window.location.href = '@Html.Raw(Url.Action("EditeIndex", new { type = @OpType.Add.GetValueStr(), id = "0" }))';
+            });
+
+        $(document).delegate("#GroupId", "change",
+            function () {
+                var groupId = $(this).val();
+                var obj = $("#HotelId");
+                HotelFromGroup(groupId, obj);
+
+            });
+        $(document).delegate("#UGroupId", "change",
+            function () {
+                var groupId = $(this).val();
+                var obj = $("#UHotelId");
+                HotelFromGroup(groupId, obj);
+            });
+    });
+
+    function HotelFromGroup(groupId, obj, selectVal) {
+        obj.empty();
+        var defaultOption = $("<option value=\"\">-请选择-</option>");
+        defaultOption.appendTo(obj);
+        if (groupId === "")
+            return;
+        var url = "@Url.Action("GetHotelByGroup")" + "/" + groupId;
+        $.getJSON(url, function (data) {
+
+            $(data).each(function () {
+                var option = $("<option value=" + this.Id + ">" + this.HotelName + "</option>");
+                option.appendTo(obj);
+            });
+            if (selectVal) {
+                obj.val(selectVal);
+            }
+            $(".chosen-select").chosen();
+        });
+    }
+
+    function GetDefaultOpt(type, key) {
+
+        var map = {
+            '@OpType.View.GetValueStr()': '@OpType.View.GetDescription()',
+            '@OpType.Add.GetValueStr()': '@OpType.Add.GetDescription()',
+            '@OpType.Update.GetValueStr()': "@OpType.Update.GetDescription()",
+            '@OpType.Delete.GetValueStr()': "@OpType.Delete.GetDescription()"
+        };
+        var opt = {};
+        opt.title = "用户管理 -> " + map[type];
+        opt.url = '@Html.Raw(Url.Action("Edit", new {type = "_type_", id = "_id_"}))'.replace('_id_', key).replace('_type_', type);
+
+
+        if (type != '@OpType.View.GetValueStr()') {
+            opt.saveclick = function () {
+                $("div.modal-dialog form").submit();
+                event.preventDefault();
+                return false;
+            };
+        }
+        return opt;
+    }
+
+    function GetLoginOpt(type, key) {
+
+        var map = {
+            '@OpType.View.GetValueStr()': '@OpType.View.GetDescription()',
+            '@OpType.Add.GetValueStr()': '@OpType.Add.GetDescription()',
+            '@OpType.Update.GetValueStr()': "@OpType.Update.GetDescription()",
+            '@OpType.Delete.GetValueStr()': "@OpType.Delete.GetDescription()"
+        };
+        var opt = {};
+        if (type === '@OpType.Add.GetValueStr()') {
+            opt.title = "登录账号注册 ";
+            opt.url = '@Html.Raw(Url.Action("Register", new {id = "_id_"}))'.replace('_id_', key);
+        } else {
+            opt.title = "登录账号管理 -> " + map[type];
+            opt.url = '@Html.Raw(Url.Action("EditLogin", new {type = "_type_", id = "_id_"}))'.replace('_id_', key).replace('_type_', type);
+        }
+
+        if (type != '@OpType.View.GetValueStr()') {
+            opt.saveclick = function () {
+                $("div.modal-dialog form").submit();
+                event.preventDefault();
+                return false;
+            };
+        }
+        return opt;
+    }
+
+
+    function GetKey(jqObj) {
+        var tagName = jqObj[0].tagName;
+        if (tagName == "A") {
+            var tr = jqObj.closest("tr");
+            return tr.find("input.key").val();
+        } else if (tagName == "TR") {
+            return jqObj.find("input.key").val();
+        }
+        return '';
+    }
+
+    function Success(data) {
+        if (data == "Success") {
+            Mc.Msg("保存成功！", function () {
+                location.href = location.href;
+            });
+
+        } else {
+            Mc.Error(data);
+        }
+    }
+
+    function SetKeyReadonly() {
+        $("div.modal-dialog input,select").attr("disabled", "disabled");
+    }
+
+</script>
+}
+

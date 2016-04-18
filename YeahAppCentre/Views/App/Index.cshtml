@@ -1,0 +1,304 @@
+﻿@using YeahTVApi.DomainModel.SearchCriteria
+@{
+    ViewBag.Title = "APP管理";
+}
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            APP管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                @*查看*@
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-header">
+                APP列表
+            </div>
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    @{
+                        var list = ViewBag.List as PagedViewList<Apps>;
+                        var condition = ViewBag.AppsCriteria as AppsCriteria;
+                    }
+                    @Html.Partial("Condition", condition)
+                    @Html.Partial("List", list)
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_info">
+                                <ul class="list-inline action-buttons">
+                                    <li data-original-title="新增" id="btnNew">
+                                        <div class="ui-pg-div"><a href="#"><span class="ui-icon icon-plus-sign purple"></span></a></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            @{
+                                string querystring = condition.ToQueryString();
+                            }
+                            @Html.Pagination(list.PageIndex, list.PageSize, list.TotalCount, "#list", Url.Action("List") + querystring)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<script src="~/Scripts/upload/ajaxupload.js"></script>
+<script src="~/Scripts/upload/uploadHelperForAndriod.js"></script>
+@section scripts{
+    <script type="text/javascript">
+        jQuery(function ($) {
+
+            $(".dataTable tbody tr:even").addClass("even");
+            $(".dataTable tbody tr:odd").addClass("odd");
+            $('table th input:checkbox').on('click', function () {
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                    .each(function () {
+                        this.checked = that.checked;
+                        $(this).closest('tr').toggleClass('selected');
+                    });
+
+            });
+
+
+            $('[data-rel="tooltip"]').tooltip({ placement: tooltipPlacement });
+
+            function tooltipPlacement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table');
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+
+                var off2 = $source.offset();
+                var w2 = $source.width();
+
+                if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+                return 'left';
+            }
+        })
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            //修改
+            $(document).delegate("tr [data-optype=edit]", "click",
+                function () {
+                    openDialog(GetDefaultOpt('@OpType.Update.GetValueStr()', GetKey($(this)), GetVersion($(this))));
+                });
+
+            //修改
+            $(document).delegate("tr [data-optype=editApp]", "click",
+                function () {
+                    openDialog(SetDefaultOpt('@OpType.Update.GetValueStr()', GetKey($(this)), GetVersion($(this)),'EditApp'));
+                });
+
+            //查看
+            $(document).delegate("tr [data-optype=view]", "click",
+                function () {
+                    openDialog(GetDefaultOpt('@OpType.View.GetValueStr()', GetKey($(this)), GetVersion($(this))));
+                });
+            //单行删除
+            $(document).delegate("tr [data-optype=delete]", "click",
+                function () {
+                    var that = this;
+                    $.messager.confirm("提示", "确认删除？!", function () {
+                        var $parent = $(that).closest('tr');
+                        var key = GetKey($parent);
+                        $parent.remove();
+                    });
+                });
+
+            ///编辑页 启用禁用
+            $(document).delegate("#StatusView", "change",
+                function () {
+                    var that = this;
+                    var isChecked = $(that).get(0).checked;
+                    var $parent = $(that).closest('div');
+                    $parent.find("#Status").val(isChecked);
+
+                });
+
+            //新增
+            $(document).delegate("#btnNew", "click",
+                function () {
+                    openDialog(GetDefaultOpt('@OpType.Add.GetValueStr()', 0, GetVersion($(this))));
+                });
+
+            $(document).delegate("#GroupId", "change",
+                function () {
+                    var groupId = $(this).val();
+                    var obj = $("#HotelId");
+                    HotelFromGroup(groupId, obj);
+
+                });
+            $(document).delegate("#UGroupId", "change",
+               function () {
+                   var groupId = $(this).val();
+                   var obj = $("#UHotelId");
+                   HotelFromGroup(groupId, obj);
+               });
+            //gwApp管理是否启用本地上传
+            $(document).delegate("#IsLocalFileAddress", "change",
+                 function LocalFileAddress() {
+                     if ($("#IsLocalFileAddress").is(":checked"))
+                     {
+                         $("#upLoadFile").fadeOut("fast");
+                     }   
+                     else
+                     {
+                         $("#upLoadFile").fadeIn("fast");
+                     }
+                         
+                 });
+        });
+
+        function GetDefaultOpt(type, key, _version) {
+           return SetDefaultOpt(type, key, _version, 'Edit')
+        }
+        function SetDefaultOpt(type, key, _version, actionName) {
+            var map = {
+                '@OpType.View.GetValueStr()': '@OpType.View.GetDescription()',
+                '@OpType.Add.GetValueStr()': '@OpType.Add.GetDescription()',
+                '@OpType.Update.GetValueStr()': "@OpType.Update.GetDescription()",
+                '@OpType.Delete.GetValueStr()': "@OpType.Delete.GetDescription()"
+            };
+            var opt = {};
+            opt.title = "APP管理 -> " + map[type];
+            opt.url = '@Html.Raw(Url.Action("_actionName_", new { type = "_type_", id = "_id_", version = "_version_" }))'
+                .replace('_id_', key)
+                .replace('_type_', type)
+                .replace('_version_', _version).replace('_actionName_',actionName);
+
+
+            if (type != '@OpType.View.GetValueStr()') {
+                opt.saveclick = function () {
+                    $("div.modal-dialog form").submit();
+                    event.preventDefault();
+                    return false;
+                };
+            }
+            return opt;
+        }
+
+        function GetKey(jqObj) {
+            var tagName = jqObj[0].tagName;
+            if (tagName == "A") {
+                var tr = jqObj.closest("tr");
+                return tr.find("input.key").val();
+            } else if (tagName == "TR") {
+                return jqObj.find("input.key").val();
+            }
+            return '';
+        }
+
+        function GetVersion(jqObj) {
+            var tagName = jqObj[0].tagName;
+            if (tagName == "A") {
+                var tr = jqObj.closest("tr");
+                return tr.find("input.version").val();
+            } else if (tagName == "TR") {
+                return jqObj.find("input.version").val();
+            }
+            return '';
+        }
+
+        function Success(data) {
+            if (data == "Success") {
+                Mc.Msg("保存成功！", function () {
+                    location.href = location.href;
+                });
+
+            } else {
+                Mc.Error(data);
+            }
+        }
+
+        function SetKeyReadonly() {
+            $("div.modal-dialog input,select").attr("disabled", "disabled");
+        }
+
+        function uploadResultExcute(data, sender) {
+            if (data["FilePath"] == null) {
+                Mc.Error(data);
+            }
+            else {
+                var cutDom = sender.closest("form");
+                cutDom.find("#AppUrl").val(data["FilePath"]);
+                fileName = data["FilePath"].split("\\").pop();
+                fileName = fileName.substring(fileName.lastIndexOf("/") + 1, fileName.length);
+                cutDom.find("#FileName").val(fileName);
+
+                $.each(data["Infos"][0]["Settings"], function (i, val) {
+                    if (val["Name"] == "android:versionCode") {
+                        cutDom.find("#VersionCode").val(val["Value"]);
+                    }
+                    if (val["Name"] == "android:versionName") {
+                        cutDom.find("#VersionName").val(val["Value"]);
+                    }
+                    if (val["Name"] == "package") {
+                        cutDom.find("#App_PackageName").val(val["Value"]);
+
+                    }
+
+                    if (val !== null) {
+                        cutDom.find(".auto_readonly ").attr("readonly", "readonly");
+                    }
+                    else {
+                        cutDom.find(".auto_readonly ").removeAttr("readonly")
+                    }
+
+                });
+
+
+
+
+
+
+                var url = "@Url.Action("GetAppNamebyPageName")";
+
+                $.getJSON(url, { packagename: cutDom.find("#App_PackageName").val() }, function (data) {
+                    if (data != "") {
+                        $("#App_Name").val(data).attr("readonly", "readonly");
+                    }
+                    else {
+                        $("#App_Name").val("").removeAttr("readonly");
+                    }
+                });
+            }
+
+        }
+
+        function expandTable(obj) {
+            var url = "@Url.Action("AppVersionList")";
+            var obj = $(obj);
+            var appId = GetKey(obj)
+
+            if (obj.children().attr('class') == ('glyphicon glyphicon-plus')) {
+
+                obj.children().attr('class', 'glyphicon glyphicon-minus');
+                $.get(url + "?appId=" + appId, function (data) {
+                    obj.parents("tr").after(data);
+                });
+
+            } else if (obj.children().attr('class') == ('glyphicon glyphicon-minus')) {
+                obj.children().attr('class', 'glyphicon glyphicon-plus');
+                var parent = obj.parents("tr").next();
+                parent.remove();
+            }
+
+
+        }
+
+    </script>}
+
+@Scripts.Render("~/bundles/GetHotelNames")
+<script>
+    GetAppNames('@Url.Action("GetAppNames", "Unity")', $("#AppName"), $("#AppId"));
+</script>

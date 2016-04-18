@@ -1,0 +1,34 @@
+﻿@model HotelMovieTrace
+@{
+    OpType opType = ViewBag.OpType;
+}
+@using (Ajax.BeginForm("EditMovieDownLoad", new { }, new AjaxOptions
+{
+    HttpMethod = "Post",
+    OnSuccess = "EditSuccess",
+
+}, new { @class = "form-horizontal", role = "form" }))
+{
+    <input type="hidden" name="opType" value="@opType.GetValueStr()" />
+    @Html.HiddenFor(m => m.HotelId)
+    @Html.HiddenFor(m => m.MovieId)
+    @Html.HiddenFor(m=>m.MoiveTemplateId)
+    <div class="form-group">
+        @Html.Label("电影名称", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Movie.Name, Model.Movie.Name, htmlAttributes: new { @class = "form-control text-box single-line", disabled = "disabled" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("电影英文名称", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Movie.NameEn, Model.Movie.NameEn, htmlAttributes: new { @class = "form-control text-box single-line", disabled = "disabled" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.Label("下载状态", htmlAttributes: new { @class = "control-label col-md-2 " })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.IsDownload, new { @checked = true })
+        </div>
+    </div>
+}

@@ -1,0 +1,1022 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E211535B-6C5C-4A9D-928D-E9A5EB77B4E0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YeahTVApi.ServiceProvider</RootNamespace>
+    <AssemblyName>YeahTVApi.ServiceProvider</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HT.Log">
+      <HintPath>..\DllReference\HT.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="HTSendEngine">
+      <HintPath>..\DllReference\HTSendEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="HZ.Common.Log">
+      <HintPath>..\DllReference\HZ.Common.Log.dll</HintPath>
+    </Reference>
+    <Reference Include="HZ.ExceptionContract">
+      <HintPath>..\DllReference\HZ.ExceptionContract.dll</HintPath>
+    </Reference>
+    <Reference Include="HZ.ReservationGateway.BusinessLogic">
+      <HintPath>..\DllReference\HZ.ReservationGateway.BusinessLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="HZ.ReservationGateway.Entity">
+      <HintPath>..\DllReference\HZ.ReservationGateway.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="HZ.Web.Authorization">
+      <HintPath>..\DllReference\HZ.Web.Authorization.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Qiniu.4.0">
+      <HintPath>..\packages\Qiniu.6.1.8.2\lib\Net40\Qiniu.4.0.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlarmClockService.cs" />
+    <Compile Include="AppToolService.cs" />
+    <Compile Include="CentralGetwayServiceBase.cs" />
+    <Compile Include="CheckInService.cs" />
+    <Compile Include="GetGuestInfoService.cs" />
+    <Compile Include="HotelCommonService.cs" />
+    <Compile Include="HotelCommodityService.cs" />
+    <Compile Include="HotelListService.cs" />
+    <Compile Include="ImageUpdateServiceProvider.cs" />
+    <Compile Include="MemberInfoService.cs" />
+    <Compile Include="PriceFutureService.cs" />
+    <Compile Include="PriceService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegisterMemberService.cs" />
+    <Compile Include="RoomManagerService.cs" />
+    <Compile Include="SelfServiceService.cs" />
+    <Compile Include="Service References\AutoCheckInService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\MemberExtraService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\MemberService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\PMSICRS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\PMSRoomStatusService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\PMS\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\RedisCache\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\UpdateImages\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Utilty\CardGen.cs" />
+    <Compile Include="Utilty\ChannelFactory.cs" />
+    <Compile Include="Utilty\HotelHelp.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\System.Data.DataSet.datasource" />
+    <None Include="Properties\DataSources\System.Data.DataTable.datasource" />
+    <None Include="Service References\AutoCheckInService\HZTVApi.ServiceProvider.AutoCheckInService.AssignInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\HZTVApi.ServiceProvider.AutoCheckInService.BillCredit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\HZTVApi.ServiceProvider.AutoCheckInService.CheckInInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\HZTVApi.ServiceProvider.AutoCheckInService.Hall.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\HZTVApi.ServiceProvider.AutoCheckInService.InvoiceInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\HZTVApi.ServiceProvider.AutoCheckInService.IsLoginByCardResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\HZTVApi.ServiceProvider.AutoCheckInService.IsLoginByUserNameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\HZTVApi.ServiceProvider.AutoCheckInService.RcpnSheetInfoExt.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\HZTVApi.ServiceProvider.AutoCheckInService.RoomNumInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\HZTVApi.ServiceProvider.AutoCheckInService.User.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\WebSelfHelpCheckInService.wsdl" />
+    <None Include="Service References\AutoCheckInService\WebSelfHelpCheckInService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AutoCheckInService\WebSelfHelpCheckInService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AutoCheckInService\WebSelfHelpCheckInService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AutoCheckInService\WebSelfHelpCheckInService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AutoCheckInService\WebSelfHelpCheckInService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AutoCheckInService\WebSelfHelpCheckInService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AutoCheckInService\WebSelfHelpCheckInService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AutoCheckInService\WebSelfHelpCheckInService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AutoCheckInService\WebSelfHelpCheckInService8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AutoCheckInService\WebSelfHelpCheckInService9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.AddRcpnSheetListSignResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.ArrayOfKeyValueOfstringstringKeyValueOfstringstring.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.CheckInResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.GetActiveRoomsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.GetCreditListByOrderIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.GetCustomerCashCreditListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.GetCustomerCreditInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.GetCustomerRegistrationFormResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.GetHotelInfoByIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.GetOrderIDByMobileAndExtOrderIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.GetReceiveIDListByOrderIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.GetRoomCountByConditionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.GetRoomNumEntitysResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.GetRsvnAssignInfosResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.GetRsvnInvoiceTitlesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.GetWriteCardInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.payByInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.SaveFloorCoordinateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.SaveRoomCoordinateResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.SaveRsvnInvoiceTitlesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.SetRsvnRoomsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.SetRsvnSheetRemarkResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.UpdateRoomHobbyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AutoCheckInService\YeahTVApi.ServiceProvider.AutoCheckInService.WriteCardResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberExtraService\HZTVApi.ServiceProvider.MemberExtraService.CardTypeSummaryDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberExtraService\HZTVApi.ServiceProvider.MemberExtraService.GetCheckInListByAppResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberExtraService\HZTVApi.ServiceProvider.MemberExtraService.GetHaoshengyinCardSummaryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberExtraService\HZTVApi.ServiceProvider.MemberExtraService.GetMemberRoomdayMsgResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberExtraService\HZTVApi.ServiceProvider.MemberExtraService.GetMembersByConditionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberExtraService\HZTVApi.ServiceProvider.MemberExtraService.GetMembersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberExtraService\HZTVApi.ServiceProvider.MemberExtraService.GetMemberUpgradeHistoryResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberExtraService\HZTVApi.ServiceProvider.MemberExtraService.IsCheckInByAppResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberExtraService\HZTVApi.ServiceProvider.MemberExtraService.MemberUpgradeHistoryDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberExtraService\MemberExtraService.wsdl" />
+    <None Include="Service References\MemberExtraService\MemberExtraService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberExtraService\MemberExtraService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberExtraService\MemberExtraService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberExtraService\MemberExtraService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberExtraService\MemberExtraService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.ActivateEmailFlagResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.ActivateValueResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.ActivateValueResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.AddIDCardResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.AddInvoiceTitleResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.AddMemberAndCardResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.AddMemberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.BindMemberRelationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.BindMemberRelationResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.BindThirdPartyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.CheckPasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.CoBrandedDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.CreateMemberUsualContactResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.CreateMemberUsualHotelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.DegradeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.DelayExpireTimeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.DeleteMemberUsualContactByIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.DeleteMemberUsualContactResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.DeleteMemberUsualHotelByIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.DeleteMemberUsualHotelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.DestroyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.FreezeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetByMemberIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetCoBrandedStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetGuestMemberInfoListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetGuestMemberInfoListResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetInviteCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetInviteCodeResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetInvoiceTitleByMemberIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetMemberByIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetMemberIdByIdNoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetMemberIDByInviteCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetMemberIDByInviteCodeResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetMemberIdByThirdPartyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetMemberInfoByCardNoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetMemberInfoByExtCardNoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetMemberInfoJsonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetMemberInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetMemberLevelResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetMemberReferrersResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetMemberUsualContactByMemberIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetMemberUsualHotelByMemberIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetPasswordUnionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetReferrerMemberCountThisYearResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetRoomDayByMemberIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetWechatInfoListResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GetWechatInfoListResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GiveCouponAsyncResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.GiveCouponAsyncResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.IsCanUpdateMemberQuestionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.IsDefaultCompanyPasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.IsHtMemberByMobileExResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.IsHtMemberByMobileResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.IsWeChatFocusOnResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.LoginCheckResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.MemberMixPaymentResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.MemberReferrerDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.MemberReferrerRegisterResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.MemberRegisterResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.MemberThirdParty.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.MemberUsualContact.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.MemberUsualHotel.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.MixPaymentRespone.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.PersonInfoCheckResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.PersonMember.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.QueryMemberForCRSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.QueryMemberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.RegisterNetMemberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.ResetMemberPasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.ResetPasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.SearchByCRSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.SearchByOnlyJsonResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.SearchByOnlyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.SearchByPhoneResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.SetEmailFlagResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.setSynchronizationResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.SetThirdPartyAttentionInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.SetThirdPartyAttentionInfoResponse1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.UnBindThirdPartyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.UnfreezeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.UpdateEmailResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.UpdateIdNoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.UpdateLevelByMemberIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.UpdateLevelByThirdPartyIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.UpdateMemberQuestionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.UpdateMemberResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.UpdateMobileResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.UpdatePasswordResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.Upgrade4MGM1Response.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.UpgradeByAccreditResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.UpgradeByMoneyResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.UpgradeByPointResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\HZTVApi.ServiceProvider.MemberService.UpgradeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\MemberService\MemberService.wsdl" />
+    <None Include="Service References\MemberService\MemberService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberService\MemberService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberService\MemberService10.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberService\MemberService11.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberService\MemberService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberService\MemberService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberService\MemberService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberService\MemberService5.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberService\MemberService6.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberService\MemberService7.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberService\MemberService8.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\MemberService\MemberService9.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.ActivityDatesEntity.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.AddCheckupItemsFromPOSResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.AddCreditByBillIDWithEx1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.AddResvHourSheetWithBillIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.AddResvSheetWithBillIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.AddRsvnSheetWithInvoiceTitle1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.AgentInfoEntity.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.BillCredit.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.BillItem.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.BillItemPrice.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.BLLPriceEntity.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.CallCenterPriceRangeAndRoomCount.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.CancelResvSheetWithMemo1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.CancelWebSiteAddRsvnSheetByPointExchangeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.CRSAddRsvnSheetWithBillIDResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.CrsGetRsvn.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.CRSRoomAmountEntity.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.CRSRoomAmountEntity2.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.CrsRsvnSheet.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.DailyRoomCount.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.EntityRecMain.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.GetRoomPriceByMemberAndActivitiesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.GetRoomPriceByMemberAndActivities_NewResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.GetRoomPriceByMembersAndActivityResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.GetTmallRsvnSheetsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.IsCreditItemValidResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.PointExchangeRoomControl.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.PointPromotionEntity.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.RateCodeInfoEntity.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.ReceptionSheet.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.RefreshRateCodeActivityOfPmsResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.TmallRsvnSheet.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.WebSiteAddRsvnSheetByPointExchangeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.WebSiteAddRsvnSheetByPointExchangeWithRemarkResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.WebSiteGetAllPriceByRateCodeIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.WebSiteGetAllPriceExResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\HZTVApi.ServiceProvider.PMSICRS.WebSiteGetAllPriceResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSICRS\icrs.wsdl" />
+    <None Include="Service References\PMSRoomStatusService\HZTVApi.ServiceProvider.PMSRoomStatusService.GetHotelInfoResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSRoomStatusService\HZTVApi.ServiceProvider.PMSRoomStatusService.GetHotelRoomTypesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSRoomStatusService\HZTVApi.ServiceProvider.PMSRoomStatusService.GetRoomStatusSearchByConditionResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSRoomStatusService\HZTVApi.ServiceProvider.PMSRoomStatusService.GetSystemLogsOfUnAppResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSRoomStatusService\HZTVApi.ServiceProvider.PMSRoomStatusService.Hall.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSRoomStatusService\HZTVApi.ServiceProvider.PMSRoomStatusService.IsLoginOutRolesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSRoomStatusService\HZTVApi.ServiceProvider.PMSRoomStatusService.IsLoginResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSRoomStatusService\HZTVApi.ServiceProvider.PMSRoomStatusService.RoomStatusInfo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSRoomStatusService\HZTVApi.ServiceProvider.PMSRoomStatusService.RoomTypeEntity.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSRoomStatusService\HZTVApi.ServiceProvider.PMSRoomStatusService.SetCheckRoomResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSRoomStatusService\HZTVApi.ServiceProvider.PMSRoomStatusService.SetCleanRoomResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSRoomStatusService\HZTVApi.ServiceProvider.PMSRoomStatusService.SetOOORoomResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMSRoomStatusService\RoomStatusModify.wsdl" />
+    <None Include="Service References\PMS\Arrays1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PMS\Htinns.PMS.Entity.Base1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PMS\Htinns.PMS.Entity.GoodsSales1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PMS\HuaZhu.PMS.Interface.SmartTVService.DataContract1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PMS\HZTVApi.ServiceProvider.PMS.ChargeRoomAccountByBillIdResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMS\HZTVApi.ServiceProvider.PMS.MorningCallDataContract.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMS\HZTVApi.ServiceProvider.PMS.RcpnSheetDataContract.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMS\HZTVApi.ServiceProvider.PMS.ResponseResultDataContract.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMS\HZTVApi.ServiceProvider.PMS.SubmitProductSalesOrderResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMS\HZTVApi.ServiceProvider.PMS.V_ProductEntity.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PMS\service1.wsdl" />
+    <None Include="Service References\PMS\service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PMS\service21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RedisCache\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RedisCache\service.wsdl" />
+    <None Include="Service References\RedisCache\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\RedisCache\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UpdateImages\Message1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UpdateImages\service1.wsdl" />
+    <None Include="Service References\UpdateImages\service2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\UpdateImages\service21.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AutoCheckInService\" />
+    <WCFMetadataStorage Include="Service References\MemberExtraService\" />
+    <WCFMetadataStorage Include="Service References\MemberService\" />
+    <WCFMetadataStorage Include="Service References\PMSICRS\" />
+    <WCFMetadataStorage Include="Service References\PMSRoomStatusService\" />
+    <WCFMetadataStorage Include="Service References\PMS\" />
+    <WCFMetadataStorage Include="Service References\RedisCache\" />
+    <WCFMetadataStorage Include="Service References\UpdateImages\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AutoCheckInService\WebSelfHelpCheckInService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AutoCheckInService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AutoCheckInService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\AutoCheckInService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MemberExtraService\MemberExtraService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MemberExtraService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MemberExtraService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MemberExtraService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MemberService\MemberService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MemberService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MemberService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\MemberService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PMS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PMS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PMS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PMSICRS\icrs.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PMSICRS\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PMSICRS\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PMSICRS\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PMSRoomStatusService\RoomStatusModify.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PMSRoomStatusService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PMSRoomStatusService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\PMSRoomStatusService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RedisCache\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RedisCache\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\RedisCache\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YeahTVApi.Common\YeahTVApi.Common.csproj">
+      <Project>{27ec8548-1bec-4f32-a43e-341430cd6ff3}</Project>
+      <Name>YeahTVApi.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.DomainModel\YeahTVApi.DomainModel.csproj">
+      <Project>{7b4ce815-38cb-4ee4-8860-8381cf2de60a}</Project>
+      <Name>YeahTVApi.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.Entity\YeahTVApi.Entity.csproj">
+      <Project>{dff8075a-64c7-44d7-982b-f0c7cbc096e9}</Project>
+      <Name>YeahTVApi.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.Infrastructure\YeahTVApi.Infrastructure.csproj">
+      <Project>{5bd5da36-20cb-4115-b7d6-39c0baf42904}</Project>
+      <Name>YeahTVApi.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApi.Resource\YeahTVApi.Resource.csproj">
+      <Project>{5d3ac4df-b7b9-4b5a-9be1-97221533ace8}</Project>
+      <Name>YeahTVApi.Resource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\YeahTVApiLibrary.Interface\YeahTVApiLibrary.Infrastructure.csproj">
+      <Project>{430afd5d-2462-4d0e-b2ca-e1c68032bfb0}</Project>
+      <Name>YeahTVApiLibrary.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UpdateImages\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UpdateImages\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\UpdateImages\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

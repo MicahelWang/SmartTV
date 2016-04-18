@@ -1,0 +1,112 @@
+﻿@using System.Collections.Generic
+@model YeahTVApi.Client.Models.MockRequestModel
+
+@{
+    ViewBag.Title = "MockRequest";
+}
+
+<h2>MockRequest</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.Label("", "预置URL", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("UrlDropDownListList", ViewBag.UrlList as List<SelectListItem>, new { @class = "form-control" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.RequestUrl, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RequestUrl, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RequestUrl, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Header, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Header, new { @class = "", @style = "width:100%;height:100px;" })
+                @Html.ValidationMessageFor(model => model.Header, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.RequestData, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.RequestData, new { @class = "", @style = "width:100%;height:200px;" })
+                @Html.ValidationMessageFor(model => model.RequestData, "", new { @class = "text-danger" })
+                <p>示例1："behaviorLogRequestString":"[{\"ObjectInfo\":\"07f7adf6-03f5-4bcc-be66-4932b32015c3\n1431486436235\n1431486463514\",\"Message\":\"TestMessage\"}]"</p>
+                <p>示例2："appListRequestModelsString":"[{\"PackageName\":\"com.YeahInfo.Launcher\",\"VersionCode\":\"17\",\"VersionName\":\"4.2\"}]"</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.APP_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.APP_ID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.APP_ID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AppKey, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.AppKey, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.AppKey, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SecureKey, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SecureKey, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SecureKey, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Send" class="btn btn-default" />
+            </div>
+        </div>
+
+        <hr />
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.ResponseData, Model == null ? "" : Model.ResponseData)
+            </div>
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(init);
+
+        function init() {
+            $("select[name='UrlDropDownListList']").change(function () {
+                var selectedUrl = $('#UrlDropDownListList option:selected').text();
+                if (selectedUrl == '=可选择预置Url=') {
+                    selectedUrl = '';
+                }
+                ShowUrlWithSelected(selectedUrl);
+            });
+        }
+
+        function ShowUrlWithSelected(selectedUrl) {
+
+            $("#RequestUrl").val(selectedUrl);
+        }
+
+
+    </script>
+}

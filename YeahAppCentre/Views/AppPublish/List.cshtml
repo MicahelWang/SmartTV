@@ -1,0 +1,102 @@
+﻿@model PagedViewList<AppPublish>
+<div class="row" id="list">
+    <table id="viewTable" class="table table-striped table-bordered table-hover dataTable">
+
+        <thead>
+            <tr role="row">
+                <th>APP名称</th>
+                <th>APP版本号 </th>
+                <th>APP版本号名称</th>
+                <th>酒店名称</th>
+                <th>发布时间</th>
+                <th>是否可用</th>
+                <th>更新人</th>
+                <th>更新时间</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.Source)
+            {
+
+                <tr>
+                    <td>
+                        <input type="hidden" class="key" value="@item.Id" />
+                        <input type="hidden" class="version" value="@item.VersionCode" />
+                        <input type="hidden" class="serisecode" value="@item.HotelId" />
+                        @item.AppVersion.App.Name
+                    </td>
+                    <td>
+                        @item.AppVersion.VersionCode
+                    </td>
+                    <td>
+                        @item.AppVersion.VersionName
+                    </td>
+                    <td>
+                        @if (item.HotelId.ToUpper().Equals("ALL"))
+                        {
+                           <span>全部酒店</span>
+                        }
+                        else
+                        {
+                            @Html.GetHotelName(item.HotelId) 
+                        }
+                    </td>
+                    <td>
+                        @item.PublishDate.ToDateTimeStr(DateFormate.yyyyMMddHHmm)
+                    </td>
+                    <td>
+                        @if (item.Active)
+                        {
+                            <i class="icon-ok green"></i>
+                        }
+                        else
+                        {
+                            <i class="icon-remove red"></i>
+                        }
+                    </td>
+                    <td>
+                        @item.LastUpdater
+                    </td>
+                    <td>
+                        @item.LastUpdateTime.ToDateTimeStr(DateFormate.yyyyMMddHHmmss)
+                    </td>
+                    <td>
+                        <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                            <a data-optype="view" class="blue" href="javascript:void(0)">
+                                <i class="icon-zoom-in bigger-130"></i>
+                            </a>
+                            <a data-optype="edit" class="green" href="javascript:void(0)">
+                                <i class="icon-pencil bigger-130"></i>
+                            </a>
+                        </div>
+                        <div class="visible-xs visible-sm hidden-md hidden-lg">
+                            <div class="inline position-relative">
+                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-caret-down icon-only bigger-120"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                    <li>
+                                        <a data-optype="view" href="javascript:void(0)" class="tooltip-info" data-rel="tooltip" title="" data-original-title="查看">
+                                            <span class="blue">
+                                                <i class="icon-zoom-in bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-optype="eidt" href="javascript:void(0)" class="tooltip-success" data-rel="tooltip" title="" data-original-title="编辑">
+                                            <span class="green">
+                                                <i class="icon-edit bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

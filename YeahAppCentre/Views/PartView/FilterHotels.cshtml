@@ -1,0 +1,93 @@
+﻿<style>
+    .input-icon > input {
+        width: 150px;
+    }
+
+    .modal-dialog {
+        width: 800px;
+    }
+
+    .hotels-select {
+        width: 320px;
+    }
+
+    .hotelsBox {
+        margin-top: 20px;
+        margin-left: 10px;
+        float: left;
+        height: 340px;
+    }
+
+    .middleBox {
+        text-align: center;
+        padding: 150px 5px 0px 5px;
+    }
+
+    .modal-body {
+        height: 440px;
+    }
+
+    select[multiple] {
+        height: 350px;
+    }
+</style>
+
+
+
+<div class="row">
+    <div class="col-sm-12 tab-search">
+
+        <label> 集团</label>
+        <span class="input-icon">
+            @Html.DropDownList("GroupId", ViewBag.Groups as IEnumerable<SelectListItem>)
+        </span>
+        <label> 品牌</label>
+        <span class="input-icon">
+            @Html.DropDownList("BrandId", ViewBag.DefaultSelect as IEnumerable<SelectListItem>)
+        </span>
+        <label> 酒店名称</label>
+        <span class="input-icon">
+            <input id="HotelName" name="HotelName" class="form-control" data-provide="typeahead" autocomplete="off">
+        </span>
+        <span class="input-icon">
+            <button type="button" class="btn btn-sm btn-success">查询</button>
+        </span>
+
+        <div class="clear"></div>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-sm-12">
+
+        <div class="hotels-left hotelsBox">
+
+            <select id="select-left" class="hotels-select" multiple="multiple" name="select-left"></select>
+
+            <p><a href="javascript:void(0)" id="selectAll">全部选择</a></p>
+        </div>
+
+
+        <div class="hotelsBox middleBox">
+
+            <p><a href="javascript:void(0)" id="selectItem">选择-></a></p>
+
+        </div>
+
+
+        <div class="hotels-right hotelsBox">
+
+            <select id="select-right" class="hotels-select" multiple="multiple" name="test123">
+ 
+            </select>
+
+            <p>&nbsp;<a href="javascript:void(0);" id="deleteItem">删除</a> &nbsp;&nbsp;<a href="javascript:void(0)" id="clearItem">清空</a></p>
+        </div>
+
+        <div class="clear"></div>
+    </div>
+</div>
+<script>
+    $(".tab-search button.btn-success").click();
+</script>

@@ -1,0 +1,105 @@
+﻿@model YeahTVApi.DomainModel.Models.CoreSysBrand
+@{
+    OpType opType = ViewBag.OpType;
+}
+@using (Ajax.BeginForm("AddOrEdit", new { Controller = "Brand" }, new AjaxOptions()
+{
+    HttpMethod = "Post",
+    OnSuccess = "Success"
+}, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-horizontal">
+        @Html.HiddenFor(model => model.Id)
+        <input type="hidden" name="opType" value="@opType.GetValueStr()" />
+        <div class="form-group">
+            @Html.LabelFor(model => model.BrandName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.BrandName, new { htmlAttributes = new { @class = "form-control editBrandName auto_readonly" } })
+                @Html.ValidationMessageFor(model => model.BrandName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @if (opType == OpType.View)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.BrandCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BrandCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BrandCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GroupId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.GroupId, ViewBag.Groups as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.GroupId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TemplateId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TemplateId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.TemplateId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Logo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.Logo, new { @id = "LogoImageUrl" })
+                @Html.ValidationMessageFor(model => model.Logo, "", new { @class = "text-danger" })
+
+                <button id="uploadPosterIcon" type="button">上传图片</button>
+                <label error-info="">（图片不大于30K且图片仅支持jpg和png格式）</label>
+
+                @if (Model != null && !Model.Logo.IsNullOrEmpty())
+                {
+                    <img id="PosterimgIcon" src="@(UtilityHelper.GetAttachmentResourceSiteAddressPath()+Model.Logo)" />
+                }
+                else
+                {
+                    <img id="PosterimgIcon" style="display:none" />
+                }
+            </div>
+        </div>
+    </div>
+}
+
+@if (opType == OpType.View)
+{
+    <script>
+        SetKeyReadonly();
+    </script>
+}
+@if (opType != OpType.Add)
+{
+    <script>
+        $(".form-horizontal .editBrandName").attr("readonly", true);
+    </script>
+}
+
+<script src="~/Scripts/upload/ajaxupload.js"></script>
+<script src="~/Scripts/upload/uploadHelper.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        bindCoverUpload();
+    });
+
+    //上传图片
+    function bindCoverUpload() {
+        var Postersetting = {
+            single: true,
+            container: $("#PosterimgIcon"),
+            targetOjb: $("#LogoImageUrl"),
+            limitSize: 30,
+            showFullPath: true
+        };
+        $("#uploadPosterIcon").binduploadify(Postersetting);
+        $('#PosterimgIcon').width('35%');
+    }
+
+</script>

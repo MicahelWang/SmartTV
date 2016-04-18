@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="56d9f132-9d47-4a5c-aa69-c842865e37c7" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="WebSelfHelpCheckInService.xsd" MetadataType="Schema" ID="a3f6e8de-4382-4b3c-a559-302932b057d4" SourceId="1" SourceUrl="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd5" />
+    <MetadataFile FileName="WebSelfHelpCheckInService1.xsd" MetadataType="Schema" ID="d0cb2629-f242-4879-8e41-8f23eadedf42" SourceId="1" SourceUrl="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd4" />
+    <MetadataFile FileName="WebSelfHelpCheckInService2.xsd" MetadataType="Schema" ID="7c6a987f-fcf8-4bcb-b470-1ef58b6d570c" SourceId="1" SourceUrl="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd8" />
+    <MetadataFile FileName="WebSelfHelpCheckInService3.xsd" MetadataType="Schema" ID="2e77a2f3-72bd-41a9-a8f1-bd1e0e06d59f" SourceId="1" SourceUrl="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd9" />
+    <MetadataFile FileName="WebSelfHelpCheckInService.disco" MetadataType="Disco" ID="1f846ced-d0cc-4387-b993-e8aacbde64c6" SourceId="1" SourceUrl="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?disco" />
+    <MetadataFile FileName="WebSelfHelpCheckInService4.xsd" MetadataType="Schema" ID="54dd6950-7ed4-4cec-9d5d-a781f7e2c045" SourceId="1" SourceUrl="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd2" />
+    <MetadataFile FileName="WebSelfHelpCheckInService5.xsd" MetadataType="Schema" ID="9f2fc5be-1a56-4cff-a3cc-113c1c78959a" SourceId="1" SourceUrl="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd3" />
+    <MetadataFile FileName="WebSelfHelpCheckInService6.xsd" MetadataType="Schema" ID="158e04be-6716-4f4a-97da-739439f586a9" SourceId="1" SourceUrl="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd0" />
+    <MetadataFile FileName="WebSelfHelpCheckInService7.xsd" MetadataType="Schema" ID="7612d1c5-8517-45d6-b4ee-dcce5a62b5d1" SourceId="1" SourceUrl="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd1" />
+    <MetadataFile FileName="WebSelfHelpCheckInService8.xsd" MetadataType="Schema" ID="246bf2b4-5d8f-47bb-bcb2-223d9d74c6e1" SourceId="1" SourceUrl="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd6" />
+    <MetadataFile FileName="WebSelfHelpCheckInService9.xsd" MetadataType="Schema" ID="5dca4d51-9c0c-4bf2-941c-08d427c363c5" SourceId="1" SourceUrl="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd7" />
+    <MetadataFile FileName="WebSelfHelpCheckInService.wsdl" MetadataType="Wsdl" ID="1e3d8280-b5ae-4f5b-a56e-8bdc3da3674a" SourceId="1" SourceUrl="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

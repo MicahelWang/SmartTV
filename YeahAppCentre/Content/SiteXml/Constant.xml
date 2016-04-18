@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<constant>
+  <tvhotelconfigs>
+    <option name="VodAddress">Vod点播地址</option>
+    <option name="VodBackground">Vod背景地址</option>
+    <option name="BackgroundImageUrl">BackgroundImageUrl</option>
+    <option name="BackgroundMusicUrl">BackgroundMusicUrl</option>
+    <option name="FloatImageUrl">FloatImageUrl</option>
+    <option name="LogoImageUrl">LogoImageUrl</option>
+    <option name="StorePaymentModel">商城相关配置</option>
+    <option name="KFCUrl">KFC模块URL</option>
+    <option name="StoreUrl">商城URL</option>
+    <option name="IsShowKFC">是否显示KFC模块</option>
+    <option name="TvHomePage">获取首页Url</option>
+    <option name="EnbleUmeng">启用友盟</option>
+  </tvhotelconfigs>
+  <ModuleConfigs>
+    <option name="电视">TV</option>
+    <option name="电影">VOD</option>
+    <option name="商城">ShopMall</option>
+    <option name="游戏">Game</option>
+    <option name="租车">Car</option>
+  </ModuleConfigs>
+  <Category>
+    <option value="LOCALTV|地方频道">地方频道</option>
+    <option value="CCTV|中央频道">中央频道</option>
+    <option value="HotelTV|酒店频道">酒店频道</option>
+    <option value="InternationalTV|境外频道">境外频道</option>
+    <option value="CCTV|中央台">中央台</option>
+    <option value="LOCALTV|地方台">地方台</option>
+  </Category>
+  <HotelCustomizing>
+    <Node flag="254e4894-1337-11e5-91d9-6c92bf08396d" versionCode ="1.0">/DashBoard/IUConfigIndex</Node>
+    <Node flag="ecddff8f-1bcf-11e5-90c5-6c92bf0cae27" versionCode ="1.0">/DashBoard/IUConfigIndex</Node>
+    <Node flag="4eb89a4a59df49e3aaf577bd46941f7c" versionCode ="1.0">/DashBoard/IUConfigIndex</Node>
+  </HotelCustomizing>
+  <GlobalConfigs>
+    <option name="积分兑换业务标识" rule="">ScoreBusinessCode</option>
+    <option name="积分兑换比例" rule="^([1-9][0-9]*|[1-9][0-9]*\.[0-9][0-9]?|0\.[1-9][0-9]?|0\.[0-9][1-9])$">ScoreRate</option>
+    <option name="积分兑换接口地址" rule="">ScoreGateWayUrl</option>
+    <option name="积分兑换锦江取Token接口地址" rule="">ScoreGetTokenUrl</option>
+    <option name="积分兑换接口前端签名key" rule="">ScoreGateWayFrontSignKey</option>
+    <option name="积分兑换接口后端签名key" rule="">ScoreGateWayBackSignKey</option>
+    <option name="积分兑换接口合作商Id" rule="">ScorePartnerId</option>
+    <option name="积分兑换上浮比" rule="^([1-9][0-9]*.[0-9]?[0-9]|[1-9][0-9]*)$">ScoreIncreaseRatio</option>
+  </GlobalConfigs>
+</constant>

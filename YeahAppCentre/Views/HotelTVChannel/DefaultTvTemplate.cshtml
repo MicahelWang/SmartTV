@@ -1,0 +1,25 @@
+﻿
+@{
+    OpType opType = ViewBag.OpType;
+}
+<script src="/Scripts/bootstrap-typeahead.js"></script>
+<script type="text/javascript">
+    GetHotelNames('/Unity/GetHotelNames', $("#defaultHotelName"), $("#defaultHotelId"));
+</script>
+<form action="/HotelTVChannel/AddTVChanelsByTeamplate" class="form-horizontal" data-ajax="true" data-ajax-method="Post" data-ajax-success="Success" id="form0" method="post" role="form" novalidate="novalidate">
+
+
+    <div class="form-group">
+        <label class="control-label col-md-2" for="HotelName">酒店名称</label>
+        <div class="col-md-10">
+            <input id="defaultHotelName" name="HotelName" class="form-control text-box single-line" data-provide="typeahead" autocomplete="off" data-val-required="酒店名称 字段是必需的。" />
+            <input id="defaultHotelId" name="HotelId" type="hidden" value="" />
+        </div>
+
+    </div>
+    <div>点击提交默认列表</div>
+
+
+</form>
+
+ 

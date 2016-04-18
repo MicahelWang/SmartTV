@@ -1,0 +1,39 @@
+﻿<link href="~/html/css/shopstyle.css" rel="stylesheet" />
+<body>
+
+    <div class="webM">
+        <h3>
+            订单成功
+        </h3>
+        <div class="success" style="height:200px;">
+            下单成功<br/>请到前台领取商品
+        </div>
+        <div style=" font-size:60px;text-align:center;">
+            订单号：<span id="spanOrder"></span>
+        </div>
+        <a class="btn btnCe" href="javascript:void(0)" onclick="toHome()">回首页</a>
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+
+            //显示订单信息
+            document.getElementById("spanOrder").innerText = localStorage.payResult;
+
+            //清空购物车
+            var storage = window.localStorage;
+            var preStorage = "shoppingCart_";
+            for (var key in storage) {
+                if (key.indexOf(preStorage) >= 0) {
+                    localStorage.removeItem(key);
+                }
+            }
+        });
+        function toHome() {
+
+            window.location.href = '@Url.Content("~/HotelCommodity/index")';
+            localStorage.removeItem("payResult");
+        }
+    </script>
+</body>

@@ -1,0 +1,19 @@
+﻿@model YeahTVApi.DomainModel.SearchCriteria.AppsCriteria
+
+<div class="row">
+  
+    <div class="col-sm-12 tab-search">
+      @using (Html.BeginForm("Index", "App", FormMethod.Post, new { novalidate = "novalidate" }))
+      {
+            <label> APP名称</label>
+            <span class="input-icon">
+                <input id="AppName" name="AppName" value="" class="form-control" data-provide="typeahead" autocomplete="off" />
+                @Html.HiddenFor(m => m.Id)
+            </span>
+            <span class="input-icon">
+                <button type="submit" class="btn btn-sm btn-success">查询</button>
+            </span>
+      }
+        <div class="clear"></div>
+    </div>
+</div>

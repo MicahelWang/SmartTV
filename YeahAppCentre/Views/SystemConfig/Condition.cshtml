@@ -1,0 +1,17 @@
+﻿
+@model YeahTVApi.DomainModel.SearchCriteria.SystemConfigCriteria
+<div class="row">
+    <div class="col-sm-12 tab-search">
+        @using (Html.BeginForm("Index", "SystemConfig", FormMethod.Post, new { novalidate = "novalidate" }))
+        {
+            <label> 配置名称</label>
+            <span class="input-icon">
+                @Html.EditorFor(model => model.ConfigName, new { htmlAttributes = new { @class = "" } })
+            </span>
+            <span class="input-icon">
+                <button type="submit" class="btn btn-sm btn-success">查询</button>
+            </span>
+        }
+        <div class="clear"></div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+﻿@model YeahTVApi.DomainModel.SearchCriteria.MongoCriteria
+<script src="~/Scripts/My97DatePicker/WdatePicker.js"></script>
+<link href="~/Scripts/My97DatePicker/skin/WdatePicker.css" rel="stylesheet" />
+<script type="text/javascript">
+
+    $(function () {
+        InitialDateTime();
+    });
+    function InitialDateTime() {
+        if ($("#LogDate").val() == null || $("#LogDate").val() == "") {
+            $("#LogDate").val("@DateTime.Now.ToDateTimeStr(DateFormate.yyyyMMdd)");
+        }
+    }
+</script>
+<div class="row">
+    <div class="col-sm-12 tab-search">
+        @using (Html.BeginForm("Index", "SystemLog", FormMethod.Post, new { novalidate = "novalidate" }))
+        {
+            <table>
+                <tbody>
+                    <tr>
+                        <td><label> 日志类型</label></td>
+                        <td>
+                            <span class="input-icon">
+                                @Html.DropDownListFor(model => model.LogType, ViewBag.LogType as List<SelectListItem>)
+                            </span>
+                        </td>
+                        <td><label> APP类型</label></td>
+                        <td>
+                            <span class="input-icon">
+                                @Html.DropDownListFor(model => model.AppType, YeahAppCentre.Web.Utility.DropDownExtensions.GetSelectList(typeof(AppType)))
+                            </span>
+                        </td>
+                        <td><label> 日志内容</label></td>
+                        <td>
+                            <span class="input-icon">
+                                @Html.EditorFor(model => model.Message, new { htmlAttributes = new { @class = "" } })
+                            </span>
+                        </td>
+                        <td><label> 日志详情</label></td>
+                        <td>
+                            <span class="input-icon">
+                                @Html.EditorFor(model => model.MessageEx, new { htmlAttributes = new { @class = "" } })
+                            </span>
+                        </td>
+                        <td>
+                            <span>@Html.LabelFor(m => m.LogDate)</span>
+                        </td>
+                        <td>
+                            <span>
+
+                                @Html.TextBoxFor(m => m.LogDate, new { onClick = "WdatePicker({dateFmt:'yyyy-MM-dd' })", @class = "input-medium", @value = DateTime.Now.ToDateTimeStr() })
+                            </span>
+                        </td>
+                        <td>
+                            <span class="input-icon">
+                                <button type="submit" class="btn btn-sm btn-success">查询</button>
+                            </span>
+                            @Html.HiddenFor(m => m.SortFiled)
+                            @Html.HiddenFor(m => m.OrderAsc)
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        }
+        <div class="clear"></div>
+    </div>
+</div>

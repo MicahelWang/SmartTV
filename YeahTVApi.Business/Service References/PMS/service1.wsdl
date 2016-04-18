@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PmsService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSHttpBinding_IPmsService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/HuaZhu.PMS.Interface.SmartTVService.DataContract" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IPmsService_GetRcpnSheetInfoByRoomNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRcpnSheetInfoByRoomNo" />
+  </wsdl:message>
+  <wsdl:message name="IPmsService_GetRcpnSheetInfoByRoomNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRcpnSheetInfoByRoomNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPmsService_GetMorningCallByRoomNo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMorningCallByRoomNo" />
+  </wsdl:message>
+  <wsdl:message name="IPmsService_GetMorningCallByRoomNo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMorningCallByRoomNoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPmsService_SetMorningCall_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetMorningCall" />
+  </wsdl:message>
+  <wsdl:message name="IPmsService_SetMorningCall_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetMorningCallResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPmsService_CancelMorningCall_InputMessage">
+    <wsdl:part name="parameters" element="tns:CancelMorningCall" />
+  </wsdl:message>
+  <wsdl:message name="IPmsService_CancelMorningCall_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CancelMorningCallResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IPmsService">
+    <wsdl:operation name="GetRcpnSheetInfoByRoomNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPmsService/GetRcpnSheetInfoByRoomNo" message="tns:IPmsService_GetRcpnSheetInfoByRoomNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPmsService/GetRcpnSheetInfoByRoomNoResponse" message="tns:IPmsService_GetRcpnSheetInfoByRoomNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMorningCallByRoomNo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPmsService/GetMorningCallByRoomNo" message="tns:IPmsService_GetMorningCallByRoomNo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPmsService/GetMorningCallByRoomNoResponse" message="tns:IPmsService_GetMorningCallByRoomNo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetMorningCall">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPmsService/SetMorningCall" message="tns:IPmsService_SetMorningCall_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPmsService/SetMorningCallResponse" message="tns:IPmsService_SetMorningCall_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelMorningCall">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPmsService/CancelMorningCall" message="tns:IPmsService_CancelMorningCall_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPmsService/CancelMorningCallResponse" message="tns:IPmsService_CancelMorningCall_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSHttpBinding_IPmsService" type="tns:IPmsService">
+    <wsp:PolicyReference URI="#WSHttpBinding_IPmsService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetRcpnSheetInfoByRoomNo">
+      <soap12:operation soapAction="http://tempuri.org/IPmsService/GetRcpnSheetInfoByRoomNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMorningCallByRoomNo">
+      <soap12:operation soapAction="http://tempuri.org/IPmsService/GetMorningCallByRoomNo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetMorningCall">
+      <soap12:operation soapAction="http://tempuri.org/IPmsService/SetMorningCall" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelMorningCall">
+      <soap12:operation soapAction="http://tempuri.org/IPmsService/CancelMorningCall" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="PmsService">
+    <wsdl:port name="WSHttpBinding_IPmsService" binding="tns:WSHttpBinding_IPmsService">
+      <soap12:address location="http://10.1.81.69:8022/PmsService.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://10.1.81.69:8022/PmsService.svc</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,498 @@
+﻿<div class="page-content" style="overflow:hidden">
+    <div class="page-header">
+        <h1>
+            添加电影
+            <small>
+                <i class="icon-double-angle-right"></i>
+            </small>
+        </h1>
+    </div>
+    <div class="form-horizontal" id="addMovie" role="form">
+        <div class="text-center">
+            <button type="button" id="langug" class="btn btn-success">英文</button>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group temp">
+                    <label for="Name" class="col-sm-2 control-label">影片名称<code>*</code></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="Name" placeholder="请输入影片名称">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="DefaultAmount" class="col-sm-2 control-label">默认价格</label>
+                    <div class="col-sm-10 input-group">
+                        <span class="input-group-addon">￥</span>
+                        <input type="text" class="form-control" id="DefaultAmount" placeholder="请输入价格" value="0">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="MD5" class="col-sm-2 control-label">MD5<code>*</code></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="MD5" placeholder="请输入MD5" value="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="Attribute" class="col-sm-2 control-label">特殊标签</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="Attribute" placeholder="" value="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Rate" class="col-sm-2 control-label">评分<code>*</code></label>
+                    <div class="col-sm-10">
+                        <div class="control-group">
+                            <div class="controls">
+                                <div class="input-group">
+                                    <label>
+                                        <div class="exemple2" data-average="5.5" data-id="2"></div>
+                                    </label>&nbsp;&nbsp;
+                                    <input type="text" class="help-inline text-center" style="width: 66px;" onchange="setScore(this.value)"
+                                           id="Rate" placeholder="满分10分">分
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="VodUrl" class="col-sm-2 control-label">Vod地址<code>*</code></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="VodUrl" placeholder="请输入Vod地址,如:http://133.133.1.5/" value="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-group">
+                    <label for="TagIds" class="col-sm-1 control-label">影片分类<code>*</code></label>
+                    <div class="col-sm-11">
+                        <div>
+                            @foreach (SelectListItem item in ViewBag.checkList)
+                            {
+                                <label>
+                                    <input name="TagIds" type="checkbox" value="@item.Value" />
+                                    @item.Text
+                                </label>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="Vintage" class="col-sm-2 control-label">年份<code>*</code></label>
+                    <div class="col-sm-10">
+                        <div id="datetimepicker1" class="date">
+                            <input id="Vintage" type="text" class="form-control" placeholder="请输入影片年份,如: 2015" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group temp">
+                    <label for="Language" class="col-sm-2 control-label">语言<code>*</code></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="Language" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group temp">
+                    <label for="Director" class="col-sm-2 control-label">导演<code>*</code></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="Director" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="CoverAddress">封面上传<code>*</code></label>
+                    <div class="col-md-10">
+                        <button id="uploadCoverIcon" type="button">上传图片</button>
+                        <label error-info="">（图片不大于30K且图片仅支持jpg和png格式）</label>
+                        <img id="CoverimgIcon" style="display:none" />
+                        <input class="form-control text-box single-line" data-val="true" data-val-required="封面上传 字段是必需的。" id="CoverAddress" name="CoverAddress" type="hidden" value="">
+                    </div>
+                </div>
+                <div class="form-group temp">
+                    <label for="MovieReview" class="col-sm-2 control-label">影片描述(中文)<code>*</code></label>
+                    <div class="col-sm-10">
+                        <textarea id="MovieReview" class="form-control" style="height:136px;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group temp">
+                    <label for="District" class="col-sm-2 control-label">地区<code>*</code></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="District" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Mins" class="col-sm-2 control-label">片长<code>*</code></label>
+                    <div class="col-sm-10 input-group">
+                        <input type="text" class="form-control" id="Mins" placeholder="请输入片长(分钟)" value="">
+                        <span class="input-group-addon">分钟</span>
+                    </div>
+                </div>
+                <div class="form-group temp">
+                    <label for="Starred" class="col-sm-2 control-label">主演<code>*</code></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="Starred" placeholder="">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="PosterAddress">海报上传<code>*</code></label>
+                    <div class="col-md-10">
+                        <button id="uploadPosterIcon" type="button">上传图片</button>
+                        <label error-info="">（图片不大于300K且图片仅支持jpg和png格式）</label>
+                        <img id="PosterimgIcon" style="display:none" />
+                        <input class="form-control text-box single-line" data-val="true" data-val-required="封面上传 字段是必需的。" id="PosterAddress" name="PosterAddress" type="hidden" value="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <hr>
+            <div class="col-lg-6">
+                <div class="form-group">
+                    <label for="distribution" class="col-sm-2 control-label">分发</label>
+                    <div class="col-sm-10">
+                        <div>
+                            <label>
+                                <input name="distribution" type="radio" value="2" checked="checked">全部分发
+                                <input name="distribution" type="radio" value="1"> 分发部分
+                                <input name="distribution" type="radio" value="0"> 不分发
+                            </label>
+                        </div>
+                        <div class="filterhotel">
+                            <span id="FilterHotels" class="btn btn-primary">点击筛选具体酒店</span>
+                        </div>
+                        <div class="filterhotel">
+                            已选酒店：<label id="hotelNames"></label>
+                            <input id="HotelIds" type="hidden" value="">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="firstname" class="col-sm-2 control-label">是否置顶<code>*</code></label>
+                    <div class="col-sm-10">
+                        <div>
+                            <label>
+                                <input name="IsTop" type="radio" value="1"> 是
+                                <input name="IsTop" type="radio" checked="checked" value="0"> 否
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <hr>
+            <div class="form-inline col-lg-1">
+            </div>
+            <div class="form-inline  col-lg-11">
+                @using (Ajax.BeginForm("Add", "VOD", new AjaxOptions
+                {
+                    OnSuccess = "Success",
+                    HttpMethod = "Post",
+                    //OnBegin = "beforeSubmit",
+                    OnFailure = "Failure",
+                }))
+                {
+                    <input type="hidden" id="HotelCount" name="HotelCount" value="0">
+                    <div class="hidden content">
+                        <input type="text" id="Name" name="Name" value="">
+                        <input type="text" id="DefaultAmount" name="DefaultAmount" value="">
+                        <input type="text" id="Attribute" name="Attribute" value="">
+                        <input type="text" id="Rate" name="Rate" value="">
+                        <input type="text" id="Vintage" name="Vintage" value="">
+                        <input type="text" id="Language" name="Language" value="">
+                        <input type="text" id="Director" name="Director" value="">
+                        <input type="text" id="CoverAddress" name="CoverAddress" value="">
+                        <input type="text" id="MovieReview" name="MovieReview" value="">
+                        <input type="text" id="District" name="District" value="">
+                        <input type="text" id="Mins" name="Mins" value="">
+                        <input type="text" id="Starred" name="Starred" value="">
+                        <input type="text" id="PosterAddress" name="PosterAddress" value="">
+                        <input type="text" id="TagIds" name="TagIds" value="">
+                        <input type="text" id="HotelIds" name="HotelIds" value="">
+                        <input type="text" id="distribution" name="distribution" value="">
+                        <input name="IsTop" id="IsTop" type="text" value="false">
+                        <input type="text" id="VodUrl" name="VodUrl" value="">
+                        <input type="text" id="MD5" name="MD5" value="">
+                    </div>
+                    <button type="submit" id="subBack" class="btn  btn-info">提交返回</button>
+                    <button type="submit" id="subGo" class="btn  btn-info">提交并继续</button>
+                    <button type="button" class="btn  btn-default" onclick="history.go(-1);">取消</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+<link href="~/Scripts/assets/css/datepicker.css" rel="stylesheet" />
+<script src="~/Scripts/upload/ajaxupload.js"></script>
+<script src="~/Scripts/upload/uploadHelper.js"></script>
+<script src="~/Scripts/filterHotels.js"></script>
+<script src="~/Scripts/ratystar/jRating.jquery.js"></script>
+<link href="~/Scripts/ratystar/jRating.jquery.css" rel="stylesheet" />
+<script type="text/javascript">
+    var isBack = false;
+    $(function () {
+        bindCoverUpload();
+        bindPosterUpload();
+        $(document).delegate("#langug", "click", function () {
+            if ($("div.has-success").length > 0) {
+                $("div.has-success").remove();
+            } else {
+                $("div.temp").each(function (e, v) {
+                    var temp = $(v).clone(true).removeClass("temp").addClass("has-success");
+                    var id = temp.find("input,textarea").attr("id");
+                    temp.find("input,textarea").attr("name", id + "_en-us").attr("id", id + "_en-us");
+                    $("label", temp).text("英");
+                    $(temp).find("code").remove();
+                    $(this).after(temp);
+                });
+            }
+        }
+        );
+        $(document).delegate("#subBack,#subGo", "click", function () {
+            if (this.textContent == "提交返回") {
+                isBack = true;
+            }
+            var ret = getInput();
+            if (ret) {
+                $("#subBack,#subGo").addClass("disabled");
+                this.textContent = "提交中...";
+            }
+            return ret;
+        }
+
+        );
+        var selectHotels = [];
+        $(document).delegate("#FilterHotels", "click",
+                function () {
+                    var filterOpt = {};
+                    filterOpt.saveEvent = function (data) {                        
+                        var hotelIds = '';
+                        var hotelNames = '';
+                        var hotelCount = 0;
+                        selectHotels = [];
+                        $(data).each(function () {
+                            hotelIds = hotelIds + '|' + this.Id;
+                            hotelNames = this.Name + '、' + hotelNames;
+                            hotelCount++;
+                            var o = {};
+                            o.Id = this.Id;
+                            o.Name = this.Name;
+                            selectHotels.push(o);
+                        });
+                        $("#hotelNames").text(hotelNames.slice(0, -1));
+                        $("#HotelIds").val(hotelIds);
+                    };
+                    filterOpt.existHotels =selectHotels;
+                    $('div.dialog.modal.fade').remove();
+                    openFilterHotelsDialog(filterOpt);
+
+                });
+
+        //是否显示筛选
+        $(document).delegate("input[name=distribution]:radio", "click",
+            function () {
+                var checked = $('input:radio[name="distribution"]:checked');
+
+                if (checked.val() === '1') {
+                    $("div.filterhotel").show();
+                } else {
+                    $("div.filterhotel").hide();
+                }
+            });
+        $("div.filterhotel").hide();
+        setScore(null);
+    });
+
+    function setScore(score) {
+        if (score) {
+            if (!/^[0-9]+(.[0-9]+)?$/.test(score)) {
+                alert("评分必须是数字");
+                score = $("div.exemple2").attr("data-average");
+            }
+            $("div.exemple2").attr("data-average", score);
+        }
+
+        $("div.exemple2").html("");
+        $("div.exemple2").jRating({
+            length: 5,
+            decimalLength: 1,
+            defaultScore: score,
+            rateMax: 10,
+            target: $("#Rate", "div.form-group"),
+            onClick: function (obj, rate) {
+                $("#Rate", "div.form-group").val(rate == 0 ? "" : rate)
+            }
+        });
+    }
+    function getInput() {
+        var mapFiled = "Name,Language,Director,District,Starred,MovieReview";
+        var notValidFiled = "DefaultAmount,Attribute,HotelIds";
+        var dataContent = $("div.content");
+        dataContent.find("input[type='text']").val("");
+        var msgValid = "";
+        $("input[type='text'],input[type='checkbox'],input[type='radio'],input[type='hidden'],textarea", "div.form-group").each(function (i, v) {
+            var obj = $(this).attr("id");
+            if (obj) {
+                var idFull = obj.split('_');
+                var id = idFull[0];
+                if (mapFiled.indexOf(id) == -1) {
+                    dataContent.find("#" + id).val(this.value);
+                    if (this.value.replace(/ /gi, "") == "" && notValidFiled.indexOf(id) == -1) {
+                        alert($(this).parents("div.form-group").find("label:first").text().replace(/\*/, "") + " 不能为空!");
+                        msgValid = "UnValid";
+                        return false;
+                    }
+                } else {
+                    var temp = dataContent.find("#" + id);
+                    if (temp.val() == "") {
+                        if (this.value.replace(/ /gi, "") == "") {
+                            alert($(this).parents("div.form-group").find("label").text().replace(/\*/, "") + " 不能为空!");
+                            msgValid = "UnValid";
+                            return false;
+                        }
+                        var arr = [];
+                        var o = {};
+                        o.Lang = "zh-cn";
+                        o.Content = this.value
+                        arr.push(o);
+                        temp.val(JSON.stringify(arr));
+                    } else {
+                        if (this.value.replace(/ /gi, "") == "") {
+                            var prevobj = $(this).parents("div.has-success").prev("div.temp");
+                            var tip = $("label", prevobj).text().replace("*", "");
+                            alert("英文 " + tip + " 不能为空!");
+                            msgValid = "UnValid";
+                            return false;
+                        }
+                        var arr = JSON.parse(temp.val());
+                        var o = {};
+                        o.Lang = idFull[1];
+                        o.Content = this.value;
+                        arr.push(o);
+                        temp.val(JSON.stringify(arr));
+                    }
+                }
+            }
+        }
+       );
+        if (msgValid != "") {
+            return false;
+        }
+        var str = "";
+        $("input[name='TagIds']", "#addMovie").each(function (i, v) {
+            if (v.checked) {
+                str += "," + this.value;
+            }
+        });
+        if (dataContent.find("#DefaultAmount").val().replace(/ /, "") == "") {
+            dataContent.find("#DefaultAmount").val("0");
+        }
+        if (isNaN(dataContent.find("#DefaultAmount").val())) {
+            alert("默认价格 必须是数字");
+            return false;
+        }
+        if (!CheckUrl(dataContent.find("#VodUrl").val())) {
+            alert("Vod地址 格式错误");
+            return false;
+        }
+        if (isNaN(dataContent.find("#Mins").val())) {
+            alert("片长 必须是数字");
+            return false;
+        }
+        dataContent.find("#TagIds").val(str.replace(/^,*/g, '').replace(/,*$/g, ''));
+        if (dataContent.find("#TagIds").val() == "") {
+            alert("请至少勾选一个影片分类！");
+            return false;
+        }
+        if (!/^\d{4}$/.test(dataContent.find("#Vintage").val())) {
+            alert("请输入正确的4位数年份");
+            return false;
+        }
+        str = "0";
+        $("input[name='distribution']", "div.form-group").each(function (i, v) {
+            if (v.checked) {
+                str = this.value;
+            }
+        });
+        dataContent.find("#distribution").val(str);
+
+        str = "0";
+        $("input[name='IsTop']", "div.form-group").each(function (i, v) {
+            if (v.checked) {
+                str = this.value;
+            }
+        });
+        dataContent.find("#IsTop").val(str == "1" ? "true" : "false");
+        return true;
+    }
+
+    function bindCoverUpload() {
+        var Coversetting = {
+            single: true,
+            container: $("#CoverimgIcon"),
+            targetOjb: $("#CoverAddress")
+        };
+        //debugger;
+        $("#uploadCoverIcon").binduploadify(Coversetting);
+        $('#CoverimgIcon').width('10%');
+    }
+
+    function bindPosterUpload() {
+        var Postersetting = {
+            single: true,
+            container: $("#PosterimgIcon"),
+            targetOjb: $("#PosterAddress"),
+            limitSize: 300
+
+        };
+        $("#uploadPosterIcon").binduploadify(Postersetting);
+        $('#PosterimgIcon').width('10%');
+    }
+
+
+    function beforeSubmit() {
+        return getInput();
+    }
+    function Success(data) {
+        var o = JSON.parse(data);
+        if (o.Success) {
+            Mc.Msg(o.Msg, function () {
+                if (isBack)
+                    window.location.href = '@Html.Raw(Url.Action("Index"))';
+                else
+                    window.location.href = window.location.href;
+            });
+        } else {
+            Failure(o);
+        }
+    }
+    function Failure(data) {
+        if (data.Success == undefined)
+        {
+            Mc.Error("Error!");
+        }
+        else
+        Mc.Error(data);
+        $("#subBack").removeClass("disabled").text("提交返回");
+        $("#subGo").removeClass("disabled").text("提交并继续");
+    }
+
+
+    function CheckUrl(str) {
+        var RegUrl = new RegExp();
+        RegUrl.compile("^[A-Za-z]+://[A-Za-z0-9-_]");
+        if (!RegUrl.test(str)) {
+            return false;
+        }
+        return true;
+    }
+</script>

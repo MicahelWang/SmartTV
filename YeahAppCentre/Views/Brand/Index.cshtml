@@ -1,0 +1,139 @@
+﻿@using YeahTVApi.DomainModel.SearchCriteria
+@{
+    ViewBag.Title = "品牌管理";
+}
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            品牌管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+                @*查看*@
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-header">
+                品牌列表
+            </div>
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    @{
+                        var list = ViewBag.List as PagedViewList<CoreSysBrand>;
+                        var condition = ViewBag.CoreSysBrandCriteria as CoreSysBrandCriteria;
+                    }
+                    @Html.Partial("Condition", condition)
+                    @Html.Partial("List", list)
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_info">
+                                <ul class="list-inline action-buttons">
+                                    <li data-original-title="新增" id="btnNew">
+                                        <div class="ui-pg-div"><span class="ui-icon icon-plus-sign purple"></span></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            @{
+                                string querystring = condition.ToQueryString();
+                            }
+                            @Html.Pagination(list.PageIndex, list.PageSize, list.TotalCount, "#list", Url.Action("List") + querystring)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+@section scripts{
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $(".dataTable tbody tr:even").addClass("even");
+            $(".dataTable tbody tr:odd").addClass("odd");
+        })
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            //修改
+            $(document).delegate("tr [data-optype=edit]", "click",
+                function () {
+                    openDialog(GetDefaultOpt('@OpType.Update.GetValueStr()', GetKey($(this))));
+                });
+
+            //查看
+            $(document).delegate("tr [data-optype=view]", "click",
+                function () {
+                    openDialog(GetDefaultOpt('@OpType.View.GetValueStr()', GetKey($(this))));
+                });
+
+            //新增
+            $(document).delegate("#btnNew", "click",
+                function () {
+                    openDialog(GetDefaultOpt('@OpType.Add.GetValueStr()', GetKey($(this))));
+                });
+        });
+
+        function GetDefaultOpt(type, key) {
+            var map = {
+                '@OpType.View.GetValueStr()': '@OpType.View.GetDescription()',
+                '@OpType.Add.GetValueStr()': '@OpType.Add.GetDescription()',
+                '@OpType.Update.GetValueStr()': "@OpType.Update.GetDescription()",
+                '@OpType.Delete.GetValueStr()': "@OpType.Delete.GetDescription()"
+            };
+            var opt = {};
+            opt.title = "品牌管理 -> " + map[type];
+            opt.url = '@Html.Raw(Url.Action("AddOrEdit", new { type = "_type_", id = "_id_" }))'
+                .replace('_id_', key)
+                .replace('_type_', type);
+
+
+            if (type != '@OpType.View.GetValueStr()') {
+                opt.saveclick = function () {
+                    $("div.modal-dialog .btn-success").attr({ "disabled": "disabled" });
+                    $("div.modal-dialog .btn-success").html("提交中...");
+
+                    $("div.modal-dialog form").submit();
+                    event.preventDefault();
+                    return false;
+                };
+            }
+            return opt;
+        }
+
+        function GetKey(jqObj) {
+            var tagName = jqObj[0].tagName;
+            if (tagName == "A") {
+                var tr = jqObj.closest("tr");
+                return tr.find("input.key").val();
+            } else if (tagName == "TR") {
+                return jqObj.find("input.key").val();
+            }
+            return '';
+        }
+
+      
+
+        function Success(data) {
+
+            $("div.modal-dialog .btn-success").removeAttr("disabled");
+            $("div.modal-dialog .btn-success").html("提交");
+
+            if (data == "Success") {
+                Mc.Msg("保存成功！", function () {
+                    location.href = location.href;
+                });
+
+            } else {
+                Mc.Error(data);
+            }
+        }
+
+        function SetKeyReadonly() {
+            $("div.modal-dialog input,div.modal-dialog select,#uploadPosterIcon").attr("disabled", "disabled");
+        }
+
+    </script>}

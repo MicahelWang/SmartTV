@@ -1,0 +1,259 @@
+@charset "UTF-8";
+/* 常用样式缩写 */
+/* float */
+.Lfll { float: left; }
+
+.Lflr { float: right; }
+
+.Lcfl { clear: left; }
+
+.Lcfr { clear: right; }
+
+.Lcfb { clear: both; }
+
+.Lfz10 { font-size: 10px; }
+
+.Lfz12 { font-size: 12px; }
+
+.Lfz14 { font-size: 14px; }
+
+.Lfz16 { font-size: 16px; }
+
+.Lfz18 { font-size: 18px; }
+
+.Lfz20 { font-size: 20px; }
+
+/* color */
+.Lcfff { color: white; }
+
+.Lcf60 { color: #ff6600; }
+
+.Lcc00 { color: #cc0000; }
+
+.Lcf00 { color: red; }
+
+.Lc390 { color: #339900; }
+
+.Lc333 { color: #333333; }
+
+.Lc666 { color: #666666; }
+
+.Lc999 { color: #999999; }
+
+/* text-align */
+.Ltal { text-align: left; }
+
+.Ltac { text-align: center; }
+
+.Ltar { text-align: right; }
+
+.Lfwb { font-weight: bold; }
+
+/* font-family */
+.Lffar { font-family: Arial; }
+
+.Lfftm { font-family: Tahoma; }
+
+.Lffst { font-family: \5B8B\4F53; }
+
+.Lffyh { font-family: \5FAE\8F6F\96C5\9ED1; }
+
+/* text-indent */
+.Lti5 { text-indent: 5px; }
+
+.Lti10 { text-indent: 10px; }
+
+.Lti15 { text-indent: 15px; }
+
+.Lti20 { text-indent: 20px; }
+
+.Lti25 { text-indent: 25px; }
+
+.Lti30 { text-indent: 30px; }
+
+.Lti35 { text-indent: 35px; }
+
+.Lti40 { text-indent: 40px; }
+
+/* margin and padding */
+.Lmt5 { margin-top: 5px; }
+
+.Lmr5 { margin-right: 5px; }
+
+.Lmb5 { margin-bottom: 5px; }
+
+.Lml5 { margin-left: 5px; }
+
+.Lpt5 { padding-top: 5px; }
+
+.Lpr5 { padding-right: 5px; }
+
+.Lpb5 { padding-bottom: 5px; }
+
+.Lpl5 { padding-left: 5px; }
+
+.Lmt10 { margin-top: 10px; }
+
+.Lmr10 { margin-right: 10px; }
+
+.Lmb10 { margin-bottom: 10px; }
+
+.Lml10 { margin-left: 10px; }
+
+.Lpt10 { padding-top: 10px; }
+
+.Lpr10 { padding-right: 10px; }
+
+.Lpb10 { padding-bottom: 10px; }
+
+.Lpl10 { padding-left: 10px; }
+
+.Lmt15 { margin-top: 15px; }
+
+.Lmr15 { margin-right: 15px; }
+
+.Lmb15 { margin-bottom: 15px; }
+
+.Lml15 { margin-left: 15px; }
+
+.Lpt15 { padding-top: 15px; }
+
+.Lpr15 { padding-right: 15px; }
+
+.Lpb15 { padding-bottom: 15px; }
+
+.Lpl15 { padding-left: 15px; }
+
+.Lmt20 { margin-top: 20px; }
+
+.Lmr20 { margin-right: 20px; }
+
+.Lmb20 { margin-bottom: 20px; }
+
+.Lml20 { margin-left: 20px; }
+
+.Lpt20 { padding-top: 20px; }
+
+.Lpr20 { padding-right: 20px; }
+
+.Lpb20 { padding-bottom: 20px; }
+
+.Lpl20 { padding-left: 20px; }
+
+.Lmt25 { margin-top: 25px; }
+
+.Lmr25 { margin-right: 25px; }
+
+.Lmb25 { margin-bottom: 25px; }
+
+.Lml25 { margin-left: 25px; }
+
+.Lpt25 { padding-top: 25px; }
+
+.Lpr25 { padding-right: 25px; }
+
+.Lpb25 { padding-bottom: 25px; }
+
+.Lpl25 { padding-left: 25px; }
+
+.Lmt30 { margin-top: 30px; }
+
+.Lmr30 { margin-right: 30px; }
+
+.Lmb30 { margin-bottom: 30px; }
+
+.Lml30 { margin-left: 30px; }
+
+.Lpt30 { padding-top: 30px; }
+
+.Lpr30 { padding-right: 30px; }
+
+.Lpb30 { padding-bottom: 30px; }
+
+.Lpl30 { padding-left: 30px; }
+
+.Lmt35 { margin-top: 35px; }
+
+.Lmr35 { margin-right: 35px; }
+
+.Lmb35 { margin-bottom: 35px; }
+
+.Lml35 { margin-left: 35px; }
+
+.Lpt35 { padding-top: 35px; }
+
+.Lpr35 { padding-right: 35px; }
+
+.Lpb35 { padding-bottom: 35px; }
+
+.Lpl35 { padding-left: 35px; }
+
+.Lmt40 { margin-top: 40px; }
+
+.Lmr40 { margin-right: 40px; }
+
+.Lmb40 { margin-bottom: 40px; }
+
+.Lml40 { margin-left: 40px; }
+
+.Lpt40 { padding-top: 40px; }
+
+.Lpr40 { padding-right: 40px; }
+
+.Lpb40 { padding-bottom: 40px; }
+
+.Lpl40 { padding-left: 40px; }
+
+/* position */
+.Lposa { position: absolute; }
+
+.Lposr { position: relative; }
+
+.Lposf { position: fixed; }
+
+.Lposs { position: static; }
+
+/* display */
+.Ldb { display: block; }
+
+.Ldn { display: none; }
+
+.Ldib { display: inline-block; }
+
+/* overflow */
+.Lovh { overflow: hidden; }
+
+.Lovv { overflow: visible; }
+
+/* visibility */
+.Lvv { visibility: visible; }
+
+.Lvh { visibility: hidden; }
+
+/* background-color */
+.Lbgcr { background-color: red; }
+
+.Lbgcw { background-color: white; }
+
+.Lbgcb { background-color: blue; }
+
+.Lbgcg { background-color: green; }
+
+.Lbgco { background-color: orange; }
+
+.Lbgcy { background-color: yellow; }
+
+/* other */
+.Lon { outline: none; }
+
+.Lcurp { cursor: pointer; }
+
+.Lbpc { -webkit-box-pack: center; -moz-box-pack: center; -ms-box-pack: center; box-pack: center; }
+
+.Lbac { -webkit-box-align: center; -moz-box-align: center; -ms-box-align: center; box-align: center; }
+
+.Lcfx { zoom: 1; }
+.Lcfx:before, .Lcfx:after { content: ""; display: table; }
+.Lcfx:after { clear: both; }
+
+.Lmlra { margin-left: auto; margin-right: auto; }

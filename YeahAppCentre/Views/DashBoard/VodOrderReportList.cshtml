@@ -1,0 +1,38 @@
+﻿@model PagedViewList<YeahTVApi.DomainModel.Models.VODOrder>
+<div class="row" id="VodOrderReportList">
+    <table id="viewTable" class="table table-striped table-bordered table-hover dataTable">
+        <thead>
+            <tr role="row">
+                <th>房间号</th>
+                <th>名称</th>
+                <th>支付时间</th>
+                <th>支付金额（元）</th>
+                <th>支付方式</th>
+                <th>是否已开发票（点击设置）</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Source)
+            {
+                <tr>
+                    <td>
+                        @item.RoomNo
+                        <input type="hidden" class="key" value="@item.Id" />
+                    </td>
+                    <td>@item.GoodsName</td>
+                    <td>@item.CompleteTime.Value.ToString("yyyy-MM-dd HH:mm:ss")</td>
+                    <td>@item.Price</td>
+                    <td>@item.PayInfo</td>
+                    <td>
+                        <div class=" action-buttons">
+                            <a data-optype="edit" class="blue" href="javascript:void(0)">
+                                @(item.InvoicesTitle.IsNullOrEmpty() ? "否" : "是")
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="hidden" id="PopUrl" class="key" value=@Url.Action("ModifyInvoiceTitle", new { type = "_type_", id = "_id_", hotelId = "_hotelId_" }) />
+</div>

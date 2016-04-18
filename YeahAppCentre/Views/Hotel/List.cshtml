@@ -1,0 +1,126 @@
+﻿@model PagedViewList<CoreSysHotel>
+<div class="row" id="list">
+    <table id="viewTable" class="table table-striped table-bordered table-hover dataTable">
+        <thead>
+            <tr role="row">
+                <th class="center">
+                    <label>
+                        <input type="checkbox" class="ace">
+                        <span class="lbl"></span>
+                    </label>
+                </th>
+                <th>酒店名称</th>
+                <th>代码</th>
+                <th>集团</th>
+                <th>品牌</th>
+                <th>电话</th>
+                <th>地址</th>
+                <th>模板</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Source)
+            {
+                <tr>
+                    <td class="center">
+                        <label>
+                            <input type="checkbox" class="ace">
+                            <span class="lbl"></span>
+                        </label>
+                        <input type="hidden" class="key" value="@item.Id" />
+                    </td>
+                    <td>
+                        @item.HotelName
+                    </td>
+                    <td>
+                        @item.HotelCode
+                    </td>
+                    <td>
+                        @if (item.CoreSysBrand != null && item.CoreSysBrand.CoreSysGroup != null)
+                        {
+                            @item.CoreSysBrand.CoreSysGroup.GroupName;
+                        }
+                        else
+                        {
+                            @item.GroupId;
+                        }
+                    </td>
+                    <td>
+                        @if (item.CoreSysBrand != null)
+                        {
+                            @item.CoreSysBrand.BrandName;
+                        }
+                        else
+                        {
+                            @item.BrandId
+                        }
+                    </td>
+                    <td>
+                        @item.Tel
+                    </td>
+                    <td>
+                        @item.Address
+                    </td>
+                    <td>                       
+                    @if (item.TvTemplate != null)
+                    {
+                        @item.TvTemplate.Name;
+                    }
+                    else
+                    {
+                        @item.TemplateId
+                    }
+                    </td>
+                    <td>
+                        <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                            <a data-optype="view" class="blue" href="@Url.Action("Edit", "Hotel", new { id = item.Id, type = @YeahTVApi.DomainModel.Enum.OpType.View.GetValueStr() })">
+                                <i class="icon-zoom-in bigger-130"></i>
+                            </a>
+                            <a data-optype="edit" class="green" href="@Url.Action("Edit", "Hotel", new { id = item.Id, type = @YeahTVApi.DomainModel.Enum.OpType.Update.GetValueStr() })">
+                                <i class="icon-pencil bigger-130"></i>
+                            </a>
+                            <a data-optype="delete" class="red" href="javascript:void(0)">
+                                <i class="icon-trash bigger-130"></i>
+                            </a>
+                        </div>
+                        <div class="visible-xs visible-sm hidden-md hidden-lg">
+                            <div class="inline position-relative">
+                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-caret-down icon-only bigger-120"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                    <li>
+                                        <a data-optype="view" href="javascript:void(0)" class="tooltip-info" data-rel="tooltip" title="" data-original-title="查看">
+                                            <span class="blue">
+                                                <i class="icon-zoom-in bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-optype="eidt" href="javascript:void(0)" class="tooltip-success" data-rel="tooltip" title="" data-original-title="编辑">
+                                            <span class="green">
+                                                <i class="icon-edit bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a data-optype="delete" href="javascript:void(0)" class="tooltip-error" data-rel="tooltip" title="" data-original-title="删除">
+                                            <span class="red">
+                                                <i class="icon-trash bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script type="text/javascript">
+ jQuery(function ($) {
+ })
+</script>

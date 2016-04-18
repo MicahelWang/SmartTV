@@ -1,0 +1,102 @@
+﻿@model  HotelMovieTrace
+
+@{
+    OpType opType = ViewBag.OpType;
+}
+<script type="text/javascript">
+
+    $(function () {
+        $("form").removeData("validator").removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse($("form"));
+    });
+
+</script>
+
+@using (Ajax.BeginForm("Edit", new { }, new AjaxOptions
+{
+    HttpMethod = "Post",
+    OnSuccess = "Success",
+
+    //    OnBegin = "formValidate",
+}, new { @class = "form-horizontal", role = "form" }))
+{
+    <input type="hidden" name="opType" value="@opType.GetValueStr()" />
+
+    if (opType.Equals(OpType.View))
+    {
+        <div class="form-group">
+            @Html.Label("酒店名称", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox(Model.HotelId, Html.Action("GetHotelNameById", "DeviceTrace", new { hotelId = Model.HotelId }).ToHtmlString(), new { @class = "form-control text-box single-line" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MovieTemplate.Title, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.EditorFor(model => model.MovieTemplate.Title, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MovieTemplate.Tags, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.EditorFor(model => model.MovieTemplate.Tags, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.MovieTemplate.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.EditorFor(model => model.MovieTemplate.Description, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+    }
+    else if (opType.Equals(OpType.Update))
+    {
+        <div class="form-group">
+            @Html.Label("酒店名称", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox(Model.HotelId, Html.Action("GetHotelNameById", "DeviceTrace", new { hotelId = Model.HotelId }).ToHtmlString(), new { @class = "form-control text-box single-line", disabled = "disabled" })
+                @Html.HiddenFor(m => m.HotelId)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("电影模板", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.MoiveTemplateId, ViewBag.MoiveTemplates as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            </div>
+        </div>
+    }
+
+    else
+    {
+        <div class="form-group">
+            @Html.Label("酒店名称", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input id="hotelNameCondition" name="hotelNameCondition" class="form-control text-box single-line" data-provide="typeahead" autocomplete="off" />
+                @Html.HiddenFor(m => m.HotelId, new { Id = "hotelIdCondition" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("电影模板", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.MoiveTemplateId, ViewBag.MoiveTemplates as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            </div>
+        </div>
+    }
+}
+@if (opType == OpType.View)
+{
+    <script>
+        SetKeyReadonly();
+    </script>
+}
+else if (opType == OpType.Add)
+{
+    @Scripts.Render("~/bundles/GetHotelNames")
+    <script>
+        GetHotelNames('@Url.Action("GetHotelNames", "Unity")', $("#hotelNameCondition"), $("#hotelIdCondition"));
+    </script>
+}

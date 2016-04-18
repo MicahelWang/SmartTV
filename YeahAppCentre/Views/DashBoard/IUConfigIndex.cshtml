@@ -1,0 +1,205 @@
+﻿@model string
+@{
+    Layout = "/Views/Shared/_DashBoardLayout.cshtml";
+    ViewBag.Title = "IUConfigIndex";    
+}
+<style type="text/css">
+    #myTab3 li a {
+        height: 50px;
+        line-height: 35px;
+    }
+
+        #myTab3 li a:hover {
+            color: #E86C11;
+            font-weight: bold;
+        }
+
+    #adContent > li > a:hover, #adContent > li.active > a {
+        background: #DA8551;
+        color: #fff;
+    }
+</style>
+<script src="~/Scripts/upload/ajaxupload.js"></script>
+<script src="~/Scripts/upload/uploadHelper.js"></script>
+<script>
+    var brandID = "@ViewBag.brandID";
+    var domainResourseUrl="http://resource.yeah-info.com/";
+    function getFileName(data)
+    {
+      return  data.replace(/[^\\\/]*[\\\/]+/g, '');
+    }
+    $(function () {
+        $(document).delegate("#myTab3 li:not(.active)", "click", function () {
+            $.each($("audio,video"), function () {
+                if (!this.paused)
+                this.pause();
+                $("button.shiting").text("试听");
+            });
+        });
+        $("button.back").remove();
+    });
+
+</script>
+
+<script>
+    function UpdaloadMusic(obj) {
+        var divObj = $(obj).parents("div.form-group").siblings().first();
+        var Coversetting = {
+            single: true,
+            container: divObj.find("audio"),
+            targetOjb: divObj.find("input[name=musicSrc]"),
+            showFullPath: true,
+            filter: "mp3",
+            limitSize: 1024 * 1,
+            callback:function(data)
+            {
+                divObj.find("input[name=musicSrc]").val(getFileName(data.FilePath));
+                $("#startMusicState").css("display", "block");
+            }
+        };
+        $(obj).binduploadify(Coversetting);
+    }
+    
+    function UpdaloadImage(obj) {
+        //var divObj = $(obj).parents("div.form-group").siblings().first();
+        var Coversetting = {
+            single: true,
+            container: $("#welcomBgsrc"),
+            targetOjb: $("#welcomBgValue"),
+            showFullPath: true,
+            limitSize: 500,
+            callback: function (data) {
+                $("#welcomBgValue").val(getFileName(data.FilePath));
+                $("#welcomeBgState").css("display", "block");
+            }
+        };
+        $(obj).binduploadify(Coversetting);
+    }
+
+    
+    function LauncherLoad(obj) {
+        //var divObj = $(obj).parents("div.form-group").siblings().first();
+        var Coversetting = {
+            single: true,
+            container: $("#LauncherSrc"),
+            targetOjb: $("#LauncherValue"),
+            showFullPath: true,
+            filter: "mp4",
+            limitSize: 1024 * 1
+        };
+        $(obj).binduploadify(Coversetting);
+        
+    }
+   
+</script>
+<div class="page-content " style="overflow-x:hidden">
+    <div class="clearfix">
+    </div>
+    <div class="row">
+        <div class="">
+            <div class="message-header clearfix">
+                <h1 class="blue">
+                    IU酒店-电视个性化界面配置
+                </h1>
+            </div>
+            <div class="hr"></div>
+            <div class="dataTables_wrapper" role="grid">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="tabbable tabs-left" style="min-height:350px;">
+                            <ul class="nav nav-tabs" id="myTab3" style="width:180px;">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#home3">
+                                        <i class="pink icon-headphones bigger-160"></i>
+                                        开机音乐
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#startvideo">
+                                        <i class="pink icon-group  bigger-160"></i>
+                                        开机视频
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#profile3">
+                                        <i class="pink  icon-flag bigger-160"></i>
+                                        欢迎界面背景图
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#dropdown13" onclick="getWelcomeWord();">
+                                        <i class="pink icon-comment  bigger-160"></i>
+                                        欢迎界面欢迎词
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#AutoToHome">
+                                        <i class="pink icon-bar-chart  bigger-160"></i>
+                                        自动跳转首页
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#indexBg">
+                                        <i class="pink icon-adjust  bigger-160"></i>
+                                        首页背景图
+                                    </a>
+                                </li> 
+
+                                <li>
+                                    <a data-toggle="tab" href="#indexAd">
+                                        <i class="pink icon-cogs  bigger-160"></i>
+                                        首页广告内容
+                                    </a>
+                                </li> 
+                                <li>
+                                    <a data-toggle="tab" href="#indexMusic">
+                                        <i class="pink icon-bar-chart  bigger-160"></i>
+                                        首页背景音乐
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" style="height:700px;">
+                                <div id="home3" class="tab-pane in active">
+                                    @Html.Partial("../PartView/IUStartMuisc", Model)
+                                </div> 
+                                <div id="profile3" class="tab-pane">
+                                    @Html.Partial("../PartView/IUWelcomeBg")
+                                </div>
+                                <div id="dropdown13" class="tab-pane">
+                                    @Html.Partial("../PartView/IUWelcomeWord")
+                                </div>
+                                <div id="indexBg" class="tab-pane">
+                                    @Html.Partial("../PartView/IUIndexBG")
+                                </div>
+                                <div id="indexAd" class="tab-pane">
+                                    @Html.Partial("../PartView/IUPicCarousel")
+                                </div>                                
+                                <div id="indexMusic" class="tab-pane">
+                                    @Html.Partial("../PartView/IUIndexBgMuisc")
+                                </div>
+                                <div id="startvideo" class="tab-pane">
+                                    @Html.Partial("../PartView/IUStartVideo")
+                                </div>
+                                <div id="AutoToHome" class="tab-pane">
+                                    @Html.Partial("../PartView/IUAutoToHome")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="modal" class="dialog modal fade " aria-hidden="false" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header"><button type="button" class="close" onclick="$('#cacel').click();">×</button><h4 class="modal-title">图片轮播 -&gt; 查看</h4></div><div class="modal-body">
+                    <div id="modalContent">
+                        <img src="http://7xk6tw.dl1.z0.glb.clouddn.com/iu_home_ad0.png" style="width:100%;" />
+                    </div>
+                </div>
+                <div class="modal-footer"><button id="cacel" type="button" class="btn btn-default" onclick='$(this).dialog("destroy");'>取消</button></div>
+            </div>
+        </div>
+    </div>
+</div>

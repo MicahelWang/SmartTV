@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{77DEE0D0-5F3F-4BE3-9939-007BDF47CF39}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YeahCentre.Manager</RootNamespace>
+    <AssemblyName>YeahCentre.Manager</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BehaviorLogManager.cs" />
+    <Compile Include="BehaviorLogManager_DashBoard.cs" />
+    <Compile Include="CountyManager.cs" />
+    <Compile Include="DashBoardManager.cs" />
+    <Compile Include="HotelPermitionManager.cs" />
+    <Compile Include="TvDocumentElementCacheManager.cs" />
+    <Compile Include="ProvinceManager.cs" />
+    <Compile Include="CityManager.cs" />
+    <Compile Include="SystemLogManager.cs" />
+    <Compile Include="TvDocumentAttributeManager.cs" />
+    <Compile Include="TvTemplateAttributeManager.cs" />
+    <Compile Include="TvDocumentElementManager.cs" />
+    <Compile Include="TvTemplateElementManager.cs" />
+    <Compile Include="TvTemplateManager.cs" />
+    <Compile Include="BrandManager.cs" />
+    <Compile Include="TvTemplateTypeManager.cs" />
+    <Compile Include="UserManager.cs" />
+    <Compile Include="RoleManager.cs" />
+    <Compile Include="GroupManager.cs" />
+    <Compile Include="HotelManager.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\YeahCenter.Infrastructure\YeahCenter.Infrastructure.csproj">
+      <Project>{157ed71d-e9d0-4d8e-a04e-c48b520bd578}</Project>
+      <Name>YeahCenter.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\YeahTVApi.Common\YeahTVApi.Common.csproj">
+      <Project>{27EC8548-1BEC-4F32-A43E-341430CD6FF3}</Project>
+      <Name>YeahTVApi.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\YeahTVApi.DomainModel\YeahTVApi.DomainModel.csproj">
+      <Project>{7B4CE815-38CB-4EE4-8860-8381CF2DE60A}</Project>
+      <Name>YeahTVApi.DomainModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\YeahTVApi.Entity\YeahTVApi.Entity.csproj">
+      <Project>{dff8075a-64c7-44d7-982b-f0c7cbc096e9}</Project>
+      <Name>YeahTVApi.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\YeahTVApiLibrary.Interface\YeahTVApiLibrary.Infrastructure.csproj">
+      <Project>{430AFD5D-2462-4D0E-B2CA-E1C68032BFB0}</Project>
+      <Name>YeahTVApiLibrary.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

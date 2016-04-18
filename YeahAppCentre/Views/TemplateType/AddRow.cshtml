@@ -1,0 +1,12 @@
+﻿<tr valuerow="valuerow">
+    <td>@Html.Hidden("attributeId", "", new { @class = "tdvalue" })@Html.TextBox("attributeText", "", new { @class = "tdvalue" })@Html.Hidden("attributeParentId", "", new { @class = "tdvalue" })</td>
+    <td>@Html.DropDownList("attributeDataType", DropDownExtensions.GetSelectList(typeof(TemplateDataType)).Where(p => p.Value != TemplateDataType.List.GetValueStr()), new { @class = "tdvalue" })</td>
+    <td>@Html.TextBox("attributeDescription", "", new { @class = "tdvalue" })</td>
+    <td >@Html.TextBox("attributeValue", "", new { @style = "width:300px",@class = "tdvalue" })
+        <button type="button" name="children-upload"   style="display:none" class="btn btn-sm btn-success children-upload">上传</button>
+        <img id="CoverimgIcon" style="display:none" />
+        <button type="button" style="display:none" data-optype="preview" class="btn btn-sm btn-success preview">预览</button>
+    </td>
+    <td><input type="button" class="btn btn-sm btn-primary" onclick="removeRow(this)" value="移除" />
+    </td>
+</tr>

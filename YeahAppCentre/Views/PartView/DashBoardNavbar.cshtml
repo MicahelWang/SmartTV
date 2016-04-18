@@ -1,0 +1,51 @@
+﻿<div class="navbar navbar-default" id="navbar">
+    <script type="text/javascript">
+        try {
+            ace.settings.check('navbar', 'fixed')
+        } catch (e) {
+        }
+    </script>
+    <div class="navbar-container" id="navbar-container">
+        <div class="navbar-header pull-left">
+            <a href="#" class="navbar-brand">
+                <small>
+                    <i class="icon-leaf"></i>
+                    行悦智能电视运营平台
+                </small>
+            </a><!-- /.brand -->
+        </div><!-- /.navbar-header -->
+        <div class="navbar-header pull-right" role="navigation">
+            <ul class="nav ace-nav2">
+
+
+                <li>
+                    欢迎：@ViewBag.DisplayName
+
+                </li>
+
+                <li class="single-show" style="display:none">
+
+                    <a href="@Url.GetShoppingOrderAddress(@Request.QueryString["hotelId"])">
+                        小商品订单查询
+                    </a>
+                </li>
+                <li class="single-show" style="display:none">
+                    <a href="@Url.Action("VodOrderReportIndex", "DashBoard", new { hotelId = @Request.QueryString["hotelId"] })">
+                        VOD支付订单查询
+                    </a>
+                </li>
+                <li class="moreHotelIndex" style="display:none">
+                    <a href="@Url.Action("MoreHotelIndex", "DashBoard")">
+                        返回
+                    </a>
+                </li>
+
+                <li>
+                    <a href="@Url.Action("LogOff", "Account")">
+                        退出
+                    </a>
+                </li>
+            </ul><!-- /.ace-nav -->
+        </div><!-- /.navbar-header -->
+    </div><!-- /.container -->
+</div>

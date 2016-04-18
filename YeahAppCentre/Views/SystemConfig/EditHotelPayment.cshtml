@@ -1,0 +1,72 @@
+﻿@model  YeahTVApi.DomainModel.Models.DomainModels.GlobalPayment
+
+@{
+    OpType opType = ViewBag.OpType;
+}
+
+
+@using (Ajax.BeginForm("EditHotelPayment", new { }, new AjaxOptions
+{
+    HttpMethod = "Post",
+    OnSuccess = "Success",
+}, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-horizontal EditHotelPayment">
+        <input type="hidden" name="opType" value="@opType.GetValueStr()" />
+
+        @Html.HiddenFor(m => m.Id)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PaymentModels, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @{
+    var selectListItems = ViewBag.PayPaymentModels as IEnumerable<SelectListItem>;
+                }
+                @if (selectListItems != null)
+                {
+                    var i = 0;
+                    foreach (var item in selectListItems)
+                    {
+                        @Html.CheckBox("PaymentModels[" + i.ToString() + "]", item.Selected, new
+                            {
+                                value = item.Value,
+                            });
+                              i++;
+                            @Html.Label(item.Value, item.Text, new { htmlAttributes = new { @class = "form-control" } });
+                    }
+                }
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PayType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.RadioButton("PayType", PayType.Daily.ToString(), !string.IsNullOrWhiteSpace(Model.PayType) && Model.PayType.Trim().ToLower().Equals(PayType.Daily.ToString().ToLower()))是
+
+                @Html.RadioButton("PayType", "", string.IsNullOrWhiteSpace(Model.PayType) || !Model.PayType.Trim().ToLower().Equals(PayType.Daily.ToString().ToLower()))否
+            </div>
+        </div>
+        <div class="priceOfDayBox form-group @( !string.IsNullOrWhiteSpace(Model.PayType) && Model.PayType.Trim().ToLower().Equals(PayType.Daily.ToString().ToLower()) ? "" : "hidden")">
+            @Html.LabelFor(model => model.PriceOfDay, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PriceOfDay, new { htmlAttributes = new { @class = "form-control" } })
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.TopMoviesCount, htmlAttributes: new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TopMoviesCount, new {htmlAttributes = new {@class = "form-control"}})
+
+            </div>
+        </div>
+
+    </div>
+}
+@if (opType == OpType.View)
+{
+    <script type="text/javascript">
+        SetKeyReadonly();
+    </script>
+}

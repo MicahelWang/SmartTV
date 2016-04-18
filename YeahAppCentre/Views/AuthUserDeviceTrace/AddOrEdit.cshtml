@@ -1,0 +1,63 @@
+﻿@model YeahTVApi.DomainModel.Models.AuthUserDeviceTrace
+
+@{
+    OpType opType = ViewBag.OpType;
+}
+
+@using (Ajax.BeginForm("AddOrEdit", new { }, new AjaxOptions
+{
+    HttpMethod = "Post",
+    OnSuccess = "Success",
+}, new { @class = "form-horizontal", role = "form" }))
+{
+    <div class="form-horizontal">
+        <input type="hidden" name="opType" value="@opType.GetValueStr()" />
+
+        @Html.HiddenFor(m => m.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(m => m.UserId, new { Id = "UserId2" })
+
+                <input id="UserName2" name="UserName2" value="@Html.Action("GetUserNameByUserId", new { UserId = Model.UserId })" class=" form-control" data-provide="typeahead" autocomplete="off" />
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DeviceNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.DeviceNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.DeviceNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.BindTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.BindTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.BindTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.LastVisitTime, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.HiddenFor(model => model.LastVisitTime, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastVisitTime, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+}
+@Scripts.Render("~/bundles/GetHotelNames")
+<script>
+    GetUserNames('@Url.Action("GetUseNames", "Unity")', $("#UserName2"), $("#UserId2"));
+</script>
+@if (opType == OpType.View)
+{
+    <script>
+        SetKeyReadonly();
+    </script>
+}

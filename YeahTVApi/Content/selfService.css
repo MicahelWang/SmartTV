@@ -1,0 +1,259 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+
+ul{list-style: none;}
+a{text-decoration: none;}
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: block;
+}
+
+.clearfix:after {
+    clear: both;
+    overflow: hidden;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+
+body {
+    font-family: Arial;
+    background: rgb(22, 55, 85);
+    /*url(images/html.jpg) repeat-x 0 0;*/
+}
+
+ul.guest {
+   /* width: 1300px;*/
+    padding: 0 0;
+    margin: 30px auto;
+    display: block;  
+    text-align:center
+}
+
+    ul.guest li {
+        width: 500px;
+        padding:40px 30px;
+        list-style: none;
+        background-color: #E7E8EB;
+        border: 1px solid rgba(223,231,239, .7);
+        color: rgb(32,40,48);
+        text-shadow: 0 1px 1px rgb(255,255,255);
+        font-size: 14px;
+        transition: all .2s ease;
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        margin:0 30px;
+        display: inline-block;
+        
+    }
+
+        ul.guest li:hover {
+            -webkit-transform: scale(1.1);
+            -moz-transform: scale(1.1);
+            transform: scale(1.1);
+            -webkit-border-radius: 8px;
+            -moz-border-radius: 8px;
+            border-radius: 8px;
+            -webkit-box-shadow: 0 0 15px rgba(255,255,255,1);
+            -moz-box-shadow: 0 0 15px rgba(255,255,255,1);
+            box-shadow: 0 0 15px rgba(255,255,255,1);
+        }
+
+        ul.guest li h4 {
+            height: 40px;
+            margin-bottom: 15px;
+            line-height: 40px;
+            font-size: 50px;
+            font-family: 微软雅黑;
+           
+        }
+
+        ul.guest li p {
+            text-align: left;
+            font-family: 微软雅黑;
+            font-size: 35px;
+        }
+
+
+.btn {
+    line-height: 40px;
+    margin:50px auto 0 auto; text-align: center;
+    font-size:50px;
+}
+
+    .btn a {
+        margin-right: 30px;
+        margin-left: 30px;  
+        display: inline-block;
+        padding: 30px 70px;
+        margin-top: 15px;
+        text-shadow: 0 1px 1px rgba(32,40,48,.8);
+        text-decoration: none;
+        color: rgb(255,255,255);
+        background-color: rgb(0,90,168);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(0,131,205)), to(rgb(0,90,168)));
+        background-image: -moz-linear-gradient(0 0, 0 100%,  rgb(0,131,205), rgb(0,90,168));
+        background-image: linear-gradient(0 0, 0 100%,  rgb(0,131,205), rgb(0,90,168));
+        -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+        transition: all .2s ease;
+     
+        border:solid 1px ＃ffffff;
+    }
+
+        .btn a:hover {
+            -webkit-box-shadow: 0 0 15px rgba(255,255,255,1);
+            -moz-box-shadow: 0 0 15px rgba(255,255,255,1);
+            box-shadow: 0 0 15px rgba(255,255,255,1);
+        }
+
+
+
+.btn-blue a {
+     background-color: rgb(0,90,168);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(0,131,205)), to(rgb(0,90,168)));
+        background-image: -moz-linear-gradient(0 0, 0 100%,  rgb(0,131,205), rgb(0,90,168));
+        background-image: linear-gradient(0 0, 0 100%,  rgb(0,131,205), rgb(0,90,168));
+        border: solid 1px #8fc7ff;
+
+
+}
+.btn-blue-green a {
+     background-color: rgb(0,90,168);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(38,103,91)), to(rgb(22,67,69)));
+        background-image: -moz-linear-gradient(0 0, 0 100%,  rgb(38,103,91), rgb(22,67,69));
+        background-image: linear-gradient(0 0, 0 100%,  rgb(38,103,91), rgb(022,67,69));
+        border: solid 1px #298950;
+
+
+}
+.btn-yellow a {
+     background-color: rgb(240,128,72);
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(240,128,72)), to(rgb(169,80,0)));
+        background-image: -moz-linear-gradient(0 0, 0 100%,  rgb(240,128,72), rgb(169,80,0));
+        background-image: linear-gradient(0 0, 0 100%,  rgb(240,128,72), rgb(169,80,0));
+        border: solid 1px #ce907a;
+
+
+}
+/*我的华住*/
+.textsd{ text-shadow: 0 10px 15px rgba(0,0,0,0.5);}
+.myhz{ background:#305886 url(../img/bg_pic_myhz15.jpg) no-repeat center center fixed;
+    background-size:cover;
+    
+width:100%;
+height:100%;}
+.tips{margin:50px auto 20px auto;color:white; text-align:center; font-size:35px;}
+.name{float:left; text-align: left;}
+.level{float:right;margin-top:10px; font-size:30px;}
+.myhzIcon{background: url(../img/myhz_icon.png) no-repeat; height: 30px;padding:0 0 0 45px; margin:30px 0 0 0;}
+.member_base{  margin-bottom: 10px;}
+
+
+/*非会员*/
+.member_non{background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(255,255,255)), to(rgb(233,233,233)));
+color:#6f8fa7;}
+.phone_non{background-position: 3px 0;}
+.idNumber_non{background-position: 3px -43px;}
+.points_non {background-position: 3px -88px;}
+/*星会员*/
+
+.phone_star{background-position: 3px -150px;}
+.idNumber_star{background-position: 3px -193px;}
+.points_star {background-position: 3px -237px;}
+.star{background-position: 3px -284px; margin-top:15px;}
+/*银会员*/
+.member_silver{background-image: -webkit-gradient(linear, 0 0,  0 100%, color-stop(0,rgb(197,210,222)),color-stop(0.5,rgb(255,255,255)),
+color-stop(1,rgb(223,230,235)) );
+color:#828d93;}
+
+.phone_silver{background-position: 3px -340px;}
+.idNumber_silver{background-position: 3px -383px;}
+.points_silver {background-position: 3px -426px;}
+/*金会员*/
+.member_gold{background-image: -webkit-gradient(linear, 0 0,  0 100%, color-stop(0,rgb(236,195,104)),color-stop(0.5,rgb(248,231,162)),
+color-stop(1,rgb(230,199,127)) );
+color:#77511c;}
+
+.phone_gold{background-position: 3px -530px;}
+.idNumber_gold{background-position: 3px -573px;}
+.points_gold {background-position: 3px -615px;}
+/*铂金会员*/
+.member_pt{background:url(../img/pt.png) no-repeat; background-size:cover;  }
+.phone_pt {background-position: 3px -720px;}
+.idNumber_pt {background-position: 3px -763px;}
+.points_pt {background-position: 3px -806px;}
+
+/*我的华住标题*/
+.myhz_name{font-size: 60px;color:#dfe5eb; text-align: center; margin-top:35px; background: url(../img/title_icon.png) no-repeat; padding:5px 10px 0 80px; margin:35px auto;
+height:90px; width:255px;text-shadow: 0 2px 2px rgb(50,50,50);
+}
+
+.btns{margin:50px auto 0 auto;text-align: center; width:100%;}
+
+/*续住页*/
+/*续住标题*/
+.xuzhu{background:#305886 url(../img/selectDay.jpg) no-repeat center center fixed;background-size:cover;width:100%;height:100%;}
+.xz_name{font-size: 60px;color:#ebe7de; text-align: center; margin-top:35px; background: url(../img/title_icon.png)  0 -287px no-repeat; padding:5px 10px 0 80px; margin:35px auto;
+height:90px; width:255px;}
+.xz_main{width:80%; margin:30px auto; }
+.xz_now{ background-image: -webkit-gradient(linear, 0 0, 0 100%, from(rgb(45,118,100)), to(rgb(22,67,69)));
+height:85px; border-radius: 8px; -webkit-box-shadow: 0 0 15px rgba(0,0,0,.5);}
+.xz_now ul{color: #ebe7de; display: block; }
+.xz_now ul li{display: inline-block;width:32%;text-align: center;font-size:40px; line-height: 90px;}
+
+.xz_future{ height:280px; background-color:#ebe7de; border-radius: 8px; -webkit-box-shadow: 0 0 15px rgba(0,0,0,.5); font-size:50px;color:#595959;text-align: center;}
+.xz_days{ display: block; width:65%; float:left; border-right:solid 1px #595959; margin-top:35px;}
+.xz_days ul{display: block; height:70px; line-height: 70px; margin:35px 0 70px 0;}
+.xz_days ul li{display: inline-block; width:30%; }
+.xz_days ul li a{color:#595959;padding:5px 10px;}
+.xz_days ul li a.select {background-color:#305753;color:#ebe7de; width:155px; height:70px;border-radius: 8px; text-shadow: 0 0 15px rgb(255,255,255);}
+.xz_leaving{font-size:28px; }
+
+/*金额*/
+.xz_price{ display: block; width:33%; float:left; border-left:solid 1px #ffffff; margin-top:35px;}
+.xz_price_name{font-size:40px;color:#595959;}
+.xz_price_number{font-size:70px;color:#ff8048; margin:25px 0;}
+.xz_price_everyday{font-size:24px;color:#949494;}
+
+/*退房*/
+.checkout{background:#305886 url(../img/leave50.jpg) no-repeat center center fixed;background-size:cover;width:100%;height:100%;}
+.out_name{font-size: 60px;color:#ebe7de; text-align: center; margin-top:35px; background: url(../img/title_icon.png)  0 -450px no-repeat; padding:5px 10px 0 80px; margin:35px auto;
+height:90px; width:255px; }
+.out_main{padding:30px;background-color:rgba(255,255,255, 0.8); border-radius: 8px; -webkit-box-shadow: 0 0 15px rgba(0,0,0, .5); font-size:50px;color:#595959;text-align: left; width:80%; margin:0 auto;}
+.out_main p{margin:30px 0;}
+span.circle{width:20px; height:20px; border-radius: 50%; border: solid 5px #9f8259; display:inline-block; margin:0 10px 0 0;}
+
+/*支付宝支付*/
+.alipay{background-color: #023466;
+        background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#2d76ac), to(#023466));
+        background-image: -moz-linear-gradient(0 0, 0 100%,  #2d76ac, #023466);
+        background-image: linear-gradient(0 0, 0 100%,  #2d76ac, #023466);
+        background-repeat: no-repeat;}
+.alipay_name{font-size: 60px;color:white; text-align: center; margin-top:35px; background: url(../img/title_icon.png)  0 -132px no-repeat; padding:5px 10px 0 280px; margin:35px auto;
+height:90px; width:150px; }
+.alipay_tips{
+    margin:50px 0 0 0;
+    padding:20px 0;
+    text-align: center;
+    font-size:40px;
+    background-color: #ffffff;
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#c7c7c7));
+        background-image: -moz-linear-gradient(0 0, 0 100%,  #ffffff, #c7c7c7);
+        background-image: linear-gradient(0 0, 0 100%,  #ffffff, #c7c7c7);}
+.alipay_tips span{color:#ff8048;}
+.ali_code{margin:40px auto; width:280px; height:280px; background-color: #ffffff; text-align:center; -webkit-box-shadow: 0 0 15px rgba(0,0,0,1);
+            -moz-box-shadow: 0 0 15px rgba(0,0,0,1);
+            box-shadow: 0 0 15px rgba(0,0,0,1); -webkit-border-radius: 8px;
+        -moz-border-radius: 8px;
+        border-radius: 8px;
+}
+.ali_code_money{width:240px; height:240px; margin:20px auto; }
+.ali_price_name{font-size:40px; color:#ffffff;text-align: center;}
+.ali_price{color:#ff8048;font-size:60px; text-align: center;}

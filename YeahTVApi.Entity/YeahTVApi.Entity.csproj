@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DFF8075A-64C7-44D7-982B-F0C7CBC096E9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>YeahTVApi.Entity</RootNamespace>
+    <AssemblyName>YeahTVApi.Entity</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
+    <Prefer32Bit>false</Prefer32Bit>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Preview|AnyCPU'">
+    <OutputPath>bin\Preview\</OutputPath>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Preview|x86'">
+    <OutputPath>bin\x86\Preview\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.2\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.2\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AlipayTokenData.cs" />
+    <Compile Include="ApiDict.cs" />
+    <Compile Include="ApiException.cs" />
+    <Compile Include="ApiKeyVal.cs" />
+    <Compile Include="ApiListResult.cs" />
+    <Compile Include="ApiObjectResult.cs" />
+    <Compile Include="CreateOrderApiResult.cs" />
+    <Compile Include="VodPaymentApiResult.cs" />
+    <Compile Include="PaymentApiResult.cs" />
+    <Compile Include="ApiResult.cs" />
+    <Compile Include="ApiStringResult.cs" />
+    <Compile Include="AppTools\EmployeeEntity.cs" />
+    <Compile Include="CardData.cs" />
+    <Compile Include="CentralMapping\ReceiveOrdersResult.cs" />
+    <Compile Include="CentralMapping\ReceiveOrderPriceResult.cs" />
+    <Compile Include="APP_VERSION.cs" />
+    <Compile Include="HotelCommodityCategoryEntity.cs" />
+    <Compile Include="HotelCommodityEntity.cs" />
+    <Compile Include="LockCardEntity.cs" />
+    <Compile Include="CentralMapping\ReceiveOrders.cs" />
+    <Compile Include="NewEntity\RoomMemberInfo.cs" />
+    <Compile Include="NewEntity\TV_HOTEL_CONFIG.cs" />
+    <Compile Include="NewEntity\TV_TRACE_ALL.cs" />
+    <Compile Include="TV_APPS.cs" />
+    <Compile Include="BaseRequestData.cs" />
+    <Compile Include="AlipayData.cs" />
+    <Compile Include="CentralMapping\ActivityEntity.cs" />
+    <Compile Include="CentralMapping\BookingResult.cs" />
+    <Compile Include="CentralMapping\BookingType.cs" />
+    <Compile Include="CentralMapping\BusinessDetail.cs" />
+    <Compile Include="CentralMapping\CancelOrder.cs" />
+    <Compile Include="CentralMapping\CheckScratchCardResult.cs" />
+    <Compile Include="CentralMapping\ConditionType.cs" />
+    <Compile Include="CentralMapping\HotelImage.cs" />
+    <Compile Include="CentralMapping\HotelRoute.cs" />
+    <Compile Include="CentralMapping\GetHotelRouteInfoListResult.cs" />
+    <Compile Include="CentralMapping\GetRecommendActivityListResult.cs" />
+    <Compile Include="CentralMapping\OrderInfo.cs" />
+    <Compile Include="CentralMapping\RoomPriceOfRoomType.cs" />
+    <Compile Include="CentralMapping\User.cs" />
+    <Compile Include="CentralMapping\HotelClosed.cs" />
+    <Compile Include="CentralMapping\HotelFacility.cs" />
+    <Compile Include="CentralMapping\HotelInfo.cs" />
+    <Compile Include="CentralMapping\HotelLowestPrice.cs" />
+    <Compile Include="CentralMapping\HotelModel.cs" />
+    <Compile Include="CentralMapping\HotelPhoto.cs" />
+    <Compile Include="CentralMapping\HotelPromotionView.cs" />
+    <Compile Include="CentralMapping\HotelRoomTypeEx.cs" />
+    <Compile Include="CentralMapping\HotelRoomTypeExView.cs" />
+    <Compile Include="CentralMapping\HotelSortValue.cs" />
+    <Compile Include="CentralMapping\HotelStyle.cs" />
+    <Compile Include="CentralMapping\HotelStyleResult.cs" />
+    <Compile Include="CentralMapping\HotelStyleView.cs" />
+    <Compile Include="CentralMapping\HotelSupportCreditCard.cs" />
+    <Compile Include="CentralMapping\HotelSupportCreditCardView.cs" />
+    <Compile Include="CentralMapping\HotelView.cs" />
+    <Compile Include="CentralMapping\InvoiceTitle.cs" />
+    <Compile Include="CentralMapping\OperationResultType.cs" />
+    <Compile Include="CentralMapping\OrderStatus.cs" />
+    <Compile Include="CentralMapping\QueryBusinessDetail.cs" />
+    <Compile Include="CentralMapping\QueryDailyRoomPrice.cs" />
+    <Compile Include="CentralMapping\QueryHotel.cs" />
+    <Compile Include="CentralMapping\QueryHotelDetailResult.cs" />
+    <Compile Include="CentralMapping\QueryLoginCheckResult.cs" />
+    <Compile Include="CentralMapping\QueryMemberResult.cs" />
+    <Compile Include="CentralMapping\QueryOrder.cs" />
+    <Compile Include="CentralMapping\QueryOrderDetail.cs" />
+    <Compile Include="CentralMapping\QueryProjectRulesResult.cs" />
+    <Compile Include="CentralMapping\QueryResult.cs" />
+    <Compile Include="CentralMapping\RcpType.cs" />
+    <Compile Include="CentralMapping\ReadOnlyDictionary.cs" />
+    <Compile Include="CentralMapping\RegisterMember.cs" />
+    <Compile Include="CentralMapping\RoomDetailModel.cs" />
+    <Compile Include="CentralMapping\RoomModel.cs" />
+    <Compile Include="CentralMapping\RoomPriceEntity.cs" />
+    <Compile Include="CentralMapping\RoomPriceModel.cs" />
+    <Compile Include="CentralMapping\RoomStockEntity.cs" />
+    <Compile Include="CentralMapping\Src.cs" />
+    <Compile Include="CentralMapping\SubmitBookingHotel.cs" />
+    <Compile Include="CentralApiResult.cs" />
+    <Compile Include="DCityEntity.cs" />
+    <Compile Include="DPEntity.cs" />
+    <Compile Include="DShopEntity.cs" />
+    <Compile Include="DShoptypeEntity.cs" />
+    <Compile Include="Guest.cs" />
+    <Compile Include="Hotel.cs" />
+    <Compile Include="HotelCardInfo.cs" />
+    <Compile Include="HotelImage.cs" />
+    <Compile Include="HotelNotice.cs" />
+    <Compile Include="HotelRoute.cs" />
+    <Compile Include="HotelService.cs" />
+    <Compile Include="IFunResult.cs" />
+    <Compile Include="IQueryHotel.cs" />
+    <Compile Include="MemberDetail.cs" />
+    <Compile Include="MemberPoint.cs" />
+    <Compile Include="IApiResult.cs" />
+    <Compile Include="NewEntity\ModelEntity.cs" />
+    <Compile Include="NewEntity\RequestHeader.cs" />
+    <Compile Include="NewEntity\TV_TRACE.cs" />
+    <Compile Include="OrderInfo.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="FunResult.cs" />
+    <Compile Include="ResvInfo.cs" />
+    <Compile Include="RoomDetail.cs" />
+    <Compile Include="RoomInfo.cs" />
+    <Compile Include="RoomPriceOfRoomType.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

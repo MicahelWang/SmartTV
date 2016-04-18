@@ -1,0 +1,1 @@
+alter table AppPublish change  SeriseCode HotelId char(50) not null

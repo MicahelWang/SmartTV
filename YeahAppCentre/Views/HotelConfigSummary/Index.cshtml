@@ -1,0 +1,172 @@
+﻿@model YeahTVApi.DomainModel.Models.ViewModels.ViewHotelConfig
+@{
+    ViewBag.Title = "门店数据配置汇总";
+}
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            门店数据配置汇总
+            <small>
+                <i class="icon-double-angle-right"></i>
+            </small>
+        </h1>
+    </div><!-- /.page-header -->
+    <!-- /.page-header -->
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-header">
+                门店数据配置汇总
+            </div>
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    <div class="row">
+                        <div class="col-sm-12 tab-search">
+                            <form action="@Url.Action("Index", "HotelConfigSummary")" method="post" novalidate="novalidate">
+                                <label> 酒店名称</label>
+                                <span class="input-icon">
+                                    <input id="hotelName" name="hotelName" class="form-control" data-provide="typeahead" autocomplete="off" value="@ViewBag.HotelName">
+                                    @Html.HiddenFor(m => m.CoreSysHotel.Id, htmlAttributes: new { @Name = "hotelId" })
+                                </span>
+                                <span class="input-icon">
+                                    <button type="submit" class="btn btn-sm btn-success" id="searchForm">查询</button>
+                                </span>
+                                <span class="input-icon">
+                                    <button type="button" onclick="top.location = '@Url.Action("Edit", "Hotel", new {@type = 2})'" class=" btn btn-sm btn-success" id="addHotel">添加酒店</button>
+                                </span>
+                            </form>
+                            <div></div>
+                        </div>
+                    </div>
+                    <div class="form-horizontal">
+                        <div class="tabbable">
+                            <ul class="nav nav-tabs padding-12 tab-color-blue background-blue" id="myTab4">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#home4">&nbsp;数据&nbsp;</a>
+                                </li>
+                                <li class="">
+                                    <a data-toggle="tab" href="#profile4">&nbsp;APP&nbsp;</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content">
+                                <div id="home4" class="tab-pane active">
+                                    <div class="row">
+                                        <div class="">
+                                            <h4 class="h4title">门店数据 配置+汇总</h4>
+                                        </div>
+                                        @if (Model != null && Model.ViewHotelConfigItems != null)
+                                        {
+                                            foreach (var configItem in Model.ViewHotelConfigItems)
+                                            {
+                                                <div class="col-sm-3">
+                                                    <div class="panel panel-default ">
+                                                        <div class="panel-heading text-center @(configItem.ItemsCount >= configItem.ExpectedItemsCount ? "normal" : "Unnormal") normal bigger-160">@configItem.ConfigName</div>
+                                                        <div class="panel-body">
+                                                            <br />
+                                                            <h3 class="success text-center @(configItem.ItemsCount >= configItem.ExpectedItemsCount ? "normalH3" : "UnnormalH3")  ">
+                                                                已配置 @configItem.ItemsCount 项
+                                                            </h3>
+                                                            <br />
+                                                            <a href="@configItem.EditUrl" class="btn btn-xs pull-right">
+                                                                <i class="icon-edit bigger-160 background-blue"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            }
+                                        }
+
+                                    </div>
+                                    <div></div>
+                                </div>
+                                <div id="profile4" class="tab-pane">
+                                    <div class="row">
+                                        <div class="">
+                                            <h4 class="h4title">APP已分发数据汇总</h4>
+                                        </div>
+                                    </div>
+                                    <p class="appTitle">Launcher：</p>
+                                    @if (Model != null && Model.ViewHotelApps != null && Model.ViewHotelApps.Launcher != null)
+                                    {
+                                        Html.RenderPartial("List", Model.ViewHotelApps.Launcher);
+                                    }
+                                    <p class="appTitle">其他：</p>
+                                    @if (Model != null && Model.ViewHotelApps != null && Model.ViewHotelApps.ThirdPartyApps != null)
+                                    {
+                                        Html.RenderPartial("List", Model.ViewHotelApps.ThirdPartyApps);
+                                    }
+
+                                    <div></div>
+                                </div>
+                            </div><!-- /span -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- inline scripts related to this page -->
+<script src="~/Scripts/zTree/js/jquery.ztree.all-3.5.js"></script>
+<link href="~/Scripts/zTree/css/zTreeStyle/zTreeStyle.css" rel="stylesheet" />
+<style type="text/css">
+    .tab-content {
+        padding: 0px;
+    }
+
+    .panel-default > .normal {
+        background-color: #339966;
+        color: white;
+        font-weight: 700;
+        line-height: 68px;
+        height: 85px;
+    }
+
+    .normalH3 {
+        color: #339966;
+        font: bolder;
+        font-weight: 700;
+    }
+
+    .panel-default > .Unnormal {
+        background-color: #FF3366;
+        color: white;
+        font-weight: 700;
+        line-height: 68px;
+        height: 85px;
+    }
+
+    .UnnormalH3 {
+        color: #FF3366;
+        font: bolder;
+        font-weight: 700;
+    }
+
+    .h4title {
+        padding: 10px;
+        font-weight: 700;
+        line-height: 30px;
+        background-color: #F5F5F5;
+        border-bottom: solid 1px #DDDDDD;
+        margin-top: 0px;
+    }
+
+    .tab-search {
+        margin: 8px 0px;
+    }
+
+    .row .list {
+        padding: 0px 10px;  margin-bottom: 15px;
+    }
+    .row .list table,.row .list table th{text-align: center;}
+
+    .appTitle {
+        margin-left: 20px;
+        font-weight: bold;
+        font-size: 20px;
+    }
+</style>
+<script src="/Scripts/bootstrap-typeahead.js"></script>
+<script src="/Scripts/GetHotelNames.js"></script>
+<script>
+    GetHotelNames('/Unity/GetHotelNames', $("#hotelName"), $("#CoreSysHotel_Id"));
+</script>

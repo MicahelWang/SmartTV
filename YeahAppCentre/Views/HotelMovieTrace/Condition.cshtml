@@ -1,0 +1,29 @@
+﻿@model YeahTVApi.DomainModel.SearchCriteria.HotelMovieTraceCriteria
+@{
+   Model.HotelId= ViewBag.HotelId;
+   Model.MoiveTemplateName = ViewBag.MoiveTemplateName;
+}
+<div class="row">
+
+    <div class="col-sm-12 tab-search">
+        @using (Html.BeginForm("Index", "HotelMovieTrace", FormMethod.Post, new { novalidate = "novalidate" }))
+        {
+            var hotelName = string.IsNullOrEmpty(Model.HotelId)?"":Html.Action("GetHotelNameById", "DeviceTrace", new { hotelId = Model.HotelId }).ToHtmlString();
+            
+            <label> 酒店名称</label>
+            <span class="input-icon">
+                <input id="hotelName" name="hotelName" value="@hotelName" class="form-control" data-provide="typeahead" autocomplete="off" />
+                @Html.HiddenFor(m => m.HotelId)
+            </span>
+            <label>模版名称</label>
+            <span class="input-icon">
+                @Html.EditorFor(model => model.MoiveTemplateName, new { htmlAttributes = new { @class = "" } })
+            </span>
+            
+            <span class="input-icon">
+                <button type="submit" class="btn btn-sm btn-success">查询</button>
+            </span>
+        }
+        <div class="clear"></div>
+    </div>
+</div>

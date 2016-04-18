@@ -1,0 +1,48 @@
+﻿<script src="/Scripts/bootstrap-typeahead.js"></script>
+<script src="/Scripts/GetHotelNames.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var id = "@ViewBag.MovieId";
+        var optype = "@ViewBag.Optype";
+        var templateId = "@ViewBag.TemplateId";
+        var movieName = "@ViewBag.MovieName";
+        if(optype=="@OpType.Update")
+        {
+            Initial(templateId, id, movieName);
+        }
+        GetMovieNames(getMovieNames, $("#MovieName"), $("#MovieId"));
+    });
+
+    function Initial(templateId, key, movieName) {
+        $.ajax({
+            type: 'POST',
+            url: "@Url.Action("GetMovieById", "MovieTemplate")",
+            data: { "templateId": templateId, "movieId": key },
+            success: function (data) {
+                console.info(data[0]);
+                $("#MovieTemplateId").val(data[0].MovieTemplateId);
+                $("#MovieName").val(movieName);
+                $("#MovieId").val(data[0].MovieId);
+                $("#Price").val(data[0].Price);
+                $("#MovieName").attr("readonly","readonly");
+            }
+        });
+    }
+</script>
+<form action='@Url.Action("AddTemplateRelation", "MovieTemplate")' class="form-horizontal" data-ajax="true" data-ajax-method="Post" data-ajax-success="Success" id="form0" method="post" role="form" novalidate="novalidate">
+    <input type="hidden" id="MovieTemplateId" name="MovieTemplateId" value="@ViewBag.TemplateId">
+    <input type="hidden" name="optype" value="@ViewBag.Optype" />
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Name">电影名称</label>
+        <div class="col-md-10">
+            <input id="MovieName" name="MovieName" class="form-control text-box single-line" data-provide="typeahead" autocomplete="off" />
+            <input id="MovieId" name="MovieId" type="hidden" value="" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Price">价格</label>
+        <div class="col-md-10">
+            <input id="Price" name="Price" class="form-control text-box single-line" data-provide="typeahead" autocomplete="off" />
+        </div>
+    </div>
+</form>

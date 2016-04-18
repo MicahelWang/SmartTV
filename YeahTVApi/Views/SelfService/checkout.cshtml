@@ -1,0 +1,20 @@
+﻿@using YeahTVApi.Resource
+
+    <link href="~/html/css/selfService.css" rel="stylesheet" />
+<body class="checkout">
+    <header class="out_name">@YeahTVApiMessage.RoomServiceCheckOut</header>
+    <div class="out_main">
+        <p>
+
+            <span class="circle"></span> @YeahTVApiMessage.RoomServiceLastCheckOutTime: @ViewData["checkOut"]
+
+        </p>
+        <p>
+            <span class="circle"></span>@YeahTVApiMessage.RoomServiceCheckOutTip
+				  
+        </p>
+    </div>
+    <div class="btn btn-blue "><a href="/SelfService/CheckOut">@YeahTVApiMessage.RoomServiceCheckOut</a> </div>
+ 
+
+</body>

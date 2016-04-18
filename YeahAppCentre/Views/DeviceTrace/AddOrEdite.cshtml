@@ -1,0 +1,140 @@
+﻿@model YeahTVApi.DomainModel.Models.DeviceTrace
+
+@{
+    OpType opType = ViewBag.OpType;
+}
+<script type="text/javascript">
+
+    //$(function () {
+    //    $("form").removeData("validator").removeData("unobtrusiveValidation");
+    //    $.validator.unobtrusive.parse($("form"));
+    //});
+
+</script>
+
+@using (Ajax.BeginForm("AddOrEdite", new { }, new AjaxOptions
+{
+    HttpMethod = "Post",
+    OnSuccess = "Success",
+    OnComplete = "OnComplete",
+    OnFailure = "OnComplete"
+
+    //    OnBegin = "formValidate",
+}, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="opType" value="@opType.GetValueStr()" />
+    <div class="form-horizontal">
+        @if (opType == OpType.Update || opType == OpType.View || opType == OpType.Add)
+        {
+            //设备号
+            <div class="form-group">
+                @Html.LabelFor(model => model.DeviceSeries, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DeviceSeries, new { htmlAttributes = new { @class = "form-control notNeedEdit" } })
+                    @Html.ValidationMessageFor(model => model.DeviceSeries, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            //酒店
+            <div class="form-group">
+                @Html.Label(YeahTVApi.DomainModel.Resource.Resource.Common_DisplayHotelName, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.HiddenFor(m => m.HotelId, new { Id = "hotelIdCondition" })
+
+                    @*@Html.TextBox("hotelNameCondition", UtilityHelper.GetHotelName(Model == null ? "" : Model.HotelId), new { htmlAttributes = new { @class = "form-control" } })*@
+                    <input id="hotelNameCondition" name="hotelNameCondition" value="@UtilityHelper.GetHotelName(Model.HotelId)" class=" form-control" data-provide="typeahead" autocomplete="off" />
+                </div>
+            </div>
+            //房间号
+            <div class="form-group">
+                @Html.LabelFor(model => model.RoomNo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RoomNo, new { htmlAttributes = new { @class = "form-control numText" } })
+                    @Html.ValidationMessageFor(model => model.RoomNo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            //备注
+            <div class="form-group">
+                @Html.LabelFor(model => model.Remark, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Remark, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Remark, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+        @if (opType == OpType.Update || opType == OpType.View)
+        {
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.DeviceKey, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DeviceKey, new { htmlAttributes = new { @class = "form-control notNeedEdit" } })
+                    @Html.ValidationMessageFor(model => model.DeviceKey, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+        @if (opType == OpType.View)
+        {
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Ip, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Ip, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Ip, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstVisitTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.FirstVisitTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.FirstVisitTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastVisitTime, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.LastVisitTime, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.LastVisitTime, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DeviceType, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.DeviceType, ViewBag.selectList as IEnumerable<SelectListItem>, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Active, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Active)
+                    @Html.ValidationMessageFor(model => model.Active, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+}
+@Scripts.Render("~/bundles/GetHotelNames")
+<script>
+    GetHotelNames('@Url.Action("GetHotelNames", "Unity")', $("#hotelNameCondition"), $("#hotelIdCondition"));
+</script>
+@if (opType == OpType.View)
+{
+    <script>
+        SetKeyReadonly();
+    </script>
+}
+else if (opType == OpType.Update)
+{
+    <script>
+        $(".notNeedEdit").attr("readonly", "readonly");
+    </script>
+}
+
+
+
+

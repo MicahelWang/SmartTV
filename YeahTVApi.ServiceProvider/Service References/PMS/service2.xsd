@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/HuaZhu.PMS.Interface.SmartTVService.DataContract" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.GoodsSales" />
+  <xs:element name="GetRcpnSheetInfoByRoomNo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRcpnSheetInfoByRoomNoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/HuaZhu.PMS.Interface.SmartTVService.DataContract" minOccurs="0" name="GetRcpnSheetInfoByRoomNoResult" nillable="true" type="q1:ArrayOfRcpnSheetDataContract" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMorningCallByRoomNo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetMorningCallByRoomNoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/HuaZhu.PMS.Interface.SmartTVService.DataContract" minOccurs="0" name="GetMorningCallByRoomNoResult" nillable="true" type="q2:ArrayOfMorningCallDataContract" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetMorningCall">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="callTime" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetMorningCallResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/HuaZhu.PMS.Interface.SmartTVService.DataContract" minOccurs="0" name="SetMorningCallResult" nillable="true" type="q3:ResponseResultDataContract" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelMorningCall">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomNo" nillable="true" type="xs:string" />
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="mcIDs" nillable="true" type="q4:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CancelMorningCallResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CancelMorningCallResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductListByHotelId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetProductListByHotelIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.GoodsSales" minOccurs="0" name="GetProductListByHotelIdResult" nillable="true" type="q5:ArrayOfV_ProductEntity" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubmitProductSalesOrder">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="salesDetails" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SubmitProductSalesOrderResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SubmitProductSalesOrderResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="salesOrderNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="errMsg" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChargeRoomAccountByBillId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="salesOrderNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="amount" type="xs:decimal" />
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cusName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ChargeRoomAccountByBillIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ChargeRoomAccountByBillIdResult" type="xs:boolean" />
+        <xs:element minOccurs="0" name="errMsg" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

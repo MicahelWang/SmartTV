@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="2a5e2f77-3b3c-43a1-aada-6b1198d8b889" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://vwebsite02.httest.loc:2257/MemberExtraService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="MemberExtraService.disco" MetadataType="Disco" ID="361eb4b0-fa02-4e15-b829-cad2149d6517" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberExtraService.svc?disco" />
+    <MetadataFile FileName="MemberExtraService.wsdl" MetadataType="Wsdl" ID="23b6fa74-08de-44aa-b096-bb49ff99fbbf" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberExtraService.svc?wsdl" />
+    <MetadataFile FileName="MemberExtraService.xsd" MetadataType="Schema" ID="f7c929cf-3b91-45d1-b7f4-4861e4dd8e62" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberExtraService.svc?xsd=xsd4" />
+    <MetadataFile FileName="MemberExtraService1.xsd" MetadataType="Schema" ID="50dee1ab-4a46-4e0d-999a-839a17f1f541" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberExtraService.svc?xsd=xsd2" />
+    <MetadataFile FileName="MemberExtraService2.xsd" MetadataType="Schema" ID="a4da8fa4-1d29-495c-a6a7-1edf70173999" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberExtraService.svc?xsd=xsd3" />
+    <MetadataFile FileName="MemberExtraService3.xsd" MetadataType="Schema" ID="2336f2f6-7f8d-4b95-beec-fb5bfd89c08b" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberExtraService.svc?xsd=xsd0" />
+    <MetadataFile FileName="MemberExtraService4.xsd" MetadataType="Schema" ID="8c293669-3846-49bc-a11e-80ebbab19fcc" SourceId="1" SourceUrl="http://vwebsite02.httest.loc:2257/MemberExtraService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

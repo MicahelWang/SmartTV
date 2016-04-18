@@ -1,0 +1,67 @@
+﻿@model PagedViewList<BehaviorLog>
+<div class="row" id="list">
+    <table id="viewTable" class="table table-striped table-bordered table-hover dataTable">
+        <thead>
+            <tr role="row">
+                <th>酒店</th>
+                <th>设备号</th>
+                <th>日志内容</th>
+                <th>类型</th>
+                <th>创建时间</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Source)
+            {
+                <tr>
+                    <td>
+                        @UtilityHelper.GetHotelName(item.HotelId)
+                        <input type="hidden" class="key" value="@item.Id" />
+                    </td>
+                    <td>
+                        @item.DeviceSerise
+                    </td>
+                    <td class="reduceContent">
+                        <p class="displayContent"></p><input class="cotentHid" type="hidden" value="@item.BehaviorInfo" />
+                    </td>
+                    <td>
+                        @item.BehaviorType
+                    </td>
+                    <td>
+                        @item.CreateTime.ToDateTimeStr(DateFormate.yyyyMMddHHmmss)
+                    </td>
+                    <td>
+                        <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                            <a data-optype="view" class="blue" href="javascript:void(0)">
+                                <i class="icon-zoom-in bigger-130"></i>
+                            </a>
+                        </div>
+                        <div class="visible-xs visible-sm hidden-md hidden-lg">
+                            <div class="inline position-relative">
+                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-caret-down icon-only bigger-120"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                    <li>
+                                        <a data-optype="view" href="javascript:void(0)" class="tooltip-info" data-rel="tooltip" title="" data-original-title="查看">
+                                            <span class="blue">
+                                                <i class="icon-zoom-in bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+<script>
+    $(document).ready(function () {
+
+        $(".reduceContent").reduceCotent(50);
+    });
+</script>

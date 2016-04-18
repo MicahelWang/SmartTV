@@ -1,0 +1,28 @@
+﻿.condition {
+    
+}
+
+.condition tbody tr td{
+    padding-bottom: 5px;
+    vertical-align: bottom;
+    
+}
+
+.table06 { line-height: 30px; font-size: 12px; border-collapse: collapse;width: 100%;margin-bottom: 20px;}
+.table06 td { border: 1px #d7d7d7 solid; text-align: left; padding: 2px; padding-left: 7px; }
+.table06 td.bg01 { background: #f2f2f2; text-align: center; }
+.table06 td.bg03 { background: #f2f2f2; text-align: left; }
+.table06 td.bg02 { background: #fff; }
+.table06 tr.tt td { text-align: center; padding: 0px; font-weight: bold; }
+.numText {
+    width:100px;
+}
+
+*[data-provide] {
+    width : 235px;
+}
+
+*[error-info]{
+    color : red
+
+}

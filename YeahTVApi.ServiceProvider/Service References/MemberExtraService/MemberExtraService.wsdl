@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="MemberExtraService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSHttpBinding_IMemberExtraService_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberExtraService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberExtraService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberExtraService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/System.Data" />
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberExtraService.svc?xsd=xsd3" />
+      <xsd:import schemaLocation="http://vwebsite02.httest.loc:2257/MemberExtraService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Htinns.CRM.BizEntity.Dto" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IMemberExtraService_DoWork_InputMessage">
+    <wsdl:part name="parameters" element="tns:DoWork" />
+  </wsdl:message>
+  <wsdl:message name="IMemberExtraService_DoWork_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DoWorkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberExtraService_IsCheckInByApp_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsCheckInByApp" />
+  </wsdl:message>
+  <wsdl:message name="IMemberExtraService_IsCheckInByApp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsCheckInByAppResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberExtraService_GetCheckInListByApp_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCheckInListByApp" />
+  </wsdl:message>
+  <wsdl:message name="IMemberExtraService_GetCheckInListByApp_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCheckInListByAppResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberExtraService_GetMembers_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMembers" />
+  </wsdl:message>
+  <wsdl:message name="IMemberExtraService_GetMembers_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMembersResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberExtraService_GetMembersByCondition_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMembersByCondition" />
+  </wsdl:message>
+  <wsdl:message name="IMemberExtraService_GetMembersByCondition_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMembersByConditionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberExtraService_GetMemberRoomdayMsg_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberRoomdayMsg" />
+  </wsdl:message>
+  <wsdl:message name="IMemberExtraService_GetMemberRoomdayMsg_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberRoomdayMsgResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberExtraService_GetMemberUpgradeHistory_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberUpgradeHistory" />
+  </wsdl:message>
+  <wsdl:message name="IMemberExtraService_GetMemberUpgradeHistory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetMemberUpgradeHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IMemberExtraService_GetHaoshengyinCardSummary_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHaoshengyinCardSummary" />
+  </wsdl:message>
+  <wsdl:message name="IMemberExtraService_GetHaoshengyinCardSummary_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHaoshengyinCardSummaryResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IMemberExtraService">
+    <wsdl:operation name="DoWork">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberExtraService/DoWork" message="tns:IMemberExtraService_DoWork_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberExtraService/DoWorkResponse" message="tns:IMemberExtraService_DoWork_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsCheckInByApp">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberExtraService/IsCheckInByApp" message="tns:IMemberExtraService_IsCheckInByApp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberExtraService/IsCheckInByAppResponse" message="tns:IMemberExtraService_IsCheckInByApp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckInListByApp">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberExtraService/GetCheckInListByApp" message="tns:IMemberExtraService_GetCheckInListByApp_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberExtraService/GetCheckInListByAppResponse" message="tns:IMemberExtraService_GetCheckInListByApp_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMembers">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberExtraService/GetMembers" message="tns:IMemberExtraService_GetMembers_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberExtraService/GetMembersResponse" message="tns:IMemberExtraService_GetMembers_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMembersByCondition">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberExtraService/GetMembersByCondition" message="tns:IMemberExtraService_GetMembersByCondition_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberExtraService/GetMembersByConditionResponse" message="tns:IMemberExtraService_GetMembersByCondition_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberRoomdayMsg">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberExtraService/GetMemberRoomdayMsg" message="tns:IMemberExtraService_GetMemberRoomdayMsg_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberExtraService/GetMemberRoomdayMsgResponse" message="tns:IMemberExtraService_GetMemberRoomdayMsg_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberUpgradeHistory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberExtraService/GetMemberUpgradeHistory" message="tns:IMemberExtraService_GetMemberUpgradeHistory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberExtraService/GetMemberUpgradeHistoryResponse" message="tns:IMemberExtraService_GetMemberUpgradeHistory_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHaoshengyinCardSummary">
+      <wsdl:input wsaw:Action="http://tempuri.org/IMemberExtraService/GetHaoshengyinCardSummary" message="tns:IMemberExtraService_GetHaoshengyinCardSummary_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IMemberExtraService/GetHaoshengyinCardSummaryResponse" message="tns:IMemberExtraService_GetHaoshengyinCardSummary_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WSHttpBinding_IMemberExtraService" type="tns:IMemberExtraService">
+    <wsp:PolicyReference URI="#WSHttpBinding_IMemberExtraService_policy" />
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DoWork">
+      <soap12:operation soapAction="http://tempuri.org/IMemberExtraService/DoWork" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="IsCheckInByApp">
+      <soap12:operation soapAction="http://tempuri.org/IMemberExtraService/IsCheckInByApp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCheckInListByApp">
+      <soap12:operation soapAction="http://tempuri.org/IMemberExtraService/GetCheckInListByApp" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembers">
+      <soap12:operation soapAction="http://tempuri.org/IMemberExtraService/GetMembers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMembersByCondition">
+      <soap12:operation soapAction="http://tempuri.org/IMemberExtraService/GetMembersByCondition" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberRoomdayMsg">
+      <soap12:operation soapAction="http://tempuri.org/IMemberExtraService/GetMemberRoomdayMsg" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetMemberUpgradeHistory">
+      <soap12:operation soapAction="http://tempuri.org/IMemberExtraService/GetMemberUpgradeHistory" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHaoshengyinCardSummary">
+      <soap12:operation soapAction="http://tempuri.org/IMemberExtraService/GetHaoshengyinCardSummary" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MemberExtraService">
+    <wsdl:port name="WSHttpBinding_IMemberExtraService" binding="tns:WSHttpBinding_IMemberExtraService">
+      <soap12:address location="http://vwebsite02.httest.loc:2257/MemberExtraService.svc" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>http://vwebsite02.httest.loc:2257/MemberExtraService.svc</wsa10:Address>
+        <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
+          <Dns>localhost</Dns>
+        </Identity>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

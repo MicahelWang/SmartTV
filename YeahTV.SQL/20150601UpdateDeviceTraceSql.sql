@@ -1,0 +1,5 @@
+ALTER TABLE `YeahTV`.`DeviceTrace` 
+DROP COLUMN `AppVersion`,
+DROP COLUMN `AppId`,
+DROP PRIMARY KEY,
+ADD PRIMARY KEY (`DeviceSeries`);

@@ -1,0 +1,258 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="CommonAlipayQRPay" xml:space="preserve">
+    <value>支付宝(扫码支付)</value>
+  </data>
+  <data name="CommonBindingDeviceFailed" xml:space="preserve">
+    <value>设备绑定失败</value>
+  </data>
+  <data name="CommonBindingDeviceSuccessfully" xml:space="preserve">
+    <value>设备绑定成功</value>
+  </data>
+  <data name="CommonBindingInformationSuccessfully" xml:space="preserve">
+    <value>绑定信息修改成功</value>
+  </data>
+  <data name="CommonBindingSuccessfullyMessage" xml:space="preserve">
+    <value>设备已经绑定，可以选择修改绑定信息操作</value>
+  </data>
+  <data name="CommonBookingFailed" xml:space="preserve">
+    <value>预定失败</value>
+  </data>
+  <data name="CommonBootInterface" xml:space="preserve">
+    <value>调用了启动接口</value>
+  </data>
+  <data name="CommonCanNotCheckOut" xml:space="preserve">
+    <value>不满足退房条件，无法退房</value>
+  </data>
+  <data name="CommonCheckOutFailed" xml:space="preserve">
+    <value>退房失败</value>
+  </data>
+  <data name="CommonCheckOutSuccessed" xml:space="preserve">
+    <value>退房成功</value>
+  </data>
+  <data name="CommonContinueLiveFailed" xml:space="preserve">
+    <value>续住失败</value>
+  </data>
+  <data name="CommonContinueLiveSuccessed" xml:space="preserve">
+    <value>续住成功</value>
+  </data>
+  <data name="CommonDeviceNotExist" xml:space="preserve">
+    <value>不存在的设备</value>
+  </data>
+  <data name="CommonErrorInputPhoneNumber" xml:space="preserve">
+    <value>手机号码输入有误，请重新尝试</value>
+  </data>
+  <data name="CommonErrorMobilePhone" xml:space="preserve">
+    <value>手机号有误，无法注册</value>
+  </data>
+  <data name="CommonInputMobilePhone" xml:space="preserve">
+    <value>请输入手机号</value>
+  </data>
+  <data name="CommonLoginFailed" xml:space="preserve">
+    <value>登陆失败</value>
+  </data>
+  <data name="CommonMobilePhoneEmpty" xml:space="preserve">
+    <value>手机号不能为空</value>
+  </data>
+  <data name="CommonNoCheckIn" xml:space="preserve">
+    <value>房间尚没有人入住</value>
+  </data>
+  <data name="CommonNoRoomNo" xml:space="preserve">
+    <value>无对应房间号</value>
+  </data>
+  <data name="CommonOptionTimeOut" xml:space="preserve">
+    <value>操作超时</value>
+  </data>
+  <data name="CommonParameterError" xml:space="preserve">
+    <value> 参数错误</value>
+  </data>
+  <data name="CommonRegistrationSuccessful" xml:space="preserve">
+    <value>注册成功，密码已经发送到手机号 {0} 的手机上，请查收.</value>
+  </data>
+  <data name="CommonRepeatedPhoneNumber" xml:space="preserve">
+    <value>该手机号已是会员,无法重复注册</value>
+  </data>
+  <data name="CommonReturnToSelfServiceHome" xml:space="preserve">
+    <value>跳转客房服务首页中...</value>
+  </data>
+  <data name="CommonUnknowDeviceBindingInformation" xml:space="preserve">
+    <value>无设备绑定信息</value>
+  </data>
+  <data name="CommonVerificationCodeError" xml:space="preserve">
+    <value>验证码错误</value>
+  </data>
+  <data name="RoomService" xml:space="preserve">
+    <value>客房服务</value>
+  </data>
+  <data name="RoomServiceArrearage" xml:space="preserve">
+    <value>欠费</value>
+  </data>
+  <data name="RoomServiceCheckOut" xml:space="preserve">
+    <value>退房</value>
+  </data>
+  <data name="RoomServiceDayPrice" xml:space="preserve">
+    <value>每天房价</value>
+  </data>
+  <data name="RoomServiceDaysUnit" xml:space="preserve">
+    <value>天</value>
+  </data>
+  <data name="RoomServiceDayUnit" xml:space="preserve">
+    <value>天</value>
+  </data>
+  <data name="RoomServiceLastCheckOutTime" xml:space="preserve">
+    <value>续房离店时间</value>
+  </data>
+  <data name="RoomServiceStayOver" xml:space="preserve">
+    <value>续住</value>
+  </data>
+  <data name="RoomServiceTip" xml:space="preserve">
+    <value>办理续租和退房的前提: &lt;br/&gt;仅限华住会员通过官网或者app渠道预定的入住</value>
+  </data>
+  <data name="RoomServiceTotalPrice" xml:space="preserve">
+    <value>总金额</value>
+  </data>
+  <data name="CommonAlipayQRPayTip" xml:space="preserve">
+    <value>请打开手机或平板上支付宝应用，选择扫一扫，扫描下方二维码</value>
+  </data>
+  <data name="CommonPayFailed" xml:space="preserve">
+    <value>支付失败</value>
+  </data>
+  <data name="CommonPayment" xml:space="preserve">
+    <value>支付</value>
+  </data>
+  <data name="RoomServiceCheckOutTip" xml:space="preserve">
+    <value>发票请至前台领取</value>
+  </data>
+  <data name="RommServiceNoStayRoomPrice" xml:space="preserve">
+    <value>续住房价无法获取</value>
+  </data>
+  <data name="RoomServiceStayQrTip" xml:space="preserve">
+    <value>请&lt;font style='color:#ff8048'&gt;打开华住APP&lt;/font&gt;,选择&lt;font style='color:#ff8048'&gt;扫一扫&lt;/font&gt;,扫描下方&lt;font style='color:#ff8048'&gt;二维码&lt;/font&gt;</value>
+  </data>
+  <data name="CommonReturn" xml:space="preserve">
+    <value>返回</value>
+  </data>
+  <data name="CommonDownloadApp" xml:space="preserve">
+    <value>扫码下载华住APP</value>
+  </data>
+  <data name="GameTitle" xml:space="preserve">
+    <value>游戏</value>
+  </data>
+</root>

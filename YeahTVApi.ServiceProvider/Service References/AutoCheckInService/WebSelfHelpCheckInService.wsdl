@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="WebSelfHelpCheckInService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" />
+      <xsd:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Htinns.Common.Security" />
+      <xsd:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Htinns.Common.Organization.Scope" />
+      <xsd:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.LockCard" />
+      <xsd:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd7" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Base" />
+      <xsd:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd8" />
+      <xsd:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Cashier" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetActiveRooms_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetActiveRooms" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetActiveRooms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetActiveRoomsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetActiveRooms_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q1:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SetRsvnSheetRemark_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRsvnSheetRemark" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SetRsvnSheetRemark_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRsvnSheetRemarkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SetRsvnSheetRemark_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q2:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SetRsvnRooms_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetRsvnRooms" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SetRsvnRooms_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetRsvnRoomsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SetRsvnRooms_RoomErrorFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q3:RoomError" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SetRsvnRooms_RoomNoAndTypeMatchErrorFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q4:RoomNoAndTypeMatchError" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SetRsvnRooms_ArgumentErrorFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q5:ArgumentError" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SetRsvnRooms_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q6:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SetRsvnRooms_RoomOccupyErrorFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q7:RoomOccupyError" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetRsvnAssignInfos_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRsvnAssignInfos" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetRsvnAssignInfos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRsvnAssignInfosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetRsvnAssignInfos_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q8:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_CheckIn_InputMessage">
+    <wsdl:part name="parameters" element="tns:CheckIn" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_CheckIn_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CheckInResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_CheckIn_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q9:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_CheckIn_ArgumentErrorFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q10:ArgumentError" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_CheckIn_RcpnValidatorRepeatErrorFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q11:RcpnValidatorRepeatError" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SaveRoomCoordinate_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveRoomCoordinate" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SaveRoomCoordinate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveRoomCoordinateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SaveRoomCoordinate_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q12:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SaveFloorCoordinate_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveFloorCoordinate" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SaveFloorCoordinate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveFloorCoordinateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SaveFloorCoordinate_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q13:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetHotelInfoByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetHotelInfoByID" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetHotelInfoByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetHotelInfoByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetHotelInfoByID_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q14:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_UpdateRoomHobby_InputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRoomHobby" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_UpdateRoomHobby_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UpdateRoomHobbyResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_UpdateRoomHobby_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q15:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetRoomNumEntitys_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomNumEntitys" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetRoomNumEntitys_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomNumEntitysResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetRoomNumEntitys_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q16:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_AddRcpnSheetListSign_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddRcpnSheetListSign" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_AddRcpnSheetListSign_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddRcpnSheetListSignResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_AddRcpnSheetListSign_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q17:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetOrderIDByMobileAndExtOrderID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderIDByMobileAndExtOrderID" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetOrderIDByMobileAndExtOrderID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOrderIDByMobileAndExtOrderIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetOrderIDByMobileAndExtOrderID_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q18:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_IsLoginByUserName_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsLoginByUserName" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_IsLoginByUserName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsLoginByUserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_IsLoginByUserName_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q19:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_IsLoginByCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsLoginByCard" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_IsLoginByCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsLoginByCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_IsLoginByCard_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q20:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetRsvnInvoiceTitles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRsvnInvoiceTitles" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetRsvnInvoiceTitles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRsvnInvoiceTitlesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetRsvnInvoiceTitles_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q21:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SaveRsvnInvoiceTitles_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveRsvnInvoiceTitles" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SaveRsvnInvoiceTitles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveRsvnInvoiceTitlesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_SaveRsvnInvoiceTitles_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q22:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetRoomCountByCondition_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomCountByCondition" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetRoomCountByCondition_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoomCountByConditionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetRoomCountByCondition_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q23:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_payByInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:payByInfo" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_payByInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:payByInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_payByInfo_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q24:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_WriteCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:WriteCard" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_WriteCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WriteCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_WriteCard_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q25="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q25:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetCustomerRegistrationForm_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerRegistrationForm" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetCustomerRegistrationForm_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerRegistrationFormResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetCustomerRegistrationForm_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q26:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetCustomerCreditInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerCreditInfo" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetCustomerCreditInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerCreditInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetCustomerCreditInfo_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q27:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetCustomerCashCreditList_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerCashCreditList" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetCustomerCashCreditList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCustomerCashCreditListResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetCustomerCashCreditList_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q28="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q28:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetCreditListByOrderID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreditListByOrderID" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetCreditListByOrderID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCreditListByOrderIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetCreditListByOrderID_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q29="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q29:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetReceiveIDListByOrderID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReceiveIDListByOrderID" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetReceiveIDListByOrderID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReceiveIDListByOrderIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetReceiveIDListByOrderID_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q30="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q30:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetWriteCardInfo_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetWriteCardInfo" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetWriteCardInfo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetWriteCardInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IWebSelfHelpCheckIn_GetWriteCardInfo_MessageFaultExceptionFault_FaultMessage">
+    <wsdl:part xmlns:q31="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" name="detail" element="q31:MessageFaultException" />
+  </wsdl:message>
+  <wsdl:portType name="IWebSelfHelpCheckIn">
+    <wsdl:operation name="GetActiveRooms">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetActiveRooms" message="tns:IWebSelfHelpCheckIn_GetActiveRooms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetActiveRoomsResponse" message="tns:IWebSelfHelpCheckIn_GetActiveRooms_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetActiveRoomsMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_GetActiveRooms_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRsvnSheetRemark">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SetRsvnSheetRemark" message="tns:IWebSelfHelpCheckIn_SetRsvnSheetRemark_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SetRsvnSheetRemarkResponse" message="tns:IWebSelfHelpCheckIn_SetRsvnSheetRemark_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SetRsvnSheetRemarkMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_SetRsvnSheetRemark_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetRsvnRooms">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SetRsvnRooms" message="tns:IWebSelfHelpCheckIn_SetRsvnRooms_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SetRsvnRoomsResponse" message="tns:IWebSelfHelpCheckIn_SetRsvnRooms_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SetRsvnRoomsRoomErrorFault" name="RoomErrorFault" message="tns:IWebSelfHelpCheckIn_SetRsvnRooms_RoomErrorFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SetRsvnRoomsRoomNoAndTypeMatchErrorFault" name="RoomNoAndTypeMatchErrorFault" message="tns:IWebSelfHelpCheckIn_SetRsvnRooms_RoomNoAndTypeMatchErrorFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SetRsvnRoomsArgumentErrorFault" name="ArgumentErrorFault" message="tns:IWebSelfHelpCheckIn_SetRsvnRooms_ArgumentErrorFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SetRsvnRoomsMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_SetRsvnRooms_MessageFaultExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SetRsvnRoomsRoomOccupyErrorFault" name="RoomOccupyErrorFault" message="tns:IWebSelfHelpCheckIn_SetRsvnRooms_RoomOccupyErrorFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRsvnAssignInfos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetRsvnAssignInfos" message="tns:IWebSelfHelpCheckIn_GetRsvnAssignInfos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetRsvnAssignInfosResponse" message="tns:IWebSelfHelpCheckIn_GetRsvnAssignInfos_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetRsvnAssignInfosMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_GetRsvnAssignInfos_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckIn">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/CheckIn" message="tns:IWebSelfHelpCheckIn_CheckIn_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/CheckInResponse" message="tns:IWebSelfHelpCheckIn_CheckIn_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/CheckInMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_CheckIn_MessageFaultExceptionFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/CheckInArgumentErrorFault" name="ArgumentErrorFault" message="tns:IWebSelfHelpCheckIn_CheckIn_ArgumentErrorFault_FaultMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/CheckInRcpnValidatorRepeatErrorFault" name="RcpnValidatorRepeatErrorFault" message="tns:IWebSelfHelpCheckIn_CheckIn_RcpnValidatorRepeatErrorFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveRoomCoordinate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SaveRoomCoordinate" message="tns:IWebSelfHelpCheckIn_SaveRoomCoordinate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SaveRoomCoordinateResponse" message="tns:IWebSelfHelpCheckIn_SaveRoomCoordinate_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SaveRoomCoordinateMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_SaveRoomCoordinate_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveFloorCoordinate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SaveFloorCoordinate" message="tns:IWebSelfHelpCheckIn_SaveFloorCoordinate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SaveFloorCoordinateResponse" message="tns:IWebSelfHelpCheckIn_SaveFloorCoordinate_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SaveFloorCoordinateMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_SaveFloorCoordinate_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHotelInfoByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetHotelInfoByID" message="tns:IWebSelfHelpCheckIn_GetHotelInfoByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetHotelInfoByIDResponse" message="tns:IWebSelfHelpCheckIn_GetHotelInfoByID_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetHotelInfoByIDMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_GetHotelInfoByID_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRoomHobby">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/UpdateRoomHobby" message="tns:IWebSelfHelpCheckIn_UpdateRoomHobby_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/UpdateRoomHobbyResponse" message="tns:IWebSelfHelpCheckIn_UpdateRoomHobby_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/UpdateRoomHobbyMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_UpdateRoomHobby_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomNumEntitys">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetRoomNumEntitys" message="tns:IWebSelfHelpCheckIn_GetRoomNumEntitys_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetRoomNumEntitysResponse" message="tns:IWebSelfHelpCheckIn_GetRoomNumEntitys_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetRoomNumEntitysMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_GetRoomNumEntitys_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddRcpnSheetListSign">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/AddRcpnSheetListSign" message="tns:IWebSelfHelpCheckIn_AddRcpnSheetListSign_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/AddRcpnSheetListSignResponse" message="tns:IWebSelfHelpCheckIn_AddRcpnSheetListSign_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/AddRcpnSheetListSignMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_AddRcpnSheetListSign_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderIDByMobileAndExtOrderID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetOrderIDByMobileAndExtOrderID" message="tns:IWebSelfHelpCheckIn_GetOrderIDByMobileAndExtOrderID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetOrderIDByMobileAndExtOrderIDResponse" message="tns:IWebSelfHelpCheckIn_GetOrderIDByMobileAndExtOrderID_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetOrderIDByMobileAndExtOrderIDMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_GetOrderIDByMobileAndExtOrderID_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsLoginByUserName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/IsLoginByUserName" message="tns:IWebSelfHelpCheckIn_IsLoginByUserName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/IsLoginByUserNameResponse" message="tns:IWebSelfHelpCheckIn_IsLoginByUserName_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/IsLoginByUserNameMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_IsLoginByUserName_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsLoginByCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/IsLoginByCard" message="tns:IWebSelfHelpCheckIn_IsLoginByCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/IsLoginByCardResponse" message="tns:IWebSelfHelpCheckIn_IsLoginByCard_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/IsLoginByCardMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_IsLoginByCard_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRsvnInvoiceTitles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetRsvnInvoiceTitles" message="tns:IWebSelfHelpCheckIn_GetRsvnInvoiceTitles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetRsvnInvoiceTitlesResponse" message="tns:IWebSelfHelpCheckIn_GetRsvnInvoiceTitles_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetRsvnInvoiceTitlesMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_GetRsvnInvoiceTitles_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveRsvnInvoiceTitles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SaveRsvnInvoiceTitles" message="tns:IWebSelfHelpCheckIn_SaveRsvnInvoiceTitles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SaveRsvnInvoiceTitlesResponse" message="tns:IWebSelfHelpCheckIn_SaveRsvnInvoiceTitles_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/SaveRsvnInvoiceTitlesMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_SaveRsvnInvoiceTitles_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomCountByCondition">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetRoomCountByCondition" message="tns:IWebSelfHelpCheckIn_GetRoomCountByCondition_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetRoomCountByConditionResponse" message="tns:IWebSelfHelpCheckIn_GetRoomCountByCondition_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetRoomCountByConditionMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_GetRoomCountByCondition_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="payByInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/payByInfo" message="tns:IWebSelfHelpCheckIn_payByInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/payByInfoResponse" message="tns:IWebSelfHelpCheckIn_payByInfo_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/payByInfoMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_payByInfo_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WriteCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/WriteCard" message="tns:IWebSelfHelpCheckIn_WriteCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/WriteCardResponse" message="tns:IWebSelfHelpCheckIn_WriteCard_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/WriteCardMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_WriteCard_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerRegistrationForm">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetCustomerRegistrationForm" message="tns:IWebSelfHelpCheckIn_GetCustomerRegistrationForm_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetCustomerRegistrationFormResponse" message="tns:IWebSelfHelpCheckIn_GetCustomerRegistrationForm_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetCustomerRegistrationFormMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_GetCustomerRegistrationForm_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerCreditInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetCustomerCreditInfo" message="tns:IWebSelfHelpCheckIn_GetCustomerCreditInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetCustomerCreditInfoResponse" message="tns:IWebSelfHelpCheckIn_GetCustomerCreditInfo_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetCustomerCreditInfoMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_GetCustomerCreditInfo_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerCashCreditList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetCustomerCashCreditList" message="tns:IWebSelfHelpCheckIn_GetCustomerCashCreditList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetCustomerCashCreditListResponse" message="tns:IWebSelfHelpCheckIn_GetCustomerCashCreditList_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetCustomerCashCreditListMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_GetCustomerCashCreditList_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditListByOrderID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetCreditListByOrderID" message="tns:IWebSelfHelpCheckIn_GetCreditListByOrderID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetCreditListByOrderIDResponse" message="tns:IWebSelfHelpCheckIn_GetCreditListByOrderID_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetCreditListByOrderIDMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_GetCreditListByOrderID_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReceiveIDListByOrderID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetReceiveIDListByOrderID" message="tns:IWebSelfHelpCheckIn_GetReceiveIDListByOrderID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetReceiveIDListByOrderIDResponse" message="tns:IWebSelfHelpCheckIn_GetReceiveIDListByOrderID_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetReceiveIDListByOrderIDMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_GetReceiveIDListByOrderID_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWriteCardInfo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetWriteCardInfo" message="tns:IWebSelfHelpCheckIn_GetWriteCardInfo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetWriteCardInfoResponse" message="tns:IWebSelfHelpCheckIn_GetWriteCardInfo_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IWebSelfHelpCheckIn/GetWriteCardInfoMessageFaultExceptionFault" name="MessageFaultExceptionFault" message="tns:IWebSelfHelpCheckIn_GetWriteCardInfo_MessageFaultExceptionFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IWebSelfHelpCheckIn" type="tns:IWebSelfHelpCheckIn">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetActiveRooms">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/GetActiveRooms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SetRsvnSheetRemark">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/SetRsvnSheetRemark" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SetRsvnRooms">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/SetRsvnRooms" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="RoomErrorFault">
+        <soap:fault use="literal" name="RoomErrorFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="RoomNoAndTypeMatchErrorFault">
+        <soap:fault use="literal" name="RoomNoAndTypeMatchErrorFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ArgumentErrorFault">
+        <soap:fault use="literal" name="ArgumentErrorFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="RoomOccupyErrorFault">
+        <soap:fault use="literal" name="RoomOccupyErrorFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetRsvnAssignInfos">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/GetRsvnAssignInfos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CheckIn">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/CheckIn" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="ArgumentErrorFault">
+        <soap:fault use="literal" name="ArgumentErrorFault" namespace="" />
+      </wsdl:fault>
+      <wsdl:fault name="RcpnValidatorRepeatErrorFault">
+        <soap:fault use="literal" name="RcpnValidatorRepeatErrorFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveRoomCoordinate">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/SaveRoomCoordinate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveFloorCoordinate">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/SaveFloorCoordinate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetHotelInfoByID">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/GetHotelInfoByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateRoomHobby">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/UpdateRoomHobby" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomNumEntitys">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/GetRoomNumEntitys" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddRcpnSheetListSign">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/AddRcpnSheetListSign" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrderIDByMobileAndExtOrderID">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/GetOrderIDByMobileAndExtOrderID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="IsLoginByUserName">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/IsLoginByUserName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="IsLoginByCard">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/IsLoginByCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetRsvnInvoiceTitles">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/GetRsvnInvoiceTitles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="SaveRsvnInvoiceTitles">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/SaveRsvnInvoiceTitles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoomCountByCondition">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/GetRoomCountByCondition" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="payByInfo">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/payByInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="WriteCard">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/WriteCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerRegistrationForm">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/GetCustomerRegistrationForm" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerCreditInfo">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/GetCustomerCreditInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCustomerCashCreditList">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/GetCustomerCashCreditList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCreditListByOrderID">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/GetCreditListByOrderID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetReceiveIDListByOrderID">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/GetReceiveIDListByOrderID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetWriteCardInfo">
+      <soap:operation soapAction="http://tempuri.org/IWebSelfHelpCheckIn/GetWriteCardInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="MessageFaultExceptionFault">
+        <soap:fault use="literal" name="MessageFaultExceptionFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="WebSelfHelpCheckInService">
+    <wsdl:port name="BasicHttpBinding_IWebSelfHelpCheckIn" binding="tns:BasicHttpBinding_IWebSelfHelpCheckIn">
+      <soap:address location="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

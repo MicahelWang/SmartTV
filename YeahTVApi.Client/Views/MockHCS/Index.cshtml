@@ -1,0 +1,54 @@
+﻿@model YeahTVApi.Client.Models.MockHCSRequestData
+
+@{
+    ViewBag.Title = "HCS接口测试工具";
+}
+
+<h2>HCS接口测试工具</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Url, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.Url, htmlAttributes: new { @class = "col-md-8" })
+                @Html.ValidationMessageFor(model => model.Url, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Body, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.Body, new { @class = "", @style = "width:100%;height:200px;" })
+                @Html.ValidationMessageFor(model => model.Body, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.PrivateKey, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.PrivateKey, new { @class = "", @style = "width:100%;height:200px;" })
+                @Html.ValidationMessageFor(model => model.PrivateKey, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Send" class="btn btn-default" />
+            </div>
+        </div>
+
+        <hr />
+        <div class="form-group">
+            <div class="col-md-10">
+                @Html.LabelFor(model => model.ResponseData, Model == null ? "" : Model.ResponseData)
+            </div>
+        </div>
+    </div>
+}
+

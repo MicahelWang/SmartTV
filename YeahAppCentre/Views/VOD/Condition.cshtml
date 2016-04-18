@@ -1,0 +1,32 @@
+﻿@model YeahTVApi.DomainModel.SearchCriteria.MovieForLocalizeCriteria
+<div class="row">
+    <div class="col-sm-12 tab-search">
+        @using (Html.BeginForm("Index", "VOD", FormMethod.Post, new { novalidate = "novalidate" }))
+        {
+
+            <span class="input-icon">
+                @Html.DropDownList("TagId", ViewBag.classList as IEnumerable<SelectListItem>)
+            </span>
+            <span class="input-icon">
+                @Html.DropDownList("HotelCount", ViewBag.listState as IEnumerable<SelectListItem>)                 
+            </span>
+            <span class="input-icon">                
+                @Html.CheckBoxFor(m => m.IsTop) 置顶影片
+            </span>
+            <label> 影片名称</label>
+            <span class="input-icon">
+                <input id="MovieName" name="MovieName" value="@ViewBag.MovieName" class="form-control" data-provide="typeahead" autocomplete="off" />
+                @Html.HiddenFor(m => m.Name)
+            </span>
+            <span class="input-icon">
+                <button type="submit" class="btn btn-sm btn-success">查询</button>
+            </span>
+            @Html.HiddenFor(m => m.SortFiled);
+            @Html.HiddenFor(m => m.OrderAsc);
+        }
+        <div class="clear"></div>
+    </div>
+    <script>
+        
+    </script>
+</div>

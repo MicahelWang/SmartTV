@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" />
+  <xs:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Htinns.Common.Security" />
+  <xs:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.LockCard" />
+  <xs:import schemaLocation="http://hq-v2web-13.pms:8090/WebSelfHelpCheckInService.svc?xsd=xsd9" namespace="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Cashier" />
+  <xs:element name="GetActiveRooms">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="roomType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="checkInDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="checkOutDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="IsHasCleanRoom" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetActiveRoomsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" minOccurs="0" name="GetActiveRoomsResult" nillable="true" type="q1:ArrayOfHall" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRsvnSheetRemark">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orderID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="remark" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRsvnSheetRemarkResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SetRsvnSheetRemarkResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRsvnRooms">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" minOccurs="0" name="assignDetails" nillable="true" type="q2:ArrayOfAssignInfo" />
+        <xs:element minOccurs="0" name="resvID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="IsHasCleanRoom" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetRsvnRoomsResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRsvnAssignInfos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="resvID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRsvnAssignInfosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" minOccurs="0" name="GetRsvnAssignInfosResult" nillable="true" type="q3:ArrayOfAssignInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckIn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="resvID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomNo" nillable="true" type="xs:string" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" minOccurs="0" name="cInfos" nillable="true" type="q4:ArrayOfCheckInInfo" />
+        <xs:element minOccurs="0" name="checkinSource" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckInResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" minOccurs="0" name="CheckInResult" nillable="true" type="q5:ArrayOfCheckInInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveRoomCoordinate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" minOccurs="0" name="theHall" nillable="true" type="q6:Hall" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveRoomCoordinateResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveFloorCoordinate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" minOccurs="0" name="theHall" nillable="true" type="q7:Hall" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveFloorCoordinateResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHotelInfoByID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetHotelInfoByIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" minOccurs="0" name="GetHotelInfoByIDResult" nillable="true" type="q8:ArrayOfHall" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateRoomHobby">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" minOccurs="0" name="theHall" nillable="true" type="q9:Hall" />
+        <xs:element minOccurs="0" name="operatorID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="UpdateRoomHobbyResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRoomNumEntitys">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="arrDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="depDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="IsHasCleanRoom" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRoomNumEntitysResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" minOccurs="0" name="GetRoomNumEntitysResult" nillable="true" type="q10:ArrayOfRoomNumInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRcpnSheetListSign">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element xmlns:q11="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="data" nillable="true" type="q11:ArrayOfKeyValueOfstringstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddRcpnSheetListSignResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="AddRcpnSheetListSignResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderIDByMobileAndExtOrderID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="mobile" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="extOrderID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetOrderIDByMobileAndExtOrderIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetOrderIDByMobileAndExtOrderIDResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsLoginByUserName">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="userName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="passWord" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsLoginByUserNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsLoginByUserNameResult" type="xs:boolean" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Htinns.Common.Security" minOccurs="0" name="user" nillable="true" type="q12:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsLoginByCard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cardNumber" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="IsLoginByCardResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="IsLoginByCardResult" type="xs:boolean" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Htinns.Common.Security" minOccurs="0" name="user" nillable="true" type="q13:User" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRsvnInvoiceTitles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orderId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRsvnInvoiceTitlesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" minOccurs="0" name="GetRsvnInvoiceTitlesResult" nillable="true" type="q14:ArrayOfInvoiceInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveRsvnInvoiceTitles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orderId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="operatorId" nillable="true" type="xs:string" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" minOccurs="0" name="titles" nillable="true" type="q15:ArrayOfInvoiceInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveRsvnInvoiceTitlesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaveRsvnInvoiceTitlesResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRoomCountByCondition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="roomType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="checkInDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="checkOutDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="hotelID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="IsHasCleanRoom" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetRoomCountByConditionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetRoomCountByConditionResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="payByInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="authNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="folioNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="bankCardId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orderId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="hotelId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="amount" type="xs:decimal" />
+        <xs:element minOccurs="0" name="payMode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="operatorId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="shift" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="payByInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="payByInfoResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WriteCard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.LockCard" minOccurs="0" name="entity" nillable="true" type="q16:LockCardEntity" />
+        <xs:element minOccurs="0" name="IsInmate" type="xs:boolean" />
+        <xs:element minOccurs="0" name="IsKexin" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WriteCardResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WriteCardResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCustomerRegistrationForm">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="receiveId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCustomerRegistrationFormResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCustomerRegistrationFormResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:element ref="xs:schema" />
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCustomerCreditInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="creditId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="operatorId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="reportType" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="serialNo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCustomerCreditInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCustomerCreditInfoResult" nillable="true">
+          <xs:complexType>
+            <xs:annotation>
+              <xs:appinfo>
+                <ActualType Name="DataSet" Namespace="http://schemas.datacontract.org/2004/07/System.Data" xmlns="http://schemas.microsoft.com/2003/10/Serialization/" />
+              </xs:appinfo>
+            </xs:annotation>
+            <xs:sequence>
+              <xs:element ref="xs:schema" />
+              <xs:any />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCustomerCashCreditList">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="receiveId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCustomerCashCreditListResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Cashier" minOccurs="0" name="GetCustomerCashCreditListResult" nillable="true" type="q17:ArrayOfBillCredit" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCreditListByOrderID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orderId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCreditListByOrderIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Htinns.PMS.Entity.Cashier" minOccurs="0" name="GetCreditListByOrderIDResult" nillable="true" type="q18:ArrayOfBillCredit" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceiveIDListByOrderID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="orderID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReceiveIDListByOrderIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Htinns.PMS.CRS_Interface.DataContract" minOccurs="0" name="GetReceiveIDListByOrderIDResult" nillable="true" type="q19:ArrayOfRcpnSheetInfoExt" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWriteCardInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="hotelId" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="roomNo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="receiveId" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetWriteCardInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetWriteCardInfoResult" nillable="true" type="q20:ArrayOfKeyValueOfstringstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,133 @@
+﻿ 
+@{
+    OpType opType = ViewBag.OpType;
+}
+<script type="text/javascript">
+
+    $(function () {
+        @*$(document).delegate("#Name", "blur", function () {
+            var url="@Url.Action("CheckMovieName")";
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: url,
+                dateType: "json",
+                async:true,
+                data: "{'name':'" + $(this).val().trim() + "'}",
+                success: function (res) {
+                    if (parseInt(res) > 0)
+                        alert("此电影已存在!!!");
+                }, error: function (e) {
+                    alert(e.responseText);
+                }
+            });
+        });*@
+        var operation = '@opType';
+        if (operation == 'Add') {
+            document.getElementById('form0').action = addUrl;
+            bindCoverUpload();
+            bindPosterUpload();
+        } else if (operation == 'Update') {
+           
+            $.getJSON(url + "?PageIndex=1&Id=" + clickId,
+            function (data) {
+                $.each(data.Source, function () {
+                    $('#Id').attr('value', this.Id);
+                    $('#Name').attr('value', this.Name);
+                    $('#NameEn').attr('value', this.NameEn);
+                    $('#MovieReview').text(this.MovieReview);
+                    $('#MovieReviewEn').text(this.MovieReviewEn);
+                    $('#CoverAddress').val(this.CoverAddress);
+                    $('#PosterAddress').val(this.PosterAddress);
+                    bindCoverUpload();
+                    bindPosterUpload();
+                });
+            });   
+            document.getElementById('form0').action = updateUrl;
+            
+        }
+        $("form").removeData("validator").removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse($("form"));
+
+    });
+
+    function bindCoverUpload() {
+        var Coversetting = {
+            single: true,
+            container: $("#CoverimgIcon"),
+            targetOjb: $("#CoverAddress")
+        };
+        //debugger;
+        $("#uploadCoverIcon").binduploadify(Coversetting);
+        $('#CoverimgIcon').width('20%');
+    }
+    function bindPosterUpload() {
+        var Postersetting = {
+            single: true,
+            container: $("#PosterimgIcon"),
+            targetOjb: $("#PosterAddress"),
+            limitSize: 300
+
+        };
+        $("#uploadPosterIcon").binduploadify(Postersetting);
+        $('#PosterimgIcon').width('20%');
+    }
+   
+</script>
+<form action="/TVChanel/AddTVChannel" class="form-horizontal" data-ajax="true" data-ajax-method="Post" data-ajax-success="Success" id="form0" method="post" role="form" novalidate="novalidate">
+    <input type="hidden" name="opType" value="2">
+    @if (opType == OpType.Update)
+    {
+        <input type="hidden" value="" id="Id"  name="Id"/>
+    }    
+    <div class="form-group">
+        <label class="control-label col-md-2" for="Name">电影名称</label>
+        <div class="col-md-10">
+            <input  class="form-control text-box single-line" data-val="true" data-val-required="电影名称 字段是必需的。" id="Name" name="Name" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="NameEn">电影名称(英文)</label>
+        <div class="col-md-10">
+            <input class="form-control text-box single-line" data-val="true" data-val-required="电影名称(英文) 字段是必需的。" id="NameEn" name="NameEn" type="text" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="MovieReview">电影简介</label>
+        <div class="col-md-10">
+            <textarea class="form-control text-box single-line" data-val="true" data-val-required="电影简介 字段是必需的。" id="MovieReview" name="MovieReview"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="MovieReviewEn">电影简介(英文)</label>
+        <div class="col-md-10">
+            <textarea class="form-control text-box single-line" data-val="true" data-val-required="电影简介(英文) 字段是必需的。" id="MovieReviewEn" name="MovieReviewEn"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="CoverAddress">封面上传</label>
+        <div class="col-md-10">
+            <button id="uploadCoverIcon" type="button">上传图片</button>
+            <label error-info="">（图片不大于30K且图片仅支持jpg和png格式）</label>
+            <img id="CoverimgIcon" style="display:none" />
+            <input class="form-control text-box single-line" data-val="true" data-val-required="封面上传 字段是必需的。" id="CoverAddress" name="CoverAddress" type="hidden" value="">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="control-label col-md-2" for="PosterAddress">海报上传</label>
+        <div class="col-md-10">
+            <button id="uploadPosterIcon" type="button">上传图片</button>
+            <label error-info="">（图片不大于300K且图片仅支持jpg和png格式）</label>
+            <img id="PosterimgIcon" style="display:none" />
+            <input class="form-control text-box single-line" data-val="true" data-val-required="封面上传 字段是必需的。" id="PosterAddress" name="PosterAddress" type="hidden" value="">
+        </div>
+    </div>
+    
+</form>
+@if (opType == OpType.View)
+{
+    <script>
+        SetKeyReadonly();
+    </script>
+}
+

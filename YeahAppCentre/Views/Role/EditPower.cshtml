@@ -1,0 +1,74 @@
+﻿@{
+    ViewBag.DialogTitle = "角色权限修改";
+    Layout = null;
+}
+<script type="text/javascript">
+    <!--
+    var setting = {
+        view: {
+            selectedMulti: false
+        },
+        check: {
+            enable: true
+        },
+        data: {
+            simpleData: {
+                enable: true
+            }
+        },
+        callback: {
+            beforeClick: beforeClick,
+            onCheck: onCheck
+        }
+    };
+
+
+
+    function createTree() {
+        var url = '@Url.Action("GetPowersByRole", "Role", new { id = ViewBag.RoleId })';
+        $.get(url, function (data) {
+            var zNodes = eval(data);
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes).expandAll(true);
+        });
+
+    }
+    function beforeClick(treeId, treeNode) {
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+        zTree.checkNode(treeNode, !treeNode.checked, null, true);
+        return false;
+    }
+
+    function onCheck(e, treeId, treeNode) {
+        var zTree = $.fn.zTree.getZTreeObj("treeDemo"),
+        nodes = zTree.getCheckedNodes(true),
+        v = "";
+        for (var i = 0, l = nodes.length; i < l; i++) {
+            v += nodes[i].id + ",";
+        }
+        if (v.length > 0) v = v.substring(0, v.length - 1);
+        var cityObj = $("#funcList");
+        cityObj.attr("value", v);
+    }
+
+
+    $(document).ready(function () {
+        createTree();
+    });
+
+</script>
+@using (Ajax.BeginForm("EditPower", new AjaxOptions
+{
+    HttpMethod = "Post",
+    OnSuccess = "Success",
+
+    //    OnBegin = "formValidate",
+}))
+{
+    <input type="hidden" id="id" name="id" value="@ViewBag.RoleId.ToString()" />
+    <input type="hidden" id="funcList" name="funcList" value="@ViewBag.ResourceIds" />
+}
+<div class="modal-body">
+    <ul id="treeDemo" class="ztree"></ul>
+</div>
+
+

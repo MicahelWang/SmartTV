@@ -1,0 +1,255 @@
+﻿@using YeahTVApi.DomainModel.SearchCriteria
+@{
+    ViewBag.Title = "系统配置管理";
+}
+<div class="page-content">
+    <div class="page-header">
+        <h1>
+            系统配置管理
+            <small>
+                <i class="icon-double-angle-right"></i>
+            </small>
+        </h1>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-header">
+                设备绑定列表
+            </div>
+            <div>
+                <div class="dataTables_wrapper" role="grid">
+                    @{
+                        var list = ViewBag.List as PagedViewList< SystemConfig>;
+                        var condition = ViewBag.SystemConfigCriteria as SystemConfigCriteria;
+                    }
+                    @Html.Partial("Condition", condition)
+                    @Html.Partial("List", list)
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_info">
+                                <ul class="list-inline action-buttons">
+                                    <li data-original-title="新增" id="btnNew">
+                                        <div class="ui-pg-div"><a href="#"><span class="ui-icon icon-plus-sign purple"></span></a></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            @{
+                                string querystring = condition.ToQueryString();
+                            }
+                            @Html.Pagination(list.PageIndex, list.PageSize, list.TotalCount, "#list", Url.Action("List") + querystring)
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+@section styles{
+    <style type="text/css">
+        input[type="radio"], input[type="checkbox"] {
+            margin: 4px 0 0;
+            line-height: normal;
+            width: 18px;
+            height: 15px;
+            padding-right: 15px;
+            margin-left: 15px;
+        }
+
+
+        .EditHotelPayment .col-md-10 {
+            width: 70.3333%;
+        }
+
+        .EditHotelPayment .form-group > label[class*="col-"] {
+            padding-top: 4px;
+            margin-bottom: 4px;
+            width: 110px;
+        }
+    </style>
+}
+@section scripts{
+@Scripts.Render("~/bundles/GetHotelNames")
+    <script type="text/javascript">
+        jQuery(function ($) {
+
+            $(".dataTable tbody tr:even").addClass("even");
+            $(".dataTable tbody tr:odd").addClass("odd");
+            $('table th input:checkbox').on('click', function () {
+                var that = this;
+                $(this).closest('table').find('tr > td:first-child input:checkbox')
+                    .each(function () {
+                        this.checked = that.checked;
+                        $(this).closest('tr').toggleClass('selected');
+                    });
+
+            });
+
+
+            $('[data-rel="tooltip"]').tooltip({ placement: tooltipPlacement });
+
+            function tooltipPlacement(context, source) {
+                var $source = $(source);
+                var $parent = $source.closest('table');
+                var off1 = $parent.offset();
+                var w1 = $parent.width();
+
+                var off2 = $source.offset();
+                var w2 = $source.width();
+
+                if (parseInt(off2.left) < parseInt(off1.left) + parseInt(w1 / 2)) return 'right';
+                return 'left';
+            }
+        })
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            //修改
+            $(document).delegate("tr [data-optype=edit]", "click",
+                function () {
+                    openDialog(GetDefaultOpt('@OpType.Update.GetValueStr()', GetKey($(this)), GetVersion($(this)),GetCode($(this))));
+                });
+
+            //查看
+            $(document).delegate("tr [data-optype=view]", "click",
+                function () {
+                    openDialog(GetDefaultOpt('@OpType.View.GetValueStr()', GetKey($(this)), GetVersion($(this)),GetCode($(this))));
+                });
+            //单行删除
+            $(document).delegate("tr [data-optype=delete]", "click",
+                function () {
+                    var that = this;
+                    $.messager.confirm("提示", "确认删除？!", function () {
+                        var $parent = $(that).closest('tr');
+                        var key = GetKey($parent);
+                        $parent.remove();
+                    });
+                });
+
+            ///编辑页 启用禁用
+            $(document).delegate("#StatusView", "change",
+                function () {
+                    var that = this;
+                    var isChecked = $(that).get(0).checked;
+                    var $parent = $(that).closest('div');
+                    $parent.find("#Status").val(isChecked);
+
+                });
+
+            //新增
+            $(document).delegate("#btnNew", "click",
+                function () {
+
+                    openDialog(GetDefaultOpt('@OpType.Add.GetValueStr()', 0, GetVersion($(this)),GetCode($(this))));
+                });
+
+            $(document).delegate("#GroupId", "change",
+                function () {
+                    var groupId = $(this).val();
+                    var obj = $("#HotelId");
+                    HotelFromGroup(groupId, obj);
+
+                });
+            $(document).delegate("#UGroupId", "change",
+               function () {
+                   var groupId = $(this).val();
+                   var obj = $("#UHotelId");
+                   HotelFromGroup(groupId, obj);
+               });
+
+            //是否显示价格
+            $(document).delegate("input[name=PayType]:radio", "click",
+                function () {
+
+                    var checkValue = $('input:radio[name="PayType"]:checked').val();
+
+                    if (checkValue === '@PayType.Daily.ToString()') {
+                        $("div.priceOfDayBox").removeClass("hidden");
+                    } else {
+                        $("div.priceOfDayBox").addClass("hidden");
+                    }
+                    $("#PriceOfDay").val("0.00");
+
+                });
+        });
+
+        function GetDefaultOpt(type, key, _version, serisecode) {
+            var map = {
+                '@OpType.View.GetValueStr()': '@OpType.View.GetDescription()',
+                '@OpType.Add.GetValueStr()': '@OpType.Add.GetDescription()',
+                '@OpType.Update.GetValueStr()': "@OpType.Update.GetDescription()",
+                '@OpType.Delete.GetValueStr()': "@OpType.Delete.GetDescription()"
+            };
+            var opt = {};
+            opt.title = "系统配置管理 -> " + map[type];
+            opt.url = '@Html.Raw(Url.Action("AddOrEdit", new { type = "_type_", id = "_id_", version = "_version_", serisecode = "_serisecode_" }))'
+                .replace('_id_', key)
+                .replace('_type_', type)
+                .replace('_version_', _version)
+                .replace('_serisecode_', serisecode);
+
+            if (_version == 'HotelPayment')
+                opt.url = opt.url.replace('AddOrEdit', 'EditHotelPayment');
+
+
+            if (type != '@OpType.View.GetValueStr()') {
+                opt.saveclick = function () {
+                    $("div.modal-dialog form").submit();
+                    event.preventDefault();
+                    return false;
+                };
+            }
+            return opt;
+        }
+
+        function GetKey(jqObj) {
+            var tagName = jqObj[0].tagName;
+            if (tagName == "A") {
+                var tr = jqObj.closest("tr");
+                return tr.find("input.key").val();
+            } else if (tagName == "TR") {
+                return jqObj.find("input.key").val();
+            }
+            return '';
+        }
+
+        function GetVersion(jqObj) {
+            var tagName = jqObj[0].tagName;
+            if (tagName == "A") {
+                var tr = jqObj.closest("tr");
+                return tr.find("input.version").val();
+            } else if (tagName == "TR") {
+                return jqObj.find("input.version").val();
+            }
+            return '';
+        }
+
+        function GetCode(jqObj) {
+            var tagName = jqObj[0].tagName;
+            if (tagName == "A") {
+                var tr = jqObj.closest("tr");
+                return tr.find("input.serisecode").val();
+            } else if (tagName == "TR") {
+                return jqObj.find("input.serisecode").val();
+            }
+            return '';
+        }
+
+        function Success(data) {
+            if (data == "Success") {
+                Mc.Msg("保存成功！", function () {
+                    location.href = location.href;
+                });
+
+            } else {
+                Mc.Error(data);
+            }
+        }
+
+        function SetKeyReadonly() {
+            $("div.modal-dialog input,select").attr("disabled", "disabled");
+        }
+    </script>}

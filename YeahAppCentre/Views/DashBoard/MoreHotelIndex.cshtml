@@ -1,0 +1,384 @@
+﻿@{
+    Layout = "/Views/Shared/_DashBoardLayout.cshtml";
+    ViewBag.Title = "DashBoard多酒店";
+}
+<style type="text/css">
+    .imageIcon {
+        width: 36px;
+        height: 36px;
+        margin: 5px;
+    }
+
+    .imageIconTip {
+        width: 24px;
+        height: 24px;
+        margin: 5px;
+    }
+
+    .form-inline.pull-right .form-group {
+        float: left;
+        padding: 5px;
+    }
+
+    .barndConfig {
+        margin-left: 20px;
+    }
+
+        .barndConfig a {
+            padding-right: 5px;
+            font-weight: bold;
+        }
+
+    .nav .open > a, .nav .open > a:hover, .nav .open > a:focus {
+        background-color: transparent;
+    }
+
+    .light-blue a i.icon-caret-down {
+        padding-left: 5px;
+    }
+</style>
+<div class="page-content " style="overflow-x:hidden">
+    <div class="clearfix">
+        @*<div class=" radius panel-heading btn-xs" style="background-color:black; color:white; padding:6px 0px;">
+                <h4>
+                    <span>&nbsp;&nbsp;行悦智能电视运营平台</span>
+                    <span class="pull-right">欢迎：admin(管理员) <span>退出</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                </h4>
+            </div>*@
+        @*<div class=" radius panel-heading btn-xs text-right" style="">
+                <h3>    </h3>
+            </div>*@
+    </div>
+    <div class="row">
+        <div class="">
+            <div class="message-header clearfix"> <h3><span class="pull-left">门店筛选</span><span class="pull-right" style=" border: dotted 1px #333333;padding:7px 10px; margin-right:30px;">当前可查看 @ViewBag.HotelListByPermition 家门店，共 @ViewBag.DeviceSeriesTotal 台终端</span> </h3></div>
+            <div class="hr"></div>
+            <div class="dataTables_wrapper" role="grid">
+                <div class="row">
+                    <div class="col-sm-12 tab-search">
+                        <form action="@Url.Action("MoreHotelIndex", "DashBoard")" method="post" novalidate="novalidate">
+                            <label> 门店名称</label>
+                            <span class="input-icon">
+                                <input id="HotelName" name="HotelName" class="form-control" value="@ViewBag.HotelName" placeholder="输入门店名称快速查询" data-provide="typeahead" autocomplete="off">
+                                <input id="HotelId" name="HotelId" type="hidden" value="@ViewBag.HotelId">
+                            </span>
+                            <span class="input-icon">
+                                <button type="submit" class="btn btn-app btn-warning btn-xs" id="searchForm">查询</button>
+                            </span>
+                        </form>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+                @{
+                    var list = ViewBag.List as PagedViewList<YeahTVApi.DomainModel.Models.ViewModels.HotelInfoStatistics>;
+                    var condition = ViewBag.HotelCriteria as YeahTVApi.DomainModel.SearchCriteria.CoreSysHotelCriteria;
+                }
+                @Html.Partial("MoreHotelList", list)
+                <div class="row">
+                    @{
+                        string querystring = condition.ToQueryString();
+                    }
+                    @Html.Pagination(list.PageIndex, list.PageSize, list.TotalCount, "#list", Url.Action("List") + querystring)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="">
+            <h3 class="nomargin">门店数据</h3>
+            <hr />
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <img src="~/Scripts/assets/dashboard/vod.png" class=" imageIconTip" />
+                    <span>点播</span>
+                    <div class="form-inline pull-right">
+                        <div class="form-group">
+                            @Html.TextBox("filterDate", "", new { @class = "input-medium", @value = DateTime.Now.ToDateTimeStr() })
+                        </div>
+                        <button type="button" class="btn btn-app btn-warning btn-xs queryVod">查  询</button>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div>
+                        <span class="btn btn-xs btn-primary queryCategory" querytype="0">收益排行</span>
+                        @*<span class="btn btn-xs queryCategory" querytype="1">点播排行</span>*@
+                    </div>
+                    <div id="vod" style="height:300px">
+                        <canvas style="width:100%;"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/dist/echarts.js"></script>
+<script src="~/Scripts/assets/js/date-time/moment.min.js"></script>
+<script src="~/Scripts/assets/js/date-time/daterangepicker.min.js"></script>
+<link href="~/Scripts/assets/css/daterangepicker.css" rel="stylesheet" />
+@Scripts.Render("~/bundles/GetHotelNames")
+<script>
+    GetHotelNames('@Url.Action("GetHotelNamesByPermition", "Unity")', $("#HotelName"), $("#HotelId"));
+</script>
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        function getBrandUrls() {
+
+            @if (ViewBag.BrandConfigUrls is Dictionary<string, string> && ((Dictionary<string, string>) ViewBag.BrandConfigUrls) != null && ((Dictionary<string, string>) ViewBag.BrandConfigUrls).Count > 0)
+            {
+                var brandsStr = ((Dictionary<string, string>)ViewBag.BrandConfigUrls).Aggregate("<li class=\"light-blue\"><a data-toggle=\"dropdown\" href=\"#\" class=\"dropdown-toggle\">品牌个性化配置<i class=\"icon-caret-down\"></i></a><ul class=\"user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close\">", (current, brandConfigUrl) => current + "<li><a href=\"" + brandConfigUrl.Value + "\">" + brandConfigUrl.Key + "</a></li>");
+                brandsStr += "</ul></li>";
+
+                @:var urls = '@Html.Raw(brandsStr)';
+                @:$(".navbar-header.pull-right .nav.ace-nav2 li").eq(0).after(urls);
+             }
+
+        }
+
+        getBrandUrls();
+
+    });
+
+
+    $('input[name=filterDate]').css({ width: "170px" })
+        .val('@DateTime.Now.AddDays(-30).ToDateTimeStr(DateFormate.yyyyMMdd)' + ' - ' + '@DateTime.Now.AddDays(-1).ToDateTimeStr(DateFormate.yyyyMMdd)')
+        .daterangepicker({
+            maxDate: '@DateTime.Now.AddDays(-1).ToDateTimeStr(DateFormate.yyyyMMdd)',
+            minDate: '@DateTime.Now.AddDays(-(int)ViewBag.ValidityDays).ToDateTimeStr(DateFormate.yyyyMMdd)',
+            startDate: '@DateTime.Now.AddDays(-30).ToDateTimeStr(DateFormate.yyyyMMdd)',
+            endDate: '@DateTime.Now.AddDays(-1).ToDateTimeStr(DateFormate.yyyyMMdd)',
+            opens: 'left',
+            format: 'YYYY-MM-DD',
+            dateLimit: {
+                "days": 31
+            },
+            locale: {
+                applyLabel: '确定',
+                cancelLabel: '取消',
+                fromLabel: '起始时间',
+                toLabel: '结束时间',
+                customRangeLabel: '自定义',
+                daysOfWeek: ['日', '一', '二', '三', '四', '五', '六'],
+                monthNames: ['一月', '二月', '三月', '四月', '五月', '六月',
+                    '七月', '八月', '九月', '十月', '十一月', '十二月'],
+                firstDay: 1
+            }
+        });
+    //点播--类别
+    $(document).delegate("span.queryCategory,button.queryVod", "click",
+        function () {
+
+            if (this.nodeName == "SPAN") {
+                $(this).addClass("btn-primary");
+                $(this).siblings().removeClass("btn-primary");
+            }
+            var date = $("div.panel-heading").find("input[name=filterDate]").val();
+
+            switch ($("span.btn-primary").attr("queryType")) {
+                case "0":
+                    queryIncomeRank(date);
+                    break;
+                case "1":
+                    queryHotelMovieVodRank();
+                    break;
+            }
+        });
+    queryIncomeRank();
+    //收益排行
+    function queryIncomeRank(dat) {
+        var date = dat || $("div.panel-heading").find("input[name=filterDate]").val();
+        require.config({
+            paths: {
+                echarts: '/Scripts/dist/'
+            }
+        });
+
+        // 使用
+        require(
+        [
+            'echarts',
+            'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+        ], DrawEChartChannelUsedTime);
+
+
+        var myChannelUsedTimeChart;
+
+        function DrawEChartChannelUsedTime(ec) {
+
+            // 基于准备好的dom，初始化echarts图表
+            myChannelUsedTimeChart = ec.init(document.getElementById('vod'));
+            myChannelUsedTimeChart.showLoading({
+                text: "图表数据正在努力加载..."
+            });
+
+
+            var options = {
+                title: {
+                    text: '',
+                    subtext: ""
+                },
+                tooltip: {
+
+                    show: true,
+                    formatter: '{b} ￥{c}'
+                }, toolbox: {
+                    show: true,
+                    feature: {
+                        saveAsImage: { show: true }
+                    }
+                },
+                legend: {
+                    data: ['收益']
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: [],
+                        axisLabel: { rotate: 15 }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: "收益",
+                        type: "bar",
+                        itemStyle: { normal: { label: { show: true, position: 'inside' } } },
+                        data: []
+                    }
+                ]
+            };
+
+            var queryDate = new Array();
+            if (date != null) {
+                queryDate = date.split(" - ");
+                if (queryDate.length != 2) {
+                    alert("时间格式错误！");
+                    return;
+                }
+            } else {
+                queryDate.push("", "");
+            }
+
+            //通过Ajax获取数据
+            $.ajax({
+                type: "get",
+                async: false, //同步执行
+                url: ("@Html.Raw(@Url.Action("GetMoreHotelMovieIncomeRanking", new { @beginDate = "_begin", @endDate = "_end" }))").replace("_begin", queryDate[0]).replace("_end", queryDate[1]),
+                dataType: "json", //返回数据形式为json
+                success: function (result) {
+                    if (result) {
+                        options.title.text = "门店收益排行TOP10(金额)";
+                        options.title.subtext = queryDate[0] + " 至 " + queryDate[1];
+                        options.xAxis[0].data = result.XAxisList;
+                        options.series[0].data = result.SeriesList[0].data;
+                        //options.legend.data = result.LegendList;
+                        myChannelUsedTimeChart.hideLoading();
+                        myChannelUsedTimeChart.setOption(options);
+                        window.onresize = myChannelUsedTimeChart.resize;
+                    }
+                },
+                error: function (errorMsg) {
+                    alert("图表请求数据失败!");
+                }
+            });
+        };
+    }
+
+    function queryHotelMovieVodRank() {
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: '/Scripts/dist/'
+            }
+        });
+
+        // 使用
+        require(
+        [
+            'echarts',
+            'echarts/chart/line', // 使用柱状图就加载bar模块，按需加载
+            'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+        ], DrawEChartMovieVodOfWeek);
+
+
+        var myMovieVodOfWeek;
+
+        function DrawEChartMovieVodOfWeek(ec) {
+
+            // 基于准备好的dom，初始化echarts图表
+            myMovieVodOfWeek = ec.init(document.getElementById('vod'));
+            myMovieVodOfWeek.showLoading({
+                text: "图表数据正在努力加载..."
+            });
+
+
+            var options = {
+                title: {
+                    text: '',
+                    subtext: ''
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['点播次数']
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        saveAsImage: { show: true }
+                    }
+                },
+                calculable: true,
+                xAxis: [
+                    {
+                        type: 'value',
+                        boundaryGap: [0, 0.01]
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'category',
+                        data: []
+                    }
+                ],
+                series: [
+                {
+                    name: '点播次数',
+                    type: 'bar',
+                    sort: 'descending',
+                    itemStyle: { normal: { label: { show: true, position: 'right' } } },
+                    data: []
+                }]
+            };
+
+            //通过Ajax获取数据
+            $.ajax({
+                type: "get",
+                async: false, //同步执行
+                url: "@Html.Raw(@Url.Action("QueryMoreHotelMovieVod"))",
+                dataType: "json", //返回数据形式为json
+                success: function (result) {
+                    if (result) {
+                        options.title.text = "视频点播排行TOP10(次数)";
+                        options.yAxis[0].data = result.XAxisList;
+                        options.series[0].data = result.SeriesList[0].data;
+                        //options.legend.data = result.LegendList;
+                        myMovieVodOfWeek.hideLoading();
+                        myMovieVodOfWeek.setOption(options);
+                        window.onresize = myMovieVodOfWeek.resize;
+                    }
+                },
+                error: function (errorMsg) {
+                    alert("图表请求数据失败!");
+                }
+            });
+        }
+    }
+</script>

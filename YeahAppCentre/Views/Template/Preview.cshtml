@@ -1,0 +1,25 @@
+﻿
+<form  class="form-horizontal" data-ajax="true" data-ajax-method="Post" data-ajax-success="Success" id="form00" method="post" role="form" novalidate="novalidate">
+    <div class="form-horizontal">
+        <div class="form-group"> 
+            <div class="col-md">
+                <video src="@ViewBag.Address" controls="controls" style="width:93%;height:80%;margin:20px;">
+                    your browser does not support the video tag
+                </video>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">         
+        $(function () {
+            $("form").removeData("validator").removeData("unobtrusiveValidation");
+            $.validator.unobtrusive.parse($("form"));
+        });
+        $(function () {
+            $('div.modal').on('hidden.bs.modal', function () {
+                $('div.modal-dialog').find("video").remove();
+            })
+        });
+    </script>
+</form>
+

@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="YeahCenter.RefreshCacheService" GeneratedClassName="Service">
+  <Profiles />
+  <Settings>
+    <Setting Name="RequestUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">http://192.168.8.69:8099/api/DashBoard</Value>
+    </Setting>
+    <Setting Name="RunTime" Type="System.TimeSpan" Scope="User">
+      <Value Profile="(Default)">00:30:00</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

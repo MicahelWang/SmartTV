@@ -1,0 +1,97 @@
+﻿@model PagedViewList<Apps>
+<div class="row" id="list">
+    <table id="viewTable" class="table table-striped table-bordered table-hover dataTable">
+
+        <thead>
+            <tr role="row">
+                <th></th>
+                <th>APP名称</th>
+                <th>APP ID</th>
+                <th>App Key</th>
+                <th>包名</th>
+                <th>SecureKey</th>
+                <th>系统应用</th>
+                <th>是否可用</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.Source)
+            {
+
+                <tr>
+                    <td>
+                        <a class="empty" style="cursor:pointer;" onclick="expandTable(this);">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        </a>
+                    </td>
+                    <td>
+                        <input type="hidden" class="key" value="@item.Id" />
+                        @item.Name
+                    </td>
+                    <td>
+                        @item.Id
+
+                    </td>
+                    <td>
+                        @item.AppKey
+                    </td>
+                    <td>
+                        @item.PackageName
+                    </td>
+                    <td>
+                        @item.SecureKey
+                    </td>
+                    <td>
+                        @if (item.IsSystem)
+                        {
+                            <i  class="icon-ok green"></i>
+                        }
+                        else
+                        {
+                            <i class="icon-remove red"></i>
+                        }
+                    </td>
+                    <td>
+                        @if (item.Active)
+                        {
+                            <i class="icon-ok green"></i>
+                        }
+                        else
+                        {
+                            <i class="icon-remove red"></i>
+                        }
+                    </td>
+                    <td>
+                        <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                            <a data-optype="editApp" class="green" href="javascript:void(0)">
+                                <i class="icon-pencil bigger-130"></i>
+                            </a>
+                        </div>
+                        <div class="visible-xs visible-sm hidden-md hidden-lg">
+                            <div class="inline position-relative">
+                                <button class="btn btn-minier btn-yellow dropdown-toggle" data-toggle="dropdown">
+                                    <i class="icon-caret-down icon-only bigger-120"></i>
+                                </button>
+                                <ul class="dropdown-menu dropdown-only-icon dropdown-yellow pull-right dropdown-caret dropdown-close">
+                                    <li>
+                                        <a data-optype="eidt" href="javascript:void(0)" class="tooltip-success" data-rel="tooltip" title="" data-original-title="编辑">
+                                            <span class="green">
+                                                <i class="icon-edit bigger-120"></i>
+                                            </span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                
+                
+                
+                
+            }
+        </tbody>
+    </table>
+</div>
