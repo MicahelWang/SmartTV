@@ -204,10 +204,6 @@
       <Project>{fa80cae9-b52d-4236-9f91-3eb8e2c60219}</Project>
       <Name>YeahTVApiLibrary</Name>
     </ProjectReference>
-    <ProjectReference Include="..\YeahTVApi\YeahTVApi.csproj">
-      <Project>{34d757aa-c273-4d01-815c-8234df614653}</Project>
-      <Name>YeahTVApi</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Test.txt" />
